@@ -1,0 +1,15 @@
+<div class="container">
+<form class="form" [formGroup]="dataForm" autocomplete="off">
+  <mat-form-field class="field" >
+    <mat-label>Tài khoản</mat-label>
+    <input matInput formControlName="Username">
+  </mat-form-field>
+
+  <mat-form-field class="field">
+    <mat-label>Mật kh</mat-label>
+    <input matInput formControlName="Password">
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="DangNhap(dataForm.value)">Đăng nhập</button>
+</form>
+</div>

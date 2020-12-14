@@ -1,0 +1,47 @@
+<form [formGroup]="form">
+  <div nz-form  class="registration-form" >
+    <h2>Đăng ký tài khoản</h2><br>
+    <!-- color -->
+    <ng-container *ngFor="let item of color">
+      <div class="color" [style.backgroundColor]="item" ></div>
+  </ng-container>
+    <br><br>
+    <!-- User -->
+    <!-- <nz-form-item>
+      <nz-input-group nzPrefixIcon="user">
+        <input class="input" type="text" nz-input placeholder="Username" formControlName="UserName"/>
+      </nz-input-group>
+    </nz-form-item> -->
+    <!-- Pass -->
+    <!-- <nz-form-item>
+      <nz-input-group nzPrefixIcon="lock">
+        <input class="input" type="password" nz-input placeholder="password" formControlName="Password"/>
+      </nz-input-group>
+    </nz-form-item> -->
+    <!-- Nhập lại pass -->
+    <!-- <nz-form-item>
+      <nz-input-group nzPrefixIcon="lock">
+        <input class="input" type="password" nz-input placeholder="nhập lại password" formControlName="Password2"/>
+      </nz-input-group>
+    </nz-form-item> -->
+    <!-- Email -->
+    <!-- <nz-form-item>
+      <nz-input-group nzPrefixIcon="mail">
+        <input class="input" type="email" nz-input placeholder="Email" formControlName="Email"/>
+      </nz-input-group>
+    </nz-form-item> -->
+    <!-- Role -->
+    <!-- <nz-form-item>
+      <nz-input-group nzPrefixIcon="Fullnaem">
+        <input class="input" type="text" nz-input placeholder="Name" formControlName="FullName"/>
+      </nz-input-group>
+    </nz-form-item> -->
+    <!-- color -->
+    <ng-container *ngFor="let item of color">
+      <div class="color" [style.backgroundColor]="item"></div>
+    </ng-container><br><br>
+    <!-- button -->
+    <pre>{{form.value | json}}</pre>
+    <button nz-button class="registration-button registration-form-margin" (click)="Dangky(form.value)">Đăng ký</button><br>
+  </div>
+</form>
