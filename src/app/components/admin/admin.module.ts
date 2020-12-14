@@ -21,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoaitudienComponent } from './danhmuc/loaitudien/loaitudien.component';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { PopTuDien } from './danhmuc/tudien/popup/tudien.popup';
+import { UserComponent } from './user/user.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -45,7 +46,8 @@ import { PopTuDien } from './danhmuc/tudien/popup/tudien.popup';
     BaocaoComponent,
     LoaitudienComponent,
     TudienComponent,
-    PopTuDien
+    PopTuDien,
+    UserComponent
   ],
   providers: [
     {

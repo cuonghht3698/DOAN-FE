@@ -7,12 +7,12 @@
                         <h4 class="title">Edit Profile</h4>
                     </div>
                     <div class="content">
-                        <form>
+                        <form [formGroup]="ProfileUser">
                             <div class="row">
                                 <div class="col-md-5">
                                     <div class="form-group">
                                         <label>Company (disabled)</label>
-                                        <input type="text" class="form-control" disabled placeholder="Company" value="Creative Code Inc.">
+                                        <input type="text" class="form-control" formControlName="Id">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -119,3 +119,6 @@
         </div>
     </div>
 </div>
+
+
+{{ MyProfile | json }}

@@ -28,9 +28,6 @@ export class AuthenticationService {
     return this.http.get(environment.ApiUrl+' userprofile');
   }
 
-  getProfileById(id){
-    return this.http.get(environment.ApiUrl + 'userprofile/'+ id);
-  }
 
   /**
    * Tài khoản đã được xác thực hay chưa

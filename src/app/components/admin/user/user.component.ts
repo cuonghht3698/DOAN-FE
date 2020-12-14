@@ -1,5 +1,7 @@
-import { AuthenticationService } from 'src/app/services/userService/authentication.service';
+
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-user',
@@ -8,21 +10,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserComponent implements OnInit {
 
-  userLogin;
 
-  constructor(private user:AuthenticationService) { }
-
-  ngOnInit() {
-    this.userLogin = JSON.parse(localStorage.getItem("user"));
-    console.log(this.userLogin);
-    
-    this.getProfile();
+  constructor(private user:UserService,private fb:FormBuilder) { }
+  ProfileUser:FormGroup;
+  MyProfile:any;
+   ngOnInit() {
+    const userLogin = JSON.parse(localStorage.getItem("user"));
+    this.getProfile(userLogin[0].id);
   }
-  getProfile(){
-    this.user.getProfileById(this.userLogin.id).subscribe(
-      (res)=>{
-        console.log(res);
-        
+   getProfile(id){
+     this.user.getProfileById(id).subscribe(
+      (res:any) => {
+        this.MyProfile =  res;
+        this.ProfileUser = this.fb.group({
+          Id: this.MyProfile.id,
+          HoTen: this.MyProfile.hoTen,
+          DiaChi: this.MyProfile.diaChi,
+          Email: this.MyProfile.email,
+          GioiThieu: this.MyProfile.gioiThieu,
+          Sdt: this.MyProfile.sdt,
+          TenKhongDau: this.MyProfile.tenKhongDau,
+          Username: this.MyProfile.username,
+          Tuoi:this.MyProfile.tuoi
+        });
       }
     )
   }

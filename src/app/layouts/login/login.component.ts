@@ -1,4 +1,4 @@
-import { AuthenticationService } from './../../services/userService/authentication.service';
+import { AuthenticationService } from '../../services/authService/authentication.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
   DangNhap(data) {
     this.authent.login(data).subscribe(
       (res :any) =>{console.log(res);
-      
+
         localStorage.setItem('token',res.token);
         this.authent.getUser().subscribe(
           (res:any) =>{

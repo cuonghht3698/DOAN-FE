@@ -11,7 +11,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { AppComponent } from './app.component';
-import { AuthenticationService } from './services/userService/authentication.service';
+import { AuthenticationService } from './services/authService/authentication.service';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { HomeComponent } from './layouts/home/home.component';
 import { CommonModule } from '@angular/common';
