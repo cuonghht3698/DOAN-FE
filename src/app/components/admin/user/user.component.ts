@@ -1,7 +1,9 @@
 
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { UserService } from 'src/app/services/user/user.service';
+import { PopChangePass } from './DialogChangePass/changepass.popup';
 
 @Component({
   selector: 'app-user',
@@ -11,29 +13,55 @@ import { UserService } from 'src/app/services/user/user.service';
 export class UserComponent implements OnInit {
 
 
-  constructor(private user:UserService,private fb:FormBuilder) { }
-  ProfileUser:FormGroup;
+  constructor(private user:UserService,private fb:FormBuilder,private dialogPass:MatDialog) { }
+  ProfileUser: FormGroup;
   MyProfile:any;
    ngOnInit() {
     const userLogin = JSON.parse(localStorage.getItem("user"));
     this.getProfile(userLogin[0].id);
   }
    getProfile(id){
+    this.ProfileUser = this.fb.group({
+      Id: '',
+      HoTen: '',
+      DiaChi: '',
+      Email: '',
+      GioiThieu: '',
+      Sdt: '',
+      TenKhongDau: '',
+      Username: '',
+      Tuoi: ''
+    });
      this.user.getProfileById(id).subscribe(
       (res:any) => {
-        this.MyProfile =  res;
+        console.log(res);
         this.ProfileUser = this.fb.group({
-          Id: this.MyProfile.id,
-          HoTen: this.MyProfile.hoTen,
-          DiaChi: this.MyProfile.diaChi,
-          Email: this.MyProfile.email,
-          GioiThieu: this.MyProfile.gioiThieu,
-          Sdt: this.MyProfile.sdt,
-          TenKhongDau: this.MyProfile.tenKhongDau,
-          Username: this.MyProfile.username,
-          Tuoi:this.MyProfile.tuoi
+          Id: res.id,
+          HoTen: res.hoTen,
+          DiaChi: res.diaChi,
+          Email: res.email,
+          GioiThieu: res.gioiThieu,
+          Sdt: res.sdt,
+          TenKhongDau: res.tenKhongDau,
+          Username: res.username,
+          Tuoi: res.tuoi
         });
       }
     )
+  }
+
+
+
+  OpenDialogChangePass(){
+    const dialog = this.dialogPass.open(PopChangePass, {
+      width:'30%',
+      height:'300px',
+      data:{obj:this.ProfileUser.value},
+      disableClose :true,
+    });
+
+    dialog.afterClosed().subscribe(res=>{
+      console.log(res);
+    })
   }
 }

@@ -12,7 +12,7 @@ export class AuthenticationService {
 
 
   login(data){
-    return this.http.post(environment.ApiUrl+'authentication/Login',data);
+    return this.http.post(environment.ApiUrl+ 'authentication/Login',data);
   }
 
   register(data){
@@ -25,7 +25,7 @@ export class AuthenticationService {
   }
 
   getUser(){
-    return this.http.get(environment.ApiUrl+' userprofile');
+    return this.http.get(environment.ApiUrl +'userprofile');
   }
 
 

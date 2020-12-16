@@ -1,0 +1,16 @@
+
+
+<form [formGroup]="dataPass"]>
+  <mat-form-field>
+    <mat-label>Mật khẩu cũ</mat-label>
+    <input matInput formControlName="PasswordOld" name="c">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Mật khẩu mới </mat-label>
+    <input matInput formControlName="PasswordNew" name="b">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Xác nhận mật khẩu</mat-label>
+    <input matInput formControlName="PasswordConfirm" name="a">
+  </mat-form-field>
+</form>

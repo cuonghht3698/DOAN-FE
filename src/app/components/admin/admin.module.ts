@@ -22,6 +22,7 @@ import { LoaitudienComponent } from './danhmuc/loaitudien/loaitudien.component';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { PopTuDien } from './danhmuc/tudien/popup/tudien.popup';
 import { UserComponent } from './user/user.component';
+import { PopChangePass } from './user/DialogChangePass/changepass.popup';
 @NgModule({
   imports: [
     CommonModule,
@@ -47,7 +48,8 @@ import { UserComponent } from './user/user.component';
     LoaitudienComponent,
     TudienComponent,
     PopTuDien,
-    UserComponent
+    UserComponent,
+    PopChangePass
   ],
   providers: [
     {

@@ -55,7 +55,7 @@ export class PopTuDien implements OnInit {
   getLoaiTuDien(){
     this.loaitudien.GetAll().subscribe((res:any)=>{
       this.dsLoaiTuDien = res;
-      
+
     });
   }
 
