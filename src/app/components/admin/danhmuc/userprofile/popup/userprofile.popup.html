@@ -1,0 +1,72 @@
+<form autocomplete="off">
+  <h2>Sửa thông tin</h2>
+  <mat-form-field>
+    <mat-label>Họ tên</mat-label>
+    <input matInput [(ngModel)]="dataChange.HoTen" name="ten">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Tên không dấu</mat-label>
+    <input matInput [(ngModel)]="dataChange.TenKhongDau" name="tenk">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Địa chỉ email</mat-label>
+    <input matInput [(ngModel)]="dataChange.Email" name="email">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Địa chỉ</mat-label>
+    <input matInput [(ngModel)]="dataChange.DiaChi" name="diachi">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Số điện thoại</mat-label>
+    <input matInput [(ngModel)]="dataChange.Sdt" name="sdt">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Username</mat-label>
+    <input matInput [(ngModel)]="dataChange.Username" name="user" readonly>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Quyền hạn</mat-label>
+    <input matInput [(ngModel)]="dataChange.Role" name="role" readonly>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Choose a date</mat-label>
+    <input matInput [matDatepicker]="picker" [(ngModel)]="dataChange.NgaySinh" name="ns">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field class="gioithieu">
+    <mat-label>Giới thiệu</mat-label>
+    <textarea matInput [(ngModel)]="dataChange.GioiThieu" name="gioithieu"></textarea>
+  </mat-form-field>
+</form>
+<div class="b">
+<button mat-raised-button color="primary" (click)="CreateOrUpdate()" *ngIf="dataChange.Id == IdNull">Thêm</button>
+<button mat-raised-button color="accent" (click)="CreateOrUpdate()" *ngIf="dataChange.Id != IdNull">Sửa</button>
+<button mat-raised-button color="warn" (click)="Clear()">Xóa</button>
+<button mat-raised-button color="warn" class="float-right" (click)="ClosePopup()">Huy</button>
+</div>
+{{ dataChange | json }}
+
+<style>
+  form {
+    text-align: center;
+  }
+
+  mat-form-field {
+    margin: auto 20px;
+    width: 42%;
+  }
+  .gioithieu {
+    width: 80%;
+    margin: auto;
+  }
+  .b{
+    margin-left: 160px;
+  }
+  button {
+    margin-left: 10px;
+    outline: none;
+  }
+</style>

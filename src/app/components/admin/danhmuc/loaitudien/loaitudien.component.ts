@@ -58,7 +58,8 @@ export class LoaitudienComponent implements OnInit  {
         this.TotalItem = res.total;
         this.dataSource = ELEMENT_DATA;
         this.dataSource.paginator = this.paginator;
-
+        console.log(res);
+        
       },
       err => {
         console.log(err);

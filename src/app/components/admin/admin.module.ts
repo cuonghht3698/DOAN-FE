@@ -1,3 +1,4 @@
+import { PopupUserProfile } from './danhmuc/userprofile/popup/userproflie.popup';
 import { TudienComponent } from './danhmuc/tudien/tudien.component';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -14,7 +15,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { MaterialModule } from '../../material.module';
 import { NgxPopper } from 'angular-popper';
 import { NavbarComponent } from './navbar/navbar.component';
-import { TablesComponent } from './tables/tables.component';
+
 import { LbdChartComponent } from './directives/lbd-chart/lbd-chart.component';
 import { BaocaoComponent } from './baocao/baocao.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -23,6 +24,7 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { PopTuDien } from './danhmuc/tudien/popup/tudien.popup';
 import { UserComponent } from './user/user.component';
 import { PopChangePass } from './user/DialogChangePass/changepass.popup';
+import { UserprofileComponent } from './danhmuc/userprofile/userprofile.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -41,7 +43,6 @@ import { PopChangePass } from './user/DialogChangePass/changepass.popup';
     DashboardComponent,
     NavbarComponent,
     NavbarComponent,
-    TablesComponent,
     LbdChartComponent,
     BaocaoComponent,
     BaocaoComponent,
@@ -49,7 +50,9 @@ import { PopChangePass } from './user/DialogChangePass/changepass.popup';
     TudienComponent,
     PopTuDien,
     UserComponent,
-    PopChangePass
+    PopChangePass,
+    UserprofileComponent,
+    PopupUserProfile
   ],
   providers: [
     {

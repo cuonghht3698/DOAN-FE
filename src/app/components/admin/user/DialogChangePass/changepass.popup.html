@@ -1,16 +1,28 @@
-
-
-<form [formGroup]="dataPass"]>
+<div class="container text-center"> 
+<form>
+  <h2>Đổi mật khẩu</h2>
   <mat-form-field>
     <mat-label>Mật khẩu cũ</mat-label>
-    <input matInput formControlName="PasswordOld" name="c">
+    <input matInput minlength="5" required [(ngModel)]="dataPass.PasswordOld" name="pass1">
   </mat-form-field>
   <mat-form-field>
     <mat-label>Mật khẩu mới </mat-label>
-    <input matInput formControlName="PasswordNew" name="b">
+    <input matInput minlength="5" required [(ngModel)]="dataPass.PasswordNew" name="pass2">
   </mat-form-field>
   <mat-form-field>
     <mat-label>Xác nhận mật khẩu</mat-label>
-    <input matInput formControlName="PasswordConfirm" name="a">
+    <input matInput minlength="5" required [(ngModel)]="dataPass.PasswordConfirm" name="pass3">
   </mat-form-field>
+  <button mat-raised-button color="primary" (click)="SaveChange()">Lưu</button>
+  <button mat-raised-button color="warn" (click)="ClosePopup()">Hủy</button>
 </form>
+</div>
+
+<style>
+  mat-form-field {
+    width: 100%;
+  }
+  button{
+    margin: 10px;
+  }
+</style>

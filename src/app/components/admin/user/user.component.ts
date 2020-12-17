@@ -20,6 +20,7 @@ export class UserComponent implements OnInit {
     const userLogin = JSON.parse(localStorage.getItem("user"));
     this.getProfile(userLogin[0].id);
   }
+  // get profiukle
    getProfile(id){
     this.ProfileUser = this.fb.group({
       Id: '',
@@ -49,19 +50,30 @@ export class UserComponent implements OnInit {
       }
     )
   }
-
-
+// end profile
+  SaveChange(){
+    console.log(this.ProfileUser.value);
+    
+    this.user.changeProfile(this.ProfileUser.value).subscribe((res)=>
+    {
+      console.log(res);
+      
+    },err=>{
+      console.log(err);
+      
+    })
+  }
 
   OpenDialogChangePass(){
     const dialog = this.dialogPass.open(PopChangePass, {
       width:'30%',
-      height:'300px',
+      height:'400px',
       data:{obj:this.ProfileUser.value},
       disableClose :true,
     });
 
-    dialog.afterClosed().subscribe(res=>{
-      console.log(res);
-    })
+    // dialog.afterClosed().subscribe(res=>{
+    //   console.log(res);
+    // })
   }
 }

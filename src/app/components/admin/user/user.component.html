@@ -10,7 +10,7 @@
                         <form [formGroup]="ProfileUser">
                             <div class="row">
                                 <div class="col-md-5">
-                                    <div class="form-group" *ngIf="false">
+                                    <div class="form-group">
                                         <label>Company (disabled)</label>
                                         <input type="text" class="form-control" formControlName="Id">
                                     </div>
@@ -63,7 +63,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Postal Code</label>
-                                        <input type="number" class="form-control" formControlName="Sdt">
+                                        <input type="text" class="form-control" formControlName="Sdt">
                                     </div>
                                 </div>
                             </div>
@@ -76,7 +76,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-info btn-fill pull-right">Lưu</button>
+                            <button type="submit" class="btn btn-info btn-fill pull-right" (click)="SaveChange()">Lưu</button>
                             <button class="btn btn-success btn-fill pull-left" (click)="OpenDialogChangePass()">Đổi mật khẩu</button>
 
                             <div class="clearfix"></div>
@@ -117,4 +117,4 @@
 </div>
 
 
-{{ MyProfile | json }}
+{{ ProfileUser.value | json }}
