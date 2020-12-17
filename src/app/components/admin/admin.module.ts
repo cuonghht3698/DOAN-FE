@@ -25,6 +25,12 @@ import { PopTuDien } from './danhmuc/tudien/popup/tudien.popup';
 import { UserComponent } from './user/user.component';
 import { PopChangePass } from './user/DialogChangePass/changepass.popup';
 import { UserprofileComponent } from './danhmuc/userprofile/userprofile.component';
+import { TinhthanhComponent } from './danhmuc/tinhthanh/tinhthanh.component';
+import { NhacungcapComponent } from './danhmuc/nhacungcap/nhacungcap.component';
+import { CauhinhComponent } from './danhmuc/cauhinh/cauhinh.component';
+import { SanphamComponent } from './danhmuc/sanpham/sanpham.component';
+import { TinhThanhDialog } from './danhmuc/tinhthanh/popup/tinhthanh.popup';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -52,7 +58,12 @@ import { UserprofileComponent } from './danhmuc/userprofile/userprofile.componen
     UserComponent,
     PopChangePass,
     UserprofileComponent,
-    PopupUserProfile
+    PopupUserProfile,
+    TinhthanhComponent,
+    NhacungcapComponent,
+    CauhinhComponent,
+    SanphamComponent,
+    TinhThanhDialog
   ],
   providers: [
     {

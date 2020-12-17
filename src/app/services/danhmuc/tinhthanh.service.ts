@@ -5,28 +5,24 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class TudienService {
-  baseApi = environment.ApiUrl + 'tudien/';
+export class TinhThanhService {
+  baseUri = 'tinhthanhs';
   constructor(private http : HttpClient) { }
   GetPage(search){
-    return this.http.post(this.baseApi +'getPage', search);
+    return this.http.post(environment.ApiUrl + this.baseUri +'/getPage', search);
   }
 
 
   Create(data){
     data.Id = GuidId.EmptyId;
-    return this.http.post(this.baseApi, data);
+    return this.http.post(environment.ApiUrl+this.baseUri,data);
   }
 
   Update(data){
-    return this.http.put(this.baseApi, data);
+    return this.http.put(environment.ApiUrl+this.baseUri,data);
   }
 
   Delete(id){
-    return this.http.delete(this.baseApi +id)
-  }
-
-  getByLoai(data){
-    return this.http.get(this.baseApi + 'getByLoai', data)
+    return this.http.delete(environment.ApiUrl+this.baseUri+ '/' +id)
   }
 }

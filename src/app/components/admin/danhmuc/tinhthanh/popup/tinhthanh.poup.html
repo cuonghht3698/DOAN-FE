@@ -1,0 +1,37 @@
+<div class="container text-center">
+  <form>
+    <h2>Đổi mật khẩu</h2>
+    <mat-form-field>
+      <mat-label>Tên tỉnh thành</mat-label>
+      <input matInput minlength="5" required [(ngModel)]="dataTinhThanh.Ten" name="ten">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Mô tả </mat-label>
+      <input matInput minlength="5" required [(ngModel)]="dataTinhThanh.MoTa" name="mota">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Loại từ điển</mat-label>
+      <mat-select [(value)]="dataTinhThanh.IdLoaiTinhThanh" name="IdLoaiTinhThanh">
+        <mat-option style="text-align: center;" value="00000000-0000-0000-0000-000000000000">-- All --</mat-option>
+        <ng-container *ngFor="let item of dsLoaiTinhThanh">
+          <mat-option value="{{item.id}}">{{ item.ten }}</mat-option>
+        </ng-container>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Xác nhận mật khẩu</mat-label>
+      <input matInput minlength="5" required [(ngModel)]="dataTinhThanh.ParentId" name="ParentId">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Ưu tiên</mat-label>
+      <input matInput minlength="5" required [(ngModel)]="dataTinhThanh.UuTien" name="UuTien">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Active</mat-label>
+      <input matInput minlength="5" required [(ngModel)]="dataTinhThanh.Active" name="Active">
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="SaveChange()">Lưu</button>
+    <button mat-raised-button color="warn" (click)="ClosePopup()">Hủy</button>
+  </form>
+  </div>
+{{dataTinhThanh | json}}

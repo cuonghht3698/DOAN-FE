@@ -5,6 +5,7 @@ import { LoaitudienComponent } from './danhmuc/loaitudien/loaitudien.component';
 import { TudienComponent } from './danhmuc/tudien/tudien.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserComponent } from './user/user.component';
+import { TinhthanhComponent } from './danhmuc/tinhthanh/tinhthanh.component';
 
 export const routes: Routes = [
   {
@@ -37,6 +38,10 @@ export const routes: Routes = [
         {
           path:'tudien',
           component: TudienComponent
+        },
+        {
+          path:'tinhthanh',
+          component: TinhthanhComponent
         }
       ]
     }]

@@ -47,7 +47,7 @@ export class TudienComponent implements OnInit {
   search = {
     sSearch: '',
     LoaiTuDienId : GuidId.EmptyId,
-    pageIndex: 0,
+    pageIndex: 1,
     pageSize: 10,
   };
 
@@ -92,6 +92,8 @@ export class TudienComponent implements OnInit {
   getPage() {
     this.tudien.GetPage(this.search).subscribe(
       (res: any) => {
+        console.log(res);
+
         const ELEMENT_DATA = res.list;
         this.TotalItem = res.total;
         this.dataSource = ELEMENT_DATA;
