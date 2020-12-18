@@ -1,3 +1,4 @@
+import { PoppupCauHinh } from './danhmuc/cauhinh/popup/cauhinh.popup';
 import { PopupUserProfile } from './danhmuc/userprofile/popup/userproflie.popup';
 import { TudienComponent } from './danhmuc/tudien/tudien.component';
 import { CommonModule } from '@angular/common';
@@ -30,6 +31,7 @@ import { NhacungcapComponent } from './danhmuc/nhacungcap/nhacungcap.component';
 import { CauhinhComponent } from './danhmuc/cauhinh/cauhinh.component';
 import { SanphamComponent } from './danhmuc/sanpham/sanpham.component';
 import { TinhThanhDialog } from './danhmuc/tinhthanh/popup/tinhthanh.popup';
+import { PopupNCC } from './danhmuc/nhacungcap/popup/nhacungcap.popup';
 
 @NgModule({
   imports: [
@@ -63,7 +65,9 @@ import { TinhThanhDialog } from './danhmuc/tinhthanh/popup/tinhthanh.popup';
     NhacungcapComponent,
     CauhinhComponent,
     SanphamComponent,
-    TinhThanhDialog
+    TinhThanhDialog,
+    PopupNCC,
+    PoppupCauHinh
   ],
   providers: [
     {

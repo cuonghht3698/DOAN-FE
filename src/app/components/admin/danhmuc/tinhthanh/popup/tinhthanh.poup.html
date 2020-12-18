@@ -1,5 +1,5 @@
 <div class="container text-center">
-  <form>
+  <form autocomplete="off">
     <h2>Đổi mật khẩu</h2>
     <mat-form-field>
       <mat-label>Tên tỉnh thành</mat-label>
@@ -30,7 +30,7 @@
       <mat-label>Active</mat-label>
       <input matInput minlength="5" required [(ngModel)]="dataTinhThanh.Active" name="Active">
     </mat-form-field>
-    <button mat-raised-button color="primary" (click)="SaveChange()">Lưu</button>
+    <button mat-raised-button color="primary" (click)="CreateOrUpdate()">Lưu</button>
     <button mat-raised-button color="warn" (click)="ClosePopup()">Hủy</button>
   </form>
   </div>

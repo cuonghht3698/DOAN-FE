@@ -1,0 +1,106 @@
+import { TudienService } from './../../../../../services/danhmuc/tudien.service';
+import { GuidId } from './../../../../../services/ERole';
+import { ToastrService } from 'ngx-toastr';
+import { CauHinhService } from './../../../../../services/danhmuc/cauhinh.service';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
+
+@Component({
+    selector: 'cauhinh-pop',
+    templateUrl: './cauhinh.popup.html'
+})
+
+export class PoppupCauHinh implements OnInit {
+    constructor(private dialog: MatDialogRef<PoppupCauHinh>, @Inject(MAT_DIALOG_DATA) public data,
+        private ch: CauHinhService, private toastr: ToastrService,private tudien:TudienService) { }
+    IdNull = GuidId.EmptyId;
+    dataCH: CHModel = {
+        Id: GuidId.EmptyId,
+        ManHinh: '',
+        CPU: '',
+        PIN: '',
+        RAM: '',
+        NGAYSX: new Date(),
+        ThoiGianBaoHanh: 0,
+        DungLuong: '',
+        MoTa: '',
+        LoaiCauHinhId: '',
+
+
+    }
+    dsLoaiCauHinh;
+    ngOnInit() {
+        if (this.data) {
+            const item = this.data;
+            this.dataCH = {
+                Id: item.id,
+                ManHinh: item.manHinh,
+                CPU: item.cpu,
+                PIN: item.pin,
+                RAM: item.ram,
+                NGAYSX: item.ngaysx,
+                ThoiGianBaoHanh: item.ThoiGianBaoHanh,
+                DungLuong: item.dungluong,
+                MoTa: item.mota,
+                LoaiCauHinhId: item.loaiCauHinhId,
+            }
+        }
+        this.getLoaiCauHinh();
+    }
+
+    getLoaiCauHinh(){
+        this.tudien.getByLoai("LoaiCauHinh").subscribe(
+            (res:any)=>{
+                this.dsLoaiCauHinh = res;
+            }
+        )
+    }
+
+
+    getDsCauHinhMau(id){
+        
+    }
+    CreateOrUpdate() {
+        console.log(this.dataCH);
+
+        if (!this.data) {
+            this.ch.Create(this.dataCH).subscribe(
+                (res) => {
+                    this.toastr.success('Thêm thành công !', 'Thông báo');
+                },
+                (err) => {
+                    console.log(err);
+                    this.toastr.error('Thao tác thất bại!', 'Thông báo');
+                }
+            );
+        } else {
+            this.ch.Update(this.dataCH ).subscribe(
+                (res) => {
+                    this.toastr.success('Cập nhật thành công !', 'Thông báo');
+                },
+                (err) => {
+                    console.log(err);
+                    this.toastr.error('Thao tác thất bại!', 'Thông báo');
+                }
+            );
+        }
+    }
+
+    Clear() { }
+    ClosePopup() {
+        this.dialog.close();
+    }
+}
+
+export interface CHModel {
+    Id: string,
+    ManHinh: string,
+    CPU: string,
+    PIN: string,
+    RAM: string,
+    NGAYSX: Date,
+    ThoiGianBaoHanh: number,
+    DungLuong: string,
+    MoTa: string,
+    LoaiCauHinhId: string
+}

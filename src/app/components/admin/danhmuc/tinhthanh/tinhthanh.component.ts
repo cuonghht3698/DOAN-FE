@@ -13,8 +13,8 @@ export class TinhthanhComponent implements OnInit {
   constructor(
     private toarst: ToastrService,
     private tinhthanh: TinhThanhService,
-    private dialog:MatDialog
-  ) {}
+    private dialog: MatDialog
+  ) { }
   searchTT = {
     sSearch: '',
     pageIndex: 0,
@@ -28,11 +28,11 @@ export class TinhthanhComponent implements OnInit {
 
   getPage() {
     this.tinhthanh.GetPage(this.searchTT).subscribe(
-      (res:any) => {
+      (res: any) => {
         console.log(res);
 
-       this.dsTinhThanh = res.list;
-      this.TotalItem = res.total;
+        this.dsTinhThanh = res.list;
+        this.TotalItem = res.total;
       },
       (err) => {
         console.log(err);
@@ -41,19 +41,34 @@ export class TinhthanhComponent implements OnInit {
   }
 
   OpenDiaLog(item) {
-    const dialog = this.dialog.open(TinhThanhDialog,{
-      width:'600px',
-      height:'500px',
-      data:item,
-      disableClose:true
+    const dialog = this.dialog.open(TinhThanhDialog, {
+      width: '600px',
+      height: '500px',
+      data: item,
+      disableClose: true
     });
-    dialog.afterClosed().subscribe((res)=>{
+    dialog.afterClosed().subscribe((res) => {
       console.log(res);
-
+      this.getPage();
     })
   }
 
-  DeleteById() {}
+  DeleteById(id) {
+    this.tinhthanh.Delete(id).subscribe((res: any) => {
+      this.toarst.success(res, "Thông báo");
+      this.getPage();
 
-  getPaginate(event) {}
+    },
+      (err: any) => {
+        this.toarst.error(err, "Thông báo");
+
+      }
+    )
+  }
+
+  getPaginate(event) {
+    this.searchTT.pageIndex = event.pageIndex;
+    this.searchTT.pageSize = event.pageSize;
+    this.getPage();
+  }
 }

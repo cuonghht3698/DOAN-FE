@@ -1,12 +1,12 @@
-import { GuidId } from './../ERole';
+
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class TinhThanhService {
-  baseUri = environment.ApiUrl + 'tinhthanhs/';
+export class CauHinhService {
+  baseUri = environment.ApiUrl + 'cauhinhs/';
   constructor(private http: HttpClient) { }
   GetPage(search) {
     return this.http.post(this.baseUri + 'getPage', search);
@@ -23,5 +23,10 @@ export class TinhThanhService {
 
   Delete(id) {
     return this.http.delete(this.baseUri + id)
+  }
+
+  FindByLoai(id){
+    return this.http.get(this.baseUri + 'FindByLoai/' + id)
+
   }
 }

@@ -1,0 +1,52 @@
+<h2>THÊM/ SỬA / XÓA</h2>
+<form autocomplete="off">
+  <div class="row">
+    <div class="col-6">
+      <mat-form-field>
+        <mat-label>Tên ncc</mat-label>
+        <input matInput [(ngModel)]="dataNcc.Ten" name="ten">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Địa chỉ</mat-label>
+        <input matInput [(ngModel)]="dataNcc.DiaChi" name="mat">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Phone</mat-label>
+        <input matInput [(ngModel)]="dataNcc.Sdt" name="Ten">
+      </mat-form-field>
+
+    </div>
+    <div class="col-6">
+
+      <mat-form-field>
+        <mat-label>Mô tả</mat-label>
+        <input matInput [(ngModel)]="dataNcc.MoTa" name="GhiChu">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Anh</mat-label>
+        <input matInput [(ngModel)]="dataNcc.Anh" name="TenNgan">
+      </mat-form-field>
+
+      <section class="float-left ml-3">
+        <mat-checkbox class="example-margin" [(ngModel)]="dataNcc.Active" name="active">Hoạt động</mat-checkbox>
+      </section>
+    </div>
+  </div>
+  <br>
+  <button mat-raised-button color="primary" (click)="CreateOrUpdate()" *ngIf="dataNcc.Id == IdNull">Thêm</button>
+  <button mat-raised-button (click)="CreateOrUpdate()" *ngIf="dataNcc.Id != IdNull">Sửa</button>
+  <button mat-raised-button color="warn" (click)="Clear()">Xóa</button>
+  <button mat-raised-button class="float-right" color="warn" (click)="ClosePopup()">Huy</button>
+</form>
+
+<style>
+  form {
+    text-align: center;
+  }
+
+  mat-form-field {
+    margin: auto 20px;
+    width: 90%;
+  }
+</style>

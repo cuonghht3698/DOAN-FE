@@ -1,1 +1,73 @@
-<p>cauhinh works!</p>
+<h1>Danh sách nhà cung cấp</h1>
+<div class="mother-box">
+    <div class="row">
+        <div class="col-1"><button mat-raised-button color="primary" (click)="OpenDiaLog(null)">Thêm mới</button></div>
+        <div class="col-1">
+            <button mat-raised-button (click)="getPage()">Tìm kiếm</button>
+        </div>
+        <div class="col-3">
+            <mat-form-field style="width: 200px;margin-left: 100px;">
+                <mat-label>Tìm kiếm tên, địa chỉ...</mat-label>
+                <span matSuffix><span class="material-icons">
+                        search
+                    </span></span>
+                <input matInput [(ngModel)]="searchCH.sSearch" (change)="getPage()">
+            </mat-form-field>
+        </div>
+    </div>
+    <br>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">STT</th>
+                <th scope="col">CPU</th>
+                <th scope="col">Dung lượng</th>
+                <th scope="col">Màn hình</th>
+                <th scope="col">Mô tả</th>
+                <th scope="col">Ngày SX</th>
+                <th scope="col">Pin</th>
+                <th scope="col">Ram</th>
+                <th scope="col">BH</th>
+                <th scope="col">Loại CH</th>
+                <th>Hành động</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of dsCauHinh;index as i">
+                <th scope="row">{{ i+1 }}</th>
+                <td>{{ item.cpu}}</td>
+                <td>{{ item.dungluong }}</td>
+                <td>{{ item.manHinh  }}</td>
+                <td>{{ item.mota}}</td>
+                <td>{{ item.ngaysx | date}}</td>
+                <td>{{ item.pin }}</td>
+                <td>{{ item.ram }}</td>
+                <td>{{ item.thoiGianBaoHanh }}</td>
+                <td>{{ item.loaiCauHinh.ten}}</td>
+                <td>
+                    <button mat-mini-fab color="primary" (click)="OpenDiaLog(item)"><span class="material-icons">
+                            create
+                        </span></button>
+                        <button mat-mini-fab color="warn" title="Xóa" [matMenuTriggerFor]="menu"><span class="material-icons">delete</span></button>
+                        <mat-menu #menu="matMenu">
+                          <button mat-button (click)="DeleteById(item.id)">
+                            Xác nhận
+                          </button>
+                        </mat-menu>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="row mt-4">
+        <div class="col-lg-2">
+            <h3>Page: {{ searchCH.pageIndex +1}}</h3>
+        </div>
+        <div class="col-lg-10">
+            <mat-paginator [length]="TotalItem" [pageIndex]="searchCH.pageIndex" [pageSize]="searchCH.pageSize"
+                [pageSizeOptions]="[5,10, 20, 50,100]" (page)="getPaginate($event)" showFirstLastButtons>
+            </mat-paginator>
+        </div>
+
+    </div>
+</div>

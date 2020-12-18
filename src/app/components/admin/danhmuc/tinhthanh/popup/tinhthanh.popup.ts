@@ -1,3 +1,5 @@
+
+import { TinhThanhService } from './../../../../../services/danhmuc/tinhthanh.service';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
@@ -18,12 +20,13 @@ export class TinhThanhDialog implements OnInit {
     ParentId: null,
     IdLoaiTinhThanh: null,
   };
-  dsLoaiTinhThanh;
+  dsLoaiTinhThanh:any;
   constructor(
     private dialog: MatDialogRef<TinhThanhDialog>,
     @Inject(MAT_DIALOG_DATA) public data,
     private toarst: ToastrService,
-    private tudien : TudienService
+    private tudien : TudienService,
+    private tinhthanh:TinhThanhService
   ) {}
 
   ngOnInit() {
@@ -44,11 +47,34 @@ export class TinhThanhDialog implements OnInit {
   getDSLoaiTinhThanh(){
     this.tudien.getByLoai('LoaiTinhThanh').subscribe((res:any)=>{
       this.dsLoaiTinhThanh= res;
-      console.log(res);
 
     })
   }
-  SaveChange(){}
+  CreateOrUpdate() {
+    console.log(this.dataTinhThanh);
+    
+    if (!this.data) {
+      this.tinhthanh.Create(this.dataTinhThanh).subscribe(
+        (res) => {
+          this.toarst.success('Thêm thành công !', 'Thông báo');
+        },
+        (err) => {
+          console.log(err);
+          this.toarst.error('Thao tác thất bại!', 'Thông báo');
+        }
+      );
+    } else {
+      this.tinhthanh.Update(this.dataTinhThanh).subscribe(
+        (res) => {
+          this.toarst.success('Cập nhật thành công !', 'Thông báo');
+        },
+        (err) => {
+          console.log(err);
+          this.toarst.error('Thao tác thất bại!', 'Thông báo');
+        }
+      );
+    }
+  }
   ClosePopup(){
     this.dialog.close();
   }

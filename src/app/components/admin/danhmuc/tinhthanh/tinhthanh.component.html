@@ -1,10 +1,9 @@
-<h1>Danh sách tài khoản</h1>
-
-<br>
+<h1>Danh sách tỉnh thành</h1>
 <div class="mother-box">
     <div class="row">
+        <div class="col-1"><button mat-raised-button color="primary" (click)="OpenDiaLog(null)">Thêm mới</button></div>
         <div class="col-1">
-            <button mat-raised-button color="primary" (click)="getPage()">Tìm kiếm</button>
+            <button mat-raised-button (click)="getPage()">Tìm kiếm</button>
         </div>
         <div class="col-3">
             <mat-form-field style="width: 200px;margin-left: 100px;">
@@ -37,14 +36,14 @@
                 <td>{{ item.ten}}</td>
                 <td>{{ item.moTa }}</td>
                 <td>{{ item.parent? item.parent.ten: ''  }}</td>
-                <td>{{ item.idLoaiTinhThanh }}</td>
+                <td>{{ item.idLoaiTinhThanhNavigation ? item.idLoaiTinhThanhNavigation.ten : '' }}</td>
                 <td>{{ item.uuTien }}</td>
                 <td> <mat-checkbox class="example-margin" [(ngModel)]="item.active"></mat-checkbox></td>
                 <td>
                     <button mat-mini-fab color="primary" (click)="OpenDiaLog(item)"><span class="material-icons">
                             create
                         </span></button>
-                        <button mat-icon-button color="warn" title="Xóa" [matMenuTriggerFor]="menu"><mat-icon>delete</mat-icon></button>
+                        <button mat-mini-fab color="warn" title="Xóa" [matMenuTriggerFor]="menu"><span class="material-icons">delete</span></button>
                         <mat-menu #menu="matMenu">
                           <button mat-button (click)="DeleteById(item.id)">
                             Xác nhận

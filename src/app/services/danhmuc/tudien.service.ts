@@ -27,6 +27,6 @@ export class TudienService {
   }
 
   getByLoai(data){
-    return this.http.get(this.baseApi + 'getByLoai', data)
+    return this.http.get(this.baseApi + 'getByLoai?matudien=' + data)
   }
 }

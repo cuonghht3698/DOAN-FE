@@ -1,3 +1,5 @@
+import { CauhinhComponent } from './danhmuc/cauhinh/cauhinh.component';
+import { NhacungcapComponent } from './danhmuc/nhacungcap/nhacungcap.component';
 import { UserprofileComponent } from './danhmuc/userprofile/userprofile.component';
 import { Routes } from '@angular/router';
 import { BaocaoComponent } from './baocao/baocao.component';
@@ -42,6 +44,14 @@ export const routes: Routes = [
         {
           path:'tinhthanh',
           component: TinhthanhComponent
+        },
+        {
+          path:'nhacungcap',
+          component: NhacungcapComponent
+        },
+        {
+          path:'cauhinh',
+          component: CauhinhComponent
         }
       ]
     }]
