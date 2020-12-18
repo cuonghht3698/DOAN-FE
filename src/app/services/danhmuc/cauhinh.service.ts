@@ -26,7 +26,7 @@ export class CauHinhService {
   }
 
   FindByLoai(id){
-    return this.http.get(this.baseUri + 'FindByLoai/' + id)
+    return this.http.get(this.baseUri + 'FindByLoai?id=' + id)
 
   }
 }

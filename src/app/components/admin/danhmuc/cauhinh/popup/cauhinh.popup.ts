@@ -29,6 +29,8 @@ export class PoppupCauHinh implements OnInit {
 
     }
     dsLoaiCauHinh;
+    dsCauHinh;
+    checkDsCh
     ngOnInit() {
         if (this.data) {
             const item = this.data;
@@ -56,9 +58,29 @@ export class PoppupCauHinh implements OnInit {
         )
     }
 
+    SelectItem(item){
+        this.dataCH = {
+            Id: GuidId.EmptyId,
+            ManHinh: item.manHinh,
+            CPU: item.cpu,
+            PIN: item.pin,
+            RAM: item.ram,
+            NGAYSX: item.ngaysx,
+            ThoiGianBaoHanh: item.ThoiGianBaoHanh,
+            DungLuong: item.dungluong,
+            MoTa: item.mota,
+            LoaiCauHinhId: item.loaiCauHinhId,
+        }
+    }
 
-    getDsCauHinhMau(id){
+    getDsCauHinhMau(e){
         
+        this.ch.FindByLoai(e.value).subscribe((res:any)=>{
+            this.dsCauHinh = res;
+            this.checkDsCh = res.length == 0? false:true;
+            console.log(res);
+            
+        })
     }
     CreateOrUpdate() {
         console.log(this.dataCH);

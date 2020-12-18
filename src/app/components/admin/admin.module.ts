@@ -67,7 +67,7 @@ import { PopupNCC } from './danhmuc/nhacungcap/popup/nhacungcap.popup';
     SanphamComponent,
     TinhThanhDialog,
     PopupNCC,
-    PoppupCauHinh
+    PoppupCauHinh,
   ],
   providers: [
     {

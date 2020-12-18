@@ -1,24 +1,24 @@
 <span style="font-size: 30px;"> CRUD Cấu hình</span>
 <form class="example-form">
-    <!-- <mat-form-field class="example-full-width">
+    <mat-form-field style="width: 300px;position: absolute;" *ngIf="dataCH.LoaiCauHinhId && checkDsCh">
       <input type="text"
-             placeholder="Pick one"
+             placeholder="Cấu hỉnh mẫu"
              aria-label="Number"
              matInput
-             [formControl]="myControl"
              [matAutocomplete]="auto">
       <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-          {{option}}
+        <mat-option *ngFor="let d of dsCauHinh" [value]="d.mota" (click)="SelectItem(d)"
+         title="{{ 'Màn hình: ' + d.manHinh + ' CPU: ' + d.cpu  + ' Pin: ' + d.pin + ' Ram: ' +d.ram + ' Dung lượng: ' + d.dungluong + ' Ngày SX: ' +(d.ngaysx | date) + ' TGBH: ' + d.thoiGianBaoHanh}}">
+          {{d.mota}}
         </mat-option>
       </mat-autocomplete>
-    </mat-form-field> -->
+    </mat-form-field>
   </form>
 <br>
 
 <mat-form-field style="width: 44%;">
     <mat-label>Loại cấu hình</mat-label>
-    <mat-select [(value)]="dataCH.LoaiCauHinhId" required>  
+    <mat-select [(value)]="dataCH.LoaiCauHinhId" required (selectionChange)="getDsCauHinhMau($event)">  
         <ng-container *ngFor="let item of dsLoaiCauHinh">
             <mat-option value="{{item.id}}">{{ item.ten }}</mat-option>
         </ng-container>
@@ -52,7 +52,7 @@
 
             <mat-form-field appearance="fill">
                 <mat-label>Choose a date</mat-label>
-                <input matInput [matDatepicker]="picker" [(ngModel)]="dataCH.NGAYSX" name="TenNgan">
+                <input matInput [matDatepicker]="picker" [(ngModel)]="dataCH.NGAYSX" name="date">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
