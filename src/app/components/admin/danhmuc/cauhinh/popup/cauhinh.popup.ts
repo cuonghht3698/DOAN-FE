@@ -74,12 +74,12 @@ export class PoppupCauHinh implements OnInit {
     }
 
     getDsCauHinhMau(e){
-        
+
         this.ch.FindByLoai(e.value).subscribe((res:any)=>{
             this.dsCauHinh = res;
             this.checkDsCh = res.length == 0? false:true;
             console.log(res);
-            
+
         })
     }
     CreateOrUpdate() {

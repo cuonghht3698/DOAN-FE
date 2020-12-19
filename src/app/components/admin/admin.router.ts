@@ -8,6 +8,7 @@ import { TudienComponent } from './danhmuc/tudien/tudien.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserComponent } from './user/user.component';
 import { TinhthanhComponent } from './danhmuc/tinhthanh/tinhthanh.component';
+import { SanphamComponent } from './danhmuc/sanpham/sanpham.component';
 
 export const routes: Routes = [
   {
@@ -52,6 +53,10 @@ export const routes: Routes = [
         {
           path:'cauhinh',
           component: CauhinhComponent
+        },
+        {
+          path:'sanpham',
+          component: SanphamComponent
         }
       ]
     }]

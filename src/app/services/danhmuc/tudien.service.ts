@@ -23,10 +23,10 @@ export class TudienService {
   }
 
   Delete(id){
-    return this.http.delete(this.baseApi +id)
+    return this.http.delete(this.baseApi +id);
   }
 
   getByLoai(data){
-    return this.http.get(this.baseApi + 'getByLoai?matudien=' + data)
+    return this.http.get(this.baseApi + 'getByLoai?matudien=' + data);
   }
 }
