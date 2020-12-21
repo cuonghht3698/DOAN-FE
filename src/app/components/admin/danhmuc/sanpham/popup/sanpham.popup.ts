@@ -40,12 +40,14 @@ export class PopupSanPham implements OnInit {
     ViewCount: 0,
     Rate: 0,
     TrangThaiId: null,
-    Active: 1,
+    Active: true,
   };
   dsLoaiCauHinh;
   dsCauHinh;
   checkDsCh;
   ngOnInit() {
+    console.log(this.data);
+
     this.getLoaiSanPham();
 
     if (this.data) {
@@ -161,5 +163,5 @@ export interface SanPhamModel {
   CauHinhId: string;
   Rate: number;
   TrangThaiId: string;
-  Active: number;
+  Active: boolean;
 }

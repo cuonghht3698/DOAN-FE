@@ -85,6 +85,11 @@
           </ng-container>
         </mat-select>
       </mat-form-field>
+      <section class="float-left">
+        <mat-checkbox [(ngModel)]="dataSP.Active" name="active">Hoạt động</mat-checkbox>
+      </section>
+
+
       <!-- <mat-form-field>
         <mat-label>Loại từ điển</mat-label>
         <mat-select [(value)]="dataSP.LoaiTuDienId">
@@ -92,15 +97,13 @@
             <mat-option value="{{item.id}}">{{ item.ten }}</mat-option>
           </ng-container>
         </mat-select>
-      </mat-form-field> -->
-      <!-- <mat-form-field>
+      </mat-form-field>
+      <mat-form-field>
         <mat-label>Tên từ điển</mat-label>
         <input matInput [(ngModel)]="dataSP.Ten" name="Ten">
       </mat-form-field>
 
-      <section class="float-left">
-        <mat-checkbox class="example-margin" [(ngModel)]="dataSP.Active" name="active">Hoạt động</mat-checkbox>
-      </section>
+
     </div>
     <div class="col">
       <mat-form-field>
@@ -123,6 +126,7 @@
   <button mat-raised-button color="warn" (click)="Clear()">Xóa</button>
   <button mat-raised-button class="float-right" color="warn" (click)="ClosePopup()">Huy</button>
 </form>
+
 
 
 <style>
