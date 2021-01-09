@@ -1,0 +1,35 @@
+<div>
+  <span style="font-size: 30px;">
+    Danh mục menu
+  </span>
+
+  <span class="ml-5"><button mat-raised-button (click)="OpenPopup()">Thêm</button></span>
+
+</div>
+<table class="table mt-3">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Tên</th>
+      <th scope="col">Controller</th>
+      <th scope="col">Mô tả</th>
+      <th scope="col">Icon</th>
+      <th scope="col">Link</th>
+      <th scope="col">Parent</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of data;index as i">
+      <th scope="row">{{ i+ 1}}</th>
+      <td>{{item.ten}}</td>
+      <td>{{item.controller}}</td>
+      <td>{{item.mota}}</td>
+      <td>{{item.icon}}</td>
+      <td>{{item.link}}</td>
+      <td>{{item.parent}}</td>
+
+
+    </tr>
+  </tbody>
+</table>

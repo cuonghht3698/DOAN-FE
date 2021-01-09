@@ -9,56 +9,63 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserComponent } from './user/user.component';
 import { TinhthanhComponent } from './danhmuc/tinhthanh/tinhthanh.component';
 import { SanphamComponent } from './danhmuc/sanpham/sanpham.component';
+import { MenuComponent } from './menu/menu/menu.component';
 
 export const routes: Routes = [
   {
-    path:'',
-    component:DashboardComponent,
-    children:[
+    path: '',
+    component: DashboardComponent,
+    children: [
       {
-        path:'',
-        redirectTo:'user',
-        pathMatch:'full'
+        path: '',
+        redirectTo: 'user',
+        pathMatch: 'full',
       },
-    {
-      path:'user',
-      component:UserComponent
-    },
-    {
-      path:'userprofile',
-      component:UserprofileComponent
-    },{
-      path:'baocao',
-      component:BaocaoComponent
-    },
-    {
-      path:'danhmuc',
-      children:[
-        {
-          path:'loaitudien',
-          component: LoaitudienComponent
-        },
-        {
-          path:'tudien',
-          component: TudienComponent
-        },
-        {
-          path:'tinhthanh',
-          component: TinhthanhComponent
-        },
-        {
-          path:'nhacungcap',
-          component: NhacungcapComponent
-        },
-        {
-          path:'cauhinh',
-          component: CauhinhComponent
-        },
-        {
-          path:'sanpham',
-          component: SanphamComponent
-        }
-      ]
-    }]
-  }
-]
+      {
+        path: 'user',
+        component: UserComponent,
+      },
+      {
+        path: 'userprofile',
+        component: UserprofileComponent,
+      },
+      {
+        path: 'baocao',
+        component: BaocaoComponent,
+      },
+      {
+        path: 'danhmuc',
+        children: [
+          {
+            path: 'loaitudien',
+            component: LoaitudienComponent,
+          },
+          {
+            path: 'tudien',
+            component: TudienComponent,
+          },
+          {
+            path: 'tinhthanh',
+            component: TinhthanhComponent,
+          },
+          {
+            path: 'nhacungcap',
+            component: NhacungcapComponent,
+          },
+          {
+            path: 'cauhinh',
+            component: CauhinhComponent,
+          },
+          {
+            path: 'sanpham',
+            component: SanphamComponent,
+          },
+          {
+            path: 'menu',
+            component: MenuComponent,
+          },
+        ],
+      },
+    ],
+  },
+];

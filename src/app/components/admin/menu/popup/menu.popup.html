@@ -1,0 +1,42 @@
+<div>
+  <div class="form">
+    <mat-form-field appearance="fill">
+      <mat-label>Ten</mat-label>
+      <input matInput [(ngModel)]="data.Ten" name="ten">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Controller</mat-label>
+      <input matInput [(ngModel)]="data.Controller" name="contoll">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Link</mat-label>
+      <input matInput [(ngModel)]="data.Link" name="link">
+
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Icon</mat-label>
+      <input matInput [(ngModel)]="data.Icon" name="icon">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Select</mat-label>
+      <mat-select>
+        <mat-option value="option">Option</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Mô tả</mat-label>
+      <input matInput [(ngModel)]="data.MoTa" name="mota">
+
+    </mat-form-field>
+  </div>
+</div>
+
+
+<style>
+  .form{
+
+    margin: auto;
+  }
+</style>

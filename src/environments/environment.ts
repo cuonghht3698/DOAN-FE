@@ -5,6 +5,8 @@
 export const environment = {
   production: false,
   ApiUrl:'https://localhost:44394/api/'
+  // ApiUrl:'http://nbc.somee.com/api/'
+
 };
 
 /*
