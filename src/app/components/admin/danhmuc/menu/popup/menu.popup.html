@@ -1,0 +1,71 @@
+<div>
+  <button style="float: right;" mat-mini-fab color="warn" (click)="Close()"><span class="material-icons">
+      close
+    </span></button>
+  <div class="form">
+    <h1>Chức năng menu</h1>
+    <div class="row">
+      <div class="col-6">
+
+        <mat-form-field appearance="fill">
+          <mat-label>Ten</mat-label>
+          <input matInput [(ngModel)]="data.Ten" name="ten">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Controller</mat-label>
+          <input matInput [(ngModel)]="data.Controller" name="contoll">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Link</mat-label>
+          <input matInput [(ngModel)]="data.Link" name="link">
+
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field appearance="fill">
+          <mat-label>Icon</mat-label>
+          <input matInput [(ngModel)]="data.Icon" name="icon">
+        </mat-form-field>
+        <br>
+        <!-- <mat-form-field appearance="fill">
+          <mat-label>Select</mat-label>
+          <mat-select>
+            <mat-option value="option">Option</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br> -->
+        <mat-form-field appearance="fill">
+          <mat-label>Mô tả</mat-label>
+          <input matInput [(ngModel)]="data.MoTa" name="mota">
+
+        </mat-form-field>
+      </div>
+      <div style="margin: auto;">
+        <button class="mr-3" mat-raised-button color="primary" (click)="ThemMenu()"
+          *ngIf="data.Id == idEmpty">Thêm</button>
+        <button class="mr-3" mat-raised-button color="primary" (click)="SuaMenu()" *ngIf="data.Id!= idEmpty">Sửa
+          menu</button>
+        <button mat-raised-button color="warn" (click)="Clear()">Xóa</button>
+
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+
+<style>
+  .form {
+
+    margin: auto;
+  }
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  button {
+    outline: none;
+  }
+</style>

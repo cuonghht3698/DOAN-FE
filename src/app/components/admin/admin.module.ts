@@ -33,8 +33,10 @@ import { SanphamComponent } from './danhmuc/sanpham/sanpham.component';
 import { TinhThanhDialog } from './danhmuc/tinhthanh/popup/tinhthanh.popup';
 import { PopupNCC } from './danhmuc/nhacungcap/popup/nhacungcap.popup';
 import { PopupSanPham } from './danhmuc/sanpham/popup/sanpham.popup';
-import { MenuComponent } from './menu/menu/menu.component';
-import { MenuPopup } from './menu/popup/menu.popup';
+import { MenuComponent } from './danhmuc/menu/menu/menu.component';
+import { MenuPopup } from './danhmuc/menu/popup/menu.popup';
+import { RolemenuComponent } from './danhmuc/rolemenu/rolemenu.component';
+import { RoleComponent } from './danhmuc/role/role.component';
 
 @NgModule({
   imports: [
@@ -73,7 +75,9 @@ import { MenuPopup } from './menu/popup/menu.popup';
     PoppupCauHinh,
     PopupSanPham,
     MenuComponent,
-    MenuPopup
+    MenuPopup,
+    RolemenuComponent,
+    RoleComponent
   ],
   providers: [
     {

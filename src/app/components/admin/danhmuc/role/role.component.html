@@ -1,0 +1,21 @@
+<h1>Danh sách quyền</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th>STT</th>
+      <th>Tên</th>
+      <th>Code</th>
+      <th>Mô tả</th>
+      <th>Thao tác</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of data;index as i">
+      <td>{{ i + 1}}</td>
+      <td>{{item.ten}}</td>
+      <td>{{item.code}}</td>
+      <td>{{item.moTa}}</td>
+      <td> <a mat-raised-button color="primary" [routerLink]="['../rolemenu',item.id]">Chỉnh sửa quyền</a></td>
+    </tr>
+  </tbody>
+</table>

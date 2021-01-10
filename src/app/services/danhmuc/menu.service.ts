@@ -6,8 +6,8 @@ import { environment } from 'src/environments/environment';
 export class MenuService {
   constructor(private http: HttpClient) {}
 
-  getAll() {
-    return this.http.get(environment.ApiUrl + 'menu');
+  getPage(search:any) {
+    return this.http.post(environment.ApiUrl + 'menu/getPage',search);
   }
 
   Create(data) {

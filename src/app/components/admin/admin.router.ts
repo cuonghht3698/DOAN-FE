@@ -9,7 +9,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserComponent } from './user/user.component';
 import { TinhthanhComponent } from './danhmuc/tinhthanh/tinhthanh.component';
 import { SanphamComponent } from './danhmuc/sanpham/sanpham.component';
-import { MenuComponent } from './menu/menu/menu.component';
+import { MenuComponent } from './danhmuc/menu/menu/menu.component';
+import { RolemenuComponent } from './danhmuc/rolemenu/rolemenu.component';
+import { RoleComponent } from './danhmuc/role/role.component';
 
 export const routes: Routes = [
   {
@@ -63,6 +65,14 @@ export const routes: Routes = [
           {
             path: 'menu',
             component: MenuComponent,
+          },
+          {
+            path: 'rolemenu/:id',
+            component: RolemenuComponent,
+          },
+          {
+            path: 'role',
+            component: RoleComponent,
           },
         ],
       },
