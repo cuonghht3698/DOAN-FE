@@ -6,8 +6,8 @@ import { environment } from 'src/environments/environment';
 export class RoleMenuService {
   constructor(private http: HttpClient) {}
 
-  getPage() {
-    return this.http.get(environment.ApiUrl + 'rolemenu');
+  getRoleMenu(id: any) {
+    return this.http.get(environment.ApiUrl + 'rolemenu/' + id);
   }
 
   Create(data) {
@@ -21,5 +21,4 @@ export class RoleMenuService {
   Delete(id) {
     return this.http.delete(environment.ApiUrl + 'rolemenu/' + id);
   }
-
 }

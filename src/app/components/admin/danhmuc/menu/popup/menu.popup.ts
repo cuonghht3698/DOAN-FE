@@ -23,7 +23,7 @@ export class MenuPopup implements OnInit {
     Controller: '',
     Link: '',
     MoTa: '',
-    ParentId: '',
+    IsParent: false,
   };
   Close() {
     this.dialog.close();
@@ -36,7 +36,7 @@ export class MenuPopup implements OnInit {
       Controller: '',
       Link: '',
       MoTa: '',
-      ParentId: '',
+      IsParent: false,
     };
   }
   ngOnInit() {
@@ -48,7 +48,7 @@ export class MenuPopup implements OnInit {
         Controller: this.dataMenu.controller,
         Link: this.dataMenu.link,
         MoTa: this.dataMenu.mota,
-        ParentId: this.dataMenu.parentId,
+        IsParent: this.dataMenu.isParent,
       };
     }
   }
