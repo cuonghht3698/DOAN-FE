@@ -1,9 +1,11 @@
 <div class="row">
   <div class="col-8">
+    <h2><a mat-button routerLink="../../role">Back</a></h2>
     <h1>Menu</h1>
+    <h2><a mat-button routerLink="../../menu">Thêm</a></h2>
     <mat-list>
       <mat-list-item *ngFor="let item of dataMenu" style="position: relative;"><span>{{ item.ten }}</span><button
-          style="position: absolute;right: 0;" mat-button (click)="ThemRoleMenu(item.id)">
+          style="position: absolute;right: 0;" mat-button (click)="ThemRoleMenu(item.id)" color="primary">
           <span class="material-icons">label</span></button>
       </mat-list-item>
     </mat-list>
@@ -12,7 +14,7 @@
     <h1>Role</h1>
     <mat-list>
       <mat-list-item *ngFor="let item of dataRoleMenu" style="position: relative;"><span>{{ item.menu.ten + ': ' +
-          item.menu.controller + '/' + item.menu.link}}</span><span><button mat-button color="warn"
+          item.menu.controller + '/' + item.menu.link}}</span><span><button mat-button color="warn" style="position: absolute;right: 0;top: 0"
             (click)="XoaRoleMenu(item.id)"><span class="material-icons">
               highlight_off
             </span></button></span></mat-list-item>

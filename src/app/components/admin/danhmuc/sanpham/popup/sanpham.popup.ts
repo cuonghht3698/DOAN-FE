@@ -24,15 +24,12 @@ export class PopupSanPham implements OnInit {
   dataSP: SanPhamModel = {
     Id: GuidId.EmptyId,
     CauHinhId: null,
-    Color: '',
-    Gia: 0,
     KhoId: null,
     KhuyenMai: 0,
     LoaiSPId: null,
     MoTa: '',
     NguoiNhapId: null,
     NhaCungCapId: null,
-    SeriesNumber: '',
     Ten: '',
     TenNgan: '',
     ThoiGianDong: new Date(),
@@ -55,15 +52,12 @@ export class PopupSanPham implements OnInit {
       this.dataSP = {
         Id: item.id,
         CauHinhId: item.cauHinhId,
-        Color: item.color,
-        Gia: item.gia,
         KhoId: item.khoId,
         KhuyenMai: item.khuyenMai,
         LoaiSPId: item.loaiSpId,
         MoTa: item.moTa,
         NguoiNhapId: item.nguoiNhapId,
         NhaCungCapId: item.nhaCungCapId,
-        SeriesNumber: item.seriesNumber,
         Ten: item.ten,
         TenNgan: item.tenNgan,
         ThoiGianDong: item.thoiGianDong,
@@ -80,15 +74,12 @@ export class PopupSanPham implements OnInit {
     this.dataSP = {
       Id: item.id,
       CauHinhId: item.cauHinhId,
-      Color: item.color,
-      Gia: item.gia,
       KhoId: item.khoId,
       KhuyenMai: item.khuyenMai,
       LoaiSPId: item.loaiSpId,
       MoTa: item.moTa,
       NguoiNhapId: item.nguoiNhapId,
       NhaCungCapId: item.nhaCungCapId,
-      SeriesNumber: item.seriesNumber,
       Ten: item.ten,
       TenNgan: item.tenNgan,
       ThoiGianDong: item.thoiGianDong,
@@ -152,9 +143,6 @@ export interface SanPhamModel {
   ViewCount: number;
   ThoiGianTao: Date;
   ThoiGianDong: Date;
-  SeriesNumber: string;
-  Color: string;
-  Gia: number;
   NhaCungCapId: string;
   NguoiNhapId: string;
   KhoId: string;

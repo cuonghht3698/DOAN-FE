@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { RoleMenuService } from 'src/app/services/danhmuc/rolemenu.service';
 import { Role } from 'src/app/services/ERole';
 declare const $: any;
 @Component({
@@ -9,9 +10,14 @@ declare const $: any;
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  constructor(private router:Router,private _location: Location) { }
+  constructor(private router:Router,private _location: Location,private UserRoleMenu: RoleMenuService,private route: ActivatedRoute) { }
   isCollapsed = false;
+  IdRole = JSON.parse(localStorage.getItem("user"))[0].roleId;
+  dataMenu:any;
   ngOnInit(): void {
+    console.log(this.IdRole);
+
+    this.getMenu();
       var fullHeight = function() {
         $('.js-fullheight').css('height', $(window).height());
         $(window).resize(function(){
@@ -42,6 +48,11 @@ export class DashboardComponent implements OnInit {
       }
       return true;
   };
-  Click(){
-}
+
+  getMenu(){
+    this.UserRoleMenu.getRoleMenu(this.IdRole).subscribe((res:any) => {
+      this.dataMenu = res;
+      console.log(res);
+    });
+  }
 }

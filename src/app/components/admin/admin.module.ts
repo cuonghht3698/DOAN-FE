@@ -37,6 +37,9 @@ import { MenuComponent } from './danhmuc/menu/menu/menu.component';
 import { MenuPopup } from './danhmuc/menu/popup/menu.popup';
 import { RolemenuComponent } from './danhmuc/rolemenu/rolemenu.component';
 import { RoleComponent } from './danhmuc/role/role.component';
+import { SanphamOptionComponent } from './directives/sanpham-option/sanpham-option.component';
+import { OptionSPComponent } from './sanpham/option-sp/option-sp.component';
+import { NhaphangComponent } from './sanpham/nhaphang/nhaphang.component';
 
 @NgModule({
   imports: [
@@ -77,7 +80,10 @@ import { RoleComponent } from './danhmuc/role/role.component';
     MenuComponent,
     MenuPopup,
     RolemenuComponent,
-    RoleComponent
+    RoleComponent,
+    SanphamOptionComponent,
+    OptionSPComponent,
+    NhaphangComponent
   ],
   providers: [
     {

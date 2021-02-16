@@ -56,11 +56,13 @@ export class RolemenuComponent implements OnInit {
     this.UserRoleMenu.Create(this.data).subscribe((res) => {
       console.log(res);
       this.getRoleMenu();
+    },err=>{
+      this.toastr.error("Đã có mục này","Thông báo!");
     });
   }
   XoaRoleMenu(id) {
     this.UserRoleMenu.Delete(id).subscribe((res) => {
-      this.toastr.success('Xóa menu thành công', 'Thông báo!');
+      //this.toastr.success('Xóa menu thành công', 'Thông báo!');
       this.getRoleMenu();
     });
   }

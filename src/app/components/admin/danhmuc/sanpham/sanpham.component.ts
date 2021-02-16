@@ -17,7 +17,7 @@ export class SanphamComponent implements OnInit {
   ) {}
   searchSP = {
     sSearch: '',
-    pageIndex: 1,
+    pageIndex: 0,
     pageSize: 10,
   };
   dsSanPham;
