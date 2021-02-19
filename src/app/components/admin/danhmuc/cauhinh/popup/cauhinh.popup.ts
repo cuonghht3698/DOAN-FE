@@ -12,10 +12,12 @@ import { Component, Inject, OnInit } from '@angular/core';
 
 export class PoppupCauHinh implements OnInit {
     constructor(private dialog: MatDialogRef<PoppupCauHinh>, @Inject(MAT_DIALOG_DATA) public data,
-        private ch: CauHinhService, private toastr: ToastrService,private tudien:TudienService) { }
+        private ch: CauHinhService, private toastr: ToastrService, private tudien: TudienService) { }
     IdNull = GuidId.EmptyId;
     dataCH: CHModel = {
         Id: GuidId.EmptyId,
+        Ten: '',
+        Code: this.generate_string(),
         ManHinh: '',
         CPU: '',
         PIN: '',
@@ -28,6 +30,14 @@ export class PoppupCauHinh implements OnInit {
 
 
     }
+    generate_string() {
+        var text = "";
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        for (var i = 0; i < 8; i++) {
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+        }
+        return text;
+    }
     dsLoaiCauHinh;
     dsCauHinh;
     checkDsCh
@@ -36,6 +46,8 @@ export class PoppupCauHinh implements OnInit {
             const item = this.data;
             this.dataCH = {
                 Id: item.id,
+                Ten: item.ten,
+                Code: item.code,
                 ManHinh: item.manHinh,
                 CPU: item.cpu,
                 PIN: item.pin,
@@ -50,17 +62,19 @@ export class PoppupCauHinh implements OnInit {
         this.getLoaiCauHinh();
     }
 
-    getLoaiCauHinh(){
+    getLoaiCauHinh() {
         this.tudien.getByLoai("LoaiCauHinh").subscribe(
-            (res:any)=>{
+            (res: any) => {
                 this.dsLoaiCauHinh = res;
             }
         )
     }
 
-    SelectItem(item){
+    SelectItem(item) {
         this.dataCH = {
             Id: GuidId.EmptyId,
+            Ten: item.ten,
+            Code: item.code,
             ManHinh: item.manHinh,
             CPU: item.cpu,
             PIN: item.pin,
@@ -73,11 +87,11 @@ export class PoppupCauHinh implements OnInit {
         }
     }
 
-    getDsCauHinhMau(e){
+    getDsCauHinhMau(e) {
 
-        this.ch.FindByLoai(e.value).subscribe((res:any)=>{
+        this.ch.FindByLoai(e.value).subscribe((res: any) => {
             this.dsCauHinh = res;
-            this.checkDsCh = res.length == 0? false:true;
+            this.checkDsCh = res.length == 0 ? false : true;
             console.log(res);
 
         })
@@ -96,7 +110,7 @@ export class PoppupCauHinh implements OnInit {
                 }
             );
         } else {
-            this.ch.Update(this.dataCH ).subscribe(
+            this.ch.Update(this.dataCH).subscribe(
                 (res) => {
                     this.toastr.success('Cập nhật thành công !', 'Thông báo');
                 },
@@ -116,6 +130,8 @@ export class PoppupCauHinh implements OnInit {
 
 export interface CHModel {
     Id: string,
+    Ten: string,
+    Code: string,
     ManHinh: string,
     CPU: string,
     PIN: string,

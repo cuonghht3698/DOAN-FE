@@ -11,7 +11,10 @@ export class CauHinhService {
   GetPage(search) {
     return this.http.post(this.baseUri + 'getPage', search);
   }
-
+  getByCode(code) {
+    return this.http.get(this.baseUri + 'getByCode/'+ code);
+  }
+  
 
   Create(data) {
     return this.http.post(this.baseUri, data);

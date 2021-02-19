@@ -1,24 +1,50 @@
 import { Component, Inject, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
+import { AnhService } from 'src/app/services/danhmuc/anh.service';
 import { CauHinhService } from 'src/app/services/danhmuc/cauhinh.service';
+import { NhaCungCapService } from 'src/app/services/danhmuc/nhacungcap.service';
 import { SanPhamService } from 'src/app/services/danhmuc/sanpham.service';
 import { TudienService } from 'src/app/services/danhmuc/tudien.service';
 import { GuidId } from 'src/app/services/ERole';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'sanpham-pop',
   templateUrl: './sanpham.popup.html',
 })
 export class PopupSanPham implements OnInit {
+  stateCtrl = new FormControl();
+  filteredStates: Observable<any>;
+
   constructor(
     private dialog: MatDialogRef<PopupSanPham>,
     @Inject(MAT_DIALOG_DATA) public data,
     private sp: SanPhamService,
     private toastr: ToastrService,
     private tudien: TudienService,
-    private cauhinh: CauHinhService
-  ) {}
+    private cauhinh: CauHinhService,
+    private ncc: NhaCungCapService,
+    private anh: AnhService
+  ) {
+
+  }
+  private _filterStates(value: string) {
+    const filterValue = value.toLowerCase();
+
+    return this.states.filter(state => state.code.toLowerCase().indexOf(filterValue) === 0);
+  }
+  states = [
+    // {
+    //   name: '218312837123123',
+    //   population: '2.978M',
+    //   // https://commons.wikimedia.org/wiki/File:Flag_of_Arkansas.svg
+    //   flag: 'https://upload.wikimedia.org/wikipedia/commons/9/9d/Flag_of_Arkansas.svg'
+    // }
+  ];
   IdNull = GuidId.EmptyId;
   dsLoaiSp;
   dataSP: SanPhamModel = {
@@ -28,7 +54,7 @@ export class PopupSanPham implements OnInit {
     KhuyenMai: 0,
     LoaiSPId: null,
     MoTa: '',
-    NguoiNhapId: null,
+    NguoiNhapId: JSON.parse(localStorage.getItem("user"))[0].id,
     NhaCungCapId: null,
     Ten: '',
     TenNgan: '',
@@ -42,9 +68,10 @@ export class PopupSanPham implements OnInit {
   dsLoaiCauHinh;
   dsCauHinh;
   checkDsCh;
+  dsNhaCungCap;
   ngOnInit() {
-    console.log(this.data);
-
+    //console.log(this.data);
+    this.getNhaCungCap();
     this.getLoaiSanPham();
 
     if (this.data) {
@@ -54,7 +81,7 @@ export class PopupSanPham implements OnInit {
         CauHinhId: item.cauHinhId,
         KhoId: item.khoId,
         KhuyenMai: item.khuyenMai,
-        LoaiSPId: item.loaiSpId,
+        LoaiSPId: item.loaiSpid,
         MoTa: item.moTa,
         NguoiNhapId: item.nguoiNhapId,
         NhaCungCapId: item.nhaCungCapId,
@@ -67,6 +94,10 @@ export class PopupSanPham implements OnInit {
         TrangThaiId: item.trangThaiId,
         Active: item.active,
       };
+      
+      this.getAnh(item.id);
+      this.getLoaiCauHinh(item.loaiSpid);
+      this.stateCtrl.setValue(item.cauHinh.code);
     }
   }
 
@@ -91,29 +122,107 @@ export class PopupSanPham implements OnInit {
     };
   }
 
+  imageUrl = "/assets/img/emptyImage.png";
+  imageName = null;
+  fileToUpload: File = null;
+  SelectAnh: FormData = null;
   getLoaiSanPham() {
     this.tudien.getByLoai('LoaiCauHinh').subscribe((res: any) => {
       this.dsLoaiSp = res;
+      //console.log(res);
+    });
+  }
+
+  uploadFile(event) {
+    this.fileToUpload = event.target.files[0];
+    this.InfoImage.Ten = event.target.files[0].name;
+    console.log(this.imageName);
+
+    //Show image preview
+    var reader = new FileReader();
+    reader.onload = (event: any) => {
+      this.imageUrl = event.target.result;
+    }
+    reader.readAsDataURL(this.fileToUpload);
+    const formData = new FormData();
+    formData.append('file', event.target.files[0]);
+    this.SelectAnh = formData;
+  }
+  UploadAnh() {
+    if (this.SelectAnh != null) {
+      this.anh.PostAnh(this.SelectAnh).subscribe((res) => {
+        console.log(res);
+      })
+    }
+  }
+  InfoImage = {
+    Id: GuidId.EmptyId,
+    Ten: '',
+    ImageUrl: '',
+    UuTien: 0,
+    Active: 1,
+    AnhId: ''
+  }
+  getAnh(id) {
+    this.anh.GetImageForId(id).subscribe((res: any) => {
       console.log(res);
+      
+      this.imageUrl = environment.ApiUrl + "anh/get/" + res[0].ten;
+    });
+  }
+  SaveURLToDB() {
+    if (this.SelectAnh != null) {
+      this.anh.Create(this.InfoImage).subscribe((res: any) => {
+        console.log(res);
+      });
+    }
+  }
+  getNhaCungCap() {
+    this.ncc.GetAll().subscribe((res: any) => {
+      this.dsNhaCungCap = res;
+      //console.log(res);
     });
   }
 
   getLoaiCauHinh(id) {
     this.cauhinh.FindByLoai(id).subscribe((res: any) => {
       this.dsCauHinh = res;
-      console.log(res);
+      this.states = [];
+      res.forEach(element => {
+        this.states.push(element);
+      });
+      this.filteredStates = this.stateCtrl.valueChanges
+        .pipe(
+          startWith(''),
+          map(state => state ? this._filterStates(state) : this.states.slice())
+        );
+      console.log(this.states);
     });
   }
+  CauHinhChosse() {
+    if (this.stateCtrl.value) {
+      var code = this.stateCtrl.value;
+      this.cauhinh.getByCode(code).subscribe((res: any) => {
+        console.log(res);
+
+        this.dataSP.CauHinhId = res[0].id;
+      })
+    }
+  }
   CreateOrUpdate() {
-    console.log(this.dataSP);
+    //console.log(this.dataSP);
+    //get id cau hinh
 
     if (!this.data) {
       this.sp.Create(this.dataSP).subscribe(
-        (res) => {
+        (res: any) => {
+          this.InfoImage.AnhId = res.id;
+          this.UploadAnh();
+          this.SaveURLToDB();
           this.toastr.success('Thêm thành công !', 'Thông báo');
         },
         (err) => {
-          console.log(err);
+          //console.log(err);
           this.toastr.error('Thao tác thất bại!', 'Thông báo');
         }
       );
@@ -121,16 +230,19 @@ export class PopupSanPham implements OnInit {
       this.sp.Update(this.dataSP).subscribe(
         (res) => {
           this.toastr.success('Cập nhật thành công !', 'Thông báo');
+          this.InfoImage.AnhId = this.dataSP.Id;
+          this.UploadAnh();
+          this.SaveURLToDB();
         },
         (err) => {
-          console.log(err);
+          //console.log(err);
           this.toastr.error('Thao tác thất bại!', 'Thông báo');
         }
       );
     }
   }
 
-  Clear() {}
+  Clear() { }
   ClosePopup() {
     this.dialog.close();
   }

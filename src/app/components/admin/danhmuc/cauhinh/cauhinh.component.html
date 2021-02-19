@@ -20,6 +20,9 @@
         <thead>
             <tr>
                 <th scope="col">STT</th>
+                <th scope="col">Tên</th>
+                <th scope="col">Code</th>
+
                 <th scope="col">CPU</th>
                 <th scope="col">Dung lượng</th>
                 <th scope="col">Màn hình</th>
@@ -30,12 +33,14 @@
                 <th scope="col">BH</th>
                 <th scope="col">Loại CH</th>
                 <th>Hành động</th>
-
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let item of dsCauHinh;index as i">
                 <th scope="row">{{ i+1 }}</th>
+                <td>{{ item.ten}}</td>
+                <td>{{ item.code}}</td>
+
                 <td>{{ item.cpu}}</td>
                 <td>{{ item.dungluong }}</td>
                 <td>{{ item.manHinh  }}</td>

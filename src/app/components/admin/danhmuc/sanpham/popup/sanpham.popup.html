@@ -1,58 +1,19 @@
 <h2>THÊM/ SỬA / XÓA</h2>
 <form autocomplete="off">
   <div class="row">
-    <div class="col">
+    <div class="col-9">
       <mat-form-field *ngIf="false">
         <mat-label>GUID</mat-label>
         <input matInput [(ngModel)]="dataSP.Id" name="id">
       </mat-form-field>
-      <mat-form-field >
+      <mat-form-field>
         <mat-label>Ten</mat-label>
         <input matInput [(ngModel)]="dataSP.Ten" name="Ten">
       </mat-form-field>
-      <!-- <mat-form-field>
-        <mat-label>Tên Ngắn</mat-label>
-        <input matInput [(ngModel)]="dataSP.TenNgan" name="TenNgan">
-      </mat-form-field> -->
       <mat-form-field>
         <mat-label>Mô tả</mat-label>
-        <input matInput [(ngModel)]="dataSP.MoTa" name="MoTa">
+        <textarea matInput [(ngModel)]="dataSP.MoTa" name="MoTa" rows="4"></textarea>
       </mat-form-field>
-      <!-- <mat-form-field>
-        <mat-label>Rate</mat-label>
-        <input matInput [(ngModel)]="dataSP.Rate" name="Rate">
-      </mat-form-field> -->
-      <!-- <mat-form-field>
-        <mat-label>ViewCount</mat-label>
-        <input matInput [(ngModel)]="dataSP.ViewCount" name="ViewCount">
-      </mat-form-field> -->
-      <!-- <mat-form-field>
-        <mat-label>Thời gian tạo</mat-label>
-        <input matInput [(ngModel)]="dataSP.ThoiGianTao" name="ThoiGianTao">
-      </mat-form-field> -->
-      <!-- <mat-form-field>
-        <mat-label>Thời gian đóng</mat-label>
-        <input matInput [(ngModel)]="dataSP.ThoiGianDong" name="ThoiGianDong">
-      </mat-form-field> -->
-      <!-- <mat-form-field>
-        <mat-label>TrangThaiId</mat-label>
-        <input matInput [(ngModel)]="dataSP.TrangThaiId" name="TrangThaiId">
-      </mat-form-field> -->
-
-      <!-- <mat-form-field>
-        <mat-label>NhaCungCapId</mat-label>
-        <input matInput [(ngModel)]="dataSP.NhaCungCapId" name="NhaCungCapId">
-      </mat-form-field> -->
-
-      <!-- <mat-form-field>
-        <mat-label>NguoiNhapId</mat-label>
-        <input matInput [(ngModel)]="dataSP.NguoiNhapId" name="NguoiNhapId">
-      </mat-form-field> -->
-<!--
-      <mat-form-field>
-        <mat-label>KhoId</mat-label>
-        <input matInput [(ngModel)]="dataSP.KhoId" name="KhoId">
-      </mat-form-field> -->
       <mat-form-field>
         <mat-label>Loại thiết bị</mat-label>
         <mat-select [(value)]="dataSP.LoaiSPId" (selectionChange)="getLoaiCauHinh(dataSP.LoaiSPId)">
@@ -62,64 +23,77 @@
         </mat-select>
       </mat-form-field>
       <mat-form-field>
-        <mat-label>KhuyenMai</mat-label>
-        <input matInput [(ngModel)]="dataSP.KhuyenMai" name="KhuyenMai">
+        <mat-label>Chọn nhà cung cấp</mat-label>
+        <mat-select [(value)]="dataSP.NhaCungCapId">
+          <mat-option *ngFor="let item of dsNhaCungCap" value="{{item.id}}">
+            {{item.ten}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Cấu hình</mat-label>
-        <mat-select [(value)]="dataSP.CauHinhId">
-          <ng-container *ngFor="let item of dsCauHinh">
-            <mat-option value="{{item.id}}">{{ item.mota }}</mat-option>
-          </ng-container>
-        </mat-select>
+        <input matInput aria-label="State" [matAutocomplete]="auto" [formControl]="stateCtrl">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let state of filteredStates | async" [value]="state.code" (click)="CauHinhChosse()"
+            style="height: 100px;">
+            <img class="example-option-img" aria-hidden
+              src="https://upload.wikimedia.org/wikipedia/commons/f/f7/IPhone_12_Pro_Max.png" height="25">
+            <span>{{state.ten}}</span> |
+            <small> Cpu: {{state.cpu}}</small>
+            <small> Màn hình: {{state.manHinh}}</small>
+            <small> Pin: {{state.pin}}</small>
+            <small> Ram: {{state.ram}}</small>
+            <br>
+            <small> Mota: {{state.mota}}</small>
+          </mat-option>
+        </mat-autocomplete>
       </mat-form-field>
-      <section class="float-left">
-        <mat-checkbox [(ngModel)]="dataSP.Active" name="active">Hoạt động</mat-checkbox>
-      </section>
-
-
-      <!-- <mat-form-field>
-        <mat-label>Loại từ điển</mat-label>
-        <mat-select [(value)]="dataSP.LoaiTuDienId">
-          <ng-container *ngFor="let item of dsLoaiTuDien">
-            <mat-option value="{{item.id}}">{{ item.ten }}</mat-option>
-          </ng-container>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Tên từ điển</mat-label>
-        <input matInput [(ngModel)]="dataSP.Ten" name="Ten">
-      </mat-form-field>
+    </div>
+    <div class="col-3 mother-box" (click)="file.click()" style="cursor: pointer;">
+      <h1>Click vào ảnh để chỉnh sửa</h1>
+      <input type="file" (change)="uploadFile($event)" name="file" id="image" #file style="display: none;"
+        accept="image/x-png,image/gif,image/jpeg">
+      <img [src]="imageUrl" alt="" style="height: 400px;width: 350px;background-size: cover;"
+        accept="image/x-png,image/gif,image/jpeg">
 
 
     </div>
-    <div class="col">
-      <mat-form-field>
-        <mat-label>Ghi chú</mat-label>
-        <input matInput [(ngModel)]="dataSP.GhiChu" name="GhiChu">
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Tên ngắn</mat-label>
-        <input matInput [(ngModel)]="dataSP.TenNgan" name="TenNgan">
-      </mat-form-field>
-      <mat-form-field style="width: 20%;float: left;">
-        <mat-label>Ưu tiên</mat-label>
-        <input matInput type="number" [(ngModel)]="dataSP.UuTien" name="UuTien">
-      </mat-form-field> -->
-    </div>
+
   </div>
   <br>
-  <button mat-raised-button color="primary" (click)="CreateOrUpdate()" *ngIf="dataSP.Id == IdNull">Thêm</button>
-  <button mat-raised-button (click)="CreateOrUpdate()" *ngIf="dataSP.Id != IdNull">Sửa</button>
-  <button mat-raised-button color="warn" (click)="Clear()">Xóa</button>
-  <button mat-raised-button class="float-right" color="warn" (click)="ClosePopup()">Huy</button>
+  <div style="text-align: center;">
+    <button mat-raised-button color="primary" (click)="CreateOrUpdate()" *ngIf="dataSP.Id == IdNull" class="mr-2 p-2">Thêm</button>
+    <button mat-raised-button (click)="CreateOrUpdate()" *ngIf="dataSP.Id != IdNull">Sửa</button>
+    <button mat-raised-button color="warn" (click)="Clear()">Xóa</button>
+    <button mat-raised-button class="float-right" color="warn" (click)="ClosePopup()">Huy</button>
+  </div>
 </form>
 
 
 
 <style>
-  mat-form-field{
-    width: 45%;
-    margin: auto;
+  mat-form-field {
+    width: 80%;
+
+  }
+
+  .mother-box {
+    box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+    border-radius: 10px;
+    padding: 10px 20px;
+  }
+
+  .example-full-width {
+    width: 100%;
+  }
+
+  .example-option-img {
+    vertical-align: middle;
+    margin-right: 8px;
+  }
+
+  [dir=' rtl'] .example-option-img {
+    margin-right: 0;
+    margin-left: 8px;
   }
 </style>

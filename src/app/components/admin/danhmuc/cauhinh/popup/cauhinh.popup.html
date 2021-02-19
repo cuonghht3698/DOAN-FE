@@ -29,10 +29,17 @@
 <form autocomplete="off">
     <div class="row">
         <div class="col-6">
-
             <mat-form-field>
                 <mat-label>Tên</mat-label>
-                <input matInput [(ngModel)]="dataCH.ManHinh" name="ten">
+                <input matInput [(ngModel)]="dataCH.Ten" name="ten">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Code</mat-label>
+                <input matInput [(ngModel)]="dataCH.Code" name="code">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Màn Hình</mat-label>
+                <input matInput [(ngModel)]="dataCH.ManHinh" name="manhinh">
             </mat-form-field>
             <mat-form-field>
                 <mat-label>CPU</mat-label>
@@ -41,11 +48,11 @@
 
             <mat-form-field>
                 <mat-label>PIN</mat-label>
-                <input matInput [(ngModel)]="dataCH.PIN" name="Ten">
+                <input matInput [(ngModel)]="dataCH.PIN" name="pin">
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Ram</mat-label>
-                <input matInput [(ngModel)]="dataCH.RAM" name="GhiChu">
+                <input matInput [(ngModel)]="dataCH.RAM" name="ram">
             </mat-form-field>
         </div>
         <div class="col-6">
@@ -59,15 +66,15 @@
             
             <mat-form-field>
                 <mat-label>TGBH</mat-label>
-                <input matInput [(ngModel)]="dataCH.ThoiGianBaoHanh" name="TenNgan">
+                <input matInput [(ngModel)]="dataCH.ThoiGianBaoHanh" name="tgbh">
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Dung lượng</mat-label>
-                <input matInput [(ngModel)]="dataCH.DungLuong" name="TenNgan">
+                <input matInput [(ngModel)]="dataCH.DungLuong" name="dungluong">
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Mô tả</mat-label>
-                <input matInput [(ngModel)]="dataCH.MoTa" name="TenNgan">
+                <input matInput [(ngModel)]="dataCH.MoTa" name="mota">
             </mat-form-field>
             <br>
             <button mat-raised-button color="primary" (click)="CreateOrUpdate()"

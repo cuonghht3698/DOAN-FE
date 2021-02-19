@@ -11,7 +11,9 @@ export class NhaCungCapService {
   GetPage(search) {
     return this.http.post(this.baseUri + 'getPage', search);
   }
-
+  GetAll() {
+    return this.http.get(this.baseUri + 'getAll');
+  }
 
   Create(data) {
     return this.http.post(this.baseUri, data);

@@ -3,6 +3,27 @@
 <hr>
 
 <div class="mother-box">
+    <div class="search-box" *ngIf="viewNhap">
+        <form class="example-form">
+            <mat-form-field class="example-full-width">
+              <mat-label>Tên sản phẩm</mat-label>
+              <input matInput
+                     aria-label="State"
+                     [matAutocomplete]="auto"
+                     [formControl]="stateCtrl">
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
+                  <img class="example-option-img" aria-hidden [src]="state.flag" height="25">
+                  <span>{{state.name}}</span> |
+                  <small>Population: {{state.population}}</small>
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          
+            <br>
+          </form>
+    </div>
+    <pre> {{stateCtrl.value|json}}</pre>
     <div class="top-box row">
             <div class="col-2">
                 <img src="../../../../../assets/img/iphone-12-blue-select-2020_61c50b15ba5a43b890177f66acfacb58.webp"
@@ -11,8 +32,8 @@
             <div class="col-7">
                 <div class="row"><h1>iPhone 12 Pro Max Chính Hãng (VN/A) + thoi gian tao</h1></div>
                
-                   <p>Hãng săn xuất : .....   Hệ điều hành  : ANDROID</p>
-                   <p>Kích thước màn hình: 1 1 asd   Dung lượng RAM : asdasd   Bộ nhớ trong	64 GB</p>
+                   <p>Hãng săn xuất : ..... -  Hệ điều hành  : ANDROID</p>
+                   <p>Kích thước màn hình: 1 1 asd -  Dung lượng RAM : asdasd  - Bộ nhớ trong	64 GB</p>
               
             </div>
             <div class="col-3" style="overflow-y: auto;height: 100%;">
