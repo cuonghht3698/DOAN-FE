@@ -1,49 +1,132 @@
 
-<pre>{{ demo | json}}</pre>
-<hr>
-
 <div class="mother-box">
-    <div class="search-box" *ngIf="viewNhap">
-        <form class="example-form">
-            <mat-form-field class="example-full-width">
-              <mat-label>Tên sản phẩm</mat-label>
-              <input matInput
-                     aria-label="State"
-                     [matAutocomplete]="auto"
-                     [formControl]="stateCtrl">
-              <mat-autocomplete #auto="matAutocomplete">
-                <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
-                  <img class="example-option-img" aria-hidden [src]="state.flag" height="25">
-                  <span>{{state.name}}</span> |
-                  <small>Population: {{state.population}}</small>
-                </mat-option>
-              </mat-autocomplete>
-            </mat-form-field>
-          
-            <br>
-          </form>
-    </div>
-    <pre> {{stateCtrl.value|json}}</pre>
-    <div class="top-box row">
-            <div class="col-2">
-                <img src="../../../../../assets/img/iphone-12-blue-select-2020_61c50b15ba5a43b890177f66acfacb58.webp"
-                    alt="" class="anh">
-            </div>
-            <div class="col-7">
-                <div class="row"><h1>iPhone 12 Pro Max Chính Hãng (VN/A) + thoi gian tao</h1></div>
-               
-                   <p>Hãng săn xuất : ..... -  Hệ điều hành  : ANDROID</p>
-                   <p>Kích thước màn hình: 1 1 asd -  Dung lượng RAM : asdasd  - Bộ nhớ trong	64 GB</p>
-              
-            </div>
-            <div class="col-3" style="overflow-y: auto;height: 100%;">
-                <h1>Kho</h1>
-                <h3>- Ram + Rom : Số lượng : 11</h3>
-                <h3>- Ram + Rom : Số lượng : 11</h3>
-                <h3>- Ram + Rom : Số lượng : 11</h3>
-                <h3>- Ram + Rom : Số lượng : 11</h3>
-                <h3>- Ram + Rom : Số lượng : 11</h3>
+  <div class="search-box" *ngIf="viewNhap">
+    <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <mat-label>Tên sản phẩm</mat-label>
+        <input matInput aria-label="State" [matAutocomplete]="auto" [formControl]="stateCtrl">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let state of filteredStates | async" [value]="state.ten" (click)="ChoseSp(state)">
+            <img class="example-option-img" aria-hidden [src]="baseUrl +  state.imageUrl" height="55">
+            <small style="color: green;font-size: 18px;">{{state.ten}}</small>
+            <span style="color: red;"> - Ram : {{state.ram}}</span>
+            <span style="color: rgb(61, 66, 58);"> - Dung Lượng : {{state.rom}}</span>
+          </mat-option>
 
-            </div>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <br>
+    </form>
+  </div>
+  <div class="top-box row">
+    <div class="col-2">
+      <img [src]="dataThemSp.ImageUrl == ''? '/assets/img/emptyImage.png': (baseUrl + dataThemSp.ImageUrl)" alt=""
+        class="anh">
     </div>
+    <div class="col-6 showSP">
+
+      <h1>
+        <p>{{dataThemSp.Ten}}</p>
+      </h1>
+
+
+      <p>Cpu : {{dataThemSp.Cpu}} - Pin : {{dataThemSp.Pin}}</p>
+      <p>Kích thước màn hình: {{dataThemSp.ManHinh}} - Dung lượng RAM : <span style="color: red;">{{dataThemSp.Ram}} </span> - Bộ nhớ trong
+        <span style="color: red;"> {{dataThemSp.Rom}}</span></p>
+        <h5 style="text-align: justify;">{{dataThemSp.MoTa}}</h5>
+    </div>
+    <div class="col-4" style="overflow-y: auto;height: 100%;">
+      <h1>Kho</h1>
+      <div *ngFor="let item of dsOption" class="choseoption">
+        <span>
+          <span style="color: indigo;font-size: 16px;">Ram: {{item.ram}} - Dung lượng : {{item.rom}}</span> 
+          <p style="color: rgb(190, 10, 10);"> Số lượng : {{item.soLuong}}  -  Đơn giá : {{item.gia}} đồng</p>
+          <button mat-mini-fab (click)="ChoseOption(item)" style="position: absolute;right: 20px;top: 20%;"><span
+              class="material-icons">dns</span></button>
+
+        </span>
+      </div>
+
+    </div>
+  </div>
+  <!-- Box theem option -->
+
+
+  <div class="row">
+    <!-- Option -->
+
+    <div class="col mother-box" style="padding: 30px;">
+      <div class="alert alert-secondary" role="alert" *ngIf="dataThemSp.Id == empty">
+        Chọn một sản phẩm?
+      </div>
+      <h2>Nhập sản phẩm</h2>
+      <mat-form-field>
+        <mat-label>Chọn Ram</mat-label>
+        <mat-select [(value)]="dataOptionThem.Ram" name="ram">
+          <mat-option *ngFor="let item of dsRam" value="{{item.ram}}">
+            {{item.ram}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Chọn dung lượng</mat-label>
+        <mat-select [(value)]="dataOptionThem.Rom" name="rom">
+          <mat-option *ngFor="let item of dsRom" value="{{item.rom}}">
+            {{item.rom}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field style="width: 100px;">
+        <mat-label>Số lượng</mat-label>
+        <input matInput type="number" [(ngModel)]="dataOptionThem.SoLuong" name="sl">
+      </mat-form-field>
+      <mat-form-field style="width: 150px;">
+        <mat-label>Giá</mat-label>
+        <input matInput type="number" [(ngModel)]="dataOptionThem.Gia" name="id">
+      </mat-form-field>
+      <button mat-mini-fab (click)="HuyThemOption()">
+        <mat-icon><span class="material-icons">
+            highlight_off
+          </span></mat-icon>
+      </button>
+
+
+      <br>
+      <button mat-raised-button color="primary" *ngIf="dataOptionThem.Id != empty" (click)="SuaOption()">Sửa option</button>
+      <button mat-raised-button color="warn" *ngIf="dataOptionThem.Id != empty">Xóa option</button>
+      <button mat-raised-button color="primary" *ngIf="dataOptionThem.Id == empty" (click)="ThemOption()">Thêm
+        option</button>
+    </div>
+
+    <pre>{{dataOptionThem|json}}</pre>
+    <!-- Màu -->
+    <!-- <div class="col-6 mother-box left" style="padding: 30px;">
+      <h1>Nhánh màu</h1>
+      <button mat-raised-button color="primary">Thêm màu</button>
+      <table class="table table-hover nhanh-color">
+        <thead>
+          <tr>
+            <th>Màu</th>
+            <th>Số lượng</th>
+            <th>Chênh giá</th>
+            <th>Ảnh</th>
+            <th>Thêm màu</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of dataNhanhMauSp">
+            <td>{{item.color}}</td>
+            <td>{{item.soLuong}}</td>
+            <td>{{item.chenhGia}}</td>
+            <td> <img class="example-option-img" aria-hidden
+                [src]=" item.anh != ''? baseUrl +  item.anh:'/assets/img/emptyImage.png'" height="60">
+            </td>
+            <td><button mat-raised-button color="primary">Số lượng & giá</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div> -->
+
+  </div>
 </div>

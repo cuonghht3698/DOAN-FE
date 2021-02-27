@@ -29,7 +29,7 @@ export class CauHinhService {
   }
 
   FindByLoai(id){
-    return this.http.get(this.baseUri + 'FindByLoai?id=' + id)
+    return this.http.get(this.baseUri + 'FindByLoai/' + id)
 
   }
 }

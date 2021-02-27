@@ -5,21 +5,9 @@ import { environment } from 'src/environments/environment';
 @Injectable({
     providedIn: 'root'
 })
-export class SanPhamService {
+export class optionservice {
     constructor(private http: HttpClient) { }
-    baseUri = environment.ApiUrl + 'sanphams/'
-    GetPage(search) {
-        return this.http.post(this.baseUri + 'getPage', search);
-    }
-    GetByName(search) {
-        return this.http.get(this.baseUri + 'getByName',  search);
-    }
-    GetOptionById(Id) {
-        return this.http.get(this.baseUri + 'getOptionById/' +  Id);
-    }
-    GetNhomMauOptionById(id){
-        return this.http.get(this.baseUri + 'GetNhomMauOptionById/' +  id);
-    }
+    baseUri = environment.ApiUrl + 'options'
     Create(data) {
         return this.http.post(this.baseUri, data);
     }

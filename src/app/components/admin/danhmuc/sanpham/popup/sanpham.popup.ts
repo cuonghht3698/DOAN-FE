@@ -19,7 +19,7 @@ import { environment } from 'src/environments/environment';
 export class PopupSanPham implements OnInit {
   stateCtrl = new FormControl();
   filteredStates: Observable<any>;
-
+  baseUrl = environment.ApiUrl + "anh/get/";
   constructor(
     private dialog: MatDialogRef<PopupSanPham>,
     @Inject(MAT_DIALOG_DATA) public data,
@@ -64,6 +64,8 @@ export class PopupSanPham implements OnInit {
     Rate: 0,
     TrangThaiId: null,
     Active: true,
+    ImageUrl: ""
+
   };
   dsLoaiCauHinh;
   dsCauHinh;
@@ -93,11 +95,19 @@ export class PopupSanPham implements OnInit {
         Rate: item.rate,
         TrangThaiId: item.trangThaiId,
         Active: item.active,
+        ImageUrl: item.imageUrl
       };
       
-      this.getAnh(item.id);
+      //this.getAnh(item.id);
+      if (item.loaiSpid != null) {
       this.getLoaiCauHinh(item.loaiSpid);
+      }
+      if (item.cauHinh) {
       this.stateCtrl.setValue(item.cauHinh.code);
+        
+      }
+      this.imageUrl = this.baseUrl + item.imageUrl;
+      
     }
   }
 
@@ -119,6 +129,7 @@ export class PopupSanPham implements OnInit {
       Rate: item.rate,
       TrangThaiId: item.trangThaiId,
       Active: item.active,
+      ImageUrl : item.imageUrl
     };
   }
 
@@ -136,7 +147,6 @@ export class PopupSanPham implements OnInit {
   uploadFile(event) {
     this.fileToUpload = event.target.files[0];
     this.InfoImage.Ten = event.target.files[0].name;
-    console.log(this.imageName);
 
     //Show image preview
     var reader = new FileReader();
@@ -151,7 +161,7 @@ export class PopupSanPham implements OnInit {
   UploadAnh() {
     if (this.SelectAnh != null) {
       this.anh.PostAnh(this.SelectAnh).subscribe((res) => {
-        console.log(res);
+        //console.log(res);
       })
     }
   }
@@ -165,18 +175,18 @@ export class PopupSanPham implements OnInit {
   }
   getAnh(id) {
     this.anh.GetImageForId(id).subscribe((res: any) => {
-      console.log(res);
-      
+      //console.log(res);
+
       this.imageUrl = environment.ApiUrl + "anh/get/" + res[0].ten;
     });
   }
-  SaveURLToDB() {
-    if (this.SelectAnh != null) {
-      this.anh.Create(this.InfoImage).subscribe((res: any) => {
-        console.log(res);
-      });
-    }
-  }
+  // SaveURLToDB() {
+  //   if (this.SelectAnh != null) {
+  //     this.sp.Create(this.InfoImage).subscribe((res: any) => {
+  //       console.log(res);
+  //     });
+  //   }
+  // }
   getNhaCungCap() {
     this.ncc.GetAll().subscribe((res: any) => {
       this.dsNhaCungCap = res;
@@ -196,14 +206,14 @@ export class PopupSanPham implements OnInit {
           startWith(''),
           map(state => state ? this._filterStates(state) : this.states.slice())
         );
-      console.log(this.states);
+      //console.log(this.states);
     });
   }
   CauHinhChosse() {
     if (this.stateCtrl.value) {
       var code = this.stateCtrl.value;
       this.cauhinh.getByCode(code).subscribe((res: any) => {
-        console.log(res);
+        //console.log(res);
 
         this.dataSP.CauHinhId = res[0].id;
       })
@@ -214,11 +224,12 @@ export class PopupSanPham implements OnInit {
     //get id cau hinh
 
     if (!this.data) {
+      
+      this.dataSP.ImageUrl = this.InfoImage.Ten;
       this.sp.Create(this.dataSP).subscribe(
         (res: any) => {
           this.InfoImage.AnhId = res.id;
           this.UploadAnh();
-          this.SaveURLToDB();
           this.toastr.success('Thêm thành công !', 'Thông báo');
         },
         (err) => {
@@ -227,12 +238,12 @@ export class PopupSanPham implements OnInit {
         }
       );
     } else {
+      this.dataSP.ImageUrl = this.InfoImage.Ten;
       this.sp.Update(this.dataSP).subscribe(
         (res) => {
           this.toastr.success('Cập nhật thành công !', 'Thông báo');
           this.InfoImage.AnhId = this.dataSP.Id;
           this.UploadAnh();
-          this.SaveURLToDB();
         },
         (err) => {
           //console.log(err);
@@ -264,4 +275,6 @@ export interface SanPhamModel {
   Rate: number;
   TrangThaiId: string;
   Active: boolean;
+  ImageUrl: string
+
 }

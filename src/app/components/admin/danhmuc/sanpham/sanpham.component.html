@@ -24,9 +24,6 @@
         <th scope="col">Mô tả</th>
         <th scope="col">Thời gian tạo</th>
         <th scope="col">Trạng Thái</th>
-        <th scope="col">NCC</th>
-        <th scope="col">Kho</th>
-        <th scope="col">Loai SP</th>
         <th scope="col">Khuyến mãi</th>
         <th scope="col">Option</th>
         <th>Hành động</th>
@@ -37,16 +34,13 @@
       <tr *ngFor="let item of dsSanPham;index as i">
         <th scope="row">{{ i+1 }}</th>
         <td>{{ item.ten}}</td>
-        <td>{{ item.moTa }}</td>
+        <td>{{ item.moTa | substr}}</td>
         <td>{{ item.thoiGianTao |date }}</td>
         <td>
           <section class="float-left ml-3">
             <mat-checkbox [(ngModel)]="item.active" name="active" name>Hoạt động</mat-checkbox>
           </section>
         </td>
-        <td>{{ item.nhaCungCap?item.nhaCungCap.ten:'' }}</td>
-        <td>{{ item.kho?item.kho.ten:'' }}</td>
-        <td>{{ item.loaiSanPham?item.loaiSanPham.ten:'' }}</td>
         <td>{{ item.khuyenMai}}</td>
         <td> <a mat-raised-button color="primary" [routerLink]="['../sanpham/option',item.id]">Option</a></td>
         <td>
@@ -66,11 +60,11 @@
   </table>
   <div class="row mt-4">
     <div class="col-lg-2">
-      <h3>Page: {{ searchSP.pageIndex +1}}</h3>
+      <h3>Page: {{ searchSP.pageIndex + 1}}</h3>
     </div>
     <div class="col-lg-10">
       <mat-paginator [length]="TotalItem" [pageIndex]="searchSP.pageIndex" [pageSize]="searchSP.pageSize"
-        [pageSizeOptions]="[5,10, 20, 50,100]" (page)="getPaginate($event)" showFirstLastButtons>
+        [pageSizeOptions]="[5 ,10, 20, 50,100]" (page)="getPaginate($event)" showFirstLastButtons>
       </mat-paginator>
     </div>
 

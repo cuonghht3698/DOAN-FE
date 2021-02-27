@@ -40,6 +40,7 @@ import { RoleComponent } from './danhmuc/role/role.component';
 import { SanphamOptionComponent } from './directives/sanpham-option/sanpham-option.component';
 import { OptionSPComponent } from './sanpham/option-sp/option-sp.component';
 import { NhaphangComponent } from './sanpham/nhaphang/nhaphang.component';
+import { SubStringPipe } from 'src/app/services/pipes/substring.pipe';
 
 @NgModule({
   imports: [
@@ -83,7 +84,8 @@ import { NhaphangComponent } from './sanpham/nhaphang/nhaphang.component';
     RoleComponent,
     SanphamOptionComponent,
     OptionSPComponent,
-    NhaphangComponent
+    NhaphangComponent,
+    SubStringPipe
   ],
   providers: [
     {
