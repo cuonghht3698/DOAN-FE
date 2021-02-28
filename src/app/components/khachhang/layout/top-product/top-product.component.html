@@ -1,0 +1,50 @@
+<!-- top product -->
+<div class="container-fluid" style="background-color: #f5f5f5;">
+    <div class="container top-selling">
+
+        <div class="top">
+            <div class="top-content">
+                <strong>
+                    <h2>TOP SELLING OF THIS MONTH</h2>
+                </strong>
+            </div>
+            <div class="menu-product" style="text-align: center;font-size: 12px;">
+                <span *ngFor="let item of dsMenu">{{item.ten}}</span>
+
+            </div>
+            <div class="angle-repon" style="text-align: right;">
+                <button class="btn btn-outline-primary prev"><i class="fa fa-angle-left"></i></button>
+                <button class="btn btn-outline-primary next"><i class="fa fa-angle-right"></i></button>
+            </div>
+
+        </div>
+        <div class="mid">
+            <div class="product-mid" style="width: 100%;position: absolute;height: auto;display: flex;">
+                <div class="product mr-2">
+                    <div class="product-img"><img src="/assets/img/product-15-250x320.jpg" alt=""></div>
+                    <div class="hang" style="position: absolute;top:0;"><button type="button"
+                            class="btn btn-secondary">Apple</button></div>
+                    <div class="product-cart">
+                            <span class="ml-5"> <button mat-raised-button color="primary"><span class="material-icons">
+                                        add_circle_outline
+                                    </span>Giỏ hàng</button></span>
+                            <span> <button mat-icon-button color="warn"
+                                    aria-label="Example icon button with a heart icon">
+                                    <mat-icon>favorite</mat-icon>
+                                </button></span>
+
+
+
+                    </div>
+                    <hr>
+                    <div class="product-name">Iphone 12 - 512GB</div>
+                    <div class="product-rate">This is rate</div>
+                    <div class="product-price">$800</div>
+                </div>
+
+            </div>
+        </div>
+        <div class="bottom " style="text-align: center; "><button class="btn btn-primary ">VIEW ALL</button></div>
+    </div>
+</div>
+<!-- end top product -->

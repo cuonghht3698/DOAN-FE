@@ -23,7 +23,10 @@ export class SanPhamService {
     Create(data) {
         return this.http.post(this.baseUri, data);
     }
+    GetByLoaiMa(ma){
+        return this.http.get(this.baseUri + 'GetByLoaiMa',  ma);
 
+    }
     Update(data) {
         return this.http.put(this.baseUri, data);
     }
