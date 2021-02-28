@@ -21,7 +21,7 @@ export class TopProductComponent implements OnInit {
   }
 
   getSanPham() {
-    this.sp.get
+
   }
 
   getHangSX() {
