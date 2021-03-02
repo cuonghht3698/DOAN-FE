@@ -19,14 +19,14 @@ export class PagenotfoundComponent implements OnInit {
     if(checkRole){
       if(checkRole[0].roles != Role.KhachHang)
         {
-            this.route.navigateByUrl('dashboard/baocao')
+            this.route.navigateByUrl('dashboard/user')
         }
       else{
-        // this.route.navigateByUrl('dashboard/baocao') go to Khach hang
+        this.route.navigateByUrl('shop')
       }
     }
     else{
-      this.route.navigateByUrl('login')
+      this.route.navigateByUrl('shop')
     }
   }
 }

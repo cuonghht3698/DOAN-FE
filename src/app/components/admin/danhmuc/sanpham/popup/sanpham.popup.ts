@@ -19,7 +19,7 @@ import { environment } from 'src/environments/environment';
 export class PopupSanPham implements OnInit {
   stateCtrl = new FormControl();
   filteredStates: Observable<any>;
-  baseUrl = environment.ApiUrl + "anh/get/";
+  baseUrl = environment.ApiUrl + 'anh/get/';
   constructor(
     private dialog: MatDialogRef<PopupSanPham>,
     @Inject(MAT_DIALOG_DATA) public data,
@@ -29,13 +29,13 @@ export class PopupSanPham implements OnInit {
     private cauhinh: CauHinhService,
     private ncc: NhaCungCapService,
     private anh: AnhService
-  ) {
-
-  }
+  ) {}
   private _filterStates(value: string) {
     const filterValue = value.toLowerCase();
 
-    return this.states.filter(state => state.code.toLowerCase().indexOf(filterValue) === 0);
+    return this.states.filter(
+      (state) => state.code.toLowerCase().indexOf(filterValue) === 0
+    );
   }
   states = [
     // {
@@ -54,7 +54,7 @@ export class PopupSanPham implements OnInit {
     KhuyenMai: 0,
     LoaiSPId: null,
     MoTa: '',
-    NguoiNhapId: JSON.parse(localStorage.getItem("user"))[0].id,
+    NguoiNhapId: JSON.parse(localStorage.getItem('user'))[0].id,
     NhaCungCapId: null,
     Ten: '',
     TenNgan: '',
@@ -64,8 +64,8 @@ export class PopupSanPham implements OnInit {
     Rate: 0,
     TrangThaiId: null,
     Active: true,
-    ImageUrl: ""
-
+    ImageUrl: '',
+    GiaMacDinh: 0,
   };
   dsLoaiCauHinh;
   dsCauHinh;
@@ -95,19 +95,18 @@ export class PopupSanPham implements OnInit {
         Rate: item.rate,
         TrangThaiId: item.trangThaiId,
         Active: item.active,
-        ImageUrl: item.imageUrl
+        ImageUrl: item.imageUrl,
+        GiaMacDinh: item.giaMacDinh,
       };
-      
+
       //this.getAnh(item.id);
       if (item.loaiSpid != null) {
-      this.getLoaiCauHinh(item.loaiSpid);
+        this.getLoaiCauHinh(item.loaiSpid);
       }
       if (item.cauHinh) {
-      this.stateCtrl.setValue(item.cauHinh.code);
-        
+        this.stateCtrl.setValue(item.cauHinh.code);
       }
       this.imageUrl = this.baseUrl + item.imageUrl;
-      
     }
   }
 
@@ -129,11 +128,12 @@ export class PopupSanPham implements OnInit {
       Rate: item.rate,
       TrangThaiId: item.trangThaiId,
       Active: item.active,
-      ImageUrl : item.imageUrl
+      ImageUrl: item.imageUrl,
+      GiaMacDinh: item.giaMacDinh,
     };
   }
 
-  imageUrl = "/assets/img/emptyImage.png";
+  imageUrl = '/assets/img/emptyImage.png';
   imageName = null;
   fileToUpload: File = null;
   SelectAnh: FormData = null;
@@ -152,7 +152,7 @@ export class PopupSanPham implements OnInit {
     var reader = new FileReader();
     reader.onload = (event: any) => {
       this.imageUrl = event.target.result;
-    }
+    };
     reader.readAsDataURL(this.fileToUpload);
     const formData = new FormData();
     formData.append('file', event.target.files[0]);
@@ -162,7 +162,7 @@ export class PopupSanPham implements OnInit {
     if (this.SelectAnh != null) {
       this.anh.PostAnh(this.SelectAnh).subscribe((res) => {
         //console.log(res);
-      })
+      });
     }
   }
   InfoImage = {
@@ -171,13 +171,13 @@ export class PopupSanPham implements OnInit {
     ImageUrl: '',
     UuTien: 0,
     Active: 1,
-    AnhId: ''
-  }
+    AnhId: '',
+  };
   getAnh(id) {
     this.anh.GetImageForId(id).subscribe((res: any) => {
       //console.log(res);
 
-      this.imageUrl = environment.ApiUrl + "anh/get/" + res[0].ten;
+      this.imageUrl = environment.ApiUrl + 'anh/get/' + res[0].ten;
     });
   }
   // SaveURLToDB() {
@@ -198,14 +198,15 @@ export class PopupSanPham implements OnInit {
     this.cauhinh.FindByLoai(id).subscribe((res: any) => {
       this.dsCauHinh = res;
       this.states = [];
-      res.forEach(element => {
+      res.forEach((element) => {
         this.states.push(element);
       });
-      this.filteredStates = this.stateCtrl.valueChanges
-        .pipe(
-          startWith(''),
-          map(state => state ? this._filterStates(state) : this.states.slice())
-        );
+      this.filteredStates = this.stateCtrl.valueChanges.pipe(
+        startWith(''),
+        map((state) =>
+          state ? this._filterStates(state) : this.states.slice()
+        )
+      );
       //console.log(this.states);
     });
   }
@@ -216,7 +217,7 @@ export class PopupSanPham implements OnInit {
         //console.log(res);
 
         this.dataSP.CauHinhId = res[0].id;
-      })
+      });
     }
   }
   CreateOrUpdate() {
@@ -224,7 +225,6 @@ export class PopupSanPham implements OnInit {
     //get id cau hinh
 
     if (!this.data) {
-      
       this.dataSP.ImageUrl = this.InfoImage.Ten;
       this.sp.Create(this.dataSP).subscribe(
         (res: any) => {
@@ -253,7 +253,7 @@ export class PopupSanPham implements OnInit {
     }
   }
 
-  Clear() { }
+  Clear() {}
   ClosePopup() {
     this.dialog.close();
   }
@@ -275,6 +275,6 @@ export interface SanPhamModel {
   Rate: number;
   TrangThaiId: string;
   Active: boolean;
-  ImageUrl: string
-
+  ImageUrl: string;
+  GiaMacDinh: number;
 }

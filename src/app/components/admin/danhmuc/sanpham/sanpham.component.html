@@ -21,6 +21,7 @@
       <tr>
         <th>STT</th>
         <th scope="col">Tên</th>
+        <th scope="col">Giá()</th>
         <th scope="col">Mô tả</th>
         <th scope="col">Thời gian tạo</th>
         <th scope="col">Trạng Thái</th>
@@ -34,6 +35,8 @@
       <tr *ngFor="let item of dsSanPham;index as i">
         <th scope="row">{{ i+1 }}</th>
         <td>{{ item.ten}}</td>
+        <td>{{ item.giaMacDinh}}</td>
+
         <td>{{ item.moTa | substr}}</td>
         <td>{{ item.thoiGianTao |date }}</td>
         <td>

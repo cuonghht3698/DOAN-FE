@@ -307,7 +307,7 @@ body {
 .product {
     width: 24%;
     min-width: 250px;
-    height: 420px;
+    height: 450px;
     margin: auto;
     border-radius: 10px;
     background-color: white;
@@ -319,6 +319,7 @@ body {
 
 .product .product-img img {
     width: 200px;
+    height: 230px;
     margin-left: 35px;
 }
 

@@ -42,6 +42,7 @@
     "@angular/platform-browser-dynamic": "~10.1.0",
     "@angular/router": "~10.1.0",
     "angular-popper": "^2.0.1",
+    "angular-responsive-carousel": "^2.0.2",
     "animate.css": "3.7.0",
     "bootstrap": "^4.5.2",
     "bootstrap-notify": "3.1.3",

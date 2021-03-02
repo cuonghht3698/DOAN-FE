@@ -23,6 +23,9 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { NarBarComponent } from './layout/nar-bar/nar-bar.component';
 import { DealComponent } from './layout/deal/deal.component';
 import { TopProductComponent } from './layout/top-product/top-product.component';
+import { TienTePipe } from 'src/app/services/pipes/curency.pipe';
+import { IvyCarouselModule } from 'angular-responsive-carousel';
+import { CatChuoiPipe } from './pipe/catchuoi.pipe';
 
 @NgModule({
   imports: [
@@ -36,6 +39,7 @@ import { TopProductComponent } from './layout/top-product/top-product.component'
     MaterialModule,
     NgxPopper,
     HttpClientModule,
+    IvyCarouselModule
   ],
   exports: [],
   declarations: [
@@ -46,7 +50,9 @@ import { TopProductComponent } from './layout/top-product/top-product.component'
     TopProductComponent,
     DealComponent,
     BlogComponent,
-    MainComponent
+    MainComponent,
+    TienTePipe,
+    CatChuoiPipe
   ],
   providers: [
     {

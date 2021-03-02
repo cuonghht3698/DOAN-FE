@@ -21,6 +21,8 @@ import { CommonModule } from '@angular/common';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { MaterialModule } from './material.module';
 import { SharedModule } from './share.module';
+import { IvyCarouselModule } from 'angular-responsive-carousel';
+import { SubStringPipe } from './services/pipes/substring.pipe';
 
 //Component
 
@@ -30,7 +32,7 @@ import { SharedModule } from './share.module';
     AppComponent,
     LoginComponent,
     RegistrationComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +47,8 @@ import { SharedModule } from './share.module';
     NgxPaginationModule,
     Ng2SearchPipeModule,
     SharedModule,
-    MaterialModule
+    MaterialModule,
+    IvyCarouselModule
   ],
   providers: [AuthenticationService,
     { provide: HTTP_INTERCEPTORS,
