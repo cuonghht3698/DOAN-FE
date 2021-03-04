@@ -1,0 +1,18 @@
+.parent {
+  position: relative;
+  background-color: rgb(215, 216, 216);
+  border-radius: 10px;
+  
+}
+.parent .child {
+  width: 100%;
+  padding: 10px;
+  box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
+ 
+}
+.parent .child img {
+  width: 330px;
+  height: 400px;
+  border-radius: 20px;
+  box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
+}

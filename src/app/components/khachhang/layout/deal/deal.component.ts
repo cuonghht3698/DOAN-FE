@@ -23,7 +23,7 @@ export class DealComponent implements OnInit {
   search = {
     sSearch: '',
     pageIndex: 1,
-    pageSize: 2,
+    pageSize: 4,
     OrderByAsc: false,
   };
   ngOnInit(): void {

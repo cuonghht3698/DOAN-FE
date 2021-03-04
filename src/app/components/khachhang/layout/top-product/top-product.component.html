@@ -38,10 +38,11 @@
                     </div>
                     <hr>
                     <div class="product-name">
-                        <h3>{{item.ten}} {{item.dungLuong}}</h3>
+                        <h3 style="color: green;font-size: 17px;">{{item.ten}} {{item.dungLuong}}</h3>
                     </div>
                     <div class="product-rate">This is rate</div>
-                    <button mat-stroked-button color="accent" style="font-size: 25px;outline: none;">{{item.gia |tiente}} đ</button>
+                    <button mat-stroked-button color="accent" style="font-size: 25px;outline: none;">{{item.gia
+                        |tiente}} đ</button>
                 </div>
             </div>
 
@@ -53,37 +54,39 @@
             <strong>
                 <h2 style="color: #007bff;">Sản phẩm bán chạy nhất</h2>
             </strong>
-    </div>
-    <div class="">
-        <div class="box-view" >
-            <div class="top-view mr-2" *ngFor="let item of dsTopDienThoaiNhieuView">
-                <div class="product-img mt-2">
-                    <img [src]="url + item.imageUrl" alt="">
-                </div>
-                <div class="hang" style="position: absolute;top:0;"><button type="button"
-                        class="btn btn-secondary">{{item.hang}}</button></div>
-                <div class="product-cart">
-                    <span class="ml-5"> <button mat-raised-button color="primary"><span class="material-icons">
-                                add_circle_outline
-                            </span>Giỏ hàng</button></span>
-                    <span> <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
-                            <mat-icon>favorite</mat-icon>
-                        </button></span>
-                </div>
-                <hr>
-                <div class="product-name">
-                    <h3>{{item.ten}} {{item.dungLuong}}</h3>
-                </div>
-                <div class="product-rate">This is rate</div>
-                <button mat-stroked-button color="accent" style="font-size: 25px;outline: none;">{{item.giaMacDinh |tiente}} đ</button>
-            </div>
-            <div class="text-center mt-2">
-            <button mat-raised-button color="primary" style="outline: none;" (click)="ViewMore()">Xem thêm</button>
-
-            </div>
         </div>
+        <div class="">
+            <div class="box-view">
+                <div class="top-view mr-2 hover-b" style="cursor: pointer;" *ngFor="let item of dsTopDienThoaiNhieuView">
+                    <div class="product-img mt-3">
+                        <img [src]="url + item.imageUrl" alt="">
+                    </div>
+                    <div class="hang" style="position: absolute;top:0;"><button type="button"
+                            class="btn btn-secondary">{{item.hang}}</button></div>
+                    <div class="product-cart">
+                        <span class="ml-5"> <button mat-raised-button color="primary"><span class="material-icons">
+                                    add_circle_outline
+                                </span>Giỏ hàng</button></span>
+                        <span> <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
+                                <mat-icon>favorite</mat-icon>
+                            </button></span>
+                    </div>
+                    <hr>
+                    <div class="product-name">
+                        <h3 style="color: green;font-size: 17px;">{{item.ten}} {{item.dungLuong}}</h3>
+                    </div>
+                    <div class="product-rate">This is rate</div>
+                    <button mat-stroked-button color="accent" style="font-size: 25px;outline: none;">{{item.giaMacDinh
+                        |tiente}} đ</button>
+                </div>
+                <div class="text-center mt-2">
+                    <button mat-raised-button color="primary" style="outline: none;" (click)="ViewMore()">Xem
+                        thêm</button>
 
-    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>
 <!-- end top product -->
