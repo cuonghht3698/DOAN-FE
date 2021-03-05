@@ -56,3 +56,7 @@ $(".top-selling .prev").click(function() {
         });
     }
 });
+
+$('.carousel').carousel({
+    interval: 2000
+  })

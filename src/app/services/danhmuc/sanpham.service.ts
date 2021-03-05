@@ -17,6 +17,10 @@ export class SanPhamService {
     GetOptionById(Id) {
         return this.http.get(this.baseUri + 'getOptionById/' +  Id);
     }
+
+    showPageDanhMuc(ma){
+        return this.http.post(this.baseUri + 'showPageDanhMuc',  ma);
+    }
     GetNhomMauOptionById(id){
         return this.http.get(this.baseUri + 'GetNhomMauOptionById/' +  id);
     }

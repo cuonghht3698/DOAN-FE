@@ -32,7 +32,6 @@ export class DealComponent implements OnInit {
   getSPNhieuView() {
     this.option.GetPage(this.search).subscribe((res: any) => {
       this.dsDienThoai = res;
-      console.log(res, 11);
     });
   }
   ViewMore(){

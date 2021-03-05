@@ -26,6 +26,9 @@ import { TopProductComponent } from './layout/top-product/top-product.component'
 import { TienTePipe } from 'src/app/services/pipes/curency.pipe';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { CatChuoiPipe } from './pipe/catchuoi.pipe';
+import { DanhmucComponent } from './layout/danhmuc/danhmuc.component';
+import { DetailComponent } from './layout/detail/detail.component';
+import { MatCarouselModule } from '@ngmodule/material-carousel';
 
 @NgModule({
   imports: [
@@ -39,7 +42,8 @@ import { CatChuoiPipe } from './pipe/catchuoi.pipe';
     MaterialModule,
     NgxPopper,
     HttpClientModule,
-    IvyCarouselModule
+    IvyCarouselModule,
+    MatCarouselModule,
   ],
   exports: [],
   declarations: [
@@ -52,7 +56,9 @@ import { CatChuoiPipe } from './pipe/catchuoi.pipe';
     BlogComponent,
     MainComponent,
     TienTePipe,
-    CatChuoiPipe
+    CatChuoiPipe,
+    DanhmucComponent,
+    DetailComponent
   ],
   providers: [
     {

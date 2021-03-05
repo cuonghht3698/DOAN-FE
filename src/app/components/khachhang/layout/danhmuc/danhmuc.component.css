@@ -1,0 +1,22 @@
+.test {
+  border: 1px solid black;
+  height: auto;
+}
+.title-menu-search{
+    padding: 5px;
+    font-weight: 700;
+    background: #f7f7f7;
+    border: solid 1px #eee;
+}
+.menu-search {
+  padding: 15px;
+  border: solid 1px #eee;
+  border-top: none;
+  margin-bottom: 10px;
+  background: #fff;
+}
+
+
+.box-c{
+    box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
+}
