@@ -14,7 +14,9 @@ export class optionservice {
   GetOptionByHang(ma) {
     return this.http.get(this.baseUri + 'GetOptionByHang/' + ma);
   }
-
+  GetOptionByIdSp(Id) {
+    return this.http.get(this.baseUri + 'GetOptionByIdSp/' + Id);
+  }
   GetPage(search) {
     return this.http.post(this.baseUri + 'GetPage', search);
   }

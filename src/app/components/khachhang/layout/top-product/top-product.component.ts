@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MaTuDien } from 'src/app/services/constrans';
 import { AnhService } from 'src/app/services/danhmuc/anh.service';
 import { optionservice } from 'src/app/services/danhmuc/optionSp.service';
@@ -16,7 +17,8 @@ export class TopProductComponent implements OnInit {
     private anh: AnhService,
     private sp: SanPhamService,
     private tudien: TudienService,
-    private option: optionservice
+    private option: optionservice,
+    private router:Router
   ) {}
   dsMenu: any;
   dsTopDienThoai = [];
@@ -31,7 +33,7 @@ export class TopProductComponent implements OnInit {
   search = {
     sSearch: '',
     pageIndex: 1,
-    pageSize: 8,
+    pageSize: 2,
     OrderByAsc: false,
   };
   getSanPham(Hang) {
@@ -63,5 +65,11 @@ export class TopProductComponent implements OnInit {
 
       this.getSanPham(res[0].maTuDien);
     });
+  }
+
+  GoToDetail(item){
+    console.log(item);
+    
+    this.router.navigateByUrl('shop/chitiet/' + item.id);
   }
 }

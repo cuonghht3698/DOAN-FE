@@ -57,7 +57,7 @@
         </div>
         <div class="">
             <div class="box-view">
-                <div class="top-view mr-2 hover-b" style="cursor: pointer;" *ngFor="let item of dsTopDienThoaiNhieuView">
+                <div class="top-view mr-2 hover-b" style="cursor: pointer;" *ngFor="let item of dsTopDienThoaiNhieuView" (click)="GoToDetail(item)">
                     <div class="product-img mt-3">
                         <img [src]="url + item.imageUrl" alt="">
                     </div>

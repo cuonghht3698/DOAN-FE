@@ -13,18 +13,10 @@
         <ul>
             <li>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-info dropdown-toggle active" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false" style="background-color: #00f2bc;"
-                        (click)="drop1 = !drop1">
-                        HOME
-                    </button>
-                    <div class="dropdown-menu" *ngIf="drop1">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Separated link</a>
-                    </div>
+                    <a routerLink="../shop" type="button" class="btn btn-info dropdown-toggle active" 
+                      style="background-color: #00f2bc;">HOME
+                </a>
+                  
                 </div>
             </li>
 
