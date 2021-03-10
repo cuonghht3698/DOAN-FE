@@ -16,10 +16,7 @@
                     <a type="button" class="list-group-item list-group-item-action active">
                         MENU
                     </a>
-                    <a type="button" class="list-group-item list-group-item-action">Danh mục</a>
-                    <a type="button" class="list-group-item list-group-item-action">Danh mục</a>
-                    <a type="button" class="list-group-item list-group-item-action">Danh mục</a>
-                    <a type="button" class="list-group-item list-group-item-action">Danh mục</a>
+                    <button mat-button class="list-group-item list-group-item-action" *ngFor="let item of dsLoaiSP" (click)="LocLoaiSP(item.maTuDien)">{{item.ten}}</button>
                 </div>
             </div>
             <!-- end menu tim kiem -->
@@ -88,18 +85,18 @@
             <div class="row box-c" style="height: auto;box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);">
                 <!-- khu vuc tìm kiếm -->
                 <div class="slider-loaisp" style="display: inline-block;">
-                    <a [routerLink]="'../' + item.maTuDien" mat-stroked-button *ngFor="let item of dsLoaiSP" color="accent" style="margin: 3px;" (click)="getPage()">{{item.maTuDien}}</a>
-                    <a mat-stroked-button color="accent" style="margin: 3px;" [routerLink]="'../'">Tất cả</a>
+                    <a routerLink="./" [queryParams]="{ma:item.maTuDien}" mat-stroked-button *ngFor="let item of dsHangSX" color="accent" style="margin: 3px;" (click)="LocTheoHang(item.maTuDien)">{{item.maTuDien}}</a>
+                    <a mat-stroked-button color="accent" style="margin: 3px;" [routerLink]="'./'" (click)="LocTheoHang('')">Tất cả</a>
 
                 </div>
-                
+
             </div>
             <div class="row">
                 <div class="box-view" style="padding: 7px;">
-                    <div class="top-view mr-2 hover-b" style="cursor: pointer;" *ngFor="let item of dsSanPham">
-                        <div class="product-img mt-3" >
+                    <div class="top-view mr-2 hover-b" *ngFor="let item of dsSanPham">
+                        <div class="product-img mt-3"  style="cursor: pointer;" (click)="GoToDetail(item)">
                             <img [src]="url + item.imageUrl" alt="">
-                            
+
                         </div>
                         <div class="product-cart">
                             <span class="ml-5"> <button mat-raised-button color="primary"><span class="material-icons">
@@ -120,7 +117,7 @@
                     <div class="text-center mt-2">
                         <button mat-raised-button color="primary" style="outline: none;">Xem
                             thêm</button>
-    
+
                     </div>
                 </div>
             </div>

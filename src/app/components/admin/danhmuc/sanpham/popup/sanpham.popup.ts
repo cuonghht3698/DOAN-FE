@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { MaTuDien } from 'src/app/services/constrans';
 import { AnhService } from 'src/app/services/danhmuc/anh.service';
 import { CauHinhService } from 'src/app/services/danhmuc/cauhinh.service';
 import { NhaCungCapService } from 'src/app/services/danhmuc/nhacungcap.service';
@@ -53,6 +54,7 @@ export class PopupSanPham implements OnInit {
     KhoId: null,
     KhuyenMai: 0,
     LoaiSPId: null,
+    HangSXId: null,
     MoTa: '',
     NguoiNhapId: JSON.parse(localStorage.getItem('user'))[0].id,
     NhaCungCapId: null,
@@ -71,11 +73,12 @@ export class PopupSanPham implements OnInit {
   dsCauHinh;
   checkDsCh;
   dsNhaCungCap;
+  dsHangSX;
   ngOnInit() {
     //console.log(this.data);
     this.getNhaCungCap();
     this.getLoaiSanPham();
-
+    this.getDSHangSX();
     if (this.data) {
       const item = this.data;
       this.dataSP = {
@@ -88,6 +91,7 @@ export class PopupSanPham implements OnInit {
         NguoiNhapId: item.nguoiNhapId,
         NhaCungCapId: item.nhaCungCapId,
         Ten: item.ten,
+        HangSXId:item.hangSxid,
         TenNgan: item.tenNgan,
         ThoiGianDong: item.thoiGianDong,
         ThoiGianTao: item.thoiGianTao,
@@ -100,8 +104,8 @@ export class PopupSanPham implements OnInit {
       };
 
       //this.getAnh(item.id);
-      if (item.loaiSpid != null) {
-        this.getLoaiCauHinh(item.loaiSpid);
+      if (item.hangSxid != null) {
+        this.getLoaiSP(item.hangSxid);
       }
       if (item.cauHinh) {
         this.stateCtrl.setValue(item.cauHinh.code);
@@ -130,6 +134,7 @@ export class PopupSanPham implements OnInit {
       Active: item.active,
       ImageUrl: item.imageUrl,
       GiaMacDinh: item.giaMacDinh,
+      HangSXId: item.hangSxid,
     };
   }
 
@@ -138,12 +143,17 @@ export class PopupSanPham implements OnInit {
   fileToUpload: File = null;
   SelectAnh: FormData = null;
   getLoaiSanPham() {
-    this.tudien.getByLoai('LoaiCauHinh').subscribe((res: any) => {
+    this.tudien.getByLoai(MaTuDien.LoaiSanPham).subscribe((res: any) => {
       this.dsLoaiSp = res;
       //console.log(res);
     });
   }
-
+  getDSHangSX() {
+    this.tudien.getByLoai(MaTuDien.HangSanXuat).subscribe((res: any) => {
+      this.dsHangSX = res;
+      //console.log(res);
+    });
+  }
   uploadFile(event) {
     this.fileToUpload = event.target.files[0];
     this.InfoImage.Ten = event.target.files[0].name;
@@ -194,8 +204,10 @@ export class PopupSanPham implements OnInit {
     });
   }
 
-  getLoaiCauHinh(id) {
+  getLoaiSP(id) {
     this.cauhinh.FindByLoai(id).subscribe((res: any) => {
+      console.log(res);
+
       this.dsCauHinh = res;
       this.states = [];
       res.forEach((element) => {
@@ -277,4 +289,5 @@ export interface SanPhamModel {
   Active: boolean;
   ImageUrl: string;
   GiaMacDinh: number;
+  HangSXId: string;
 }

@@ -8,12 +8,8 @@
                         developer_mode
                     </span> Hãng sản xuất
                 </h3>
-                <a [routerLink]="['../danhmuc/',item.maTuDien]" class="list-group-item list-group-item-action"
-                    *ngFor="let item of dsMenu">{{item.ten}}</a>
-
-
-
-
+                <a [routerLink]="['../danhmuc']" [queryParams]="{loai: item.maTuDien}"
+                    class="list-group-item list-group-item-action" *ngFor="let item of dsMenu">{{item.ten}}</a>
             </div>
 
         </div>

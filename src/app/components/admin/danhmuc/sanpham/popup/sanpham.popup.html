@@ -20,8 +20,16 @@
       </mat-form-field>
       <mat-form-field>
         <mat-label>Loại thiết bị</mat-label>
-        <mat-select [(value)]="dataSP.LoaiSPId" (selectionChange)="getLoaiCauHinh(dataSP.LoaiSPId)">
+        <mat-select [(value)]="dataSP.LoaiSPId" >
           <ng-container *ngFor="let item of dsLoaiSp">
+            <mat-option value="{{item.id}}">{{ item.ten }}</mat-option>
+          </ng-container>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Hãng sản xuất</mat-label>
+        <mat-select [(value)]="dataSP.HangSXId" (selectionChange)="getLoaiSP(dataSP.HangSXId)">
+          <ng-container *ngFor="let item of dsHangSX">
             <mat-option value="{{item.id}}">{{ item.ten }}</mat-option>
           </ng-container>
         </mat-select>

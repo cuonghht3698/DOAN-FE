@@ -16,7 +16,7 @@ export class NarBarComponent implements OnInit {
   }
 
   getMenu() {
-    this.tudien.getByLoai(MaTuDien.LoaiCauHinh).subscribe((res:any) => {
+    this.tudien.getByLoai(MaTuDien.LoaiSanPham).subscribe((res:any) => {
       this.dsMenu = res;
     });
   }

@@ -15,7 +15,7 @@
                 <div class="caption">
                     <div class="row product-deal ">
                         <div class="col-md-6">
-                            <div class="img-product">
+                            <div class="img-product" (click)="GoToDetail(item)" style="cursor: pointer;">
                                 <img src="{{url + item.imageUrl}}" class="w-100 ml-3 mt-3" style="height: 260px;"
                                     alt="">
                             </div>
@@ -32,7 +32,7 @@
                             </div>
                         </div>
                         <div class="col-md-6 product-block">
-                            <h3 class="name mt-5" style="color: green;font-size: 20px;">{{item.ten}}</h3>
+                            <h3 class="name mt-5" style="color: green;font-size: 20px;" (click)="GoToDetail(item)" style="cursor: pointer;">{{item.ten}}</h3>
                             <div class="rating">Rate</div>
                             <div class="price"><a href="">{{item.giaMacDinh | tiente}} đồng</a></div>
                             <div class="description mt-2 h-47">{{item.moTa |catchuoi}}
@@ -85,7 +85,7 @@
 
 
                         <div class="col-md-4">
-                            <img [src]="url + item.imageUrl" alt="">
+                            <img [src]="url + item.imageUrl" alt="" (click)="GoToDetail(item)">
                         </div>
 
 
@@ -93,11 +93,11 @@
                             <div style="position: absolute;right: 30px;top: 40px;">
                                 <mat-icon matBadge="{{item.rate}}" color="warn" style="font-size: 33px;">favorite</mat-icon>
                                 <span class="cdk-visually-hidden">
-                                   
+
                                 </span>
                             </div>
                             <br>
-                            <h3 style="color: green;font-size: 28px;">{{item.ten}}</h3>
+                            <h3 style="color: green;font-size: 28px;" (click)="GoToDetail(item)">{{item.ten}}</h3>
 
                             <p style="color: red;font-size: 26px;">{{item.giaMacDinh | tiente}} đồng</p>
                             <p>{{item.moTa | catchuoi:600}}</p>

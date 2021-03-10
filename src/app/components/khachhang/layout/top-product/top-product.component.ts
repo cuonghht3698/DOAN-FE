@@ -33,7 +33,7 @@ export class TopProductComponent implements OnInit {
   search = {
     sSearch: '',
     pageIndex: 1,
-    pageSize: 2,
+    pageSize: 8,
     OrderByAsc: false,
   };
   getSanPham(Hang) {
@@ -60,16 +60,19 @@ export class TopProductComponent implements OnInit {
     });
   }
   getHangSX() {
-    this.tudien.getByLoai(MaTuDien.LoaiCauHinh).subscribe((res: any) => {
+    this.tudien.getByLoai(MaTuDien.HangSanXuat).subscribe((res: any) => {
       this.dsMenu = res;
+      console.log(res);
 
       this.getSanPham(res[0].maTuDien);
     });
   }
 
   GoToDetail(item){
+    this.router.navigate(['shop/chitiet/'],{queryParams: {id: item.id}} );
+  }
+  AddToCart(item){
     console.log(item);
-    
-    this.router.navigateByUrl('shop/chitiet/' + item.id);
+
   }
 }

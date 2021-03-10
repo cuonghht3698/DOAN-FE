@@ -19,11 +19,11 @@ export const routes: Routes = [
         component: TrangchuComponent,
       },
       {
-        path: 'danhmuc/:ma',
+        path: 'danhmuc',
         component: DanhmucComponent,
       },
       {
-        path: 'chitiet/:id',
+        path: 'chitiet',
         component: DetailComponent,
       },
     ],

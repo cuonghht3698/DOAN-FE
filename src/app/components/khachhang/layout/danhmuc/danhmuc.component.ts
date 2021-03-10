@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SanPhamService } from 'src/app/services/danhmuc/sanpham.service';
 import { MatCarousel, MatCarouselComponent } from '@ngmodule/material-carousel';
 import { environment } from 'src/environments/environment';
 import { TudienService } from 'src/app/services/danhmuc/tudien.service';
+import { MaTuDien } from 'src/app/services/constrans';
 @Component({
   selector: 'app-danhmuc',
   templateUrl: './danhmuc.component.html',
@@ -12,14 +13,17 @@ import { TudienService } from 'src/app/services/danhmuc/tudien.service';
 export class DanhmucComponent implements OnInit {
   constructor(
     private router: ActivatedRoute,
+    private route: Router,
     private sp: SanPhamService,
-    private td: TudienService
+    private td: TudienService,
+    private r: Router
   ) {}
   sSearch = {
     search: '',
     pageIndex: 0,
     pageSize: 20,
-    Ma: '',
+    LoaiSP: '',
+    HangSX: '',
   };
   slides = [
     { image: '/assets/img/h4-slide.png' },
@@ -30,31 +34,56 @@ export class DanhmucComponent implements OnInit {
   ];
   dsSanPham = [];
   dsLoaiSP = [];
+  dsHangSX = [];
+
   total: number = 0;
   url = environment.ApiUrl + 'anh/get/';
   ngOnInit(): void {
-    this.router.params.subscribe((res) => {
-      if (res) {
-        this.sSearch.Ma = res.ma;
-      }
+    this.router.queryParams.subscribe((res: any) => {
+      this.sSearch.LoaiSP = res.loai;
+      this.sSearch.HangSX = res.hang;
     });
     this.getLoaiSP();
+    this.getHangSanXuat();
     this.getPage();
   }
 
   getPage() {
+    console.log(this.sSearch);
     this.sp.showPageDanhMuc(this.sSearch).subscribe((res: any) => {
       this.dsSanPham = res.list;
       this.total = res.total;
     });
   }
-
+  LocTheoHang(ma) {
+    this.route.navigate([], {
+      queryParams: { hang: ma },
+      queryParamsHandling: 'merge',
+    });
+    this.sSearch.HangSX = ma;
+    this.getPage();
+  }
+  LocLoaiSP(loai){
+    this.route.navigate([], {
+      queryParams: { loai: loai },
+      queryParamsHandling: 'merge',
+    });
+    this.sSearch.LoaiSP = loai;
+    this.getPage();
+  }
+  getHangSanXuat() {
+    this.td.getByLoai(MaTuDien.HangSanXuat).subscribe((res: any) => {
+      this.dsHangSX = res;
+      console.log(res);
+    });
+  }
   getLoaiSP() {
-    this.td.getByLoai("LoaiCauHinh").subscribe((res:any)=>{
-      
+    this.td.getByLoai(MaTuDien.LoaiSanPham).subscribe((res: any) => {
       this.dsLoaiSP = res;
       console.log(res);
-      
-    })
+    });
+  }
+  GoToDetail(item) {
+    this.r.navigate(['shop/chitiet/'], { queryParams: { id: item.id } });
   }
 }

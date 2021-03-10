@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { CauHinhService } from './../../../../../services/danhmuc/cauhinh.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Component, Inject, OnInit } from '@angular/core';
+import { MaTuDien } from 'src/app/services/constrans';
 
 @Component({
     selector: 'cauhinh-pop',
@@ -63,7 +64,7 @@ export class PoppupCauHinh implements OnInit {
     }
 
     getLoaiCauHinh() {
-        this.tudien.getByLoai("LoaiCauHinh").subscribe(
+        this.tudien.getByLoai(MaTuDien.HangSanXuat).subscribe(
             (res: any) => {
                 this.dsLoaiCauHinh = res;
             }
