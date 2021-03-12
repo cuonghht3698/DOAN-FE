@@ -253,7 +253,7 @@ body{
 }
 
 .profile-message ul {
-  list-style: none ;  
+  list-style: none ;
 }
 
 .product-deatil .certified {
@@ -331,4 +331,13 @@ body{
 }
 button {
     outline: none !important;
+}
+
+.chose{
+  background-color: rgb(204, 180, 209) !important;
+}
+
+.hethang{
+  cursor: default !important;
+  background-color: rgb(163, 159, 159) !important;
 }

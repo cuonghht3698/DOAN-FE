@@ -38,11 +38,12 @@
         </h2>
         <hr />
         <h3 class="price-container" style="color: rgb(56, 1, 58);font-size: 30px;">
-          {{item.option.length>0?item.option[0].gia:item.giaMacDinh | tiente}} <small> Đồng</small>
+          {{item.option.length>0?DataCartDetail.Gia:item.giaMacDinh | tiente}} <small> Đồng</small>
         </h3>
         <div class="certified">
           <ul>
-            <li *ngFor="let a of item.option" (click)="ChonOption(a)" style="cursor: pointer;">
+            <li *ngFor="let a of item.option" (click)="ChonOption(a)" style="cursor: pointer;"
+              [ngClass]="{'chose': a.id == DataCartDetail.OptionId,'hethang': a.soLuong == 0}">
               <a>{{a.ram}}<span>{{a.rom}}</span></a>
             </li>
 
@@ -50,13 +51,16 @@
         </div>
         <div class="quantity">
           <button mat-fab color="warn"
-            (click)="AddOption.SoLuong =AddOption.SoLuong ==1?1: AddOption.SoLuong -1">-1</button>
+            (click)="DataCartDetail.SoLuong =DataCartDetail.SoLuong ==1?1: DataCartDetail.SoLuong -1">-1</button>
           <mat-form-field style="width: 70px;text-align: center;color: red;font-size: 20px;">
             <mat-label>Input</mat-label>
-            <input matInput [(ngModel)]="AddOption.SoLuong">
+            <input matInput [(ngModel)]="DataCartDetail.SoLuong">
           </mat-form-field>
-          <button mat-fab (click)="AddOption.SoLuong = AddOption.SoLuong +1" color="primary">+1</button>
+          <button mat-fab (click)="DataCartDetail.SoLuong = DataCartDetail.SoLuong +1" color="primary">+1</button>
 
+          <br>
+          <span>Kho - {{SoLuongKho}}</span>
+          <h2>{{currentOption}}</h2>
         </div>
         <hr />
         <div class="description description-tabs">
@@ -181,7 +185,7 @@
         <hr />
         <div class="row">
           <div class="col-sm-12 col-md-6 col-lg-6">
-            <a href="javascript:void(0);" class="btn btn-success btn-lg">Add to cart ($129.54)</a>
+            <a class="btn btn-success btn-lg" (click)="AddToCart()">Add to cart</a>
           </div>
           <div class="col-sm-12 col-md-6 col-lg-6">
             <div class="btn-group pull-right">
@@ -196,4 +200,5 @@
     </div>
   </div>
   <!-- end product -->
+
 </div>
