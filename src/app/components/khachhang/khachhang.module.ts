@@ -29,6 +29,7 @@ import { CatChuoiPipe } from './pipe/catchuoi.pipe';
 import { DanhmucComponent } from './layout/danhmuc/danhmuc.component';
 import { DetailComponent } from './layout/detail/detail.component';
 import { MatCarouselModule } from '@ngmodule/material-carousel';
+import { ShoppingCartComponent } from './layout/shopping-cart/shopping-cart.component';
 
 @NgModule({
   imports: [
@@ -58,7 +59,8 @@ import { MatCarouselModule } from '@ngmodule/material-carousel';
     TienTePipe,
     CatChuoiPipe,
     DanhmucComponent,
-    DetailComponent
+    DetailComponent,
+    ShoppingCartComponent
   ],
   providers: [
     {
