@@ -223,8 +223,6 @@ SOFTWARE.
 popper.js
 MIT
 
-qlttb
-
 rxjs
 Apache-2.0
                                Apache License
