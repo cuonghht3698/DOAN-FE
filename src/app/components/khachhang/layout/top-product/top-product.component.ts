@@ -18,7 +18,7 @@ export class TopProductComponent implements OnInit {
     private sp: SanPhamService,
     private tudien: TudienService,
     private option: optionservice,
-    private router:Router
+    private router: Router
   ) {}
   dsMenu: any;
   dsTopDienThoai = [];
@@ -68,11 +68,10 @@ export class TopProductComponent implements OnInit {
     });
   }
 
-  GoToDetail(item){
-    this.router.navigate(['shop/chitiet/'],{queryParams: {id: item.id}} );
+  GoToDetail(item) {
+    this.router.navigate(['shop/chitiet/'], { queryParams: { id: item.id } });
   }
-  AddToCart(item){
+  AddToCart(item) {
     console.log(item);
-
   }
 }
