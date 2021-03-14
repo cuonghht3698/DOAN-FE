@@ -7,13 +7,14 @@ import { environment } from 'src/environments/environment';
 export class CartDetailService {
   constructor(private http: HttpClient) {}
 
-  GetCartDetailById(id) {
-    return this.http.get(environment.ApiUrl + 'carts/GetCartByUserId/' + id);
-  }
+
   CreateNewCartDetail(data: CartDetailModel) {
     return this.http.post(
       environment.ApiUrl + 'cartdetail/CreateNewCartDetail',
       data
     );
+  }
+  Delete(id){
+    return this.http.delete(environment.ApiUrl + 'cartdetail/' +  id);
   }
 }

@@ -16,4 +16,8 @@ export class CartService {
   CreateNewCart(data:CartModel){
     return this.http.post(environment.ApiUrl + 'carts/CreateNewCart',data);
   }
+  ShowShoppingCart(id) {
+    return this.http.get(environment.ApiUrl + 'carts/ShowShoppingCart/' +  id);
+  }
+
 }
