@@ -17,4 +17,8 @@ export class CartDetailService {
   Delete(id){
     return this.http.delete(environment.ApiUrl + 'cartdetail/' +  id);
   }
+
+  UpdateSL(data){
+    return this.http.post(environment.ApiUrl + 'carts/UpdateSL',data);
+  }
 }

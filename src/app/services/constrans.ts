@@ -6,6 +6,7 @@ export enum MaTuDien {
 }
 export enum LoaiGiaoDich {
   MuaHang = 'MuaHang',
+
 }
 
 export enum TrangThaiGiaoDich {

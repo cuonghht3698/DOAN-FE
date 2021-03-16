@@ -58,3 +58,6 @@ footer {
 footer a {
     color: #f8f9fa!important
 }
+button{
+  outline: none  !important;
+}

@@ -4,10 +4,10 @@
       <h1 class="jumbotron-heading">E-COMMERCE CART</h1>
     </div>
   </section>
-  <div class="row">
+  <div class="row" *ngIf="check">
     <div class="col-12">
       <div class="table-responsive">
-        <table class="table table-striped">
+        <table class="table table-striped" >
           <thead>
             <tr>
               <th scope="col"> </th>
@@ -23,7 +23,12 @@
               <td><img style="width: 40px;" [src]="url + item.anh" /> </td>
               <td>{{item.tenSp}}</td>
               <td>{{item.cauHinh}}</td>
-              <td><input class="form-control" style="width: 120px;text-align: center;" type="number" [value]="item.soLuong" /></td>
+              <td>
+                <button mat-mini-fab class="float-left"  (click)="GiamSL(item)">-</button>
+                <input class="form-control float-left" style="width: 80px;text-align: center;" type="number" [value]="item.soLuong"/>
+                <button mat-mini-fab class="float-left" color="primary"  (click)="UpSL(item)">+</button>
+
+              </td>
               <td class="text-right">{{item.gia | tiente}}</td>
               <td class="text-right"><button class="btn btn-sm btn-danger" (click)="Delete(item.idCartDetail)"><i class="fa fa-trash"></i> </button> </td>
             </tr>
@@ -56,15 +61,47 @@
         </table>
       </div>
     </div>
-    <div class="col mb-2">
+
+     <div class="col mb-2">
+
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label for="exampleFormControlTextarea2">Địa chỉ giao hàng</label>
+            <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" [(ngModel)]="dataCart.DiaChi" name="aaa"></textarea>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label for="exampleFormControlTextarea2">Ghi chú cho người bán</label>
+            <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" [(ngModel)]="dataCart.TinNhan" name="aa"></textarea>
+          </div>
+        </div>
+      </div>
+
       <div class="row">
         <div class="col-sm-12  col-md-6">
           <a class="btn btn-block btn-light" routerLink="../">Continue Shopping</a>
         </div>
         <div class="col-sm-12 col-md-6 text-right">
-          <button class="btn btn-lg btn-block btn-success text-uppercase">Checkout</button>
+          <button class="btn btn-lg btn-block btn-success text-uppercase" (click)="DatHang()">Checkout</button>
         </div>
       </div>
     </div>
   </div>
+
+  <div class="row" *ngIf="!check">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body cart">
+                <div class="col-sm-12 empty-cart-cls text-center"> <img src="https://i.imgur.com/dCdflKN.png" width="130" height="130" class="img-fluid mb-4 mr-3">
+                    <h3><strong>Your Cart is Empty</strong></h3>
+                    <h4>Add something to make me happy :)</h4> <a href="#" class="btn btn-primary cart-btn-transform m-3" data-abc="true">continue shopping</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+</div>
+
+

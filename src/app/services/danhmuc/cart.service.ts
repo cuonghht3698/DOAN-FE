@@ -20,4 +20,7 @@ export class CartService {
     return this.http.get(environment.ApiUrl + 'carts/ShowShoppingCart/' +  id);
   }
 
+  Update(data){
+    return this.http.post(environment.ApiUrl + 'carts/Update',data);
+  }
 }

@@ -36,6 +36,7 @@ export class DetailComponent implements OnInit {
     TrangThai: TrangThaiGiaoDich.DangGiaoDich,
     NhanVienId: null,
     DiaChi: '',
+    TongTien: 0
   };
   DataCartDetail: CartDetailModel = {
     Id: GuidId.EmptyId,
@@ -107,6 +108,11 @@ export class DetailComponent implements OnInit {
     });
   }
 
+  DatHang(){
+
+  }
+
+
   GoToDetail(item) {
     this.r.navigateByUrl('shop/chitiet/' + item.id);
   }
@@ -139,4 +145,5 @@ export interface CartModel {
   TrangThai: string;
   NhanVienId: string;
   DiaChi: string;
+  TongTien: number;
 }
