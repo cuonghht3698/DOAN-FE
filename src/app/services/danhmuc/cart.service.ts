@@ -23,4 +23,8 @@ export class CartService {
   Update(data){
     return this.http.post(environment.ApiUrl + 'carts/Update',data);
   }
+
+  ChangTrangThai(data){
+    return this.http.post(environment.ApiUrl + 'carts/ChangTrangThai',data );
+  }
 }

@@ -18,7 +18,10 @@ export class CartDetailService {
     return this.http.delete(environment.ApiUrl + 'cartdetail/' +  id);
   }
 
-  UpdateSL(data){
-    return this.http.post(environment.ApiUrl + 'carts/UpdateSL',data);
+  UpdateSL(id,sl:number){
+    return this.http.get(environment.ApiUrl + 'cartdetail/UpdateSL?Id=' + id + "&SoLuong=" + sl );
   }
+
+
+
 }

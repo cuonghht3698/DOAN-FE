@@ -28,7 +28,7 @@ export class ShoppingCartComponent implements OnInit {
     this.getCart();
   }
 
-  dataCart: CartModel ={
+  dataCart: CartModel = {
     Id: GuidId.EmptyId,
     TinNhan: '',
     ThoiGianTao: new Date(),
@@ -37,10 +37,10 @@ export class ShoppingCartComponent implements OnInit {
     TrangThai: TrangThaiGiaoDich.DaDatHang,
     NhanVienId: null,
     DiaChi: '',
-    TongTien: 0
-  }
+    TongTien: 0,
+  };
   getCart() {
-    this.ct.CheckCart(this.UserId).subscribe((res:any) => {
+    this.ct.CheckCart(this.UserId).subscribe((res: any) => {
       console.log(res);
 
       this.dataCart.Id = res[0].id;
@@ -62,35 +62,32 @@ export class ShoppingCartComponent implements OnInit {
     });
   }
   DatHang() {
-    this.ct.Update(this.dataCart).subscribe((res)=>{
-      this.toarst.success("Thông báo!", "Đặt hàng thành công!");
+    this.ct.ChangTrangThai(this.dataCart).subscribe((res) => {
+      this.toarst.success('Thông báo!', 'Đặt hàng thành công!');
       this.getShoppingCart();
       this.check = false;
       this.toarst.success('Thông báo', 'Đặt hàng thành công!');
-    })
+    });
   }
 
-  UpSL(item){
-    this.cd.UpdateSL({
-      Id: item.id,
-      SoLuong: item.soLuong + 1
-    }).subscribe((res)=>{
-      this.toarst.success("ok");
-    })
+  UpSL(item) {
+    this.cd
+      .UpdateSL(item.idCartDetail, Number.parseInt(item.soLuong) + 1)
+      .subscribe((res) => {
+        this.toarst.success('ok');
+        this.getShoppingCart();
+      });
   }
 
-  GiamSL(item){
-    if (item == 1) {
+  GiamSL(item) {
+    if (item.soLuong == 1) {
       return;
     }
-    console.log(item);
-
-    this.cd.UpdateSL({
-      Id: item.idCartDetail,
-      SoLuong: item.soLuong - 1
-    }).subscribe((res)=>{
-      this.toarst.success("ok");
-    })
+    this.cd
+      .UpdateSL(item.idCartDetail, Number.parseInt(item.soLuong) - 1)
+      .subscribe((res) => {
+        this.getShoppingCart();
+      });
   }
   Delete(id) {
     this.cd.Delete(id).subscribe((res) => {
@@ -98,4 +95,26 @@ export class ShoppingCartComponent implements OnInit {
       this.getShoppingCart();
     });
   }
+  ChangeSL(event, item) {
+    let soluong = event;
+    let id = item.idCartDetail;
+    if (event > 0) {
+      if (event > item.soLuong) {
+        this.toarst.info(
+          'Số lượng ' + item.tenSp +' trong kho hiện tại là ' + item.soLuong + ' !',
+          'Thông báo'
+        );
+        this.cd.UpdateSL(id, item.soLuong).subscribe((res) => {});
+        this.getShoppingCart();
+      }
+      else
+      this.cd.UpdateSL(id, soluong).subscribe((res) => {});
+    } else {
+      this.cd.UpdateSL(id, 1).subscribe((res) => {
+        this.getShoppingCart();
+      });
+    }
+  };
+
+
 }
