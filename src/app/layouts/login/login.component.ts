@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
     const checkLogin = JSON.parse(localStorage.getItem('user'));
     if (checkLogin) {
       if (checkLogin[0].role == Role.KhachHang) {
-        this.router.navigateByUrl('trangchu');
+        this.router.navigateByUrl('shop');
       } else {
         this.router.navigateByUrl('dashboard');
       }
@@ -70,7 +70,7 @@ export class LoginComponent implements OnInit {
           ) {
             this.router.navigateByUrl('dashboard');
           } else {
-            this.router.navigateByUrl('trangchu');
+            this.router.navigateByUrl('shop');
           }
         });
       },
