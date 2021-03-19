@@ -31,6 +31,9 @@ import { DetailComponent } from './layout/detail/detail.component';
 import { MatCarouselModule } from '@ngmodule/material-carousel';
 import { ShoppingCartComponent } from './layout/shopping-cart/shopping-cart.component';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
+import { LoginComponent } from './layout/login/login.component';
+import { LichsumuahangComponent } from './layout/lichsumuahang/lichsumuahang.component';
+import { UserinfoComponent } from './layout/userinfo/userinfo.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -63,7 +66,10 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
     CatChuoiPipe,
     DanhmucComponent,
     DetailComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    LoginComponent,
+    LichsumuahangComponent,
+    UserinfoComponent
   ],
   providers: [
     {

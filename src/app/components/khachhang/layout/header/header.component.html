@@ -1,71 +1,95 @@
 <div class="container header">
-    <div><span><i class="far fa-envelope"></i>contact@example.com</span><span><i class="fas fa-phone"></i>(+084) 908
-            8888 8888</span></div>
-    <div class="mid-header">FREE SHIPPING TO ORDERS OVER <strong> $300</strong></div>
-    <div> <span><a routerLink="../dangky"><i class="fas fa-sign-out-alt" ></i>Sign up</a><a
-                routerLink="/login">Login</a></span><span></span>
-    </div>
-
+  <div><span><i class="far fa-envelope"></i>contact@example.com</span><span><i class="fas fa-phone"></i>(+084) 908
+      8888 8888</span></div>
+  <div class="mid-header">FREE SHIPPING TO ORDERS OVER <strong> $300</strong></div>
+  <div *ngIf="!name">
+    <span>
+      <a routerLink="../dangky"><i class="fas fa-sign-out-alt"></i>Sign up</a>
+      <a routerLink="/shop/dangnhap">Login</a>
+    </span>
+  </div>
+  <div class="dropdown" *ngIf="name">
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <mat-label>{{name}}</mat-label>
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <a routerLink="taikhoan" mat-menu-item>
+        <mat-icon>dialpad</mat-icon>
+        <span>Tài khoản</span>
+      </a>
+      <a routerLink="lichsu" mat-menu-item>
+        <mat-icon>voicemail</mat-icon>
+        <span>Lịch sử mua hàng</span>
+      </a>
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span style="color: red;">Đăng xuất</span>
+      </button>
+    </mat-menu>
+  </div>
 </div>
 <div class="container nav">
-    <div class="nav-left"><img src="/assets/img/logo.png" alt=""></div>
-    <div class="nav-mid">
-        <ul>
-            <li>
-                <div class="btn-group">
-                    <a routerLink="../shop" type="button" class="btn btn-info dropdown-toggle active" 
-                      style="background-color: #00f2bc;">HOME
-                </a>
-                  
-                </div>
-            </li>
+  <div class="nav-left"><img src="/assets/img/logo.png" alt=""></div>
+  <div class="nav-mid">
+    <ul>
+      <li>
+        <div class="btn-group">
+          <a routerLink="../shop" type="button" class="btn btn-info dropdown-toggle active"
+            style="background-color: #00f2bc;">HOME
+          </a>
 
-
-            <li>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-headphones"></i> SHOP
-                    </button>
-
-                </div>
-            </li>
-            <li>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        BLOG
-                    </button>
-
-                </div>
-            </li>
-            <li>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        PAGES
-                    </button>
-
-                </div>
-            </li>
-            <li>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        BEST SELLING
-                    </button>
-
-                </div>
-            </li>
-        </ul>
-    </div>
-    <div class="nav-right">
-        <div class="cart">
-
-            <span><a routerLink="./shopping-cart"><mat-icon matBadge="15" matBadgeColor="warn">shopping_cart</mat-icon></a></span>
-            <span>Cart: <a href="">$0.00</a></span>
         </div>
+      </li>
 
+
+      <li>
+        <div class="btn-group">
+          <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            <i class="fas fa-headphones"></i> SHOP
+          </button>
+
+        </div>
+      </li>
+      <li>
+        <div class="btn-group">
+          <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            BLOG
+          </button>
+
+        </div>
+      </li>
+      <li>
+        <div class="btn-group">
+          <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            PAGES
+          </button>
+
+        </div>
+      </li>
+      <li>
+        <div class="btn-group">
+          <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            BEST SELLING
+          </button>
+
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="nav-right">
+    <div class="cart">
+
+      <span><a routerLink="./shopping-cart">
+          <mat-icon matBadge="15" matBadgeColor="warn">shopping_cart</mat-icon>
+        </a></span>
+      <span>Cart: <a href="">$0.00</a></span>
     </div>
+
+  </div>
 
 </div>

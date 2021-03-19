@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="login">
+    <h1>Login</h1>
+      <form method="post">
+        <input type="text" name="u" placeholder="Username" required="required" [(ngModel)]="data.Username" name="username"/>
+          <input type="password" name="p" placeholder="Password" required="required" [(ngModel)]="data.Password" name="passwird"/>
+          <button type="submit" class="btn btn-primary btn-block btn-large" style="width: 300px;margin: auto;" (click)="DangNhap()">Đăng nhập</button>
+          <br><br>
+          <a routerLink="../../dangky" class="btn btn-info btn-block btn-large" style="width: 300px;margin: auto;">Đăng ký</a>
+      </form>
+  </div>
+
+</div>

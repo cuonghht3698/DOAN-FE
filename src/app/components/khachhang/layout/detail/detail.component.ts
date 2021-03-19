@@ -117,6 +117,9 @@ export class DetailComponent implements OnInit {
     this.r.navigateByUrl('shop/chitiet/' + item.id);
   }
   ChonOption(a) {
+    if (a.soLuong == 0) {
+      return;
+    }
     this.DataCartDetail.OptionId = a.id;
     this.DataCartDetail.SanPhamId = a.sanPhamId;
     this.DataCartDetail.Gia = a.gia;

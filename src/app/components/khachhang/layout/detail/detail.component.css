@@ -338,6 +338,6 @@ button {
 }
 
 .hethang{
-  cursor: default !important;
+  cursor: progress !important;
   background-color: rgb(163, 159, 159) !important;
 }
