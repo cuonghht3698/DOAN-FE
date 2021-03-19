@@ -41,15 +41,12 @@ export class ShoppingCartComponent implements OnInit {
   };
   getCart() {
     this.ct.CheckCart(this.UserId).subscribe((res: any) => {
-      console.log(res);
-
       this.dataCart.Id = res[0].id;
     });
   }
 
   getShoppingCart() {
     this.ct.ShowShoppingCart(this.UserId).subscribe((res: any) => {
-      console.log(res);
       this.dataCartDetail = res;
       if (res.length > 0) {
         this.check = true;
@@ -58,6 +55,8 @@ export class ShoppingCartComponent implements OnInit {
           this.total += e.soLuong * e.gia;
         });
         this.dataCart.TongTien = this.total;
+      }else{
+        this.check = false;
       }
     });
   }
@@ -74,7 +73,6 @@ export class ShoppingCartComponent implements OnInit {
     this.cd
       .UpdateSL(item.idCartDetail, Number.parseInt(item.soLuong) + 1)
       .subscribe((res) => {
-        this.toarst.success('ok');
         this.getShoppingCart();
       });
   }
