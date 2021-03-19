@@ -30,7 +30,7 @@ import { DanhmucComponent } from './layout/danhmuc/danhmuc.component';
 import { DetailComponent } from './layout/detail/detail.component';
 import { MatCarouselModule } from '@ngmodule/material-carousel';
 import { ShoppingCartComponent } from './layout/shopping-cart/shopping-cart.component';
-
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 @NgModule({
   imports: [
     CommonModule,
@@ -45,6 +45,9 @@ import { ShoppingCartComponent } from './layout/shopping-cart/shopping-cart.comp
     HttpClientModule,
     IvyCarouselModule,
     MatCarouselModule,
+    ConfirmationPopoverModule.forRoot({
+      confirmButtonType: 'danger', // set defaults here
+    })
   ],
   exports: [],
   declarations: [

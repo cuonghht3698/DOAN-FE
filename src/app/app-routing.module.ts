@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from './layouts/login/login.component';
 import { Role } from './services/ERole';
 import { PagenotfoundComponent } from './layouts/pagenotfound/pagenotfound.component';
+import { RegistrationComponent } from './layouts/registration/registration.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'dangky',
+    component: RegistrationComponent,
   },
   {
     path: '**',

@@ -6,7 +6,6 @@ import { CartDetailService } from 'src/app/services/danhmuc/cartdetail.service';
 import { GuidId } from 'src/app/services/ERole';
 import { environment } from 'src/environments/environment';
 import { CartModel } from '../detail/detail.component';
-
 @Component({
   selector: 'app-shopping-cart',
   templateUrl: './shopping-cart.component.html',
@@ -21,6 +20,7 @@ export class ShoppingCartComponent implements OnInit {
   UserId = JSON.parse(localStorage.getItem('user'))[0].id;
   dataCartDetail: any;
   url = environment.ApiUrl + 'anh/get/';
+  confirmXoa = false;
   total = 0;
   check = false;
   ngOnInit(): void {
@@ -88,6 +88,8 @@ export class ShoppingCartComponent implements OnInit {
       });
   }
   Delete(id) {
+    console.log(id);
+    
     this.cd.Delete(id).subscribe((res) => {
       this.toarst.success('Thông báo', 'Xóa thành công');
       this.getShoppingCart();

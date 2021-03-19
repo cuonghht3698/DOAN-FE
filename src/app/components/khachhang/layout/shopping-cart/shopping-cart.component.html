@@ -30,7 +30,14 @@
 
               </td>
               <td class="text-right">{{item.gia | tiente}}</td>
-              <td class="text-right"><button class="btn btn-sm btn-danger" (click)="Delete(item.idCartDetail)"><i class="fa fa-trash"></i> </button> </td>
+              <td class="text-right"><button class="btn btn-sm btn-danger"
+                
+                mwlConfirmationPopover
+                confirmButtonType="danger"
+                popoverMessage="Bạn chắc chắn muốn xóa?"
+                placement="left"
+                (confirm)="Delete(item.idCartDetail)"
+                ><i class="fa fa-trash"></i> </button> </td>
             </tr>
 
             <tr>

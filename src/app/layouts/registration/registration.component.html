@@ -1,47 +1,113 @@
-<form [formGroup]="form">
-  <div nz-form  class="registration-form" >
-    <h2>Đăng ký tài khoản</h2><br>
-    <!-- color -->
-    <ng-container *ngFor="let item of color">
-      <div class="color" [style.backgroundColor]="item" ></div>
-  </ng-container>
-    <br><br>
-    <!-- User -->
-    <!-- <nz-form-item>
-      <nz-input-group nzPrefixIcon="user">
-        <input class="input" type="text" nz-input placeholder="Username" formControlName="UserName"/>
-      </nz-input-group>
-    </nz-form-item> -->
-    <!-- Pass -->
-    <!-- <nz-form-item>
-      <nz-input-group nzPrefixIcon="lock">
-        <input class="input" type="password" nz-input placeholder="password" formControlName="Password"/>
-      </nz-input-group>
-    </nz-form-item> -->
-    <!-- Nhập lại pass -->
-    <!-- <nz-form-item>
-      <nz-input-group nzPrefixIcon="lock">
-        <input class="input" type="password" nz-input placeholder="nhập lại password" formControlName="Password2"/>
-      </nz-input-group>
-    </nz-form-item> -->
-    <!-- Email -->
-    <!-- <nz-form-item>
-      <nz-input-group nzPrefixIcon="mail">
-        <input class="input" type="email" nz-input placeholder="Email" formControlName="Email"/>
-      </nz-input-group>
-    </nz-form-item> -->
-    <!-- Role -->
-    <!-- <nz-form-item>
-      <nz-input-group nzPrefixIcon="Fullnaem">
-        <input class="input" type="text" nz-input placeholder="Name" formControlName="FullName"/>
-      </nz-input-group>
-    </nz-form-item> -->
-    <!-- color -->
-    <ng-container *ngFor="let item of color">
-      <div class="color" [style.backgroundColor]="item"></div>
-    </ng-container><br><br>
-    <!-- button -->
-    <pre>{{form.value | json}}</pre>
-    <button nz-button class="registration-button registration-form-margin" (click)="Dangky(form.value)">Đăng ký</button><br>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<div class="container register">
+  <div class="row">
+    <div class="col-md-3 register-left">
+      <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
+      <h3>Welcome</h3>
+      <p>You are 30 seconds away from earning your own money!</p>
+      <a routerLink="../login"><button class="btn btn-info">Đăng nhập</button></a> 
+    </div>
+    <div class="col-md-9 register-right">
+
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+          <h3 class="register-heading">Đăng ký tài khoản</h3>
+          <div class="row register-form">
+            <div class="col-md-6">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="First Name *" value="" />
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Last Name *" value="" />
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" placeholder="Password *" value="" />
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" placeholder="Confirm Password *" value="" />
+              </div>
+              <div class="form-group">
+                <div class="maxl">
+                  <label class="radio inline">
+                    <input type="radio" name="gender" value="male" checked>
+                    <span> Male </span>
+                  </label>
+                  <label class="radio inline">
+                    <input type="radio" name="gender" value="female">
+                    <span>Female </span>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <input type="email" class="form-control" placeholder="Your Email *" value="" />
+              </div>
+              <div class="form-group">
+                <input type="text" minlength="10" maxlength="10" name="txtEmpPhone" class="form-control"
+                  placeholder="Your Phone *" value="" />
+              </div>
+              <div class="form-group">
+                <select class="form-control">
+                  <option class="hidden" selected disabled>Please select your Sequrity Question</option>
+                  <option>What is your Birthdate?</option>
+                  <option>What is Your old Phone Number</option>
+                  <option>What is your Pet Name?</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Enter Your Answer *" value="" />
+              </div>
+              <input type="submit" class="btnRegister" value="Register" />
+            </div>
+          </div>
+        </div>
+        
+        <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+          <h3 class="register-heading">Apply as a Hirer</h3>
+          <div class="row register-form">
+            <div class="col-md-6">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="First Name *" value="" />
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Last Name *" value="" />
+              </div>
+              <div class="form-group">
+                <input type="email" class="form-control" placeholder="Email *" value="" />
+              </div>
+              <div class="form-group">
+                <input type="text" maxlength="10" minlength="10" class="form-control" placeholder="Phone *" value="" />
+              </div>
+
+
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <input type="password" class="form-control" placeholder="Password *" value="" />
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" placeholder="Confirm Password *" value="" />
+              </div>
+              <div class="form-group">
+                <select class="form-control">
+                  <option class="hidden" selected disabled>Please select your Sequrity Question</option>
+                  <option>What is your Birthdate?</option>
+                  <option>What is Your old Phone Number</option>
+                  <option>What is your Pet Name?</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="`Answer *" value="" />
+              </div>
+              <input type="submit" class="btnRegister" value="Register" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</form>
+</div>
