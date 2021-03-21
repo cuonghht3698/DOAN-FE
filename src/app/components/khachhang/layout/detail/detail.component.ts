@@ -6,6 +6,7 @@ import { CartService } from 'src/app/services/danhmuc/cart.service';
 import { CartDetailService } from 'src/app/services/danhmuc/cartdetail.service';
 import { optionservice } from 'src/app/services/danhmuc/optionSp.service';
 import { GuidId } from 'src/app/services/ERole';
+import { DataService } from 'src/app/services/share/data.share';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -20,7 +21,8 @@ export class DetailComponent implements OnInit {
     private r: Router,
     private cart: CartService,
     private cartDetail: CartDetailService,
-    private toar: ToastrService
+    private toar: ToastrService,
+    public upCart:DataService
   ) {}
   IdSp = GuidId.EmptyId;
   SanPham: any;
@@ -84,6 +86,7 @@ export class DetailComponent implements OnInit {
       .subscribe((res) => {
         console.log(res);
         this.toar.success('Thông báo', 'Thêm vào giỏ hàng thành công!');
+        this.upCart.update();
       });
   }
   // END CHECK CART

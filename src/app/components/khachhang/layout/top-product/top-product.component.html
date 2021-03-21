@@ -1,92 +1,96 @@
 <!-- top product -->
 <div class="container-fluid" style="background-color: #eeeeee;">
-    <div class="container top-selling">
+  <div class="container top-selling">
 
-        <div class="top">
-            <div class="top-content">
-                <strong>
-                    <h2 style="color: #007bff;">Top sản phẩm mới nhất</h2>
-                </strong>
-            </div>
-            <div class="menu-product" style="text-align: center;font-size: 12px;">
-                <span *ngFor="let item of dsMenu" (click)="getSanPham(item.maTuDien)">{{item.ten}}</span>
+    <div class="top">
+      <div class="top-content">
+        <strong>
+          <h2 style="color: #007bff;">Top sản phẩm mới nhất</h2>
+        </strong>
+      </div>
+      <div class="menu-product" style="text-align: center;font-size: 12px;">
+        <span *ngFor="let item of dsMenu" (click)="getSanPham(item.maTuDien)">{{item.ten}}</span>
 
-            </div>
-            <div class="angle-repon" style="text-align: right;">
-                <button class="btn btn-outline-primary prev" (click)="move = move + 100"><i
-                        class="fa fa-angle-left"></i></button>
-                <button class="btn btn-outline-primary next" (click)="move = move - 100"><i
-                        class="fa fa-angle-right"></i></button>
-            </div>
+      </div>
+      <div class="angle-repon" style="text-align: right;">
+        <button class="btn btn-outline-primary prev" (click)="move = move + 100"><i
+            class="fa fa-angle-left"></i></button>
+        <button class="btn btn-outline-primary next" (click)="move = move - 100"><i
+            class="fa fa-angle-right"></i></button>
+      </div>
 
-        </div>
-        <div class="mid">
-            <div class="product-mid" [ngStyle]="{'left.px': move}">
-                <div class="product mr-2 hover-b" *ngFor="let item of dsTopDienThoai">
-                    <div class="product-img" (click)="GoToDetail(item)" style="cursor: pointer;">
-                        <img [src]="url + item.imageUrl" alt="" >
-                    </div>
-                    <div class="hang" style="position: absolute;top:0;"><button type="button"
-                            class="btn btn-secondary">{{item.hang}}</button></div>
-                    <div class="product-cart">
-                        <span class="ml-5"> <button mat-raised-button color="primary"><span class="material-icons">
-                                    add_circle_outline
-                                </span>Giỏ hàng</button></span>
-                        <span> <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
-                                <mat-icon>favorite</mat-icon>
-                            </button></span>
-                    </div>
-                    <hr>
-                    <div class="product-name" (click)="GoToDetail(item)" style="cursor: pointer;">
-                        <h3 style="color: green;font-size: 17px;">{{item.ten}} {{item.dungLuong}}</h3>
-                    </div>
-                    <div class="product-rate">This is rate</div>
-                    <button mat-stroked-button color="accent" style="font-size: 25px;outline: none;">{{item.gia
-                        |tiente}} đ</button>
-                </div>
-            </div>
-
-        </div>
-        <div class="bottom mt-2" style="text-align: center; "><button class="btn btn-primary ">VIEW ALL</button></div>
-
-        <!-- nhieeuf view -->
-        <div class="top">
-            <strong>
-                <h2 style="color: #007bff;">Sản phẩm bán chạy nhất</h2>
-            </strong>
-        </div>
-        <div class="">
-            <div class="box-view">
-                <div class="top-view mr-2 hover-b"  *ngFor="let item of dsTopDienThoaiNhieuView" >
-                    <div class="product-img mt-3" style="cursor: pointer;">
-                        <img [src]="url + item.imageUrl" alt="" (click)="GoToDetail(item)">
-                    </div>
-                    <div class="hang" style="position: absolute;top:0;"><button type="button"
-                            class="btn btn-secondary">{{item.hang}}</button></div>
-                    <div class="product-cart">
-                        <span class="ml-5"> <button mat-raised-button color="primary" (click)="AddToCart(item)"><span class="material-icons">
-                                    add_circle_outline
-                                </span>Giỏ hàng</button></span>
-                        <span> <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
-                                <mat-icon>favorite</mat-icon>
-                            </button></span>
-                    </div>
-                    <hr>
-                    <div class="product-name" (click)="GoToDetail(item)" style="cursor: pointer;">
-                        <h3 style="color: green;font-size: 17px;">{{item.ten}} {{item.dungLuong}}</h3>
-                    </div>
-                    <div class="product-rate">This is rate</div>
-                    <button mat-stroked-button color="accent" style="font-size: 25px;outline: none;">{{item.giaMacDinh
-                        |tiente}} đ</button>
-                </div>
-                <div class="text-center mt-2">
-                    <button mat-raised-button color="primary" style="outline: none;" (click)="ViewMore()">Xem
-                        thêm</button>
-
-                </div>
-            </div>
-
-        </div>
     </div>
+    <div class="mid">
+      <div class="product-mid" [ngStyle]="{'left.px': move}">
+        <div class="product mr-2 hover-b" *ngFor="let item of dsTopDienThoai">
+          <div class="product-img" (click)="GoToDetail(item)" style="cursor: pointer;">
+            <img [src]="url + item.imageUrl" alt="">
+          </div>
+          <div class="hang" style="position: absolute;top:0;"><button type="button"
+              class="btn btn-secondary">{{item.hang}}</button></div>
+
+          <hr>
+          <div class="product-name" (click)="GoToDetail(item)" style="cursor: pointer;">
+            <h3 style="color: green;font-size: 17px;">{{item.ten}} {{item.dungLuong}}</h3>
+          </div>
+          <div class="product-rate">This is rate</div>
+          <button mat-stroked-button color="accent" style="font-size: 25px;outline: none;">{{item.gia
+            |tiente}} đ</button>
+            <div class="mt-1 float-right product-cart" style="margin-left: 100px;">
+              <span class="ml-5"> <button mat-mini-fab color="primary" (click)="AddToCart(item)"><span
+                    class="material-icons">
+                    add_shopping_cart
+                  </span></button></span>
+              <span> <button mat-mini-fab color="warn">
+                  <mat-icon>favorite</mat-icon>
+                </button></span>
+            </div>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="bottom mt-2" style="text-align: center; "><button class="btn btn-primary ">VIEW ALL</button></div>
+
+    <!-- nhieeuf view -->
+    <div class="top">
+      <strong>
+        <h2 style="color: #007bff;">Sản phẩm bán chạy nhất</h2>
+      </strong>
+    </div>
+    <div class="">
+      <div class="box-view">
+        <div class="top-view mr-2 hover-b" *ngFor="let item of dsTopDienThoaiNhieuView">
+          <div class="product-img mt-3" style="cursor: pointer;">
+            <img [src]="url + item.imageUrl" alt="" (click)="GoToDetail(item)">
+          </div>
+          <div class="hang" style="position: absolute;top:0;"><button type="button"
+              class="btn btn-secondary">{{item.hang}}</button></div>
+          <hr>
+          <div class="product-name" (click)="GoToDetail(item)" style="cursor: pointer;">
+            <h3 style="color: green;font-size: 17px;">{{item.ten}} {{item.dungLuong}}</h3>
+          </div>
+          <div class="product-rate">This is rate</div>
+          <button mat-stroked-button color="accent"
+            style="font-size: 25px;outline: none;margin-left: 10px;">{{item.giaMacDinh|tiente}} đ</button>
+          <div class="mt-1 float-right product-cart" style="margin-left: 100px;">
+            <span class="ml-5"> <button mat-mini-fab color="primary" (click)="AddToCart(item)"><span
+                  class="material-icons">
+                  add_shopping_cart
+                </span></button></span>
+            <span> <button mat-mini-fab color="warn">
+                <mat-icon>favorite</mat-icon>
+              </button></span>
+          </div>
+        </div>
+        <div class="text-center mt-2">
+          <button mat-raised-button color="primary" style="outline: none;" (click)="ViewMore()">Xem
+            thêm</button>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
 </div>
 <!-- end top product -->

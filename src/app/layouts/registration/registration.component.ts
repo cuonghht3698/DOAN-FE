@@ -29,7 +29,7 @@ export class RegistrationComponent implements OnInit {
     Password: '',
     Role: Role.KhachHang,
     SoDienThoai: '',
-    Tuoi: 0,
+    NgaySinh: null,
   };
   PasswordCheck = '';
   ngOnInit(): void {
@@ -65,7 +65,7 @@ export class UserModel {
   Id: GuidId.EmptyId;
   HoTen: string;
   DiaChi: string;
-  Tuoi: number;
+  NgaySinh: Date;
   SoDienThoai: string;
   GioiThieu: string;
   Email: string;

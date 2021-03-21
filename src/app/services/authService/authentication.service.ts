@@ -26,6 +26,14 @@ export class AuthenticationService {
     return this.http.get(environment.ApiUrl + 'userprofile');
   }
 
+  getUserLocal(){
+    if (localStorage.getItem("user")) {
+      var user = JSON.parse(localStorage.getItem("user"))[0];
+      return user;
+    }
+    return false;
+
+  }
   /**
    * Tài khoản đã được xác thực hay chưa
    */

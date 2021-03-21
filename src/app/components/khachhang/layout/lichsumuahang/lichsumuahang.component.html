@@ -1,1 +1,29 @@
-<p>lichsumuahang works!</p>
+<div class="container">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">STT</th>
+        <th scope="col">Thời gian tạo</th>
+        <th scope="col">Tin nhắn</th>
+        <th scope="col">Địa chỉ</th>
+        <th scope="col">Trạng thái</th>
+        <th scope="col">Tổng tiền</th>
+        <th scope="col">Nhân viên tiếp nhận</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of dataSource;index as index" class="{{item.maTrangThai == 'DaHuy'? 'huy':''}}">
+        <th scope="row">{{index + 1}}</th>
+        <td>{{item.thoiGianTao | date}}</td>
+        <td>{{item.tinNhan}}</td>
+        <td>{{item.diaChi}}</td>
+        <td>{{item.tenTrangThai}}</td>
+        <td>{{item.tongTien}}</td>
+        <td>{{item.nhanVien}}</td>
+
+      </tr>
+    </tbody>
+  </table>
+
+</div>

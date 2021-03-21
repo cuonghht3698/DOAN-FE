@@ -30,7 +30,7 @@ export class UserService {
     return this.http.put(this.baseUrl + 'updateUser', data)
   }
 
-  
+
   delete(id){
     return this.http.delete(this.baseUrl + id);
   }

@@ -25,13 +25,13 @@
               <td>{{item.cauHinh}}</td>
               <td>
                 <button mat-mini-fab class="float-left"  (click)="GiamSL(item)">-</button>
-                <input class="form-control float-left" style="width: 80px;text-align: center;" [value]="item.soLuong" (keyup)="ChangeSL($event.target.value, item)" name="a"/>
+                <input class="form-control float-left" style="width: 80px;text-align: center;" [value]="item.soLuong" (keyup)="ChangeSL($event.target.value, item)"/>
                 <button mat-mini-fab class="float-left" color="primary"  (click)="UpSL(item)">+</button>
 
               </td>
               <td class="text-right">{{item.gia | tiente}}</td>
               <td class="text-right"><button class="btn btn-sm btn-danger"
-                
+
                 mwlConfirmationPopover
                 confirmButtonType="danger"
                 popoverMessage="Bạn chắc chắn muốn xóa?"

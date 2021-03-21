@@ -38,11 +38,8 @@
           <a routerLink="../shop" type="button" class="btn btn-info dropdown-toggle active"
             style="background-color: #00f2bc;">HOME
           </a>
-
         </div>
       </li>
-
-
       <li>
         <div class="btn-group">
           <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
@@ -85,7 +82,7 @@
     <div class="cart">
 
       <span><a routerLink="./shopping-cart">
-          <mat-icon matBadge="15" matBadgeColor="warn">shopping_cart</mat-icon>
+          <mat-icon matBadge="{{up.selectedValue}}" matBadgeColor="warn">shopping_cart</mat-icon>
         </a></span>
       <span>Cart: <a href="">$0.00</a></span>
     </div>
