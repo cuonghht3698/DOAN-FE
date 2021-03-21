@@ -71,7 +71,7 @@ export class TudienComponent implements OnInit {
 
     dialog.afterClosed().subscribe(res=>{
       this.dataTuDien = res;
-      console.log(res);
+
       this.getPage();
     })
   }
@@ -92,7 +92,7 @@ export class TudienComponent implements OnInit {
   getPage() {
     this.tudien.GetPage(this.search).subscribe(
       (res: any) => {
-        console.log(res);
+
 
         const ELEMENT_DATA = res.list;
         this.TotalItem = res.total;
@@ -100,7 +100,7 @@ export class TudienComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
       },
       (err) => {
-        console.log(err);
+
       }
     );
   }
@@ -121,7 +121,7 @@ export class TudienComponent implements OnInit {
           this.toarst.success('Cập nhật thành công !', 'Thông báo');
         },
         (err) => {
-          console.log(err);
+
           this.toarst.error('Thao tác thất bại!', 'Thông báo');
         }
       );
@@ -132,7 +132,7 @@ export class TudienComponent implements OnInit {
           this.toarst.success('Cập nhật thành công !', 'Thông báo');
         },
         (err) => {
-          console.log(err);
+
           this.toarst.error('Thao tác thất bại!', 'Thông báo');
         }
       );
@@ -146,7 +146,7 @@ export class TudienComponent implements OnInit {
         this.toarst.success('Cập nhật thành công !', 'Thông báo');
       },
       (err) => {
-        console.log(err);
+
         this.toarst.error('Thao tác thất bại!', 'Thông báo');
       }
     );

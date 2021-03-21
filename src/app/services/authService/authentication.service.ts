@@ -48,7 +48,6 @@ export class AuthenticationService {
     const RoleUser = JSON.parse(localStorage.getItem('user'));
     for (let index = 0; index < role.length; index++) {
       if (RoleUser.roles == role[index]) {
-        console.log(role[index]);
 
         return true;
       }

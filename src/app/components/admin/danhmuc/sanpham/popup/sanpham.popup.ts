@@ -75,7 +75,6 @@ export class PopupSanPham implements OnInit {
   dsNhaCungCap;
   dsHangSX;
   ngOnInit() {
-    //console.log(this.data);
     this.getNhaCungCap();
     this.getLoaiSanPham();
     this.getDSHangSX();
@@ -145,13 +144,11 @@ export class PopupSanPham implements OnInit {
   getLoaiSanPham() {
     this.tudien.getByLoai(MaTuDien.LoaiSanPham).subscribe((res: any) => {
       this.dsLoaiSp = res;
-      //console.log(res);
     });
   }
   getDSHangSX() {
     this.tudien.getByLoai(MaTuDien.HangSanXuat).subscribe((res: any) => {
       this.dsHangSX = res;
-      //console.log(res);
     });
   }
   uploadFile(event) {
@@ -171,7 +168,7 @@ export class PopupSanPham implements OnInit {
   UploadAnh() {
     if (this.SelectAnh != null) {
       this.anh.PostAnh(this.SelectAnh).subscribe((res) => {
-        //console.log(res);
+
       });
     }
   }
@@ -185,7 +182,7 @@ export class PopupSanPham implements OnInit {
   };
   getAnh(id) {
     this.anh.GetImageForId(id).subscribe((res: any) => {
-      //console.log(res);
+
 
       this.imageUrl = environment.ApiUrl + 'anh/get/' + res[0].ten;
     });
@@ -193,20 +190,19 @@ export class PopupSanPham implements OnInit {
   // SaveURLToDB() {
   //   if (this.SelectAnh != null) {
   //     this.sp.Create(this.InfoImage).subscribe((res: any) => {
-  //       console.log(res);
   //     });
   //   }
   // }
   getNhaCungCap() {
     this.ncc.GetAll().subscribe((res: any) => {
       this.dsNhaCungCap = res;
-      //console.log(res);
+
     });
   }
 
   getLoaiSP(id) {
     this.cauhinh.FindByLoai(id).subscribe((res: any) => {
-      console.log(res);
+
 
       this.dsCauHinh = res;
       this.states = [];
@@ -219,21 +215,21 @@ export class PopupSanPham implements OnInit {
           state ? this._filterStates(state) : this.states.slice()
         )
       );
-      //console.log(this.states);
+
     });
   }
   CauHinhChosse() {
     if (this.stateCtrl.value) {
       var code = this.stateCtrl.value;
       this.cauhinh.getByCode(code).subscribe((res: any) => {
-        //console.log(res);
+
 
         this.dataSP.CauHinhId = res[0].id;
       });
     }
   }
   CreateOrUpdate() {
-    //console.log(this.dataSP);
+
     //get id cau hinh
 
     if (!this.data) {
@@ -245,7 +241,7 @@ export class PopupSanPham implements OnInit {
           this.toastr.success('Thêm thành công !', 'Thông báo');
         },
         (err) => {
-          //console.log(err);
+
           this.toastr.error('Thao tác thất bại!', 'Thông báo');
         }
       );
@@ -258,7 +254,7 @@ export class PopupSanPham implements OnInit {
           this.UploadAnh();
         },
         (err) => {
-          //console.log(err);
+
           this.toastr.error('Thao tác thất bại!', 'Thông báo');
         }
       );

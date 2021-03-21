@@ -26,8 +26,6 @@ export class SanphamComponent implements OnInit {
     this.getPage();
   }
   OpenDiaLog(item) {
-    console.log(item);
-
     const dialog = this.dialog.open(PopupSanPham, {
       width: '80%',
       height: 'auto',
@@ -61,10 +59,8 @@ export class SanphamComponent implements OnInit {
       (res: any) => {
         this.dsSanPham = res.list;
         this.TotalItem = res.total;
-        console.log(res);
       },
       (err) => {
-        console.log(err);
       }
     );
   }

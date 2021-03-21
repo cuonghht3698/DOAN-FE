@@ -56,15 +56,15 @@ export class DetailComponent implements OnInit {
   ngOnInit(): void {
     this.router.queryParams.subscribe((res) => {
       this.IdSp = res.id;
+      this.getSanPham();
+      this.CheckCart();
     });
-    this.getSanPham();
-    this.CheckCart();
+
   }
   // cHECK CART
   // Kieemr tra cart co san sang k trang thai giao dich = dang giao dich
   CheckCart() {
     this.cart.CheckCart(this.DataCart.UserId).subscribe((res: any) => {
-      console.log(res);
       // CHECK CO CART NAO K
       if (res[0]?.id) {
         this.DataCart.Id = res[0].id;
@@ -72,9 +72,9 @@ export class DetailComponent implements OnInit {
       }
       // Tao cart mới
       else {
-        this.cart.CreateNewCart(this.DataCart).subscribe((res) => {
-          this.DataCart.Id = res[0].id;
-          this.DataCartDetail.CartId = res[0].id;
+        this.cart.CreateNewCart(this.DataCart).subscribe((res:any) => {
+          this.DataCart.Id = res.id;
+          this.DataCartDetail.CartId = res.id;
         });
       }
     });
@@ -84,7 +84,6 @@ export class DetailComponent implements OnInit {
     this.cartDetail
       .CreateNewCartDetail(this.DataCartDetail)
       .subscribe((res) => {
-        console.log(res);
         this.toar.success('Thông báo', 'Thêm vào giỏ hàng thành công!');
         this.upCart.update();
       });
@@ -107,7 +106,6 @@ export class DetailComponent implements OnInit {
       } else {
         this.HetHang = true;
       }
-      console.log(res);
     });
   }
 

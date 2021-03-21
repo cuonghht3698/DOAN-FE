@@ -29,7 +29,6 @@ export class MenuComponent implements OnInit {
   getAll() {
     this.menu.getPage(this.sSearch).subscribe((res:any) => {
       this.data = res;
-      console.log(res);
       this.TotalItem = res.length;
     });
   }
@@ -48,7 +47,6 @@ export class MenuComponent implements OnInit {
     this.sSearch.pageIndex = event.pageIndex;
     this.sSearch.pageSize = event.pageSize;
     this.getAll();
-    console.log(event);
 
   }
 

@@ -93,12 +93,10 @@ export class PoppupCauHinh implements OnInit {
         this.ch.FindByLoai(e.value).subscribe((res: any) => {
             this.dsCauHinh = res;
             this.checkDsCh = res.length == 0 ? false : true;
-            console.log(res);
 
         })
     }
     CreateOrUpdate() {
-        console.log(this.dataCH);
 
         if (!this.data) {
             this.ch.Create(this.dataCH).subscribe(
@@ -106,7 +104,6 @@ export class PoppupCauHinh implements OnInit {
                     this.toastr.success('Thêm thành công !', 'Thông báo');
                 },
                 (err) => {
-                    console.log(err);
                     this.toastr.error('Thao tác thất bại!', 'Thông báo');
                 }
             );
@@ -116,7 +113,6 @@ export class PoppupCauHinh implements OnInit {
                     this.toastr.success('Cập nhật thành công !', 'Thông báo');
                 },
                 (err) => {
-                    console.log(err);
                     this.toastr.error('Thao tác thất bại!', 'Thông báo');
                 }
             );

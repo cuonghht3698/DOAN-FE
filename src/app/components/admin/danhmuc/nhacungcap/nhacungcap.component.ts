@@ -56,10 +56,8 @@ export class NhacungcapComponent implements OnInit {
     this.ncc.GetPage(this.searchNCC).subscribe((res: any) => {
       this.dsNhaCungCap = res.list;
       this.TotalItem = res.total;
-      console.log(res.list);
 
     }, err => {
-      console.log(err);
 
     })
   }

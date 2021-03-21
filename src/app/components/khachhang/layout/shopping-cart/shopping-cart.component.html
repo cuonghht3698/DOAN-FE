@@ -3,7 +3,11 @@
     <div class="container">
       <h1 class="jumbotron-heading">E-COMMERCE CART</h1>
     </div>
+    <div class="float-right" *ngIf="checkView">
+      <a routerLink="../lichsu"><button mat-raised-button color="warn" style="padding: 10px 20px;">Trở về</button></a>
+    </div>
   </section>
+
   <div class="row" *ngIf="check">
     <div class="col-12">
       <div class="table-responsive">
@@ -25,7 +29,7 @@
               <td>{{item.cauHinh}}</td>
               <td>
                 <button mat-mini-fab class="float-left"  (click)="GiamSL(item)">-</button>
-                <input class="form-control float-left" style="width: 80px;text-align: center;" [value]="item.soLuong" (keyup)="ChangeSL($event.target.value, item)"/>
+                <input class="form-control float-left" [disabled]="dataCart.TrangThai !='DangGiaoDich'" style="width: 80px;text-align: center;" [value]="item.soLuong" (keyup)="ChangeSL($event.target.value, item)"/>
                 <button mat-mini-fab class="float-left" color="primary"  (click)="UpSL(item)">+</button>
 
               </td>
@@ -112,3 +116,4 @@
 </div>
 
 
+<pre>{{dataCart|json}}</pre>

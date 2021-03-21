@@ -27,12 +27,12 @@ export class UserprofileComponent implements OnInit {
   getPage() {
     this.http.getPage(this.searchUser).subscribe(
       (res: any) => {
-        console.log(res);
+
         this.data = res.list;
         this.TotalItem = res.total;
       },
       (err) => {
-        console.log(err);
+
 
       }
     )

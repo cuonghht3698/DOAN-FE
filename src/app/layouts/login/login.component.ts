@@ -58,7 +58,6 @@ export class LoginComponent implements OnInit {
   DangNhap(data) {
     this.authent.login(data).subscribe(
       (res: any) => {
-        console.log(res);
 
         localStorage.setItem('token', res.token);
         this.authent.getUser().subscribe((res: any) => {
@@ -75,7 +74,6 @@ export class LoginComponent implements OnInit {
         });
       },
       (err) => {
-        console.log('eer' + err);
         this.toastr.error('Lỗi', 'Đăng nhập không thành công !');
       }
     );

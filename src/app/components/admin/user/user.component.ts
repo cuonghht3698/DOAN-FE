@@ -35,7 +35,7 @@ export class UserComponent implements OnInit {
     });
      this.user.getProfileById(id).subscribe(
       (res:any) => {
-        console.log(res);
+
         this.ProfileUser = this.fb.group({
           Id: res.id,
           HoTen: res.hoTen,
@@ -52,15 +52,14 @@ export class UserComponent implements OnInit {
   }
 // end profile
   SaveChange(){
-    console.log(this.ProfileUser.value);
-    
+
     this.user.changeProfile(this.ProfileUser.value).subscribe((res)=>
     {
-      console.log(res);
-      
+
+
     },err=>{
-      console.log(err);
-      
+
+
     })
   }
 
@@ -73,7 +72,6 @@ export class UserComponent implements OnInit {
     });
 
     // dialog.afterClosed().subscribe(res=>{
-    //   console.log(res);
     // })
   }
 }

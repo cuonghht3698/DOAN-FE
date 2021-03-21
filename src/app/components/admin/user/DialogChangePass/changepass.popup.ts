@@ -27,16 +27,16 @@ export class PopChangePass implements OnInit {
 
   ngOnInit() {
     this.dataPass.Id = this.data.obj.Id;
-    console.log(this.data);
+
 
   }
   SaveChange() {
     this.user.changePassword(this.dataPass).subscribe((res) => {
       this.toarst.success("Đổi mật khẩu thành công", "Thông báo");
       this.ClosePopup();
-      
+
     }, err => {
-      console.log(err);
+
     })
   }
   ClosePopup() {

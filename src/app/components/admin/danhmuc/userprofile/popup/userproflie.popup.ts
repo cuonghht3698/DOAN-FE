@@ -27,7 +27,7 @@ export class PopupUserProfile implements OnInit {
     };
     IdNull = GuidId.EmptyId;
     ngOnInit() {
-        console.log(this.data);
+
         if (this.data) {
             var d = this.data;
             this.dataChange.Id = d.id;
@@ -60,7 +60,7 @@ export class PopupUserProfile implements OnInit {
                     this.ClosePopup();
                 },
                 (err) => {
-                    console.log(err);
+
                     this.toarst.error('Thao tác thất bại!', 'Thông báo');
                 }
             );
@@ -70,7 +70,6 @@ export class PopupUserProfile implements OnInit {
             //         this.toarst.success('Cập nhật thành công !', 'Thông báo');
             //     },
             //     (err) => {
-            //         console.log(err);
             //         this.toarst.error('Thao tác thất bại!', 'Thông báo');
             //     }
             // );

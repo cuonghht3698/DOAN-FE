@@ -49,7 +49,6 @@ export class DanhmucComponent implements OnInit {
   }
 
   getPage() {
-    console.log(this.sSearch);
     this.sp.showPageDanhMuc(this.sSearch).subscribe((res: any) => {
       this.dsSanPham = res.list;
       this.total = res.total;
@@ -74,13 +73,13 @@ export class DanhmucComponent implements OnInit {
   getHangSanXuat() {
     this.td.getByLoai(MaTuDien.HangSanXuat).subscribe((res: any) => {
       this.dsHangSX = res;
-      console.log(res);
+
     });
   }
   getLoaiSP() {
     this.td.getByLoai(MaTuDien.LoaiSanPham).subscribe((res: any) => {
       this.dsLoaiSP = res;
-      console.log(res);
+
     });
   }
   GoToDetail(item) {

@@ -49,7 +49,7 @@ export class LoaitudienComponent implements OnInit  {
 
   }
 
-  
+
   // GET PAGE LOAI TU DIEN
   getPage(){
     this.loaitudien.GetPage((this.search)).subscribe(
@@ -58,11 +58,9 @@ export class LoaitudienComponent implements OnInit  {
         this.TotalItem = res.total;
         this.dataSource = ELEMENT_DATA;
         this.dataSource.paginator = this.paginator;
-        console.log(res);
-        
+
       },
       err => {
-        console.log(err);
 
       }
     )
@@ -70,7 +68,6 @@ export class LoaitudienComponent implements OnInit  {
 
 
   SelectRow(item){
-    console.log(item);
     this.dataLoaiTuDien = this.fb.group({
       Id : item.id,
       MaLoai: item.maLoai,
@@ -88,7 +85,6 @@ export class LoaitudienComponent implements OnInit  {
           this.toarst.success("Cập nhật thành công !", "Thông báo");
         },
         err =>{
-          console.log(err);
           this.toarst.error("Thao tác thất bại!", "Thông báo");
         });
     }
@@ -99,7 +95,6 @@ export class LoaitudienComponent implements OnInit  {
           this.toarst.success("Cập nhật thành công !", "Thông báo");
         },
         err =>{
-          console.log(err);
           this.toarst.error("Thao tác thất bại!", "Thông báo");
         });
     }
@@ -112,7 +107,6 @@ export class LoaitudienComponent implements OnInit  {
         this.toarst.success("Cập nhật thành công !", "Thông báo");
       },
       err =>{
-        console.log(err);
         this.toarst.error("Thao tác thất bại!", "Thông báo");
       });
   }

@@ -20,7 +20,6 @@ export class RoleComponent implements OnInit {
   getPage() {
     this.role.getPage(this.sSearch).subscribe((res) => {
       this.data = res;
-      console.log(res);
     });
   }
 }

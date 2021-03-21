@@ -41,7 +41,6 @@ export class PopupNCC implements OnInit {
     }
 
     CreateOrUpdate() {
-        console.log(this.dataNcc);
 
         if (!this.data) {
             this.ncc.Create(this.dataNcc).subscribe(
@@ -49,7 +48,6 @@ export class PopupNCC implements OnInit {
                     this.toastr.success('Thêm thành công !', 'Thông báo');
                 },
                 (err) => {
-                    console.log(err);
                     this.toastr.error('Thao tác thất bại!', 'Thông báo');
                 }
             );
@@ -59,7 +57,6 @@ export class PopupNCC implements OnInit {
                     this.toastr.success('Cập nhật thành công !', 'Thông báo');
                 },
                 (err) => {
-                    console.log(err);
                     this.toastr.error('Thao tác thất bại!', 'Thông báo');
                 }
             );

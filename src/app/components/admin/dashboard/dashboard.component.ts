@@ -15,7 +15,6 @@ export class DashboardComponent implements OnInit {
   IdRole = JSON.parse(localStorage.getItem("user"))[0].roleId;
   dataMenu:any;
   ngOnInit(): void {
-    console.log(this.IdRole);
 
     this.getMenu();
       var fullHeight = function() {
@@ -52,7 +51,7 @@ export class DashboardComponent implements OnInit {
   getMenu(){
     this.UserRoleMenu.getRoleMenu(this.IdRole).subscribe((res:any) => {
       this.dataMenu = res;
-      console.log(res);
+
     });
   }
 }

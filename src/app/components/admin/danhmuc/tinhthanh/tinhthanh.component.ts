@@ -29,13 +29,13 @@ export class TinhthanhComponent implements OnInit {
   getPage() {
     this.tinhthanh.GetPage(this.searchTT).subscribe(
       (res: any) => {
-        console.log(res);
+
 
         this.dsTinhThanh = res.list;
         this.TotalItem = res.total;
       },
       (err) => {
-        console.log(err);
+
       }
     );
   }
@@ -48,7 +48,7 @@ export class TinhthanhComponent implements OnInit {
       disableClose: true
     });
     dialog.afterClosed().subscribe((res) => {
-      console.log(res);
+
       this.getPage();
     })
   }

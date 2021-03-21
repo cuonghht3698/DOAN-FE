@@ -21,9 +21,11 @@ export class LichsumuahangComponent implements OnInit {
     if (user) {
       this.cart.GetCartByUserId(user.id).subscribe((res: any) => {
         this.dataSource = res;
-        console.log(res);
+
       });
     }
   }
+  XeChiTiet(id){
 
+  }
 }

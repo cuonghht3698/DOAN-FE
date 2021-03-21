@@ -7,6 +7,10 @@ import { environment } from 'src/environments/environment';
 export class CartService {
   constructor(private http: HttpClient) { }
 
+  GetCartId(Id) {
+    return this.http.get(environment.ApiUrl + 'carts/GetCartId/' +  Id);
+  }
+
   CheckCart(UserId) {
     return this.http.get(environment.ApiUrl + 'carts/CheckCart/' + UserId);
   }
@@ -19,7 +23,9 @@ export class CartService {
   ShowShoppingCart(id) {
     return this.http.get(environment.ApiUrl + 'carts/ShowShoppingCart/' +  id);
   }
-
+  ShowShoppingCartById(id) {
+    return this.http.get(environment.ApiUrl + 'carts/ShowShoppingById?Id=' + id);
+  }
   Update(data){
     return this.http.post(environment.ApiUrl + 'carts/Update',data);
   }

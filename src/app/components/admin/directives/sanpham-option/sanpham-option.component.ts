@@ -85,7 +85,7 @@ export class SanphamOptionComponent implements OnInit {
   getNhanhMauOption(id: any) {
     this.sp.GetNhomMauOptionById(id).subscribe((res) => {
       this.dataNhanhMauSp = res;
-      console.log(res);
+
     });
   }
   private _filterStates(value: string) {
@@ -135,7 +135,6 @@ export class SanphamOptionComponent implements OnInit {
       SoLuong: item.soLuong,
       TrangThai: item.trangThai,
     };
-    console.log(this.dataOptionThem);
   }
   HuyThemOption(){
     this.dataOptionThem = {

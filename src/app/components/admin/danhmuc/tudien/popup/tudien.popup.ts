@@ -67,7 +67,7 @@ export class PopTuDien implements OnInit {
           this.toarst.success('Cập nhật thành công !', 'Thông báo');
         },
         (err) => {
-          console.log(err);
+
           this.toarst.error('Thao tác thất bại!', 'Thông báo');
         }
       );
@@ -77,7 +77,7 @@ export class PopTuDien implements OnInit {
           this.toarst.success('Cập nhật thành công !', 'Thông báo');
         },
         (err) => {
-          console.log(err);
+
           this.toarst.error('Thao tác thất bại!', 'Thông báo');
         }
       );

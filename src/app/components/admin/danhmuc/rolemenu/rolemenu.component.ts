@@ -41,20 +41,17 @@ export class RolemenuComponent implements OnInit {
     this.UserRoleMenu.getRoleMenu(this.IdRole).subscribe((res:any) => {
       this.dataRoleMenu = res;
       this.Count = res.length;
-      console.log(res);
     });
   }
   getAllMenu() {
     this.menu.getAll().subscribe((res: any) => {
       this.dataMenu = res;
-      console.log(res);
     });
   }
 
   ThemRoleMenu(item) {
     this.data.MenuId = item;
     this.UserRoleMenu.Create(this.data).subscribe((res) => {
-      console.log(res);
       this.getRoleMenu();
     },err=>{
       this.toastr.error("Đã có mục này","Thông báo!");

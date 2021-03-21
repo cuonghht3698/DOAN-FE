@@ -59,10 +59,8 @@ export class CauhinhComponent implements OnInit {
     this.ch.GetPage(this.searchCH).subscribe((res: any) => {
       this.dsCauHinh = res.list;
       this.TotalItem = res.total;
-      console.log(res.list);
 
     }, err => {
-      console.log(err);
 
     })
   }

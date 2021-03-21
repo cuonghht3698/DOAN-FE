@@ -51,15 +51,15 @@ export class TinhThanhDialog implements OnInit {
     })
   }
   CreateOrUpdate() {
-    console.log(this.dataTinhThanh);
-    
+
+
     if (!this.data) {
       this.tinhthanh.Create(this.dataTinhThanh).subscribe(
         (res) => {
           this.toarst.success('Thêm thành công !', 'Thông báo');
         },
         (err) => {
-          console.log(err);
+
           this.toarst.error('Thao tác thất bại!', 'Thông báo');
         }
       );
@@ -69,7 +69,7 @@ export class TinhThanhDialog implements OnInit {
           this.toarst.success('Cập nhật thành công !', 'Thông báo');
         },
         (err) => {
-          console.log(err);
+
           this.toarst.error('Thao tác thất bại!', 'Thông báo');
         }
       );
