@@ -52,6 +52,8 @@ export class ShoppingCartComponent implements OnInit {
     NhanVienId: null,
     DiaChi: '',
     TongTien: 0,
+    Sdt: '',
+    NgayHoanThanh: null,
   };
 
   dataCart: CartModel = {
@@ -64,6 +66,8 @@ export class ShoppingCartComponent implements OnInit {
     NhanVienId: null,
     DiaChi: '',
     TongTien: 0,
+    Sdt: JSON.parse(localStorage.getItem('user'))[0].sdt,
+    NgayHoanThanh: null,
   };
 
   getCartId(Id) {
@@ -72,6 +76,10 @@ export class ShoppingCartComponent implements OnInit {
       this.dataCart.DiaChi = res.diaChi;
       this.dataCart.TinNhan = res.tinNhan;
       this.dataCart.TrangThai = res.trangThai.maTuDien;
+      if (res.sdt != '') {
+        this.dataCart.Sdt = res.sdt;
+      }
+
     });
   }
 
@@ -83,6 +91,9 @@ export class ShoppingCartComponent implements OnInit {
         this.dataCart.DiaChi = res[0].diaChi;
         this.dataCart.TinNhan = res[0].tinNhan;
         this.dataCart.TrangThai = res[0].trangThai.maTuDien;
+        if (res.sdt != '') {
+          this.dataCart.Sdt = res.sdt;
+        }
       }
       // Tao cart mới
       else {
@@ -91,6 +102,9 @@ export class ShoppingCartComponent implements OnInit {
           this.dataCart.DiaChi = res[0].diaChi;
           this.dataCart.TinNhan = res[0].tinNhan;
           this.dataCart.TrangThai = res[0].trangThai.maTuDien;
+          if (res[0].sdt != '') {
+            this.dataCart.Sdt = JSON.parse(localStorage.getItem('user'))[0].sdt;
+           }
         });
       }
     });

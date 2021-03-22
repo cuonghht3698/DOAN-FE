@@ -89,7 +89,14 @@
           </div>
         </div>
       </div>
-
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label for="exampleFormControlTextarea2">Điện thoại liên lạc</label>
+            <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" [(ngModel)]="dataCart.Sdt" name="sdt1"></textarea>
+          </div>
+        </div>
+      </div>
       <div class="row">
         <div class="col-sm-12  col-md-6">
           <a class="btn btn-block btn-light" routerLink="../">Continue Shopping</a>
@@ -114,6 +121,3 @@
     </div>
 </div>
 </div>
-
-
-<pre>{{dataCart|json}}</pre>

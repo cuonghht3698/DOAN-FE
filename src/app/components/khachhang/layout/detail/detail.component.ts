@@ -38,7 +38,9 @@ export class DetailComponent implements OnInit {
     TrangThai: TrangThaiGiaoDich.DangGiaoDich,
     NhanVienId: null,
     DiaChi: '',
-    TongTien: 0
+    TongTien: 0,
+    NgayHoanThanh:null,
+    Sdt: JSON.parse(localStorage.getItem('user'))[0].sdt,
   };
   DataCartDetail: CartDetailModel = {
     Id: GuidId.EmptyId,
@@ -56,10 +58,10 @@ export class DetailComponent implements OnInit {
   ngOnInit(): void {
     this.router.queryParams.subscribe((res) => {
       this.IdSp = res.id;
-      this.getSanPham();
-      this.CheckCart();
-    });
 
+    });
+    this.getSanPham();
+    this.CheckCart();
   }
   // cHECK CART
   // Kieemr tra cart co san sang k trang thai giao dich = dang giao dich
@@ -150,4 +152,6 @@ export interface CartModel {
   NhanVienId: string;
   DiaChi: string;
   TongTien: number;
+  Sdt:string;
+  NgayHoanThanh:Date;
 }

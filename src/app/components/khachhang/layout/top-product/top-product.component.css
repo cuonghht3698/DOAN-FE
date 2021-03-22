@@ -40,7 +40,7 @@
     width: 100%;
     height: auto;
     background-color: #eeeeee;
-    
+
 }
 .top-view {
     display: inline-block;
@@ -49,14 +49,14 @@
     margin-top: 10px;
     border-radius: 10px;
     background-color: white;
-   
+
 }
 .top-view:hover{
     box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
 }
 .top-view:hover .hang {
     z-index: 1;
-    
+
 }
 
 .top-view .product-img img {
@@ -67,7 +67,6 @@
 
 .top-view .product-cart {
     margin-top: -24px;
-    position: absolute;
     width: 100%;
 }
 
