@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { LoaiGiaoDich, TrangThaiGiaoDich } from 'src/app/services/constrans';
 import { CartService } from 'src/app/services/danhmuc/cart.service';
@@ -52,7 +53,7 @@ export class ShoppingCartComponent implements OnInit {
     NhanVienId: null,
     DiaChi: '',
     TongTien: 0,
-    Sdt: '',
+    Sdt: JSON.parse(localStorage.getItem('user'))[0].sdt,
     NgayHoanThanh: null,
   };
 
@@ -76,13 +77,20 @@ export class ShoppingCartComponent implements OnInit {
       this.dataCart.DiaChi = res.diaChi;
       this.dataCart.TinNhan = res.tinNhan;
       this.dataCart.TrangThai = res.trangThai.maTuDien;
+      this.dataCart.Sdt = res.sdt;
+
       if (res.sdt != '') {
         this.dataCart.Sdt = res.sdt;
       }
 
     });
   }
-
+  HuyDon() {
+    this.dataCart.TrangThai = TrangThaiGiaoDich.DaHuy;
+    this.ct.ChangTrangThai(this.dataCart).subscribe((res)=>{
+      this.toarst.success("Hủy đơn thành công", "Thông báo!");
+    })
+  }
   getCart() {
     this.ct.CheckCart(this.UserId).subscribe((res: any) => {
       // CHECK CO CART NAO K
@@ -91,8 +99,8 @@ export class ShoppingCartComponent implements OnInit {
         this.dataCart.DiaChi = res[0].diaChi;
         this.dataCart.TinNhan = res[0].tinNhan;
         this.dataCart.TrangThai = res[0].trangThai.maTuDien;
-        if (res.sdt != '') {
-          this.dataCart.Sdt = res.sdt;
+        if (res[0].sdt != '') {
+          this.dataCart.Sdt = res[0].sdt;
         }
       }
       // Tao cart mới
@@ -152,7 +160,6 @@ export class ShoppingCartComponent implements OnInit {
     }
     this.dataCart.TrangThai = TrangThaiGiaoDich.DaDatHang;
     this.ct.ChangTrangThai(this.dataCart).subscribe((res) => {
-      this.toarst.success('Thông báo!', 'Đặt hàng thành công!');
       if (this.checkView) {
         this.getShoppingCartById(this.IdParam);
       } else {

@@ -41,6 +41,8 @@ import { SanphamOptionComponent } from './directives/sanpham-option/sanpham-opti
 import { OptionSPComponent } from './sanpham/option-sp/option-sp.component';
 import { NhaphangComponent } from './sanpham/nhaphang/nhaphang.component';
 import { SubStringPipe } from 'src/app/services/pipes/substring.pipe';
+import { QuanlyDonghangComponent } from './sanpham/quanly-donghang/quanly-donghang.component';
+import { ChitietDonhangComponent } from './sanpham/chitiet-donhang/chitiet-donhang.component';
 
 @NgModule({
   imports: [
@@ -85,7 +87,9 @@ import { SubStringPipe } from 'src/app/services/pipes/substring.pipe';
     SanphamOptionComponent,
     OptionSPComponent,
     NhaphangComponent,
-    SubStringPipe
+    SubStringPipe,
+    QuanlyDonghangComponent,
+    ChitietDonhangComponent
   ],
   providers: [
     {

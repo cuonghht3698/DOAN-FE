@@ -15,6 +15,8 @@ import { RoleComponent } from './danhmuc/role/role.component';
 import { SanphamOptionComponent } from './directives/sanpham-option/sanpham-option.component';
 import { NhaphangComponent } from './sanpham/nhaphang/nhaphang.component';
 import { OptionSPComponent } from './sanpham/option-sp/option-sp.component';
+import { QuanlyDonghangComponent } from './sanpham/quanly-donghang/quanly-donghang.component';
+import { ChitietDonhangComponent } from './sanpham/chitiet-donhang/chitiet-donhang.component';
 
 export const routes: Routes = [
   {
@@ -84,6 +86,14 @@ export const routes: Routes = [
           {
             path: 'nhaphang',
             component: NhaphangComponent,
+          },
+          {
+            path: 'donhang',
+            component: QuanlyDonghangComponent,
+          },
+          {
+            path: 'chitietdonhang/:id',
+            component: ChitietDonhangComponent,
           },
         ],
       },
