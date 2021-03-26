@@ -38,10 +38,6 @@ export class CartService {
   }
 
   ShowPage(data) {
-    return this.http.get(
-      environment.ApiUrl +
-        'carts/getpage?' +
-        this.q.ConvertObjectToQueryString(data)
-    );
+    return this.http.post(environment.ApiUrl + 'carts/getpage', data);
   }
 }

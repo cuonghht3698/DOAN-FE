@@ -51,7 +51,7 @@ export class ShoppingCartComponent implements OnInit {
     UserId: JSON.parse(localStorage.getItem('user'))[0].id,
     TrangThai: TrangThaiGiaoDich.DangGiaoDich,
     NhanVienId: null,
-    DiaChi: '',
+    DiaChi: JSON.parse(localStorage.getItem('user'))[0].diaChi,
     TongTien: 0,
     Sdt: JSON.parse(localStorage.getItem('user'))[0].sdt,
     NgayHoanThanh: null,
@@ -74,7 +74,12 @@ export class ShoppingCartComponent implements OnInit {
   getCartId(Id) {
     this.ct.GetCartId(Id).subscribe((res: any) => {
       this.dataCart.Id = res.id;
-      this.dataCart.DiaChi = res.diaChi;
+      if (res.diaChi != '') {
+        this.dataCart.DiaChi = res.diaChi;
+      }
+      else{
+        this.dataCart.DiaChi = JSON.parse(localStorage.getItem('user'))[0].diaChi;
+      }
       this.dataCart.TinNhan = res.tinNhan;
       this.dataCart.TrangThai = res.trangThai.maTuDien;
       this.dataCart.Sdt = res.sdt;
@@ -96,7 +101,12 @@ export class ShoppingCartComponent implements OnInit {
       // CHECK CO CART NAO K
       if (res[0]?.id) {
         this.dataCart.Id = res[0].id;
-        this.dataCart.DiaChi = res[0].diaChi;
+        if (res[0].diaChi != '') {
+          this.dataCart.DiaChi = res[0].diaChi;
+        }
+        else{
+          this.dataCart.DiaChi = JSON.parse(localStorage.getItem('user'))[0].diaChi;
+        }
         this.dataCart.TinNhan = res[0].tinNhan;
         this.dataCart.TrangThai = res[0].trangThai.maTuDien;
         if (res[0].sdt != '') {
@@ -107,7 +117,12 @@ export class ShoppingCartComponent implements OnInit {
       else {
         this.ct.CreateNewCart(this.dataNewCart).subscribe((res) => {
           this.dataCart.Id = res[0].id;
-          this.dataCart.DiaChi = res[0].diaChi;
+          if (res[0].diaChi != '') {
+            this.dataCart.DiaChi = res[0].diaChi;
+          }
+          else{
+            this.dataCart.DiaChi = JSON.parse(localStorage.getItem('user'))[0].diaChi;
+          }
           this.dataCart.TinNhan = res[0].tinNhan;
           this.dataCart.TrangThai = res[0].trangThai.maTuDien;
           if (res[0].sdt != '') {

@@ -11,7 +11,7 @@
                 <span matSuffix><span class="material-icons">
                         search
                     </span></span>
-                <input matInput [(ngModel)]="searchCH.sSearch" (change)="getPage()">
+                <input matInput [(ngModel)]="searchCH.sSearch" (ngModelChange)="getPage()">
             </mat-form-field>
         </div>
     </div>

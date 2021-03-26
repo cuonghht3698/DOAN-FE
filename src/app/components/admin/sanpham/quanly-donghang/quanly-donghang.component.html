@@ -1,5 +1,46 @@
 <div class="mt-3">
   <h1>Quản lý đơn hàng</h1>
+  <div class="row">
+    <div class="col-3">
+      <!-- zone search -->
+      <div>
+        <mat-form-field style="width: 100%;">
+          <mat-label>Tìm kiếm</mat-label>
+          <span matSuffix><span class="material-icons">
+              search
+            </span></span>
+          <input matInput [(ngModel)]="Search.sSearch" (ngModelChange)="getCart()">
+        </mat-form-field>
+      </div>
+      <!--  -->
+    </div>
+    <div class="col-2">
+      <mat-form-field appearance="outline">
+        <mat-label>Trạng thái</mat-label>
+        <mat-select [(value)]="Search.TrangThaiId" (valueChange)="getCart()">
+          <ng-container *ngFor="let item of dsTrangThai">
+            <mat-option [value]="item.id">{{item.ten}}</mat-option>
+          </ng-container>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-2">
+      <mat-form-field color="accent" appearance="outline">
+        <mat-label>Ngày từ</mat-label>
+        <input matInput [matDatepicker]="picker1" [(ngModel)]="Search.TuNgay" name="ngaytu" (dateChange)="getCart()">
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="col-2">
+      <mat-form-field color="accent" appearance="outline">
+        <mat-label>Đến ngày</mat-label>
+        <input matInput [matDatepicker]="picker2" [(ngModel)]="Search.DenNgay" name="ngayden" (dateChange)="getCart()">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
   <table class="table table-hover">
     <thead>
       <tr>
@@ -17,7 +58,7 @@
     <tbody>
       <tr *ngFor="let item of dataSource;index as index" class="{{item.maTrangThai == 'DaHuy'? 'huy':''}}">
         <th scope="row">{{index + 1}}</th>
-        <td>{{item.thoiGianTao | date:'dd/MM/yyyy, hh:mm a'}}</td>
+        <td>{{item.thoiGianTao | date:'dd/MM/yyyy'}}</td>
         <td>{{item.tinNhan}}</td>
         <td>{{item.diaChi}}</td>
         <td>{{item.sdt}}</td>
@@ -28,5 +69,10 @@
       </tr>
     </tbody>
   </table>
-
+  <div>
+    <mat-paginator [length]="total" [pageSize]="Search.PageSize" [pageIndex]="Search.PageIndex" [pageSizeOptions]="[5, 10, 25, 100]" (page)="getPaginate($event)">
+    </mat-paginator>
+  </div>
 </div>
+
+<pre>{{Search | json}}</pre>
