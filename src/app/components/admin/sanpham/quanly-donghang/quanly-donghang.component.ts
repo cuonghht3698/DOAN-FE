@@ -22,6 +22,8 @@ export class QuanlyDonghangComponent implements OnInit {
     var user = this.auth.getUserLocal();
     if (user) {
       this.cart.ShowPage(this.sSearch).subscribe((res: any) => {
+        console.log(res);
+        
         this.dataSource = res;
       });
     }
