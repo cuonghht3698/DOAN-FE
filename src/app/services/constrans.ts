@@ -16,3 +16,9 @@ export enum TrangThaiGiaoDich {
   DangGiaoHang = 'DangGiaoHang',
 
 }
+
+export enum DateInView {
+  YYYYMMDD = 'YYYY-MM-DD',
+  DDMMYYYY = 'DD-MM-YYYY',
+  FULLDate = 'DD-MM-YYYY hh:mm',
+}

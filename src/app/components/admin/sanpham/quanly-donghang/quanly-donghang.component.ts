@@ -4,6 +4,7 @@ import { AuthenticationService } from 'src/app/services/authService/authenticati
 import { CartService } from 'src/app/services/danhmuc/cart.service';
 import { TudienService } from 'src/app/services/danhmuc/tudien.service';
 import * as moment from 'moment';
+import { MaTuDien, DateInView } from 'src/app/services/constrans';
 @Component({
   selector: 'app-quanly-donghang',
   templateUrl: './quanly-donghang.component.html',
@@ -26,19 +27,20 @@ export class QuanlyDonghangComponent implements OnInit {
     PageIndex: 0,
     PageSize: 10,
     TrangThaiId: '',
-    TuNgay: '',
+    TuNgay: moment().format(),
     DenNgay: moment().format(),
   };
   total = 0;
   dsTrangThai = [];
   ngOnInit(): void {
-    this.Search.TuNgay = moment().add(-1, 'day').format();
     this.getTrangThai();
     this.getCart();
   }
   getCart() {
     var user = this.auth.getUserLocal();
     if (user) {
+      this.Search.TuNgay = moment(this.Search.TuNgay).startOf('day').format();
+      this.Search.DenNgay = moment(this.Search.DenNgay).endOf('day').format();
       this.cart.ShowPage(this.Search).subscribe((res: any) => {
         this.dataSource = res;
         this.total = res.length;

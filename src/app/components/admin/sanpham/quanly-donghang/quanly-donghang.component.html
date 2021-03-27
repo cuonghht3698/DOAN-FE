@@ -15,7 +15,7 @@
       <!--  -->
     </div>
     <div class="col-2">
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline"  style="width: 100%;">
         <mat-label>Trạng thái</mat-label>
         <mat-select [(value)]="Search.TrangThaiId" (valueChange)="getCart()">
           <ng-container *ngFor="let item of dsTrangThai">
@@ -25,7 +25,7 @@
       </mat-form-field>
     </div>
     <div class="col-2">
-      <mat-form-field color="accent" appearance="outline">
+      <mat-form-field color="accent" appearance="outline"  style="width: 100%;">
         <mat-label>Ngày từ</mat-label>
         <input matInput [matDatepicker]="picker1" [(ngModel)]="Search.TuNgay" name="ngaytu" (dateChange)="getCart()">
         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
@@ -33,7 +33,7 @@
       </mat-form-field>
     </div>
     <div class="col-2">
-      <mat-form-field color="accent" appearance="outline">
+      <mat-form-field color="accent" appearance="outline"  style="width: 100%;">
         <mat-label>Đến ngày</mat-label>
         <input matInput [matDatepicker]="picker2" [(ngModel)]="Search.DenNgay" name="ngayden" (dateChange)="getCart()">
         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
