@@ -15,7 +15,7 @@
       <!--  -->
     </div>
     <div class="col-2">
-      <mat-form-field appearance="outline"  style="width: 100%;">
+      <mat-form-field appearance="outline" style="width: 100%;">
         <mat-label>Trạng thái</mat-label>
         <mat-select [(value)]="Search.TrangThaiId" (valueChange)="getCart()">
           <ng-container *ngFor="let item of dsTrangThai">
@@ -25,7 +25,7 @@
       </mat-form-field>
     </div>
     <div class="col-2">
-      <mat-form-field color="accent" appearance="outline"  style="width: 100%;">
+      <mat-form-field color="accent" appearance="outline" style="width: 100%;">
         <mat-label>Ngày từ</mat-label>
         <input matInput [matDatepicker]="picker1" [(ngModel)]="Search.TuNgay" name="ngaytu" (dateChange)="getCart()">
         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
@@ -33,7 +33,7 @@
       </mat-form-field>
     </div>
     <div class="col-2">
-      <mat-form-field color="accent" appearance="outline"  style="width: 100%;">
+      <mat-form-field color="accent" appearance="outline" style="width: 100%;">
         <mat-label>Đến ngày</mat-label>
         <input matInput [matDatepicker]="picker2" [(ngModel)]="Search.DenNgay" name="ngayden" (dateChange)="getCart()">
         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
@@ -41,7 +41,10 @@
       </mat-form-field>
     </div>
   </div>
-  <table class="table table-hover">
+  <div class="alert alert-success">
+    Các đơn hàng trong {{demNgay == 1?'trong ngày hôm nay!': demNgay + ' ngày trước!'}}
+  </div>
+  <table class="table">
     <thead>
       <tr>
         <th scope="col">STT</th>
@@ -56,23 +59,23 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of dataSource;index as index" class="{{item.maTrangThai == 'DaHuy'? 'huy':''}}">
+      <tr *ngFor="let item of dataSource; index as index" [ngClass]="{'dadathang': item.maTrangThai == 'DaDatHang',
+       'dahuy':item.maTrangThai == 'DaHuy', danggiaodich: item.maTrangThai == 'DangGiaoDich'}">
         <th scope="row">{{index + 1}}</th>
         <td>{{item.thoiGianTao | date:'dd/MM/yyyy'}}</td>
-        <td>{{item.tinNhan}}</td>
+        <td>{{item.tinNhan| substr: 30}}</td>
         <td>{{item.diaChi}}</td>
         <td>{{item.sdt}}</td>
         <td>{{item.trangThai}}</td>
-        <td>{{item.tongTien}}</td>
+        <td>{{item.tongTien | tiente}}</td>
         <td>{{item.nhanVien}}</td>
-        <td><a [routerLink]="['../shopping-cart']" [queryParams]="{ Id: item.id}">Xem</a></td>
+        <td><a mat-raised-button [routerLink]="['../chitietdonhang/']" [queryParams]="{ id: item.id}">Xem</a></td>
       </tr>
     </tbody>
   </table>
   <div>
-    <mat-paginator [length]="total" [pageSize]="Search.PageSize" [pageIndex]="Search.PageIndex" [pageSizeOptions]="[5, 10, 25, 100]" (page)="getPaginate($event)">
+    <mat-paginator [length]="total" [pageSize]="Search.PageSize" [pageIndex]="Search.PageIndex"
+      [pageSizeOptions]="[5, 10, 25, 100]" (page)="getPaginate($event)">
     </mat-paginator>
   </div>
 </div>
-
-<pre>{{Search | json}}</pre>

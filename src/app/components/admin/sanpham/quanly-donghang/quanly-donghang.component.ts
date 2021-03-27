@@ -31,10 +31,12 @@ export class QuanlyDonghangComponent implements OnInit {
     DenNgay: moment().format(),
   };
   total = 0;
+  demNgay = 0;
   dsTrangThai = [];
   ngOnInit(): void {
     this.getTrangThai();
-    this.getCart();
+
+    this.CountLocDate();
   }
   getCart() {
     var user = this.auth.getUserLocal();
@@ -46,6 +48,11 @@ export class QuanlyDonghangComponent implements OnInit {
         this.total = res.length;
       });
     }
+    this.CountLocDate();
+  }
+  CountLocDate(){
+    var count = moment.duration(moment(this.Search.DenNgay).diff(this.Search.TuNgay)).asDays();
+    this.demNgay = Math.round(count);
   }
   getPaginate(event) {
     this.Search.PageIndex = event.pageIndex;
@@ -55,7 +62,9 @@ export class QuanlyDonghangComponent implements OnInit {
   getTrangThai() {
     this.tudien.getByLoai('TrangThaiGiaoDich').subscribe((res: any) => {
       this.dsTrangThai = res;
-      this.Search.TrangThaiId = res[0].id;
+      this.dsTrangThai.splice(0, 0, { id: '', ten: 'Trạng thái' });
+      this.Search.TrangThaiId = res[1].id;
+      this.getCart();
     });
   }
 }

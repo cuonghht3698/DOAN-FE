@@ -92,7 +92,7 @@ export const routes: Routes = [
             component: QuanlyDonghangComponent,
           },
           {
-            path: 'chitietdonhang/:id',
+            path: 'chitietdonhang',
             component: ChitietDonhangComponent,
           },
         ],

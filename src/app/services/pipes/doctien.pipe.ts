@@ -1,15 +1,11 @@
-import { Injectable } from '@angular/core';
-declare var require: any
-@Injectable({
-  providedIn:'root'
-})
-export class Functions {
-  constructor() { }
-  ConvertObjectToQueryString(objData){
-    const queryString = require('query-string');
-    const stringified = queryString.stringify(objData);
-    return stringified;
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({name: 'doctien'})
+export class DocTienPipe implements PipeTransform {
+  transform(x: string): any {
+    return this.DocTien(x);
   }
+
 
   mangso = ['không', 'một', 'hai', 'ba', 'bốn', 'năm', 'sáu', 'bảy', 'tám', 'chín'];
   private dochangchuc(so:any, daydu:any) {
@@ -67,7 +63,7 @@ export class Functions {
       }
       return chuoi;
   }
-  public DocTien(so:any) {
+  DocTien(so:any) {
       if (so == 0) return this.mangso[0];
       var chuoi = "", hauto = "";
       do {

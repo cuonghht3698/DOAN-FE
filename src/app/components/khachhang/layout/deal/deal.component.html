@@ -35,7 +35,7 @@
                             <h3 class="name mt-5" style="color: green;font-size: 20px;" (click)="GoToDetail(item)" style="cursor: pointer;">{{item.ten}}</h3>
                             <div class="rating">Rate</div>
                             <div class="price"><a href="">{{item.giaMacDinh | tiente}} đồng</a></div>
-                            <div class="description mt-2 h-47">{{item.moTa |catchuoi}}
+                            <div class="description mt-2 h-47">{{item.moTa |tiente}}
                             </div>
                             <div class="btn-group mt-4">
                                 <button mat-raised-button color="primary"><span
@@ -100,7 +100,7 @@
                             <h3 style="color: green;font-size: 28px;" (click)="GoToDetail(item)">{{item.ten}}</h3>
 
                             <p style="color: red;font-size: 26px;">{{item.giaMacDinh | tiente}} đồng</p>
-                            <p>{{item.moTa | catchuoi:600}}</p>
+                            <p>{{item.moTa | substr:600}}</p>
                             <div class="btn-group">
                                 <button mat-raised-button color="primary"><span
                                         class="material-icons">shopping_cart</span>Add to cart</button>

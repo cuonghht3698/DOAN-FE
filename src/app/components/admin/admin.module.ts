@@ -43,6 +43,8 @@ import { NhaphangComponent } from './sanpham/nhaphang/nhaphang.component';
 import { SubStringPipe } from 'src/app/services/pipes/substring.pipe';
 import { QuanlyDonghangComponent } from './sanpham/quanly-donghang/quanly-donghang.component';
 import { ChitietDonhangComponent } from './sanpham/chitiet-donhang/chitiet-donhang.component';
+import { TienTePipe } from 'src/app/services/pipes/curency.pipe';
+import { SharedModule } from 'src/app/share.module';
 
 @NgModule({
   imports: [
@@ -56,6 +58,7 @@ import { ChitietDonhangComponent } from './sanpham/chitiet-donhang/chitiet-donha
     MaterialModule,
     NgxPopper,
     HttpClientModule,
+    SharedModule
   ],
   exports: [],
   declarations: [
@@ -87,9 +90,9 @@ import { ChitietDonhangComponent } from './sanpham/chitiet-donhang/chitiet-donha
     SanphamOptionComponent,
     OptionSPComponent,
     NhaphangComponent,
-    SubStringPipe,
+    //SubStringPipe,
     QuanlyDonghangComponent,
-    ChitietDonhangComponent
+    ChitietDonhangComponent,
   ],
   providers: [
     {

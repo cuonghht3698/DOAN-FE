@@ -1,1 +1,114 @@
-<p>chitiet-donhang works!</p>
+<div>
+  <div class="alert alert-success">
+    Cách sản phẩm trong đơn hàng :
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">STT</th>
+        <th scope="col">Tên sản phẩm</th>
+        <th scope="col">Cấu hình</th>
+        <th scope="col">Số lượng</th>
+        <th scope="col">Giá</th>
+        <th scope="col">Tổng tiền</th>
+        <th scope="col">Ảnh</th>
+        <th>Xem</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of dataCartDetail; index as index">
+        <th scope="row">{{index + 1}}</th>
+        <td>{{item.tenSp}}</td>
+        <td>{{item.cauHinh}}</td>
+        <td>{{item.soLuong}}</td>
+        <td>{{item.gia | tiente}}</td>
+        <td>{{item.gia * item.soLuong | tiente}}</td>
+        <td><img src="{{url +item.anh}}" alt="" style="width: 100px;"></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="row">
+    <div class="col-6">
+      <div class="form-group">
+        <label for="exampleFormControlTextarea2">Địa chỉ giao hàng</label>
+        <textarea class="form-control rounded-0" id="exampleFormControlTextarea2"
+          rows="1">{{dataCart.diaChi}}</textarea>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <label for="exampleFormControlTextarea2">Số điện thoại giao hàng</label>
+        <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="1">{{dataCart.sdt}}</textarea>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="form-group">
+        <label for="exampleFormControlTextarea2">Ghi chú cho người bán</label>
+        <textarea class="form-control rounded-0" id="exampleFormControlTextarea2"
+          rows="5">{{dataCart.tinNhan}}</textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-4">
+      <div class="card" style="width: 22rem;">
+        <img class="card-img-top" [src]="url + 'avatar-man.png'" alt="Card image cap">
+        <div class="card-body">
+          <h3 class="card-title">Thông tin khách hàng : {{dataUser.hoTen}}</h3>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Địa chỉ: {{dataUser.diaChi}}</li>
+            <li class="list-group-item">Số điện thoại: {{dataUser.soDienThoai}}</li>
+            <li class="list-group-item">Email: {{dataUser.email}}</li>
+          </ul>
+          <button mat-raised-button color="accent">Nhắn tin</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-8">
+      <table class="table">
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>Tổng tiền sản phẩm</td>
+          <td class="text-right">{{dataCart.tongTien | tiente}} đồng</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>Shipping</td>
+          <td class="text-right">0</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><strong>Thành tiền</strong></td>
+          <td class="text-right"><strong>{{dataCart.tongTien | tiente}} đồng</strong></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td class="text-right" style="color: green;">{{dataCart.tongTien | doctien}} đồng</td>
+        </tr>
+      </table>
+      <div class="float-right">
+        <button style="padding: 10px;margin: 10px;" mat-raised-button color="primary"
+        (click)="GiaoHang()" *ngIf="dataCart.trangThai.maTuDien == 'DaDatHang'">Đóng gói và giao hàng</button>
+        <button style="padding: 10px;margin: 10px;" mat-raised-button color="warn">Từ chối đơn hàng</button>
+        <a style="padding: 10px;margin: 10px;" mat-raised-button color="accent" routerLink="../donhang">Trở về</a>
+      </div>
+
+    </div>
+  </div>
+</div>

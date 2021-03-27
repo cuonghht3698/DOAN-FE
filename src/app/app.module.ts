@@ -46,7 +46,6 @@ import { SubStringPipe } from './services/pipes/substring.pipe';
     ToastrModule.forRoot(),
     NgxPaginationModule,
     Ng2SearchPipeModule,
-    SharedModule,
     MaterialModule,
     IvyCarouselModule
   ],

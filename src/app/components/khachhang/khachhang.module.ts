@@ -34,6 +34,7 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { LoginComponent } from './layout/login/login.component';
 import { LichsumuahangComponent } from './layout/lichsumuahang/lichsumuahang.component';
 import { UserinfoComponent } from './layout/userinfo/userinfo.component';
+import { SharedModule } from 'src/app/share.module';
 @NgModule({
   imports: [
     CommonModule,
@@ -44,6 +45,7 @@ import { UserinfoComponent } from './layout/userinfo/userinfo.component';
     NgxPaginationModule,
     Ng2SearchPipeModule,
     MaterialModule,
+    SharedModule,
     NgxPopper,
     HttpClientModule,
     IvyCarouselModule,
@@ -62,11 +64,9 @@ import { UserinfoComponent } from './layout/userinfo/userinfo.component';
     DealComponent,
     BlogComponent,
     MainComponent,
-    TienTePipe,
-    CatChuoiPipe,
+    //CatChuoiPipe,
     DanhmucComponent,
     DetailComponent,
-    ShoppingCartComponent,
     LoginComponent,
     LichsumuahangComponent,
     UserinfoComponent
