@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { LoaiGiaoDich, TrangThaiGiaoDich } from 'src/app/services/constrans';
 import { CartService } from 'src/app/services/danhmuc/cart.service';
 import { CartDetailService } from 'src/app/services/danhmuc/cartdetail.service';
+import { EmailService } from 'src/app/services/danhmuc/email.service';
 import { GuidId } from 'src/app/services/ERole';
 import { environment } from 'src/environments/environment';
 import { CartModel } from '../detail/detail.component';
@@ -18,7 +19,8 @@ export class ShoppingCartComponent implements OnInit {
     private ct: CartService,
     private cd: CartDetailService,
     private toarst: ToastrService,
-    private routerA: ActivatedRoute
+    private routerA: ActivatedRoute,
+    private email:EmailService
   ) {}
   checkView = false;
   IdParam = '';
@@ -70,7 +72,7 @@ export class ShoppingCartComponent implements OnInit {
     Sdt: JSON.parse(localStorage.getItem('user'))[0].sdt,
     NgayHoanThanh: null,
   };
-
+  TenTrangThai = '';
   getCartId(Id) {
     this.ct.GetCartId(Id).subscribe((res: any) => {
       this.dataCart.Id = res.id;
@@ -82,6 +84,7 @@ export class ShoppingCartComponent implements OnInit {
       }
       this.dataCart.TinNhan = res.tinNhan;
       this.dataCart.TrangThai = res.trangThai.maTuDien;
+      this.TenTrangThai = res.trangThai.ten;
       this.dataCart.Sdt = res.sdt;
 
       if (res.sdt != '') {
@@ -156,8 +159,12 @@ export class ShoppingCartComponent implements OnInit {
         this.check = true;
         this.total = 0;
         res.forEach((e) => {
+          console.log(e);
+          this.dataSentEmail.NoiDung += "Tên sản phẩm : " + e.tenSp + " - " + e.cauHinh + " Giá : " + e.gia + " số lượng : " + e.soLuong + " <br />";
           this.total += e.soLuong * e.gia;
         });
+        this.dataSentEmail.NoiDung += "Tổng tiền " + this.total + " đồng <br/>";
+        this.dataSentEmail.NoiDung += "Chúng tôi sẽ liên hệ với bạn mong bạn để ý điện thoại! Cảm ơn bạn đã tin tưởng.";
         this.dataCart.TongTien = this.total;
       } else {
         this.check = false;
@@ -181,10 +188,22 @@ export class ShoppingCartComponent implements OnInit {
         this.getShoppingCart();
       }
       this.check = false;
+      this.sentEmail();
       this.toarst.success('Thông báo', 'Đặt hàng thành công!');
     });
   }
+  dataSentEmail = {
+    Email : '',
+    TieuDe: "Đặt hàng thành công.",
+    NoiDung: "Bao gồm sản phẩm: <br/> "
+  }
+  sentEmail(){
+    this.dataSentEmail.Email = JSON.parse(localStorage.getItem('user'))[0].email;
+    this.email.SentEmail(this.dataSentEmail).then((res)=>{
+      this.toarst.success("Gửi email thành công!","Thông báo!");
+    }).catch((err)=>console.log(err));
 
+  }
   UpSL(item) {
     if (this.dataCart.TrangThai != TrangThaiGiaoDich.DangGiaoDich) {
       this.toarst.info('Không thể thay đổi khi đã đặt hàng!', 'Thông báo');
