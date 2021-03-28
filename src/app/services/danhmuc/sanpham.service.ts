@@ -14,6 +14,9 @@ export class SanPhamService {
     GetByName(search) {
         return this.http.get(this.baseUri + 'getByName',  search);
     }
+    getById(id) {
+      return this.http.get(this.baseUri + 'getById/' +   id);
+  }
     GetOptionById(Id) {
         return this.http.get(this.baseUri + 'getOptionById/' +  Id);
     }

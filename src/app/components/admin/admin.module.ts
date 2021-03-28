@@ -18,7 +18,6 @@ import { NgxPopper } from 'angular-popper';
 import { NavbarComponent } from './navbar/navbar.component';
 
 import { LbdChartComponent } from './directives/lbd-chart/lbd-chart.component';
-import { BaocaoComponent } from './baocao/baocao.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoaitudienComponent } from './danhmuc/loaitudien/loaitudien.component';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
@@ -45,6 +44,8 @@ import { QuanlyDonghangComponent } from './sanpham/quanly-donghang/quanly-dongha
 import { ChitietDonhangComponent } from './sanpham/chitiet-donhang/chitiet-donhang.component';
 import { TienTePipe } from 'src/app/services/pipes/curency.pipe';
 import { SharedModule } from 'src/app/share.module';
+import { BaocaoBanhangComponent } from './baocao/baocao-banhang/baocao-banhang.component';
+import { TonkhoComponent } from './baocao/tonkho/tonkho.component';
 
 @NgModule({
   imports: [
@@ -66,8 +67,6 @@ import { SharedModule } from 'src/app/share.module';
     NavbarComponent,
     NavbarComponent,
     LbdChartComponent,
-    BaocaoComponent,
-    BaocaoComponent,
     LoaitudienComponent,
     TudienComponent,
     PopTuDien,
@@ -93,6 +92,8 @@ import { SharedModule } from 'src/app/share.module';
     //SubStringPipe,
     QuanlyDonghangComponent,
     ChitietDonhangComponent,
+    BaocaoBanhangComponent,
+    TonkhoComponent,
   ],
   providers: [
     {

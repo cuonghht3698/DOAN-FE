@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AuthenticationService } from 'src/app/services/authService/authentication.service';
 import { TrangThaiGiaoDich } from 'src/app/services/constrans';
 import { CartService } from 'src/app/services/danhmuc/cart.service';
+import { optionservice } from 'src/app/services/danhmuc/optionSp.service';
 import { UserService } from 'src/app/services/user/user.service';
 import { environment } from 'src/environments/environment';
 
@@ -18,9 +19,11 @@ export class ChitietDonhangComponent implements OnInit {
     private router: ActivatedRoute,
     private user: UserService,
     private toarst: ToastrService,
-    private auth: AuthenticationService
+    private auth: AuthenticationService,
+    private option:optionservice
   ) {}
   dataCartDetail: [];
+  truSoLuong = [];
   dataUser: any = {
     hoTen: '',
     gioThieu: '',
@@ -33,6 +36,9 @@ export class ChitietDonhangComponent implements OnInit {
     sdt: '',
     tinNhan: '',
     tongTien: 0,
+    trangThai: {
+      maTuDien:''
+    }
   };
   ngOnInit(): void {
     this.router.queryParams.subscribe((res) => {
@@ -44,13 +50,19 @@ export class ChitietDonhangComponent implements OnInit {
   getDonHangDetail(id) {
     this.cart.ShowShoppingCartById(id).subscribe((res: any) => {
       this.dataCartDetail = res;
+
+      this.truSoLuong = [];
+      this.dataCartDetail.forEach((element:any) => {
+
+      this.truSoLuong.push({Id: element.idOption, SoLuong:element.soLuong});
+
+      });
     });
   }
 
   getCart(id) {
     this.cart.GetCartId(id).subscribe((res: any) => {
       this.dataCart = res;
-      console.log(res);
 
       this.getUser(res.userId);
     });
@@ -69,8 +81,33 @@ export class ChitietDonhangComponent implements OnInit {
       NhanVienId: user.id,
     };
     this.cart.DatHang(data).subscribe((res) => {
-      this.toarst.success('Thao tác thành công', 'Thông báo!');
+      this.TruOptionSanPham();
       this.getCart(data.Id);
+      this.toarst.success('Thao tác thành công', 'Thông báo!');
+    });
+  }
+
+  TruOptionSanPham(){
+    this.option.TruSoLuong(this.truSoLuong).subscribe((res)=>{
+    })
+  }
+  // Cộng khi đơn hàng đã xác nhận thành công
+  CongSoLuong(){
+    this.option.CongSoLuong(this.truSoLuong).subscribe((res)=>{
+    })
+  }
+  HuyDon(isDaXacNhan){
+    let user = this.auth.getUserLocal();
+    var data = {
+      Id: this.dataCart.id,
+      NhanVienId: user.id,
+    };
+    this.cart.HuyDon(data).subscribe((res) => {
+      if (isDaXacNhan) {
+        this.CongSoLuong();
+      }
+      this.getCart(data.Id);
+      this.toarst.success('Hủy đơn thành công', 'Thông báo!');
     });
   }
 }

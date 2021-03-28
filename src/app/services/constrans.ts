@@ -14,6 +14,8 @@ export enum TrangThaiGiaoDich {
   DaDatHang = 'DaDatHang',
   DaHuy = 'DaHuy',
   DangGiaoHang = 'DangGiaoHang',
+  DaHoanThanh = 'DaHoanThanh',
+
 
 }
 

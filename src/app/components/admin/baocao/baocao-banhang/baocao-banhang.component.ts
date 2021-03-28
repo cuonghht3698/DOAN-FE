@@ -4,22 +4,18 @@ import { CartService } from 'src/app/services/danhmuc/cart.service';
 import { TudienService } from 'src/app/services/danhmuc/tudien.service';
 import * as moment from 'moment';
 import { optionservice } from 'src/app/services/danhmuc/optionSp.service';
-import { ToastrService } from 'ngx-toastr';
-import { TrangThaiGiaoDich } from 'src/app/services/constrans';
-var _ = require('lodash');
 @Component({
-  selector: 'app-quanly-donghang',
-  templateUrl: './quanly-donghang.component.html',
-  styleUrls: ['./quanly-donghang.component.css'],
+  selector: 'app-baocao-banhang',
+  templateUrl: './baocao-banhang.component.html',
+  styleUrls: ['./baocao-banhang.component.css']
 })
-export class QuanlyDonghangComponent implements OnInit {
+export class BaocaoBanhangComponent implements OnInit {
   dataSource = [];
   constructor(
     private cart: CartService,
     private auth: AuthenticationService,
     private tudien: TudienService,
-    private option: optionservice,
-    private toart:ToastrService
+    private option: optionservice
   ) {}
 
   Search = {
@@ -66,23 +62,11 @@ export class QuanlyDonghangComponent implements OnInit {
   }
   getTrangThai() {
     this.tudien.getByLoai('TrangThaiGiaoDich').subscribe((res: any) => {
-      this.dsTrangThai = _.filter(res, x => x.maTuDien == TrangThaiGiaoDich.DaDatHang || x.maTuDien == TrangThaiGiaoDich.DaHoanThanh);
+      this.dsTrangThai = res;
       this.dsTrangThai.splice(0, 0, { id: '', ten: 'Trạng thái' });
-      this.Search.TrangThaiId = res[0].id;
+      this.Search.TrangThaiId = res[1].id;
       this.getCart();
     });
   }
-  HoanThanh(id){
 
-    let user = this.auth.getUserLocal();
-    var data = {
-      Id: id,
-      NhanVienId: user.id
-    };
-
-    this.cart.HoanThanh(data).subscribe((res)=>{
-      this.toart.success('Hủy đơn thành công', 'Thông báo!');
-      this.getCart();
-    })
-  }
 }

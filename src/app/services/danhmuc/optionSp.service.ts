@@ -31,4 +31,11 @@ export class optionservice {
   FindByLoai(id) {
     return this.http.get(this.baseUri + 'FindByLoai?id=' + id);
   }
+
+  TruSoLuong(data){
+    return this.http.post(this.baseUri + 'TruSoLuong', data);
+  }
+  CongSoLuong(data){
+    return this.http.post(this.baseUri + 'CongSoLuong', data);
+  }
 }

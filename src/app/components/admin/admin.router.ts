@@ -2,7 +2,6 @@ import { CauhinhComponent } from './danhmuc/cauhinh/cauhinh.component';
 import { NhacungcapComponent } from './danhmuc/nhacungcap/nhacungcap.component';
 import { UserprofileComponent } from './danhmuc/userprofile/userprofile.component';
 import { Routes } from '@angular/router';
-import { BaocaoComponent } from './baocao/baocao.component';
 import { LoaitudienComponent } from './danhmuc/loaitudien/loaitudien.component';
 import { TudienComponent } from './danhmuc/tudien/tudien.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -17,6 +16,8 @@ import { NhaphangComponent } from './sanpham/nhaphang/nhaphang.component';
 import { OptionSPComponent } from './sanpham/option-sp/option-sp.component';
 import { QuanlyDonghangComponent } from './sanpham/quanly-donghang/quanly-donghang.component';
 import { ChitietDonhangComponent } from './sanpham/chitiet-donhang/chitiet-donhang.component';
+import { BaocaoBanhangComponent } from './baocao/baocao-banhang/baocao-banhang.component';
+import { TonkhoComponent } from './baocao/tonkho/tonkho.component';
 
 export const routes: Routes = [
   {
@@ -35,10 +36,6 @@ export const routes: Routes = [
       {
         path: 'userprofile',
         component: UserprofileComponent,
-      },
-      {
-        path: 'baocao',
-        component: BaocaoComponent,
       },
       {
         path: 'danhmuc',
@@ -80,7 +77,7 @@ export const routes: Routes = [
             component: RoleComponent,
           },
           {
-            path: 'sanpham/option/:id',
+            path: 'sanpham/option',
             component: OptionSPComponent,
           },
           {
@@ -94,6 +91,14 @@ export const routes: Routes = [
           {
             path: 'chitietdonhang',
             component: ChitietDonhangComponent,
+          },
+          {
+            path: 'baocaobanhang',
+            component: BaocaoBanhangComponent,
+          },
+          {
+            path: 'tonkho',
+            component: TonkhoComponent,
           },
         ],
       },

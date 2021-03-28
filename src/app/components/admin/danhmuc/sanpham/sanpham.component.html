@@ -45,7 +45,7 @@
           </section>
         </td>
         <td>{{ item.khuyenMai}}</td>
-        <td> <a mat-raised-button color="primary" [routerLink]="['../sanpham/option',item.id]">Option</a></td>
+        <td> <a mat-raised-button color="primary" [routerLink]="['../sanpham/option']" [queryParams]="{ id: item.id}">Option</a></td>
         <td>
           <button mat-mini-fab color="primary" (click)="OpenDiaLog(item)"><span class="material-icons">
               create

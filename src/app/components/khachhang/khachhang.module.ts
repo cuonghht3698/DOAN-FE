@@ -23,9 +23,7 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { NarBarComponent } from './layout/nar-bar/nar-bar.component';
 import { DealComponent } from './layout/deal/deal.component';
 import { TopProductComponent } from './layout/top-product/top-product.component';
-import { TienTePipe } from 'src/app/services/pipes/curency.pipe';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
-import { CatChuoiPipe } from './pipe/catchuoi.pipe';
 import { DanhmucComponent } from './layout/danhmuc/danhmuc.component';
 import { DetailComponent } from './layout/detail/detail.component';
 import { MatCarouselModule } from '@ngmodule/material-carousel';
@@ -69,7 +67,8 @@ import { SharedModule } from 'src/app/share.module';
     DetailComponent,
     LoginComponent,
     LichsumuahangComponent,
-    UserinfoComponent
+    UserinfoComponent,
+    ShoppingCartComponent
   ],
   providers: [
     {

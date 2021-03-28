@@ -43,4 +43,10 @@ export class CartService {
   DatHang(data){
     return this.http.post(environment.ApiUrl + 'carts/GiaoHang', data);
   }
+  HuyDon(data){
+    return this.http.post(environment.ApiUrl + 'carts/HuyDon', data);
+  }
+  HoanThanh(data){
+    return this.http.post(environment.ApiUrl + 'carts/HoanThanh', data);
+  }
 }

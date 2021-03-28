@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -52,13 +53,22 @@ export class SanphamOptionComponent implements OnInit {
   constructor(
     private sp: SanPhamService,
     private op: optionservice,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private av:ActivatedRoute
   ) {}
 
   @Input() demo: any;
   @Input() viewNhap: boolean;
   ngOnInit(): void {
-    this.getProduct();
+    if (!this.viewNhap) {
+     this.av.queryParams.subscribe((res)=>{
+      this.getById(res.id)
+      })
+
+    }
+
+      this.getProduct();
+
   }
   states = [];
   search = '';
@@ -78,6 +88,7 @@ export class SanphamOptionComponent implements OnInit {
   getOptionSp(id: any) {
     this.sp.GetOptionById(id).subscribe((res) => {
       this.dsOption = res;
+
     });
   }
   // GET NHÁNH MÀU OPTIOM
@@ -121,6 +132,35 @@ export class SanphamOptionComponent implements OnInit {
     });
   }
 
+  getById(id){
+    this.sp.getById(id).subscribe((res:any)=>{
+
+    this.getOptionSp(id);
+    this.dataThemSp = {
+      Id: res[0].id,
+      ImageUrl: res[0].imageUrl,
+      Ram: res[0].ram,
+      Rom: res[0].rom,
+      Ten: res[0].ten,
+      MoTa: res[0].moTa.substring(0,1000) + ' ...',
+      ManHinh: res[0].manHinh,
+      Cpu: res[0].cpu,
+      Pin: res[0].pin,
+    };
+    this.IdSanPham = res[0].id;
+    this.dsRam = [];
+    this.dsRom = [];
+
+    const dataRam = String(res[0].ram).toUpperCase().trim().split('-');
+    dataRam.forEach((element) => {
+      this.dsRam.push({ ram: element });
+    });
+    const dataRom = String(res[0].rom).toUpperCase().trim().split('-');
+    dataRom.forEach((element) => {
+      this.dsRom.push({ rom: element });
+    });
+    })
+  }
   ChoseOption(item) {
     //this.checkSuaOption = true;
     // this.getNhanhMauOption(item.id);
