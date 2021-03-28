@@ -35,7 +35,7 @@
                             <h3 class="name mt-5" style="color: green;font-size: 20px;" (click)="GoToDetail(item)" style="cursor: pointer;">{{item.ten}}</h3>
                             <div class="rating">Rate</div>
                             <div class="price"><a href="">{{item.giaMacDinh | tiente}} đồng</a></div>
-                            <div class="description mt-2 h-47">{{item.moTa |tiente}}
+                            <div class="description mt-2 h-47">{{item.moTa | substr:200}}
                             </div>
                             <div class="btn-group mt-4">
                                 <button mat-raised-button color="primary"><span

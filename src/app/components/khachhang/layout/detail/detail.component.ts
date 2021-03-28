@@ -34,13 +34,13 @@ export class DetailComponent implements OnInit {
     TinNhan: '',
     ThoiGianTao: new Date(),
     LoaiGiaoDich: LoaiGiaoDich.MuaHang,
-    UserId: JSON.parse(localStorage.getItem('user'))[0].id,
+    UserId: GuidId.EmptyId,
     TrangThai: TrangThaiGiaoDich.DangGiaoDich,
     NhanVienId: null,
     DiaChi: '',
     TongTien: 0,
     NgayHoanThanh:null,
-    Sdt: JSON.parse(localStorage.getItem('user'))[0].sdt,
+    Sdt: '',
   };
   DataCartDetail: CartDetailModel = {
     Id: GuidId.EmptyId,
@@ -61,7 +61,12 @@ export class DetailComponent implements OnInit {
 
     });
     this.getSanPham();
-    this.CheckCart();
+    if (JSON.parse(localStorage.getItem('user'))) {
+      this.DataCart.UserId = JSON.parse(localStorage.getItem('user'))[0].id;
+      this.DataCart.Sdt = JSON.parse(localStorage.getItem('user'))[0].sdt,
+      this.CheckCart();
+    }
+
   }
   // cHECK CART
   // Kieemr tra cart co san sang k trang thai giao dich = dang giao dich

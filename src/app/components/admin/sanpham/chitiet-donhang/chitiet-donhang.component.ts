@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AuthenticationService } from 'src/app/services/authService/authentication.service';
 import { TrangThaiGiaoDich } from 'src/app/services/constrans';
 import { CartService } from 'src/app/services/danhmuc/cart.service';
+import { EmailService } from 'src/app/services/danhmuc/email.service';
 import { optionservice } from 'src/app/services/danhmuc/optionSp.service';
 import { UserService } from 'src/app/services/user/user.service';
 import { environment } from 'src/environments/environment';
@@ -20,7 +21,8 @@ export class ChitietDonhangComponent implements OnInit {
     private user: UserService,
     private toarst: ToastrService,
     private auth: AuthenticationService,
-    private option:optionservice
+    private option:optionservice,
+    private email:EmailService
   ) {}
   dataCartDetail: [];
   truSoLuong = [];
@@ -53,10 +55,13 @@ export class ChitietDonhangComponent implements OnInit {
 
       this.truSoLuong = [];
       this.dataCartDetail.forEach((element:any) => {
-
-      this.truSoLuong.push({Id: element.idOption, SoLuong:element.soLuong});
-
+        console.log(element);
+        this.dataSentEmail.NoiDung += "Tên sản phẩm : " + element.tenSp + " - " + element.cauHinh + " Giá : " + element.gia + " số lượng : " + element.soLuong + " <br />";
+        this.truSoLuong.push({Id: element.idOption, SoLuong:element.soLuong});
       });
+      this.dataSentEmail.NoiDung += "Tổng tiền " + this.dataCart.tongTien + " đồng <br/>";
+      this.dataSentEmail.NoiDung += "Chúng tôi sẽ liên hệ với bạn mong bạn để ý điện thoại! Cảm ơn bạn đã tin tưởng.";
+
     });
   }
 
@@ -83,10 +88,22 @@ export class ChitietDonhangComponent implements OnInit {
     this.cart.DatHang(data).subscribe((res) => {
       this.TruOptionSanPham();
       this.getCart(data.Id);
+      this.sentEmail();
       this.toarst.success('Thao tác thành công', 'Thông báo!');
     });
   }
+  dataSentEmail = {
+    Email : '',
+    TieuDe: "Đơn hàng của bạn đã được xác nhận.",
+    NoiDung: "Bao gồm sản phẩm: <br/> "
+  }
+  sentEmail(){
+    this.dataSentEmail.Email = this.dataUser.email;
+    this.email.SentEmail(this.dataSentEmail).then((res)=>{
+      this.toarst.success("Gửi email thành công!","Thông báo!");
+    }).catch((err)=>console.log(err));
 
+  }
   TruOptionSanPham(){
     this.option.TruSoLuong(this.truSoLuong).subscribe((res)=>{
     })

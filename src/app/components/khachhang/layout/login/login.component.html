@@ -1,13 +1,24 @@
 <div class="container">
   <div class="login">
-    <h1>Login</h1>
-      <form method="post">
-        <input type="text" name="u" placeholder="Username" required="required" [(ngModel)]="data.Username" name="username"/>
-          <input type="password" name="p" placeholder="Password" required="required" [(ngModel)]="data.Password" name="passwird"/>
-          <button type="submit" class="btn btn-primary btn-block btn-large" style="width: 300px;margin: auto;" (click)="DangNhap()">Đăng nhập</button>
-          <br><br>
+    <h1 style="font-size: 40px;">Đăng nhập</h1>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Tài khoản</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="data.Username" name="username" placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Mật khẩu</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" [(ngModel)]="data.Password" name="passwird">
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+          </div>
+          <button class="btn btn-primary btn-block btn-large" (click)="DangNhap()">Submit</button>
+          <br>
           <a routerLink="../../dangky" class="btn btn-info btn-block btn-large" style="width: 300px;margin: auto;">Đăng ký</a>
-      </form>
+
+          <a href="">Quên mật khẩu?</a>
   </div>
 
 </div>

@@ -10,7 +10,8 @@ import { Pipe, PipeTransform } from '@angular/core';
  */
 @Pipe({ name: 'substr' })
 export class SubStringPipe implements PipeTransform {
-  transform(value: string,): string {
-    return value.substring(0, 60) + "...";
+  transform(value: string, number?: number): string {
+    let num = number ? number : 150;
+    return value.substring(0, num) + '...';
   }
 }
