@@ -18,6 +18,7 @@ import { QuanlyDonghangComponent } from './sanpham/quanly-donghang/quanly-dongha
 import { ChitietDonhangComponent } from './sanpham/chitiet-donhang/chitiet-donhang.component';
 import { BaocaoBanhangComponent } from './baocao/baocao-banhang/baocao-banhang.component';
 import { TonkhoComponent } from './baocao/tonkho/tonkho.component';
+import { QuanlyChatComponent } from './danhmuc/quanly-chat/quanly-chat.component';
 
 export const routes: Routes = [
   {
@@ -99,6 +100,10 @@ export const routes: Routes = [
           {
             path: 'tonkho',
             component: TonkhoComponent,
+          },
+          {
+            path: 'quanlytinnhan',
+            component: QuanlyChatComponent,
           },
         ],
       },

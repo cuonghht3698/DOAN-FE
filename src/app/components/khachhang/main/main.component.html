@@ -13,7 +13,23 @@
 </head>
 
 <body>
+  <div class="box-chat" >
+    <span style="position: absolute;right: 10px;top: 3px;font-size: 40px;cursor: pointer;" (click)="HideChat()" class="material-icons">
+      cancel_presentation
+      </span>
+    <div [hidden]="showChat">
+      <app-chat-box></app-chat-box>
+    </div>
+    <div>
+
+    </div>
+  </div>
+  <span style="position: fixed;right: 50px;bottom: 50px;font-size: 40px;color: blueviolet;cursor: pointer;" (click)="ShowChat()" class="material-icons">
+    question_answer
+    </span>
+
     <app-header></app-header>
+
     <router-outlet>
     </router-outlet>
 <!-- footer -->

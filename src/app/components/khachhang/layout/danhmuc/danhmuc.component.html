@@ -12,11 +12,26 @@
         <div class="col-2" style="padding: 0;">
             <!-- Menu timf kieems -->
             <div class="col menu-search">
-                <div class="list-group" style="font-size: 14px;width: 90%;">
+                <div class="list-group" style="font-size: 14px;">
                     <a type="button" class="list-group-item list-group-item-action active">
                         MENU
                     </a>
-                    <button mat-button class="list-group-item list-group-item-action" *ngFor="let item of dsLoaiSP" (click)="LocLoaiSP(item.maTuDien)">{{item.ten}}</button>
+                    <button mat-button class="text-left" *ngFor="let item of dsLoaiSP" (click)="LocLoaiSP(item.maTuDien)">{{item.ten}}</button>
+                </div>
+            </div>
+            <!-- end menu tim kiem -->
+            <!-- Menu timf kieems -->
+            <div class="col menu-search">
+                <div class="list-group" style="font-size: 14px;width: 100%;">
+                    <a type="button" class="list-group-item list-group-item-action active">
+                      KHOẢNG GIÁ
+                    </a>
+                    <a type="button" class="list-group-item list-group-item-action">Dưới 10 triệu</a>
+                    <a type="button" class="list-group-item list-group-item-action">10 triệu - 15 triệu</a>
+                    <a type="button" class="list-group-item list-group-item-action">15 triệu - 20 triệu</a>
+                    <a type="button" class="list-group-item list-group-item-action">25 triệu 30 triệu</a>
+                    <a type="button" class="list-group-item list-group-item-action">Trên 30 triệu</a>
+
                 </div>
             </div>
             <!-- end menu tim kiem -->
@@ -24,57 +39,44 @@
             <div class="col menu-search">
                 <div class="list-group" style="font-size: 14px;width: 90%;">
                     <a type="button" class="list-group-item list-group-item-action active">
-                        MENU
+                        Ram
                     </a>
-                    <a type="button" class="list-group-item list-group-item-action">Danh mục</a>
-                    <a type="button" class="list-group-item list-group-item-action">Danh mục</a>
-                    <a type="button" class="list-group-item list-group-item-action">Danh mục</a>
-                    <a type="button" class="list-group-item list-group-item-action">Danh mục</a>
+                    <a type="button" class="list-group-item list-group-item-action">Dưới 3GB</a>
+                    <a type="button" class="list-group-item list-group-item-action">4GB - 6GB</a>
+                    <a type="button" class="list-group-item list-group-item-action">6GB - 8GB</a>
+                    <a type="button" class="list-group-item list-group-item-action">Trên 8GB</a>
                 </div>
             </div>
             <!-- end menu tim kiem -->
+             <!-- Menu timf kieems -->
+             <div class="col menu-search">
+              <div class="list-group" style="font-size: 14px;width: 90%;">
+                  <a type="button" class="list-group-item list-group-item-action active">
+                      Ổ cứng
+                  </a>
+                  <a type="button" class="list-group-item list-group-item-action">16GB - 32GB</a>
+                  <a type="button" class="list-group-item list-group-item-action">32GB - 66GB</a>
+                  <a type="button" class="list-group-item list-group-item-action">64GB - 128GB</a>
+                  <a type="button" class="list-group-item list-group-item-action">128GB - 265GB</a>
+                  <a type="button" class="list-group-item list-group-item-action">Trên 265GB</a>
+
+              </div>
+          </div>
+          <!-- end menu tim kiem -->
             <!-- Menu timf kieems -->
             <div class="col menu-search">
                 <div class="list-group" style="font-size: 14px;width: 90%;">
                     <a type="button" class="list-group-item list-group-item-action active">
-                        MENU
+                        Phân khúc
                     </a>
-                    <a type="button" class="list-group-item list-group-item-action">Danh mục</a>
-                    <a type="button" class="list-group-item list-group-item-action">Danh mục</a>
-                    <a type="button" class="list-group-item list-group-item-action">Danh mục</a>
-                    <a type="button" class="list-group-item list-group-item-action">Danh mục</a>
+                    <a type="button" class="list-group-item list-group-item-action">Phổ thông</a>
+                    <a type="button" class="list-group-item list-group-item-action">Trung cấp</a>
+                    <a type="button" class="list-group-item list-group-item-action">Cao cấp</a>
+                    <a type="button" class="list-group-item list-group-item-action">Gaming</a>
                 </div>
             </div>
             <!-- end menu tim kiem -->
-            <!-- Menu timf kieems -->
-            <div class="col menu-search">
-                <div class="list-group" style="font-size: 14px;width: 90%;">
-                    <a type="button" class="list-group-item list-group-item-action active">
-                        MENU
-                    </a>
-                    <a type="button" class="list-group-item list-group-item-action">Danh mục</a>
-                    <a type="button" class="list-group-item list-group-item-action">Danh mục</a>
-                    <a type="button" class="list-group-item list-group-item-action">Danh mục</a>
-                    <a type="button" class="list-group-item list-group-item-action">Danh mục</a>
-                </div>
-            </div>
-            <!-- end menu tim kiem -->
-            <!-- Menu timf kieems -->
-            <div class="col menu-search">
-                <div class="list-group" style="font-size: 14px;width: 90%;">
-                    <a type="button" class="list-group-item list-group-item-action active">
-                        MENU
-                    </a>
-                    <a type="button" class="list-group-item list-group-item-action">Danh mục</a>
-                    <a type="button" class="list-group-item list-group-item-action">Danh mục</a>
-                    <a type="button" class="list-group-item list-group-item-action">Danh mục</a>
-                    <a type="button" class="list-group-item list-group-item-action">Danh mục</a>
-                </div>
-            </div>
-            <!-- end menu tim kiem -->
-            <div class="col">
-                asdasd
-            </div>
+
         </div>
         <!-- righjt -->
         <div class="col-10 box-c">

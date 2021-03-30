@@ -46,6 +46,7 @@ import { TienTePipe } from 'src/app/services/pipes/curency.pipe';
 import { SharedModule } from 'src/app/share.module';
 import { BaocaoBanhangComponent } from './baocao/baocao-banhang/baocao-banhang.component';
 import { TonkhoComponent } from './baocao/tonkho/tonkho.component';
+import { QuanlyChatComponent } from './danhmuc/quanly-chat/quanly-chat.component';
 
 @NgModule({
   imports: [
@@ -94,6 +95,7 @@ import { TonkhoComponent } from './baocao/tonkho/tonkho.component';
     ChitietDonhangComponent,
     BaocaoBanhangComponent,
     TonkhoComponent,
+    QuanlyChatComponent,
   ],
   providers: [
     {

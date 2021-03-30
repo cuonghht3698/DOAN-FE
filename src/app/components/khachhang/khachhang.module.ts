@@ -33,6 +33,7 @@ import { LoginComponent } from './layout/login/login.component';
 import { LichsumuahangComponent } from './layout/lichsumuahang/lichsumuahang.component';
 import { UserinfoComponent } from './layout/userinfo/userinfo.component';
 import { SharedModule } from 'src/app/share.module';
+import { ChatBoxComponent } from './layout/chat-box/chat-box.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -68,7 +69,8 @@ import { SharedModule } from 'src/app/share.module';
     LoginComponent,
     LichsumuahangComponent,
     UserinfoComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    ChatBoxComponent
   ],
   providers: [
     {
