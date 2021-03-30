@@ -6,7 +6,7 @@ import * as moment from 'moment';
 import { optionservice } from 'src/app/services/danhmuc/optionSp.service';
 import { ToastrService } from 'ngx-toastr';
 import { TrangThaiGiaoDich } from 'src/app/services/constrans';
-var _ = require('lodash');
+import * as _ from "lodash";
 @Component({
   selector: 'app-quanly-donghang',
   templateUrl: './quanly-donghang.component.html',
