@@ -13,4 +13,7 @@ export class TraLoiTinNhanService {
   GetById(Id) {
     return this.http.get(this.baseUri + Id);
   }
+  Watched(Id) {
+    return this.http.get(this.baseUri + 'Watched/' + Id);
+  }
 }

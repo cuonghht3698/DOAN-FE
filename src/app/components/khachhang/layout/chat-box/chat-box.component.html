@@ -10,7 +10,7 @@
     <div class="btn-group pull-right">
     </div>
   </div>
-  <div class="panel-body">
+  <div class="panel-body" #scrollMe [scrollTop]="scrollMe.scrollHeight">
     <ul class="chat"  *ngFor="let item of DSTinNhan">
       <!-- ADMIN -->
       <li class="left clearfix" *ngIf="!item.active">

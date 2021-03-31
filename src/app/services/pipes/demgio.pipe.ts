@@ -5,7 +5,6 @@ moment.locale('vi')
 export class DemGio implements PipeTransform {
   transform(x: Date): any {
     let currentDate = moment(x).fromNow();
-    console.log(currentDate);
     return currentDate;
   }
 }

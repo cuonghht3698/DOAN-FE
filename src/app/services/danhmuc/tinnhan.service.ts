@@ -14,5 +14,7 @@ export class TinNhanService {
     return this.http.get(this.baseUri + "CreateOrGet/" + UserId);
   }
 
-
+  GetDSTinNhanByTen(ten){
+    return this.http.get(this.baseUri + "GetDSTinNhanByTen?ten=" + ten);
+  }
 }

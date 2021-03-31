@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authService/authentication.service';
 import { TinNhanService } from 'src/app/services/danhmuc/tinnhan.service';
 import { TraLoiTinNhanService } from 'src/app/services/danhmuc/traloitinnhan.service';
@@ -16,13 +16,20 @@ export class ChatBoxComponent implements OnInit {
   constructor(
     private auth: AuthenticationService,
     private tinnhan: TinNhanService,
-    private traloi: TraLoiTinNhanService
+    private traloi: TraLoiTinNhanService,
+    private _el: ElementRef
   ) {}
-
+   scrollToBottom() {
+    const el: HTMLDivElement = this._el.nativeElement;
+    el.scrollTop = Math.max(0, el.scrollHeight - el.offsetHeight);
+  }
   ngOnInit(): void {
     if (this.auth.getUserLocal()) {
       var user = this.auth.getUserLocal();
       this.CreateOrGet(user.id);
+      setInterval(() => {
+        this.GetTinNhan(this.Id);
+      }, 3000);
     }
   }
   Sent() {
@@ -42,7 +49,6 @@ export class ChatBoxComponent implements OnInit {
   GetTinNhan(Id) {
     this.traloi.GetById(Id).subscribe((res:any) => {
       this.DSTinNhan = res;
-      console.log(res);
 
     });
   }

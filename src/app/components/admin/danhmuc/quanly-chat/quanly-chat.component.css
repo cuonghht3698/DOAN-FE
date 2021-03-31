@@ -54,10 +54,16 @@ img{ max-width:100%;}
   border-bottom: 1px solid #c4c4c4;
   margin: 0;
   padding: 18px 16px 10px;
+  cursor: pointer;
 }
-.inbox_chat { height: 550px; overflow-y: scroll;}
 
-.active_chat{ background:#ebebeb;}
+.chat_list:hover{
+  border-bottom: 1px solid #3a3838;
+  background-color: #ccc4c4;
+}
+.inbox_chat { height: 100%; overflow-y: scroll;}
+
+.active_chat{ background:#bbb9b9;}
 
 .incoming_msg_img {
   display: inline-block;
@@ -129,6 +135,6 @@ img{ max-width:100%;}
 }
 .messaging { padding: 0 0 50px 0;}
 .msg_history {
-  height: 516px;
-  overflow-y: auto;
+  height: 616px;
+  overflow-y: scroll;
 }
