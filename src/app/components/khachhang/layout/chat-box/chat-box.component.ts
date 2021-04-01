@@ -43,6 +43,7 @@ export class ChatBoxComponent implements OnInit {
     }
     this.traloi.Sent(data).subscribe((res)=>{
       this.GetTinNhan(this.Id);
+      this.NoiDung = '';
 
     })
   }
