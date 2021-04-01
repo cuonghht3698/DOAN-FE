@@ -55,7 +55,7 @@ export class DetailComponent implements OnInit {
     ThoiGianTao: new Date(),
     UuTien: 0,
   };
-
+  dsThongSo = [];
   url = environment.ApiUrl + 'anh/get/';
   ngOnInit(): void {
     this.router.queryParams.subscribe((res) => {
@@ -97,12 +97,16 @@ export class DetailComponent implements OnInit {
         this.upCart.update(1);
       });
   }
+
   // END CHECK CART
   getSanPham() {
     this.op.GetOptionByIdSp(this.IdSp).subscribe((res: any) => {
       this.SanPham = res;
-      console.log(res);
-      
+
+      if (res[0].thongSoKyThuat) {
+        this.dsThongSo = Object.entries(JSON.parse(res[0].thongSoKyThuat))
+      }
+
       if (res.length > 0) {
         this.DataCartDetail.SanPhamId = res[0].sanPhamId;
         this.DataCartDetail.SoLuong = 1;

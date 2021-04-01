@@ -48,7 +48,8 @@ import { BaocaoBanhangComponent } from './baocao/baocao-banhang/baocao-banhang.c
 import { TonkhoComponent } from './baocao/tonkho/tonkho.component';
 import { QuanlyChatComponent } from './danhmuc/quanly-chat/quanly-chat.component';
 import { ThongsokythuatComponent } from './danhmuc/thongsokythuat/thongsokythuat.component';
-
+import { BlogComponent } from './danhmuc/blog/blog.component';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 @NgModule({
   imports: [
     CommonModule,
@@ -61,7 +62,9 @@ import { ThongsokythuatComponent } from './danhmuc/thongsokythuat/thongsokythuat
     MaterialModule,
     NgxPopper,
     HttpClientModule,
-    SharedModule
+    SharedModule,
+    CKEditorModule
+
   ],
   exports: [],
   declarations: [
@@ -98,6 +101,7 @@ import { ThongsokythuatComponent } from './danhmuc/thongsokythuat/thongsokythuat
     TonkhoComponent,
     QuanlyChatComponent,
     ThongsokythuatComponent,
+    BlogComponent,
   ],
   providers: [
     {

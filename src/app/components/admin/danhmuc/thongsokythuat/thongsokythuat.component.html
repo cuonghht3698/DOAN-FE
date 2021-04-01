@@ -1,47 +1,84 @@
 <div class="row mother" style="padding: 0;">
-    <div class="col-6">
-        <p style="font-size: 13pt;color: #006e86;
+  <div class="col-6">
+    <p style="font-size: 13pt;color: #006e86;
             font-weight: bold;">Danh sách thông số kỹ thuật</p>
-        <div class="top">
-            <div class="input-group input-group-sm mb-3" style="width: 240px;">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroup-sizing-sm">Tìm kiếm</span>
-                </div>
-                <input type="text" [(ngModel)]="search.sSearch" name="search1" (keyup)="getSanPham()" class="form-control" >
-              </div>
+    <div class="top">
+      <div class="input-group input-group-sm mb-3" style="width: 240px;">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-sm">Tìm kiếm</span>
         </div>
-        <table class="table table-striped table-hover table-bordered">
-            <thead>
-                <tr>
-                  <th scope="col">STT</th>
-                  <th scope="col">Tên</th>
-                  <th scope="col">Loại</th>
-                  <th scope="col">Thao tác</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let item of dsSanPham.list;index as index">
-                  <th scope="row">{{index + 1}}</th>
-                  <td>{{item.ten}}</td>
-                  <td>{{item.loaiSP}}</td>
-                  <td><button mat-raised-button color="primary">Sửa</button></td>
-                </tr>
-                
-              </tbody>
-        </table>
+        <input type="text" [(ngModel)]="search.sSearch" name="search1" (keyup)="getSanPham()" class="form-control">
+      </div>
     </div>
-    <div class="col-6">
-        asasd
+    <table class="table table-striped table-hover table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">STT</th>
+          <th scope="col">Tên</th>
+          <th scope="col">Loại</th>
+          <th scope="col" style="width: 20%;">Thao tác</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of dsSanPham.list;index as index">
+          <th scope="row">{{index + 1}}</th>
+          <td>{{item.ten}}</td>
+          <td>{{item.loaiSP}}</td>
+          <td style="text-align: center;"><button mat-raised-button color="primary" (click)="ChonSanPham(item)">Sửa</button>
+            <button mat-mini-fab color="accent" class="ml-2" (click)="GetMau(item)"><span class="material-icons">
+                sync_alt
+              </span></button>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+  <div class="col-6">
+    <p style="font-size: 13pt;color: #006e86;
+            font-weight: bold;">Danh sách thông số kỹ thuật</p>
+    <div class="top">
+      <div class="input-group input-group-sm mb-3">
+        <button mat-raised-button color="accent" class="mr-3" (click)="ThemRows()">Thêm mục</button>
+        <button mat-raised-button color="primary" (click)="LuuThongSo()">Lưu thông số</button>
+        <span style="font-size: 13pt;color: #196b45;margin-left: 10px;
+              font-weight: bold;">{{TenSp | uppercase}}</span>
+      </div>
+
     </div>
-</div>
-<div class="row mt-4">
-    <div class="col-lg-2">
-      <h3>Page: {{ search.pageIndex + 1}}</h3>
-    </div>
-    <div class="col-lg-10">
-      <mat-paginator [length]="dsSanPham.total" [pageIndex]="search.pageIndex" [pageSize]="search.pageSize"
-        [pageSizeOptions]="[5 ,10, 20, 50,100]" (page)="getPaginate($event)" showFirstLastButtons>
-      </mat-paginator>
+    <div style="height: 700px;overflow-y: scroll;" #scrollMe>
+      <table class="table table-striped table-hover table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">STT</th>
+            <th scope="col">Tên</th>
+            <th scope="col">Thông số</th>
+            <th scope="col">Thao tác</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of dsThongSoMoi;let i = index">
+            <th scope="row">{{i + 1}}</th>
+            <td><input type="text" class="form-control" [value]="item[0]"
+                (change)="SpliceThongSo(i,$event.target.value,'key')"></td>
+            <td><input type="text" class="form-control" [value]="item[1]"
+                (change)="SpliceThongSo(i,$event.target.value,'value')"></td>
+            <td><button mat-raised-button color="primary" (click)="Remove(i)">Xóa</button></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
   </div>
+</div>
+<div class="row mt-4">
+  <div class="col-lg-2">
+    <h3>Page: {{ search.pageIndex + 1}}</h3>
+  </div>
+  <div class="col-lg-10">
+    <mat-paginator [length]="dsSanPham.total" [pageIndex]="search.pageIndex" [pageSize]="search.pageSize"
+      [pageSizeOptions]="[5 ,10, 20, 50,100]" (page)="getPaginate($event)" showFirstLastButtons>
+    </mat-paginator>
+  </div>
+
+</div>

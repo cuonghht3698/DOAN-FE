@@ -20,6 +20,7 @@ import { BaocaoBanhangComponent } from './baocao/baocao-banhang/baocao-banhang.c
 import { TonkhoComponent } from './baocao/tonkho/tonkho.component';
 import { QuanlyChatComponent } from './danhmuc/quanly-chat/quanly-chat.component';
 import { ThongsokythuatComponent } from './danhmuc/thongsokythuat/thongsokythuat.component';
+import { BlogComponent } from './danhmuc/blog/blog.component';
 
 export const routes: Routes = [
   {
@@ -109,6 +110,10 @@ export const routes: Routes = [
           {
             path: 'thongsokythuat',
             component: ThongsokythuatComponent,
+          },
+          {
+            path: 'blog',
+            component: BlogComponent,
           },
         ],
       },
