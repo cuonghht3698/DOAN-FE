@@ -59,6 +59,11 @@ export class ChatBoxComponent implements OnInit {
       this.GetTinNhan(res.id);
     });
   }
+  Delete(Id){
+    this.traloi.ThuHoi(Id).subscribe((res)=>{
+      this.GetTinNhan(this.Id);
+    })
+  }
 }
 
 

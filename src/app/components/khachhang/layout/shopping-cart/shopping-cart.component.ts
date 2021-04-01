@@ -7,6 +7,7 @@ import { CartService } from 'src/app/services/danhmuc/cart.service';
 import { CartDetailService } from 'src/app/services/danhmuc/cartdetail.service';
 import { EmailService } from 'src/app/services/danhmuc/email.service';
 import { GuidId } from 'src/app/services/ERole';
+import { DataService } from 'src/app/services/share/data.share';
 import { environment } from 'src/environments/environment';
 import { CartModel } from '../detail/detail.component';
 @Component({
@@ -20,8 +21,9 @@ export class ShoppingCartComponent implements OnInit {
     private cd: CartDetailService,
     private toarst: ToastrService,
     private routerA: ActivatedRoute,
-    private email:EmailService
-  ) {}
+    private email: EmailService,
+    public upCart:DataService
+  ) { }
   checkView = false;
   IdParam = '';
   checkTrangThai = true;
@@ -31,7 +33,12 @@ export class ShoppingCartComponent implements OnInit {
   confirmXoa = false;
   total = 0;
   check = false;
+  chuaDangNhap = false;
   ngOnInit(): void {
+    if (this.UserId == GuidId.EmptyId) {
+      this.chuaDangNhap = true;
+
+    }
     this.routerA.queryParams.subscribe((res) => {
       if (res.Id) {
         this.getShoppingCartById(res.Id);
@@ -57,6 +64,8 @@ export class ShoppingCartComponent implements OnInit {
     TongTien: 0,
     Sdt: JSON.parse(localStorage.getItem('user'))[0].sdt,
     NgayHoanThanh: null,
+    Email: '',
+    HoTen: ''
   };
 
   dataCart: CartModel = {
@@ -71,6 +80,8 @@ export class ShoppingCartComponent implements OnInit {
     TongTien: 0,
     Sdt: JSON.parse(localStorage.getItem('user'))[0].sdt,
     NgayHoanThanh: null,
+    Email: '',
+    HoTen: ''
   };
   TenTrangThai = '';
   getCartId(Id) {
@@ -79,14 +90,15 @@ export class ShoppingCartComponent implements OnInit {
       if (res.diaChi != '') {
         this.dataCart.DiaChi = res.diaChi;
       }
-      else{
+      else {
         this.dataCart.DiaChi = JSON.parse(localStorage.getItem('user'))[0].diaChi;
       }
       this.dataCart.TinNhan = res.tinNhan;
       this.dataCart.TrangThai = res.trangThai.maTuDien;
       this.TenTrangThai = res.trangThai.ten;
       this.dataCart.Sdt = res.sdt;
-
+      this.dataCart.Email = res.email != '' ? res.email : this.dataCart.Email = JSON.parse(localStorage.getItem('user'))[0].email;
+      this.dataCart.HoTen = res.hoTen != '' ? res.hoTen : this.dataCart.HoTen = JSON.parse(localStorage.getItem('user'))[0].email;
       if (res.sdt != '') {
         this.dataCart.Sdt = res.sdt;
       }
@@ -95,7 +107,7 @@ export class ShoppingCartComponent implements OnInit {
   }
   HuyDon() {
     this.dataCart.TrangThai = TrangThaiGiaoDich.DaHuy;
-    this.ct.ChangTrangThai(this.dataCart).subscribe((res)=>{
+    this.ct.ChangTrangThai(this.dataCart).subscribe((res) => {
       this.toarst.success("Hủy đơn thành công", "Thông báo!");
     })
   }
@@ -107,13 +119,24 @@ export class ShoppingCartComponent implements OnInit {
         if (res[0].diaChi != '') {
           this.dataCart.DiaChi = res[0].diaChi;
         }
-        else{
+        else {
           this.dataCart.DiaChi = JSON.parse(localStorage.getItem('user'))[0].diaChi;
         }
+        console.log(res);
+
+        this.dataCart.Email = res[0].email ? res[0].email : this.dataCart.Email = JSON.parse(localStorage.getItem('user'))[0].email;
+        this.dataCart.HoTen = res[0].hoTen ? res[0].hoTen : this.dataCart.HoTen = JSON.parse(localStorage.getItem('user'))[0].hoTen;
+
         this.dataCart.TinNhan = res[0].tinNhan;
         this.dataCart.TrangThai = res[0].trangThai.maTuDien;
         if (res[0].sdt != '') {
           this.dataCart.Sdt = res[0].sdt;
+        }
+        if (this.chuaDangNhap) {
+          this.dataCart.Email = '';
+          this.dataCart.HoTen = '';
+          this.dataCart.DiaChi = '';
+          this.dataCart.Sdt = '';
         }
       }
       // Tao cart mới
@@ -123,14 +146,14 @@ export class ShoppingCartComponent implements OnInit {
           if (res[0].diaChi != '') {
             this.dataCart.DiaChi = res[0].diaChi;
           }
-          else{
+          else {
             this.dataCart.DiaChi = JSON.parse(localStorage.getItem('user'))[0].diaChi;
           }
           this.dataCart.TinNhan = res[0].tinNhan;
           this.dataCart.TrangThai = res[0].trangThai.maTuDien;
           if (res[0].sdt != '') {
             this.dataCart.Sdt = JSON.parse(localStorage.getItem('user'))[0].sdt;
-           }
+          }
         });
       }
     });
@@ -159,7 +182,6 @@ export class ShoppingCartComponent implements OnInit {
         this.check = true;
         this.total = 0;
         res.forEach((e) => {
-          console.log(e);
           this.dataSentEmail.NoiDung += "Tên sản phẩm : " + e.tenSp + " - " + e.cauHinh + " Giá : " + e.gia + " số lượng : " + e.soLuong + " <br />";
           this.total += e.soLuong * e.gia;
         });
@@ -180,6 +202,10 @@ export class ShoppingCartComponent implements OnInit {
       this.toarst.info('Giỏ hàng của bạn bị trống!!', 'Thông báo');
       return;
     }
+    if (this.dataCart.HoTen == '' || this.dataCart.DiaChi == ''|| this.dataCart.Sdt == '') {
+      this.toarst.info('Họ tên, địa chỉ, số điện thoại không được để trống!', 'Thông báo');
+      return;
+    }
     this.dataCart.TrangThai = TrangThaiGiaoDich.DaDatHang;
     this.ct.ChangTrangThai(this.dataCart).subscribe((res) => {
       if (this.checkView) {
@@ -188,20 +214,21 @@ export class ShoppingCartComponent implements OnInit {
         this.getShoppingCart();
       }
       this.check = false;
+      this.upCart.resest();
       this.sentEmail();
       this.toarst.success('Thông báo', 'Đặt hàng thành công!');
     });
   }
   dataSentEmail = {
-    Email : '',
+    Email: '',
     TieuDe: "Đặt hàng thành công.",
     NoiDung: "Bao gồm sản phẩm: <br/> "
   }
-  sentEmail(){
+  sentEmail() {
     this.dataSentEmail.Email = JSON.parse(localStorage.getItem('user'))[0].email;
-    this.email.SentEmail(this.dataSentEmail).then((res)=>{
-      this.toarst.success("Gửi email thành công!","Thông báo!");
-    }).catch((err)=>console.log(err));
+    this.email.SentEmail(this.dataSentEmail).then((res) => {
+      this.toarst.success("Gửi email thành công!", "Thông báo!");
+    }).catch((err) => console.log(err));
 
   }
   UpSL(item) {
@@ -250,6 +277,8 @@ export class ShoppingCartComponent implements OnInit {
       } else {
         this.getShoppingCart();
       }
+
+      this.upCart.update(-1);
     });
   }
   ChangeSL(event, item) {
@@ -263,17 +292,17 @@ export class ShoppingCartComponent implements OnInit {
       if (event > item.soLuong) {
         this.toarst.info(
           'Số lượng ' +
-            item.tenSp +
-            ' trong kho hiện tại là ' +
-            item.soLuong +
-            ' !',
+          item.tenSp +
+          ' trong kho hiện tại là ' +
+          item.soLuong +
+          ' !',
           'Thông báo'
         );
-        this.cd.UpdateSL(id, item.soLuong).subscribe((res) => {});
+        this.cd.UpdateSL(id, item.soLuong).subscribe((res) => { });
         if (this.checkView) {
           this.getShoppingCartById(this.IdParam);
         } else this.getShoppingCart();
-      } else this.cd.UpdateSL(id, soluong).subscribe((res) => {});
+      } else this.cd.UpdateSL(id, soluong).subscribe((res) => { });
     } else {
       this.cd.UpdateSL(id, 1).subscribe((res) => {
         if (this.checkView) {

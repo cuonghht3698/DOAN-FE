@@ -47,6 +47,7 @@ import { SharedModule } from 'src/app/share.module';
 import { BaocaoBanhangComponent } from './baocao/baocao-banhang/baocao-banhang.component';
 import { TonkhoComponent } from './baocao/tonkho/tonkho.component';
 import { QuanlyChatComponent } from './danhmuc/quanly-chat/quanly-chat.component';
+import { ThongsokythuatComponent } from './danhmuc/thongsokythuat/thongsokythuat.component';
 
 @NgModule({
   imports: [
@@ -96,6 +97,7 @@ import { QuanlyChatComponent } from './danhmuc/quanly-chat/quanly-chat.component
     BaocaoBanhangComponent,
     TonkhoComponent,
     QuanlyChatComponent,
+    ThongsokythuatComponent,
   ],
   providers: [
     {

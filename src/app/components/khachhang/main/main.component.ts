@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from 'src/app/services/authService/authentication.service';
 
 @Component({
   selector: 'app-main',
@@ -7,14 +8,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
   showChat = true;
-  constructor() { }
+  constructor(private authent: AuthenticationService) { }
 
   ngOnInit(): void {
+    if (!localStorage.getItem('user')) {
+      this.DangNhap();
+    }
   }
-  HideChat(){
+  HideChat() {
     this.showChat = true;
   }
-  ShowChat(){
+  ShowChat() {
     this.showChat = false;
+  }
+  data = {
+    Username: 'noname',
+    Password: 'noname',
+  };
+  DangNhap() {
+    if (this.data.Username == '' || this.data.Password == '') {
+      return;
+    }
+    this.authent.login(this.data).subscribe(
+      (res: any) => {
+        localStorage.setItem('token', res.token);
+        this.authent.getUser().subscribe((res: any) => {
+          localStorage.setItem('user', JSON.stringify(res));
+        });
+      },
+      (err) => {
+       
+      }
+    );
   }
 }

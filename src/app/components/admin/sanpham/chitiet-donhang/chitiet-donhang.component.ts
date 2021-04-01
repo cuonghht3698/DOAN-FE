@@ -52,10 +52,8 @@ export class ChitietDonhangComponent implements OnInit {
   getDonHangDetail(id) {
     this.cart.ShowShoppingCartById(id).subscribe((res: any) => {
       this.dataCartDetail = res;
-
       this.truSoLuong = [];
       this.dataCartDetail.forEach((element:any) => {
-        console.log(element);
         this.dataSentEmail.NoiDung += "Tên sản phẩm : " + element.tenSp + " - " + element.cauHinh + " Giá : " + element.gia + " số lượng : " + element.soLuong + " <br />";
         this.truSoLuong.push({Id: element.idOption, SoLuong:element.soLuong});
       });
@@ -68,7 +66,8 @@ export class ChitietDonhangComponent implements OnInit {
   getCart(id) {
     this.cart.GetCartId(id).subscribe((res: any) => {
       this.dataCart = res;
-
+      console.log(res);
+      
       this.getUser(res.userId);
     });
   }

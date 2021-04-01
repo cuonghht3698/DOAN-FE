@@ -7,10 +7,13 @@ export class DataService {
 
   private CountCart : number = 0;
 
-  update() {
-    this.CountCart++;
+  update(i) {
+    this.CountCart += i;
   }
 
+  resest(){
+    this.CountCart = 0;
+  }
   get selectedValue(){
     return this.CountCart
   }

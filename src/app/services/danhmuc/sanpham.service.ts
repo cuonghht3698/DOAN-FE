@@ -45,4 +45,14 @@ export class SanPhamService {
     FindByLoai(id) {
         return this.http.get(this.baseUri + 'FindByLoai?id=' + id)
     }
+
+    getthongso(data){
+        return this.http.post(this.baseUri + 'getthongso', data)
+    }
+
+    updatethongso(data){
+        // return this.http.get(this.baseUri + 'updatethongso?id=' + id + "&ThongSoKyThuat=" + thongso);
+        return this.http.get(this.baseUri + 'updatethongso',{params:data});
+
+    }
 }

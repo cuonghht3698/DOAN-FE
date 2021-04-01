@@ -341,3 +341,13 @@ button {
   cursor: progress !important;
   background-color: rgb(163, 159, 159) !important;
 }
+
+
+
+.zone-blog{
+    border: 1px solid #dfe5e9;
+    margin-bottom: 20px;
+    margin-top: 12px;
+    background: #fff;
+    padding: 10px;
+}

@@ -51,10 +51,25 @@
       </div>
     </div>
   </div>
+  <div class="row">
+    <div class="col-6">
+      <div class="form-group">
+        <label for="exampleFormControlTextarea2">Họ tên người đặt</label>
+        <textarea class="form-control rounded-0" id="exampleFormControlTextarea2"
+          rows="1">{{dataCart.hoTen}}</textarea>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <label for="exampleFormControlTextarea2">Email</label>
+        <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="1">{{dataCart.email}}</textarea>
+      </div>
+    </div>
+  </div>
 
   <div class="row">
-    <div class="col-4">
-      <div class="card" style="width: 22rem;">
+    <div class="col-4" >
+      <div class="card" style="width: 16rem;" *ngIf="dataCart.userId != '00000000-0000-0000-0000-000000000000'">
         <img class="card-img-top" [src]="url + 'avatar-man.png'" alt="Card image cap">
         <div class="card-body">
           <h3 class="card-title">Thông tin khách hàng : {{dataUser.hoTen}}</h3>

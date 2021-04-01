@@ -41,6 +41,8 @@ export class DetailComponent implements OnInit {
     TongTien: 0,
     NgayHoanThanh:null,
     Sdt: '',
+    Email:'',
+    HoTen:''
   };
   DataCartDetail: CartDetailModel = {
     Id: GuidId.EmptyId,
@@ -92,13 +94,15 @@ export class DetailComponent implements OnInit {
       .CreateNewCartDetail(this.DataCartDetail)
       .subscribe((res) => {
         this.toar.success('Thông báo', 'Thêm vào giỏ hàng thành công!');
-        this.upCart.update();
+        this.upCart.update(1);
       });
   }
   // END CHECK CART
   getSanPham() {
     this.op.GetOptionByIdSp(this.IdSp).subscribe((res: any) => {
       this.SanPham = res;
+      console.log(res);
+      
       if (res.length > 0) {
         this.DataCartDetail.SanPhamId = res[0].sanPhamId;
         this.DataCartDetail.SoLuong = 1;
@@ -159,4 +163,6 @@ export interface CartModel {
   TongTien: number;
   Sdt:string;
   NgayHoanThanh:Date;
+  HoTen:string;
+  Email:string;
 }

@@ -80,7 +80,7 @@
       <div class="row">
         <div class="col-6">
           <div class="form-group">
-            <label for="exampleFormControlTextarea2">Địa chỉ giao hàng</label>
+            <label for="exampleFormControlTextarea2">Địa chỉ giao hàng <span style="color: red;"> (*)</span></label>
             <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" [(ngModel)]="dataCart.DiaChi" name="aaa"></textarea>
           </div>
         </div>
@@ -94,17 +94,31 @@
       <div class="row">
         <div class="col-6">
           <div class="form-group">
-            <label for="exampleFormControlTextarea2">Điện thoại liên lạc</label>
+            <label for="exampleFormControlTextarea2">Họ tên <span style="color: red;"> (*)</span> </label>
+            <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3"  [(ngModel)]="dataCart.HoTen" name="hoten"></textarea>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label for="exampleFormControlTextarea2">Điện thoại liên lạc <span style="color: red;"> (*)</span></label>
             <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" [(ngModel)]="dataCart.Sdt" name="sdt1"></textarea>
           </div>
         </div>
       </div>
       <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label for="exampleFormControlTextarea2">Địa chỉ email</label>
+            <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3"  [(ngModel)]="dataCart.Email" name="emaila"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row">
         <div class="col-sm-12  col-md-6">
-          <a class="btn btn-block btn-light" routerLink="../">Continue Shopping</a>
+          <a class="btn btn-block btn-light" routerLink="../">Tiếp tục mua hàng</a>
         </div>
         <div class="col-sm-12 col-md-6 text-right">
-          <button class="btn btn-lg btn-block btn-success text-uppercase" (click)="DatHang()">Checkout</button>
+          <button class="btn btn-lg btn-block btn-success text-uppercase" (click)="DatHang()">Đặt hàng</button>
           <button class="btn btn-lg btn-block btn-danger text-uppercase" *ngIf="dataCart.TrangThai == 'DaDatHang'" (click)="HuyDon()">Hủy đơn</button>
         </div>
       </div>

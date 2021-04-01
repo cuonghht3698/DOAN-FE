@@ -11,7 +11,7 @@
     </div>
   </div>
   <div class="panel-body" #scrollMe [scrollTop]="scrollMe.scrollHeight">
-    <ul class="chat"  *ngFor="let item of DSTinNhan">
+    <ul class="chat" *ngFor="let item of DSTinNhan">
       <!-- ADMIN -->
       <li class="left clearfix" *ngIf="!item.active">
         <span class="chat-img pull-left">
@@ -30,19 +30,25 @@
       <!-- ADMIN -->
 
       <!-- ME -->
-      <li class="right clearfix"  *ngIf="item.active">
+      <li class="right clearfix" *ngIf="item.active">
         <span class="chat-img pull-right">
           <img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle" />
         </span>
         <div class="chat-body clearfix">
           <div class="header">
-            <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>{{item.thoiGianTao| demgio}}</small>
-            <strong class="pull-right primary-font ml-3">Bạn</strong>
+            <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>{{item.thoiGianTao|
+              demgio}}</small>
+            <strong class="pull-right primary-font ml-3">Bạn &nbsp;</strong>
+            <i *ngIf="item.noiDung !='Đã thu hồi'" class="fa fa-chevron-right" style="color: red;cursor: pointer;margin-top: 3px;" aria-hidden="true" (click)="Delete(item.id)"> thu hồi</i>
           </div>
           <p>
             {{item.noiDung}}
           </p>
         </div>
+        <!-- dropdown -->
+
+        <!-- dropdown -->
+
       </li>
       <!-- ME -->
     </ul>
@@ -58,4 +64,3 @@
     </div>
   </div>
 </div>
-

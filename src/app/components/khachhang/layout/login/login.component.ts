@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthenticationService } from 'src/app/services/authService/authentication.service';
-import { Role } from 'src/app/services/ERole';
+import { GuidId, Role } from 'src/app/services/ERole';
 
 @Component({
   selector: 'app-login',
@@ -15,15 +15,24 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService
   ) {
-    if (localStorage.getItem('user')) {
-      this.router.navigateByUrl('shop');
-    }
+    // if (localStorage.getItem('user')) {
+    //   this.router.navigateByUrl('shop');
+    // }
   }
   data = {
     Username: '',
     Password: '',
   };
-  ngOnInit(): void {}
+  checkUserEmpty = GuidId.EmptyId;
+  ngOnInit(): void {
+    var Id = JSON.parse(localStorage.getItem('user'))[0].id;
+    if (this.checkUserEmpty == Id) {
+      //localStorage.clear();
+    }
+    else {
+      this.router.navigateByUrl('shop');
+    }
+  }
   DangNhap() {
     if (this.data.Username == '' || this.data.Password == '') {
       return;

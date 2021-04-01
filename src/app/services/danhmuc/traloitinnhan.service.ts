@@ -16,4 +16,10 @@ export class TraLoiTinNhanService {
   Watched(Id) {
     return this.http.get(this.baseUri + 'Watched/' + Id);
   }
+  Delete(id){
+    return this.http.delete(this.baseUri + id);
+  }
+  ThuHoi(id){
+    return this.http.get(this.baseUri + 'thuhoi/'+ id);
+  }
 }

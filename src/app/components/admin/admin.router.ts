@@ -19,6 +19,7 @@ import { ChitietDonhangComponent } from './sanpham/chitiet-donhang/chitiet-donha
 import { BaocaoBanhangComponent } from './baocao/baocao-banhang/baocao-banhang.component';
 import { TonkhoComponent } from './baocao/tonkho/tonkho.component';
 import { QuanlyChatComponent } from './danhmuc/quanly-chat/quanly-chat.component';
+import { ThongsokythuatComponent } from './danhmuc/thongsokythuat/thongsokythuat.component';
 
 export const routes: Routes = [
   {
@@ -104,6 +105,10 @@ export const routes: Routes = [
           {
             path: 'quanlytinnhan',
             component: QuanlyChatComponent,
+          },
+          {
+            path: 'thongsokythuat',
+            component: ThongsokythuatComponent,
           },
         ],
       },
