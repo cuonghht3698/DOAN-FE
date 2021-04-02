@@ -10,7 +10,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ToastrModule } from 'ngx-toastr';
 import { routes } from './admin.router';
 import { DashboardComponent } from './dashboard/dashboard.component';
-
 // material design
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { MaterialModule } from '../../material.module';
@@ -50,6 +49,7 @@ import { QuanlyChatComponent } from './danhmuc/quanly-chat/quanly-chat.component
 import { ThongsokythuatComponent } from './danhmuc/thongsokythuat/thongsokythuat.component';
 import { BlogComponent } from './danhmuc/blog/blog.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { QuanlyblogComponent } from './danhmuc/quanlyblog/quanlyblog.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -102,6 +102,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     QuanlyChatComponent,
     ThongsokythuatComponent,
     BlogComponent,
+    QuanlyblogComponent,
   ],
   providers: [
     {

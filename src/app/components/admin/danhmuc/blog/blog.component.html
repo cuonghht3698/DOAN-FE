@@ -1,3 +1,47 @@
-<ckeditor [(ngModel)]="data" [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor>
+<div class="mother">
+    <p style="font-size: 13pt;color: #006e86;
+        font-weight: bold;">Danh sách bài viết</p>
+    <div class="top row" style="width: 90%;margin: auto;">
+        <div class="col-8">
+            <mat-form-field style="width: 45%;">
+                <mat-label>Tiêu đề</mat-label>
+                <input matInput [(ngModel)]="dataBlog.TieuDe" name="tieude">
+            </mat-form-field>
+            <mat-form-field style="width: 45%;">
+                <mat-label>Link</mat-label>
+                <input matInput [(ngModel)]="dataBlog.Link" name="link">
+            </mat-form-field>
 
-<code>{{data}}</code>
+            <div class="search-box" style="width: 91%;">
+                <form class="example-form">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Tên sản phẩm</mat-label>
+                        <input matInput aria-label="State" [matAutocomplete]="auto" [formControl]="stateCtrl">
+                        <mat-autocomplete #auto="matAutocomplete">
+                            <mat-option *ngFor="let state of filteredStates | async" [value]="state.ten"
+                                (click)="ChoseSp(state)" style="padding: 10px;">
+                                <img class="img-responsive" aria-hidden [src]="baseUrl +  state.imageUrl" height="55">
+                                <small style="color: green;font-size: 18px;">{{state.ten}}</small>
+                                <span style="color: red;"> - Ram : {{state.ram}}</span>
+                                <span style="color: rgb(61, 66, 58);"> - Dung Lượng : {{state.rom}}</span>
+                            </mat-option>
+
+                        </mat-autocomplete>
+                    </mat-form-field>
+
+                    <br>
+                </form>
+            </div>
+
+        </div>
+
+        <div class="col-4">
+            <button mat-raised-button color="primary" (click)="CreateOrUpdate()">Lưu</button>
+            <a mat-raised-button color="warn" class="ml-2" routerLink="../quanlyblog">Trở về</a>
+        </div>
+    </div>
+    <div class="row">
+        <ckeditor [(ngModel)]="dataBlog.NoiDung" [editor]="Editor" [config]="config" style="width: 90%;margin: auto;">
+        </ckeditor>
+    </div>
+</div>

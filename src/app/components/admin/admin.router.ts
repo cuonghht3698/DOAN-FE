@@ -21,6 +21,7 @@ import { TonkhoComponent } from './baocao/tonkho/tonkho.component';
 import { QuanlyChatComponent } from './danhmuc/quanly-chat/quanly-chat.component';
 import { ThongsokythuatComponent } from './danhmuc/thongsokythuat/thongsokythuat.component';
 import { BlogComponent } from './danhmuc/blog/blog.component';
+import { QuanlyblogComponent } from './danhmuc/quanlyblog/quanlyblog.component';
 
 export const routes: Routes = [
   {
@@ -114,6 +115,10 @@ export const routes: Routes = [
           {
             path: 'blog',
             component: BlogComponent,
+          },
+          {
+            path: 'quanlyblog',
+            component: QuanlyblogComponent,
           },
         ],
       },

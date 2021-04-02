@@ -28,8 +28,8 @@ export class MenuComponent implements OnInit {
   data: any;
   getAll() {
     this.menu.getPage(this.sSearch).subscribe((res:any) => {
-      this.data = res;
-      this.TotalItem = res.length;
+      this.data = res.list;
+      this.TotalItem = res.total;
     });
   }
 

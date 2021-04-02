@@ -1,0 +1,71 @@
+.mother{
+    background-color: #fdffff;
+    border: 1px solid #C1C1CA;
+    margin-bottom: 0px;
+    padding: 10px !important;
+    width: 100%;
+}
+.mother-box {
+    box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2),
+      0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+    border-radius: 10px;
+    padding: 30px 15px;
+  }
+  .top-box {
+    border: 2px black solid;
+    min-height: 350px;
+    border-radius: 10px;
+    padding: 15px 20px;
+  }
+  
+  .choseoption {
+    background-color: rgb(206, 221, 221);
+    padding: 15px;
+    border-radius: 10px;
+    margin: 5px;
+    position: relative;
+  }
+  .choseoption:hover {
+    background-color: rgb(179, 218, 218);
+    transform: scale(1.07);
+  }
+  
+  .example-form {
+    min-width: 150px;
+    max-width: 1000px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  
+  .example-option-img {
+    padding: 0;
+    width: 50px;
+    height: 60px;
+    border-radius: 8px;
+  }
+  
+  [dir="rtl"] .example-option-img {
+    margin-right: 0;
+    margin-left: 8px;
+  }
+  
+  .left {
+  }
+  
+  .nhanh-color {
+    max-height: 500px;
+    overflow-y: auto;
+  }
+  
+  button {
+    outline: none;
+    margin-left: 15px;
+  }
+  
+  
+  mat-form-field{
+    margin-left: 10px;
+  }
