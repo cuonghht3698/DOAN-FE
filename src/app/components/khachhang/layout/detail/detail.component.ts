@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { LoaiGiaoDich, TrangThaiGiaoDich } from 'src/app/services/constrans';
+import { BlogService } from 'src/app/services/danhmuc/blog.service';
 import { CartService } from 'src/app/services/danhmuc/cart.service';
 import { CartDetailService } from 'src/app/services/danhmuc/cartdetail.service';
 import { optionservice } from 'src/app/services/danhmuc/optionSp.service';
@@ -22,7 +23,8 @@ export class DetailComponent implements OnInit {
     private cart: CartService,
     private cartDetail: CartDetailService,
     private toar: ToastrService,
-    public upCart:DataService
+    public upCart:DataService,
+    private blog:BlogService
   ) {}
   IdSp = GuidId.EmptyId;
   SanPham: any;
@@ -60,7 +62,7 @@ export class DetailComponent implements OnInit {
   ngOnInit(): void {
     this.router.queryParams.subscribe((res) => {
       this.IdSp = res.id;
-
+      this.GetBlog(res.id);
     });
     this.getSanPham();
     if (JSON.parse(localStorage.getItem('user'))) {
@@ -68,7 +70,6 @@ export class DetailComponent implements OnInit {
       this.DataCart.Sdt = JSON.parse(localStorage.getItem('user'))[0].sdt,
       this.CheckCart();
     }
-
   }
   // cHECK CART
   // Kieemr tra cart co san sang k trang thai giao dich = dang giao dich
@@ -128,6 +129,22 @@ export class DetailComponent implements OnInit {
 
   }
 
+  DataBlog:any = {
+    noiDung:''
+  }
+  GetBlog(Id){
+    this.blog.getByIdSanPham(Id).subscribe((res:any)=>{
+      console.log(res);
+      if (res) {
+        this.DataBlog = res;
+        
+      }else{
+        this.DataBlog.noiDung = "<h1>Hiện tại chưa có bài viết nào về sản phẩm này!</h1>";  
+
+      }
+      
+    });
+  }
 
   GoToDetail(item) {
     this.r.navigateByUrl('shop/chitiet/' + item.id);

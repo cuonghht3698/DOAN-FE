@@ -17,6 +17,9 @@ export class BlogService {
     getById(Id) {
         return this.http.get(this.baseUri + 'getById', {params: {Id : Id}});
     }
+    getByIdSanPham(Id) {
+        return this.http.get(this.baseUri + 'getByIdSanPham', {params: {Id : Id}});
+    }
     Create(data) {
         return this.http.post(this.baseUri , data);
     }
