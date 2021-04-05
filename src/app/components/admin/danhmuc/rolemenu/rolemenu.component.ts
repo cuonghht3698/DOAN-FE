@@ -19,7 +19,24 @@ export class RolemenuComponent implements OnInit {
     private menu: MenuService,
     private route: ActivatedRoute
   ) {}
-  dataRoleMenu: any;
+  dataRoleMenu = [
+    // {
+    //   label: 'Item 1 (with Font awesome icon)',
+    //   faIcon: 'fab fa-500px',
+    //   items: [
+    //     {
+    //       label: 'Item 1.1',
+    //       link: '/item-1-1',
+    //       faIcon: 'fab fa-accusoft'
+    //     },
+    //     {
+    //       label: 'Item 1.2',
+    //       faIcon: 'fab fa-accessible-icon',
+    //     }
+    //   ]
+    // },
+  ];;
+
   dataMenu: any;
   Count = 0;
   data = {
@@ -35,17 +52,40 @@ export class RolemenuComponent implements OnInit {
     this.IdRole = this.route.snapshot.paramMap.get('id');
     this.data.RoleId = this.IdRole;
     this.getRoleMenu();
-    this.getAllMenu();
+    this.getAllMenu(this.IdRole);
   }
+  config = {
+    paddingAtStart: true,
+    interfaceWithRoute: true,
+    classname: 'my-custom-class',
+    listBackgroundColor: `3445b4`,
+    fontColor: `#fffefa`,
+    backgroundColor: `#3445b4`,
+    selectedListFontColor: `#f0e9cc`,
+    highlightOnSelect: true,
+    collapseOnSelect: true,
+    useDividers: false,
+    rtlLayout: false,
+
+};
+
+selectedItem(item){
+
+}
   getRoleMenu() {
+    // chưa có trong menu
     this.UserRoleMenu.getRoleMenu(this.IdRole).subscribe((res:any) => {
       this.dataRoleMenu = res;
-      this.Count = res.length;
+      console.log(res);
+
+      //this.Count = res.length;
     });
   }
-  getAllMenu() {
-    this.menu.getAll().subscribe((res: any) => {
+  getAllMenu(Id) {
+    this.menu.getThemRole().subscribe((res: any) => {
       this.dataMenu = res;
+      console.log(res);
+
     });
   }
 
@@ -59,7 +99,7 @@ export class RolemenuComponent implements OnInit {
   }
   XoaRoleMenu(id) {
     this.UserRoleMenu.Delete(id).subscribe((res) => {
-      //this.toastr.success('Xóa menu thành công', 'Thông báo!');
+      this.toastr.success('Xóa menu thành công', 'Thông báo!');
       this.getRoleMenu();
     });
   }

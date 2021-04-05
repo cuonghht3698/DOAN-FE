@@ -39,7 +39,10 @@
       <td><span class="material-icons">
         {{item.icon}}</span></td>
       <td>{{item.link}}</td>
-      <td>{{item.parent}}</td>
+      <td>{{item.isParent ? '':item.cha}}
+        <span *ngIf="item.isParent" class="material-icons" style="color: green;">
+        done
+        </span></td>
       <td>
         <button mat-raised-button (click)="OpenPopup(item)">Sửa</button>
         <button mat-raised-button color="warn" (click)="Delete(item.id)">Xóa</button>

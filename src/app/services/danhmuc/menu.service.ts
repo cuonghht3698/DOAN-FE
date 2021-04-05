@@ -6,13 +6,18 @@ import { environment } from 'src/environments/environment';
 export class MenuService {
   constructor(private http: HttpClient) {}
 
-  getAll(){
-    return this.http.get(environment.ApiUrl + 'menu/getAll');
+  getAll(id){
+    return this.http.get(environment.ApiUrl + 'menu/getAll/' + id);
+  }
+  getThemRole(){
+    return this.http.get(environment.ApiUrl + 'menu/getThemRole/');
   }
   getPage(search:any) {
     return this.http.post(environment.ApiUrl + 'menu/getPage',search);
   }
-
+  getParent() {
+    return this.http.get(environment.ApiUrl + 'menu/getParent');
+  }
   Create(data) {
     return this.http.post(environment.ApiUrl + 'menu', data);
   }

@@ -19,7 +19,7 @@ export class MenuComponent implements OnInit {
   sSearch = {
     sSearch: '',
     pageIndex: 0,
-    pageSize: 10,
+    pageSize: 20,
   };
   TotalItem = 0;
   ngOnInit(): void {
@@ -29,6 +29,7 @@ export class MenuComponent implements OnInit {
   getAll() {
     this.menu.getPage(this.sSearch).subscribe((res:any) => {
       this.data = res.list;
+
       this.TotalItem = res.total;
     });
   }

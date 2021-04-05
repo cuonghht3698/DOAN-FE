@@ -27,18 +27,21 @@
           <input matInput [(ngModel)]="data.Icon" name="icon">
         </mat-form-field>
         <br>
-        <!-- <mat-form-field appearance="fill">
-          <mat-label>Select</mat-label>
-          <mat-select>
-            <mat-option value="option">Option</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <br> -->
+
         <mat-form-field appearance="fill">
           <mat-label>Mô tả</mat-label>
           <input matInput [(ngModel)]="data.MoTa" name="mota">
-
         </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Menu Cha</mat-label>
+          <mat-select [(ngModel)]="data.IdParent">
+            <mat-option value=""></mat-option>
+            <mat-option value="option" *ngFor="let item of dsParent" [value]="item.id">{{item.ten}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-checkbox class="example-margin" [(ngModel)]="data.IsParent">Menu Cha</mat-checkbox>
       </div>
       <div style="margin: auto;">
         <button class="mr-3" mat-raised-button color="primary" (click)="ThemMenu()"
@@ -49,7 +52,7 @@
 
       </div>
     </div>
-
+    <pre>{{data|json}}</pre>
 
   </div>
 </div>

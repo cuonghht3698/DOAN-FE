@@ -26,12 +26,12 @@
             <td>{{item.tieuDe}}</td>
             <td>{{item.link}}</td>
             <td>{{item.sanPham}}</td>
-            <td>{{item.thoiGianTao}}</td>
+            <td>{{item.thoiGianTao | date:'dd/MM/yyyy hh:mm'}}</td>
             <td style="text-align: center;">
               <a mat-raised-button color="primary" [routerLink]="'../blog'" [queryParams]="{id :item.id}">Xem</a>
             </td>
           </tr>
-  
+
         </tbody>
       </table>
       <div class="row mt-4">
@@ -43,7 +43,7 @@
             [pageSizeOptions]="[5 ,10, 20, 50,100]" (page)="getPaginate($event)" showFirstLastButtons>
           </mat-paginator>
         </div>
-      
+
       </div>
-      
+
 </div>

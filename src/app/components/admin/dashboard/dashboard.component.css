@@ -5,6 +5,10 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
+.my-custom-class{
+  background-color: indigo;
+}
+
  .active {
   background-color: #22318f;
   margin-left: 5px;

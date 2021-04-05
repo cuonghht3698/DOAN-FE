@@ -50,6 +50,7 @@ import { ThongsokythuatComponent } from './danhmuc/thongsokythuat/thongsokythuat
 import { BlogComponent } from './danhmuc/blog/blog.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { QuanlyblogComponent } from './danhmuc/quanlyblog/quanlyblog.component';
+import { NgMaterialMultilevelMenuModule, MultilevelMenuService } from 'ng-material-multilevel-menu';
 @NgModule({
   imports: [
     CommonModule,
@@ -63,8 +64,8 @@ import { QuanlyblogComponent } from './danhmuc/quanlyblog/quanlyblog.component';
     NgxPopper,
     HttpClientModule,
     SharedModule,
-    CKEditorModule
-
+    CKEditorModule,
+    NgMaterialMultilevelMenuModule
   ],
   exports: [],
   declarations: [
@@ -108,7 +109,9 @@ import { QuanlyblogComponent } from './danhmuc/quanlyblog/quanlyblog.component';
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
       useValue: { appearance: 'outline' },
+
     },
+    MultilevelMenuService
   ],
   bootstrap: [DashboardComponent],
 })

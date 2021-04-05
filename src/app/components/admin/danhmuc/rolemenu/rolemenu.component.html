@@ -4,7 +4,10 @@
     <h1>Menu</h1>
     <h2><a mat-button routerLink="../../menu">Thêm</a></h2>
     <mat-list>
-      <mat-list-item *ngFor="let item of dataMenu" style="position: relative;"><span>{{ item.ten }}</span><button
+      <mat-list-item *ngFor="let item of dataMenu" style="position: relative;">
+        <span *ngIf="!item.cha"><b>{{ item.ten }}</b></span>
+        <span *ngIf="item.cha">{{ item.ten }}</span>
+        <button
           style="position: absolute;right: 0;" mat-button (click)="ThemRoleMenu(item.id)" color="primary">
           <span class="material-icons">label</span></button>
       </mat-list-item>
@@ -12,12 +15,22 @@
   </div>
   <div class="col-4">
     <h1>Role</h1>
-    <mat-list>
-      <mat-list-item *ngFor="let item of dataRoleMenu" style="position: relative;"><span>{{ item.menu.ten + ': ' +
-          item.menu.controller + '/' + item.menu.link}}</span><span><button mat-button color="warn" style="position: absolute;right: 0;top: 0"
-            (click)="XoaRoleMenu(item.id)"><span class="material-icons">
-              highlight_off
-            </span></button></span></mat-list-item>
-    </mat-list>
+
+    <div *ngFor="let item of dataRoleMenu">
+      <p><b>{{item.label}}</b> <span class="material-icons" style="color: red;cursor: pointer;"
+        (click)="XoaRoleMenu(item.id)">
+        close
+      </span></p>
+      <div style="margin-left: 30px;" *ngFor="let item2 of item.items">
+        <p>{{item2.label}} <span class="material-icons" style="color: red;cursor: pointer;"
+            (click)="XoaRoleMenu(item2.id)">
+            close
+          </span></p>
+      </div>
+    </div>
+
+
+
   </div>
 </div>
+<pre>{{dataMenu|json}}</pre>

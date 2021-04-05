@@ -14,6 +14,37 @@ export class DashboardComponent implements OnInit {
   isCollapsed = false;
   IdRole = JSON.parse(localStorage.getItem("user"))[0].roleId;
   dataMenu:any;
+  config = {
+    paddingAtStart: true,
+    interfaceWithRoute: true,
+    classname: 'my-custom-class',
+    listBackgroundColor: `3445b4`,
+    fontColor: `#fffefa`,
+    backgroundColor: `#3445b4`,
+    selectedListFontColor: `#f0e9cc`,
+    highlightOnSelect: true,
+    collapseOnSelect: true,
+    useDividers: false,
+    rtlLayout: false,
+
+};
+  appitems = [
+    {
+      label: 'Item 1 (with Font awesome icon)',
+      faIcon: 'fab fa-500px',
+      items: [
+        {
+          label: 'Item 1.1',
+          link: '/item-1-1',
+          faIcon: 'fab fa-accusoft'
+        },
+        {
+          label: 'Item 1.2',
+          faIcon: 'fab fa-accessible-icon',
+        }
+      ]
+    },
+  ];
   ngOnInit(): void {
 
     this.getMenu();
@@ -39,7 +70,9 @@ export class DashboardComponent implements OnInit {
       }
     }
   }
+  selectedItem(event){
 
+  }
   menuItems: any[];
   isMobileMenu() {
       if ($(window).width() > 991) {

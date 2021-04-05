@@ -9,6 +9,9 @@ export class RoleMenuService {
   getRoleMenu(id: any) {
     return this.http.get(environment.ApiUrl + 'rolemenu/' + id);
   }
+  getRoleUpdate(id: any) {
+    return this.http.get(environment.ApiUrl + 'rolemenu/getRoleUpdate/' + id);
+  }
   getMenuByNameRole(ten:string){
     return this.http.get(environment.ApiUrl + 'findByTen/' + ten);
   }

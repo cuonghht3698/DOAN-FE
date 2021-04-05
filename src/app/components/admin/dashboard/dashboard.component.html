@@ -10,9 +10,8 @@
 		<div class="p-4">
 			<h1><a href="index.html" class="logo">Portfolic <span>Portfolio Agency</span></a></h1>
 			<ul class="list-unstyled components mb-5">
-				<li *ngFor="let item of dataMenu">
-					<a routerLinkActive="active" [routerLink]="item.menu.controller == ''?item.menu.link:item.menu.controller + '/' + item.menu.link "> <span class="material-icons">{{item.menu.icon == '' ? 'send':item.menu.icon}}</span> -  {{ item.menu.ten }}</a>
-				</li>
+        <ng-material-multilevel-menu [configuration]="config" [items]="dataMenu" (selectedItem)="selectedItem($event)">
+        </ng-material-multilevel-menu>
 			</ul>
 
 			<div class="mb-5">
