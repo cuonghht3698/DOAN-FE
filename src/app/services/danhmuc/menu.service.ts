@@ -9,8 +9,8 @@ export class MenuService {
   getAll(id){
     return this.http.get(environment.ApiUrl + 'menu/getAll/' + id);
   }
-  getThemRole(){
-    return this.http.get(environment.ApiUrl + 'menu/getThemRole/');
+  getThemRole(search){
+    return this.http.get(environment.ApiUrl + 'menu/getThemRole' , {params:{search:search}});
   }
   getPage(search:any) {
     return this.http.post(environment.ApiUrl + 'menu/getPage',search);

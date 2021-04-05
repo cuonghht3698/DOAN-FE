@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Configuration } from 'ng-material-multilevel-menu';
 import { RoleMenuService } from 'src/app/services/danhmuc/rolemenu.service';
 import { Role } from 'src/app/services/ERole';
 declare const $: any;
@@ -14,9 +15,9 @@ export class DashboardComponent implements OnInit {
   isCollapsed = false;
   IdRole = JSON.parse(localStorage.getItem("user"))[0].roleId;
   dataMenu:any;
-  config = {
+  config:Configuration = {
     paddingAtStart: true,
-    interfaceWithRoute: true,
+    interfaceWithRoute: false,
     classname: 'my-custom-class',
     listBackgroundColor: `3445b4`,
     fontColor: `#fffefa`,

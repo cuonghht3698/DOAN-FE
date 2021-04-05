@@ -14,7 +14,7 @@ import { LoaitudienService } from 'src/app/services/danhmuc/loaitudien.service';
   styleUrls: ['./loaitudien.component.css']
 })
 export class LoaitudienComponent implements OnInit  {
-  displayedColumns: string[] = ['stt', 'name', 'ma', 'action'];
+  displayedColumns: string[] = ['stt', 'name', 'ma','xem', 'action'];
   dataSource :any;
   dsLoaiTuDien;
   @ViewChild(MatSort) sort: MatSort;

@@ -35,7 +35,7 @@ export class RolemenuComponent implements OnInit {
     //     }
     //   ]
     // },
-  ];;
+  ];
 
   dataMenu: any;
   Count = 0;
@@ -52,7 +52,7 @@ export class RolemenuComponent implements OnInit {
     this.IdRole = this.route.snapshot.paramMap.get('id');
     this.data.RoleId = this.IdRole;
     this.getRoleMenu();
-    this.getAllMenu(this.IdRole);
+    this.getAllMenu();
   }
   config = {
     paddingAtStart: true,
@@ -66,39 +66,54 @@ export class RolemenuComponent implements OnInit {
     collapseOnSelect: true,
     useDividers: false,
     rtlLayout: false,
-
-};
-
-selectedItem(item){
-
-}
+  };
+  Search = '';
+  selectedItem(item) {}
   getRoleMenu() {
     // chưa có trong menu
-    this.UserRoleMenu.getRoleMenu(this.IdRole).subscribe((res:any) => {
+    this.UserRoleMenu.getRoleMenu(this.IdRole).subscribe((res: any) => {
       this.dataRoleMenu = res;
       console.log(res);
 
       //this.Count = res.length;
     });
   }
-  getAllMenu(Id) {
-    this.menu.getThemRole().subscribe((res: any) => {
+  UpdateUuTien(Id, UuTien) {
+    console.log(Id,UuTien);
+
+    // chưa có trong menu
+    this.UserRoleMenu.UpdateUuTien(Id, UuTien).subscribe((res: any) => {
+      //this.getRoleMenu();
+    });
+  }
+  getAllMenu() {
+    this.menu.getThemRole(this.Search).subscribe((res: any) => {
       this.dataMenu = res;
       console.log(res);
-
     });
   }
 
   ThemRoleMenu(item) {
     this.data.MenuId = item;
-    this.UserRoleMenu.Create(this.data).subscribe((res) => {
-      this.getRoleMenu();
-    },err=>{
-      this.toastr.error("Đã có mục này","Thông báo!");
-    });
+    this.UserRoleMenu.Create(this.data).subscribe(
+      (res) => {
+        this.getRoleMenu();
+      },
+      (err) => {
+        this.toastr.error('Đã có mục này', 'Thông báo!');
+      }
+    );
   }
-  XoaRoleMenu(id) {
-    this.UserRoleMenu.Delete(id).subscribe((res) => {
+  XoaRoleMenu(id, IsParent) {
+    if (IsParent) {
+      var r = confirm('Xóa mục chính sẽ xóa các mục con? Tiếp tục!');
+      if (r == false) {
+        return;
+      }
+    }
+    console.log(id);
+
+    this.UserRoleMenu.Delete(id, this.IdRole).subscribe((res) => {
       this.toastr.success('Xóa menu thành công', 'Thông báo!');
       this.getRoleMenu();
     });

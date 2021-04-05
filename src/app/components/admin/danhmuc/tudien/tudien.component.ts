@@ -9,6 +9,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { PopTuDien, TuDien } from './popup/tudien.popup';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-tudien',
@@ -41,7 +42,8 @@ export class TudienComponent implements OnInit {
     private fb: FormBuilder,
     private toarst: ToastrService,
     private diaLog: MatDialog,
-    private loaitudien:LoaitudienService
+    private loaitudien:LoaitudienService,
+    private router:ActivatedRoute
   ) {}
   // DATA SEARCH
   search = {
@@ -50,8 +52,16 @@ export class TudienComponent implements OnInit {
     pageIndex: 1,
     pageSize: 10,
   };
-
+  check = true;
   ngOnInit(): void {
+    this.router.queryParams.subscribe((res)=>{
+      if (res) {
+        this.search.LoaiTuDienId = res.Id;
+        this.check = false;
+      }
+    });
+
+
     this.getPage();
     this.getLoaiTuDien();
     this.dataTuDien = this.fb.group({

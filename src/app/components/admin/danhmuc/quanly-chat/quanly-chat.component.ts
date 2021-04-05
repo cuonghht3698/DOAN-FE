@@ -23,8 +23,9 @@ export class QuanlyChatComponent implements OnInit {
   loadF = true;
   ngOnInit(): void {
   this.activatedRoute.queryParams.subscribe((res)=>{
-    this.IdTinNhan = res.Id;
-    this.getTinNhanById(res.Id);
+    this.tinnhan.GetIdTinNhanByIdUser(res.Id).subscribe((res1:any)=>{
+      this.IdTinNhan = res1.id;
+    });
   });
     this.getDsTinNhan();
     setInterval(() => {
@@ -68,6 +69,8 @@ export class QuanlyChatComponent implements OnInit {
     this.IdTinNhan = Id;
     this.traloi.GetById(Id).subscribe((res: any) => {
       this.dataChat = res;
+      console.log(res);
+
     });
     this.traloi.Watched(Id).subscribe((res) => {
       this.RefeshGetDsTinNhan();

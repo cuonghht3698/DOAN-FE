@@ -1,0 +1,11 @@
+.role{
+  width: 90%;
+  background-color: green;
+  padding: 13px;
+  margin: 10px;
+  color: white;
+  border-radius: 5px;
+}
+.cha{
+  background-color: rgb(9, 77, 9);
+}

@@ -12,7 +12,7 @@ export class RoleMenuService {
   getRoleUpdate(id: any) {
     return this.http.get(environment.ApiUrl + 'rolemenu/getRoleUpdate/' + id);
   }
-  getMenuByNameRole(ten:string){
+  getMenuByNameRole(ten: string) {
     return this.http.get(environment.ApiUrl + 'findByTen/' + ten);
   }
   Create(data) {
@@ -22,8 +22,14 @@ export class RoleMenuService {
   Update(data) {
     return this.http.put(environment.ApiUrl + 'rolemenu', data);
   }
-
-  Delete(id) {
-    return this.http.delete(environment.ApiUrl + 'rolemenu/' + id);
+  UpdateUuTien(Id, UuTien) {
+    return this.http.get(environment.ApiUrl + 'rolemenu/UpdateUuTien', {
+      params: { Id: Id, UuTien: UuTien },
+    });
+  }
+  Delete(id, IdRole) {
+    return this.http.delete(environment.ApiUrl + 'rolemenu', {
+      params: { Id: id, IdRole: IdRole },
+    });
   }
 }

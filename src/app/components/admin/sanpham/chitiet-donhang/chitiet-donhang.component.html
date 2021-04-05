@@ -68,8 +68,8 @@
   </div>
 
   <div class="row">
-    <div class="col-4" >
-      <div class="card" style="width: 16rem;" *ngIf="dataCart.userId != '00000000-0000-0000-0000-000000000000'">
+    <div class="col-5" >
+      <div class="card" style="width: 19rem;" *ngIf="dataCart.userId != '00000000-0000-0000-0000-000000000000'">
         <img class="card-img-top" [src]="url + 'avatar-man.png'" alt="Card image cap">
         <div class="card-body">
           <h3 class="card-title">Thông tin khách hàng : {{dataUser.hoTen}}</h3>
@@ -78,11 +78,11 @@
             <li class="list-group-item">Số điện thoại: {{dataUser.soDienThoai}}</li>
             <li class="list-group-item">Email: {{dataUser.email}}</li>
           </ul>
-          <button mat-raised-button color="accent">Nhắn tin</button>
+          <a mat-raised-button color="accent" [routerLink]="'../quanlytinnhan'" [queryParams]="{Id:dataUser.id}">Nhắn tin</a>
         </div>
       </div>
     </div>
-    <div class="col-8">
+    <div class="col-7">
       <table class="table">
         <tr>
           <td></td>

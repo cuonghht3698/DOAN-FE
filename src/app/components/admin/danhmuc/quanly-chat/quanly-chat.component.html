@@ -20,7 +20,7 @@
           <div class="chat_people">
             <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
             <div class="chat_ib">
-              <h5>{{ item.hoTen }}<span class="chat_date" *ngIf="item.ngayTao != null">{{item.ngayTao|demgio}}</span>
+              <h5>{{ item.hoTen }}<span class="chat_date" *ngIf="item.thoiGianTao != null">{{item.thoiGianTao|demgio}}</span>
               </h5>
               <p *ngIf="item.watch">{{item.firstTinNhan}}</p>
               <p *ngIf="!item.watch"><b>{{item.firstTinNhan}}</b></p>
@@ -41,7 +41,7 @@
             <div class="received_msg">
               <div class="received_withd_msg">
                 <p>{{item.noiDung}}</p>
-                <span class="time_date"> {{item.ngayTao | demgio}}</span>
+                <span class="time_date"> {{item.thoiGianTao | demgio}}</span>
               </div>
             </div>
           </div>
@@ -50,7 +50,7 @@
           <div class="outgoing_msg" *ngIf="!item.active">
             <div class="sent_msg">
               <p>{{item.noiDung}}</p>
-              <span class="time_date"> {{item.ngayTao | demgio}}</span>
+              <span class="time_date"> {{item.thoiGianTao | demgio}}</span>
             </div>
           </div>
           <!-- ADMIN -->
@@ -74,3 +74,5 @@
       href="https://www.linkedin.com/in/sunil-rajput-nattho-singh/">Sunil Rajput</a></p>
 
 </div>
+
+
