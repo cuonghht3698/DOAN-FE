@@ -17,7 +17,7 @@ const routes: Routes = [
         pathMatch: 'full',
       },
       {
-        path: 'dashboard',
+        path: 'quanly',
         data: { active: true },
         loadChildren: () =>
           import('./components/admin/admin.module').then((a) => a.AdminModule),

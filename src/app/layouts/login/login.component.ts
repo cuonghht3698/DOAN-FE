@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
             res[0].role == Role.GiamDoc ||
             res[0].role == Role.NhanVien
           ) {
-            this.router.navigateByUrl('dashboard');
+            this.router.navigateByUrl('quanly');
           } else {
             this.router.navigateByUrl('shop');
           }
