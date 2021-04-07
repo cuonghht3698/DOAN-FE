@@ -1,6 +1,8 @@
 .navbar{
-  height: 70px;
-  /* position: fixed; */
+  height: 63px;
+  position: sticky;
+  top: 0;
+  z-index: 10000000;
 }
 .userProfile {
 padding: 3px 20px;

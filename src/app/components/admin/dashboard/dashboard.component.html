@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<div class="wrapper d-flex align-items-stretch">
+<div class="wrapper d-flex align-items-stretch" >
 	<nav id="sidebar">
 		<div class="custom-menu">
 			<button type="button" id="sidebarCollapse" class="btn btn-primary">
@@ -7,7 +7,7 @@
 				<span class="sr-only">Toggle Menu</span>
 			</button>
 		</div>
-		<div class="p-4">
+		<div class="p-4" style="position: sticky;top: 0;">
 			<h1><a href="index.html" class="logo">Portfolic <span>Portfolio Agency</span></a></h1>
 			<ul class="list-unstyled components mb-5">
         <ng-material-multilevel-menu [configuration]="config" [items]="dataMenu" (selectedItem)="selectedItem($event)">
@@ -42,4 +42,8 @@
 	<div id="content" class="p-4 p-md-5 pt-5">
 		<router-outlet></router-outlet>
 	</div>
+
+	<div style="position: fixed;bottom: 30px;right: 50px;" *ngIf="showScrollTop"><button mat-mini-fab (click)="ScrollTop()" color="primary"><span class="material-icons">
+		publish
+		</span></button></div>
 </div>

@@ -35,12 +35,18 @@ export const routes: Routes = [
       },
       {
         path: 'user',
-        component: UserComponent,
+        children: [
+          {
+            path: 'my-user',
+            component: UserComponent,
+          },
+          {
+            path: '',
+            component: UserprofileComponent,
+          }
+        ]
       },
-      {
-        path: 'userprofile',
-        component: UserprofileComponent,
-      },
+
       {
         path: 'danhmuc',
         children: [

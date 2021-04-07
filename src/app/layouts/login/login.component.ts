@@ -42,16 +42,16 @@ export class LoginComponent implements OnInit {
   data;
   demo;
   ngOnInit(): void {
-    // const checkLogin = JSON.parse(localStorage.getItem('user'));
-    // if (checkLogin && checkLogin[0].id != GuidId.EmptyId) {
-    //   if (checkLogin[0].role == Role.KhachHang) {
-    //     this.router.navigateByUrl('shop');
-    //   } else {
-    //     this.router.navigateByUrl('dashboard');
-    //   }
-    // } else {
-    //   this.router.navigateByUrl('login');
-    // }
+    const checkLogin = JSON.parse(localStorage.getItem('user'));
+    if (checkLogin && checkLogin[0].id != GuidId.EmptyId) {
+      if (checkLogin[0].role == Role.KhachHang) {
+        this.router.navigateByUrl('shop');
+      } else {
+        this.router.navigateByUrl('quanly');
+      }
+    } else {
+      //this.router.navigateByUrl('login');
+    }
   }
   DangNhap(data) {
     this.authent.login(data).subscribe(

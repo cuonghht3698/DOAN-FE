@@ -65,7 +65,8 @@ import { NgMaterialMultilevelMenuModule, MultilevelMenuService } from 'ng-materi
     HttpClientModule,
     SharedModule,
     CKEditorModule,
-    NgMaterialMultilevelMenuModule
+    NgMaterialMultilevelMenuModule,
+    
   ],
   exports: [],
   declarations: [

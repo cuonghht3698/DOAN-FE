@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Configuration } from 'ng-material-multilevel-menu';
 import { RoleMenuService } from 'src/app/services/danhmuc/rolemenu.service';
@@ -11,11 +11,12 @@ declare const $: any;
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  constructor(private router:Router,private _location: Location,private UserRoleMenu: RoleMenuService,private route: ActivatedRoute) { }
+  constructor(private router: Router, private _location: Location, private UserRoleMenu: RoleMenuService, private route: ActivatedRoute) { }
   isCollapsed = false;
   IdRole = JSON.parse(localStorage.getItem("user"))[0].roleId;
-  dataMenu:any;
-  config:Configuration = {
+  dataMenu: any;
+  showScrollTop = false;
+  config: Configuration = {
     paddingAtStart: true,
     interfaceWithRoute: false,
     classname: 'my-custom-class',
@@ -28,7 +29,8 @@ export class DashboardComponent implements OnInit {
     useDividers: false,
     rtlLayout: false,
 
-};
+  };
+  @ViewChild('target') private myScrollContainer: ElementRef;
   appitems = [
     {
       label: 'Item 1 (with Font awesome icon)',
@@ -46,46 +48,63 @@ export class DashboardComponent implements OnInit {
       ]
     },
   ];
+  @HostListener('window:scroll', ['$event']) onScrollEvent(){
+    console.log(window.scrollY);
+    if (window.scrollY > 130) {
+      this.showScrollTop = true;
+    }
+    else{
+      this.showScrollTop = false;
+    }
+  } 
+  ScrollTop(){
+    window.scrollTo(0,0);
+  }
   ngOnInit(): void {
-
-    this.getMenu();
-      var fullHeight = function() {
+    if (!localStorage.getItem("menu") || localStorage.getItem("menu") == null ) {
+      this.getMenu();
+    }
+    else{
+      this.dataMenu = JSON.parse(localStorage.getItem("menu"));
+      
+    };
+    var fullHeight = function () {
+      $('.js-fullheight').css('height', $(window).height());
+      $(window).resize(function () {
         $('.js-fullheight').css('height', $(window).height());
-        $(window).resize(function(){
-          $('.js-fullheight').css('height', $(window).height());
-        });
-
-      };
-      fullHeight();
-
-      $('#sidebarCollapse').on('click', function () {
-          $('#sidebar').toggleClass('active');
       });
+
+    };
+    fullHeight();
+
+    $('#sidebarCollapse').on('click', function () {
+      $('#sidebar').toggleClass('active');
+    });
 
 
     //
-    const user =JSON.parse(localStorage.getItem("user"));
-    if(user){
-      if(user[0].role == Role.KhachHang){
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      if (user[0].role == Role.KhachHang) {
         this._location.back();
       }
     }
   }
-  selectedItem(event){
+  selectedItem(event) {
 
   }
   menuItems: any[];
   isMobileMenu() {
-      if ($(window).width() > 991) {
-          return false;
-      }
-      return true;
+    if ($(window).width() > 991) {
+      return false;
+    }
+    return true;
   };
 
-  getMenu(){
-    this.UserRoleMenu.getRoleMenu(this.IdRole).subscribe((res:any) => {
+  getMenu() {
+    this.UserRoleMenu.getRoleMenu(this.IdRole).subscribe((res: any) => {
       this.dataMenu = res;
-
+      localStorage.setItem("menu", JSON.stringify(res));
     });
   }
 }

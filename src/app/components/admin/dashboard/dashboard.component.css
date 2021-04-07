@@ -8199,7 +8199,7 @@ h1, h2, h3, h4, h5,
   background-position: center center; }
 
 .wrapper {
-  width: 100%; }
+  width: 100%; overflow: scroll;}
 
 #sidebar {
   min-width: 270px;
