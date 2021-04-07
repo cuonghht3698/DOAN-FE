@@ -1,128 +1,143 @@
 <div class="container" style="padding: 0;margin-top: 30px;">
-    <mat-carousel timings="250ms ease-in" [autoplay]="true" interval="4000" color="accent" maxWidth="auto"
-        proportion="25" slides="15" [loop]="true" [hideArrows]="false" [hideIndicators]="false" [useKeyboard]="true"
-        [useMouseWheel]="false" orientation="ltr">
-        <mat-carousel-slide #matCarouselSlide *ngFor="let slide of slides; let i = index" [image]="slide.image"
-            overlayColor="#00000040" [hideOverlay]="false"></mat-carousel-slide>
-    </mat-carousel>
+  <mat-carousel timings="250ms ease-in" [autoplay]="true" interval="4000" color="accent" maxWidth="auto" proportion="25"
+    slides="15" [loop]="true" [hideArrows]="false" [hideIndicators]="false" [useKeyboard]="true" [useMouseWheel]="false"
+    orientation="ltr">
+    <mat-carousel-slide #matCarouselSlide *ngFor="let slide of slides; let i = index" [image]="slide.image"
+      overlayColor="#00000040" [hideOverlay]="false"></mat-carousel-slide>
+  </mat-carousel>
 </div>
 
 <div class="container">
-    <div class="row">
-        <div class="col-2" style="padding: 0;">
-            <!-- Menu timf kieems -->
-            <div class="col menu-search">
-                <div class="list-group" style="font-size: 14px;">
-                    <a type="button" class="list-group-item list-group-item-action active">
-                        MENU
-                    </a>
-                    <button mat-button class="text-left" *ngFor="let item of dsLoaiSP" (click)="LocLoaiSP(item.maTuDien)">{{item.ten}}</button>
-                </div>
-            </div>
-            <!-- end menu tim kiem -->
-            <!-- Menu timf kieems -->
-            <div class="col menu-search">
-                <div class="list-group" style="font-size: 14px;width: 100%;">
-                    <a type="button" class="list-group-item list-group-item-action active">
-                      KHOẢNG GIÁ
-                    </a>
-                    <a type="button" class="list-group-item list-group-item-action">Dưới 10 triệu</a>
-                    <a type="button" class="list-group-item list-group-item-action">10 triệu - 15 triệu</a>
-                    <a type="button" class="list-group-item list-group-item-action">15 triệu - 20 triệu</a>
-                    <a type="button" class="list-group-item list-group-item-action">25 triệu 30 triệu</a>
-                    <a type="button" class="list-group-item list-group-item-action">Trên 30 triệu</a>
-
-                </div>
-            </div>
-            <!-- end menu tim kiem -->
-            <!-- Menu timf kieems -->
-            <div class="col menu-search">
-                <div class="list-group" style="font-size: 14px;width: 90%;">
-                    <a type="button" class="list-group-item list-group-item-action active">
-                        Ram
-                    </a>
-                    <a type="button" class="list-group-item list-group-item-action">Dưới 3GB</a>
-                    <a type="button" class="list-group-item list-group-item-action">4GB - 6GB</a>
-                    <a type="button" class="list-group-item list-group-item-action">6GB - 8GB</a>
-                    <a type="button" class="list-group-item list-group-item-action">Trên 8GB</a>
-                </div>
-            </div>
-            <!-- end menu tim kiem -->
-             <!-- Menu timf kieems -->
-             <div class="col menu-search">
-              <div class="list-group" style="font-size: 14px;width: 90%;">
-                  <a type="button" class="list-group-item list-group-item-action active">
-                      Ổ cứng
-                  </a>
-                  <a type="button" class="list-group-item list-group-item-action">16GB - 32GB</a>
-                  <a type="button" class="list-group-item list-group-item-action">32GB - 66GB</a>
-                  <a type="button" class="list-group-item list-group-item-action">64GB - 128GB</a>
-                  <a type="button" class="list-group-item list-group-item-action">128GB - 265GB</a>
-                  <a type="button" class="list-group-item list-group-item-action">Trên 265GB</a>
-
-              </div>
-          </div>
-          <!-- end menu tim kiem -->
-            <!-- Menu timf kieems -->
-            <div class="col menu-search">
-                <div class="list-group" style="font-size: 14px;width: 90%;">
-                    <a type="button" class="list-group-item list-group-item-action active">
-                        Phân khúc
-                    </a>
-                    <a type="button" class="list-group-item list-group-item-action">Phổ thông</a>
-                    <a type="button" class="list-group-item list-group-item-action">Trung cấp</a>
-                    <a type="button" class="list-group-item list-group-item-action">Cao cấp</a>
-                    <a type="button" class="list-group-item list-group-item-action">Gaming</a>
-                </div>
-            </div>
-            <!-- end menu tim kiem -->
+  <div class="row">
+    <div class="col-2" style="padding: 0;">
+      <!-- Menu timf kieems -->
+      <div class="col menu-search">
+        <div class="list-group" style="font-size: 14px;">
+          <a type="button" class="list-group-item list-group-item-action active">
+            MENU
+          </a>
+          <button mat-button class="text-left" *ngFor="let item of dsLoaiSP"
+            (click)="LocLoaiSP(item.maTuDien)">{{item.ten}}</button>
+        </div>
+      </div>
+      <!-- end menu tim kiem -->
+      <!-- Menu timf kieems -->
+      <div class="col menu-search">
+        <div class="list-group" style="font-size: 14px;width: 100%;">
+          <a type="button" class="list-group-item list-group-item-action active">
+            KHOẢNG GIÁ
+          </a>
+          <a type="button" class="list-group-item list-group-item-action">Dưới 10 triệu</a>
+          <a type="button" class="list-group-item list-group-item-action">10 triệu - 15 triệu</a>
+          <a type="button" class="list-group-item list-group-item-action">15 triệu - 20 triệu</a>
+          <a type="button" class="list-group-item list-group-item-action">25 triệu 30 triệu</a>
+          <a type="button" class="list-group-item list-group-item-action">Trên 30 triệu</a>
 
         </div>
-        <!-- righjt -->
-        <div class="col-10 box-c">
-            <!-- dòm tìm kiếm -->
-            <div class="row">
-               <h2><b> Sản phẩm ( {{total}} sản phẩm)</b></h2>
-            </div>
-            <div class="row box-c" style="height: auto;box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);">
-                <!-- khu vuc tìm kiếm -->
-                <div class="slider-loaisp" style="display: inline-block;">
-                    <a routerLink="./" [queryParams]="{ma:item.maTuDien}" mat-stroked-button *ngFor="let item of dsHangSX" color="accent" style="margin: 3px;" (click)="LocTheoHang(item.maTuDien)">{{item.maTuDien}}</a>
-                    <a mat-stroked-button color="accent" style="margin: 3px;" [routerLink]="'./'" (click)="LocTheoHang('')">Tất cả</a>
-
-                </div>
-
-            </div>
-            <div class="row">
-                <div class="box-view" style="padding: 7px;">
-                    <div class="top-view mr-2 hover-b" *ngFor="let item of dsSanPham">
-                        <div class="product-img mt-3"  style="cursor: pointer;" (click)="GoToDetail(item)">
-                            <img [src]="url + item.imageUrl" alt="">
-
-                        </div>
-                        <div class="product-cart">
-                            <span class="ml-5"> <button mat-raised-button color="primary"><span class="material-icons">
-                                        add_circle_outline
-                                    </span>Giỏ hàng</button></span>
-                            <span> <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
-                                    <mat-icon>favorite</mat-icon>
-                                </button></span>
-                        </div>
-                        <hr>
-                        <div class="product-name">
-                            <h3 style="color: green;font-size: 17px;">{{item.ten}} {{item.dungLuong}}</h3>
-                        </div>
-                        <div class="product-rate">This is rate</div>
-                        <button mat-stroked-button color="accent" style="font-size: 25px;outline: none;">{{item.giaMacDinh
-                            |tiente}} đ</button>
-                    </div>
-                    <div class="text-center mt-2">
-                        <button mat-raised-button color="primary" style="outline: none;">Xem
-                            thêm</button>
-
-                    </div>
-                </div>
-            </div>
+      </div>
+      <!-- end menu tim kiem -->
+      <!-- Menu timf kieems -->
+      <div class="col menu-search">
+        <div class="list-group" style="font-size: 14px;width: 90%;">
+          <a type="button" class="list-group-item list-group-item-action active">
+            Ram
+          </a>
+          <a type="button" class="list-group-item list-group-item-action">Dưới 3GB</a>
+          <a type="button" class="list-group-item list-group-item-action">4GB - 6GB</a>
+          <a type="button" class="list-group-item list-group-item-action">6GB - 8GB</a>
+          <a type="button" class="list-group-item list-group-item-action">Trên 8GB</a>
         </div>
+      </div>
+      <!-- end menu tim kiem -->
+      <!-- Menu timf kieems -->
+      <div class="col menu-search">
+        <div class="list-group" style="font-size: 14px;width: 90%;">
+          <a type="button" class="list-group-item list-group-item-action active">
+            Ổ cứng
+          </a>
+          <a type="button" class="list-group-item list-group-item-action">16GB - 32GB</a>
+          <a type="button" class="list-group-item list-group-item-action">32GB - 66GB</a>
+          <a type="button" class="list-group-item list-group-item-action">64GB - 128GB</a>
+          <a type="button" class="list-group-item list-group-item-action">128GB - 265GB</a>
+          <a type="button" class="list-group-item list-group-item-action">Trên 265GB</a>
+
+        </div>
+      </div>
+      <!-- end menu tim kiem -->
+      <!-- Menu timf kieems -->
+      <div class="col menu-search">
+        <div class="list-group" style="font-size: 14px;width: 90%;">
+          <a type="button" class="list-group-item list-group-item-action active">
+            Phân khúc
+          </a>
+          <a type="button" class="list-group-item list-group-item-action">Phổ thông</a>
+          <a type="button" class="list-group-item list-group-item-action">Trung cấp</a>
+          <a type="button" class="list-group-item list-group-item-action">Cao cấp</a>
+          <a type="button" class="list-group-item list-group-item-action">Gaming</a>
+        </div>
+      </div>
+      <!-- end menu tim kiem -->
+
     </div>
+    <!-- righjt -->
+    <div class="col-10 box-c">
+      <!-- dòm tìm kiếm -->
+      <div class="row">
+        <h2><b> Sản phẩm ( {{total}} sản phẩm)</b></h2>
+      </div>
+      <div class="row box-c"
+        style="height: auto;box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);">
+        <!-- khu vuc tìm kiếm -->
+        <div class="slider-loaisp" style="display: inline-block;">
+          <a routerLink="./" [queryParams]="{ma:item.maTuDien}" mat-stroked-button *ngFor="let item of dsHangSX"
+            color="accent" style="margin: 3px;" (click)="LocTheoHang(item.maTuDien)">{{item.maTuDien}}</a>
+          <a mat-stroked-button color="accent" style="margin: 3px;" [routerLink]="'./'" (click)="LocTheoHang('')">Tất
+            cả</a>
+
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="box-view" style="padding: 7px;">
+          <div class="top-view mr-2 hover-b" *ngFor="let item of dsSanPham">
+            <div class="product-img mt-3" style="cursor: pointer;" (click)="GoToDetail(item)">
+              <img [src]="url + item.imageUrl" alt="">
+
+            </div>
+            <div class="product-cart">
+              <span class="ml-5"> <button mat-raised-button color="primary"><span class="material-icons">
+                    add_circle_outline
+                  </span>Giỏ hàng</button></span>
+              <span> <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
+                  <mat-icon>favorite</mat-icon>
+                </button></span>
+            </div>
+            <hr>
+            <div class="product-name">
+              <h3><a class="ten-sp" [routerLink]="'../chitiet'" [queryParams]="{id:item.id}">{{item.ten}}</a></h3>
+            </div>
+            <span class="gia-sp">{{item.giaMacDinh
+              |tiente}} ₫</span>
+            <div class="cauhinh" style="padding: 10px;">
+              <span title="CPU"><i style="font-size: medium;cursor: help;" class="fa fa-microchip"
+                  aria-hidden="true"></i>{{item.cpu}} </span><br>
+              <span class="ml-2" title="Màn hình"><i style="font-size: medium;cursor: help;" class="fa fa-tablet"
+                  aria-hidden="true"></i> {{item.manHinh}}" &nbsp;</span>
+              <span title="RAM"><i class="fa fa-cogs" style="font-size: medium;cursor: help;"
+                  aria-hidden="true"></i>{{item.ram | getIndex}} &nbsp;</span>
+              <span title="Bộ nhớ"><i class="fa fa-hourglass" style="font-size: medium;margin-left: 4px;cursor: help;"
+                  aria-hidden="true"></i> {{item.dungLuong | getIndex}}
+              </span>
+
+            </div>
+          </div>
+          <div class="text-center mt-2">
+            <button mat-raised-button color="primary" style="outline: none;">Xem
+              thêm</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

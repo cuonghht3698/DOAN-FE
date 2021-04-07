@@ -51,6 +51,8 @@ export class DanhmucComponent implements OnInit {
   getPage() {
     this.sp.showPageDanhMuc(this.sSearch).subscribe((res: any) => {
       this.dsSanPham = res.list;
+      console.log(res);
+
       this.total = res.total;
     });
   }

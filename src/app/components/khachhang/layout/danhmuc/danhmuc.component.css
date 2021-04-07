@@ -89,14 +89,14 @@
 }
 .box-view {
     width: 100%;
-    height: auto;
+    height: 100%;
     background-color: #eeeeee;
 
 }
 .top-view {
     display: inline-block;
     width: 24%;
-    height: 400px;
+    height: 420px;
     margin-top: 10px;
     border-radius: 10px;
     background-color: white;
