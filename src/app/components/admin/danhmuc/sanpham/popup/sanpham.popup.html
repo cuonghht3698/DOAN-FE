@@ -1,7 +1,7 @@
 <h2>THÊM/ SỬA / XÓA</h2>
 <form autocomplete="off">
   <div class="row">
-    <div class="col-9">
+    <div class="col-9" style="overflow: auto;height: 600px;">
       <mat-form-field *ngIf="false">
         <mat-label>GUID</mat-label>
         <input matInput [(ngModel)]="dataSP.Id" name="id">
@@ -14,10 +14,15 @@
         <mat-label>Giá mặc định</mat-label>
         <input matInput type="number" [(ngModel)]="dataSP.GiaMacDinh" name="gia">
       </mat-form-field>
-      <mat-form-field>
+      <!-- <mat-form-field>
         <mat-label>Mô tả</mat-label>
         <textarea matInput [(ngModel)]="dataSP.MoTa" name="MoTa" rows="4"></textarea>
-      </mat-form-field>
+      </mat-form-field> -->
+      <div style="width: 700px;margin: auto;">
+        <ckeditor [(ngModel)]="dataSP.MoTa" [editor]="Editor" [config]="config" style="width: 90%;margin: auto;">
+        </ckeditor>
+      </div>
+
       <mat-form-field>
         <mat-label>Loại thiết bị</mat-label>
         <mat-select [(value)]="dataSP.LoaiSPId" >
@@ -61,11 +66,11 @@
         </mat-autocomplete>
       </mat-form-field>
     </div>
-    <div class="col-3 mother-box" (click)="file.click()" style="cursor: pointer;">
+    <div class="col-3" (click)="file.click()" style="cursor: pointer;">
       <h1>Click vào ảnh để chỉnh sửa</h1>
       <input type="file" (change)="uploadFile($event)" name="file" id="image" #file style="display: none;"
         accept="image/x-png,image/gif,image/jpeg">
-      <img [src]="imageUrl" alt="" style="height: 400px;width: 350px;background-size: cover;"
+      <img [src]="imageUrl" class="" alt="" style="height: 400px;width: 350px;background-size: cover;"
         accept="image/x-png,image/gif,image/jpeg">
       <p>{{ InfoImage.Ten }}</p>
 

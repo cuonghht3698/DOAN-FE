@@ -12,6 +12,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class SubStringPipe implements PipeTransform {
   transform(value: string, number?: number): string {
     let num = number ? number : 150;
-    return value.substring(0, num) + '...';
+    return value.substring(0, num);
   }
 }

@@ -49,14 +49,13 @@ export class DashboardComponent implements OnInit {
     },
   ];
   @HostListener('window:scroll', ['$event']) onScrollEvent(){
-    console.log(window.scrollY);
     if (window.scrollY > 130) {
       this.showScrollTop = true;
     }
     else{
       this.showScrollTop = false;
     }
-  } 
+  }
   ScrollTop(){
     window.scrollTo(0,0);
   }
@@ -66,7 +65,7 @@ export class DashboardComponent implements OnInit {
     }
     else{
       this.dataMenu = JSON.parse(localStorage.getItem("menu"));
-      
+
     };
     var fullHeight = function () {
       $('.js-fullheight').css('height', $(window).height());

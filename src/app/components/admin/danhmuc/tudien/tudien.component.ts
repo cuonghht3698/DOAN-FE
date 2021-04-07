@@ -48,17 +48,22 @@ export class TudienComponent implements OnInit {
   // DATA SEARCH
   search = {
     sSearch: '',
-    LoaiTuDienId : GuidId.EmptyId,
+    LoaiTuDienId : "",
     pageIndex: 1,
     pageSize: 10,
   };
-  check = true;
+  check = false;
   ngOnInit(): void {
     this.router.queryParams.subscribe((res)=>{
-      if (res) {
+      if (res.Id) {
         this.search.LoaiTuDienId = res.Id;
+        this.check = true;
+      }
+      else{
+        this.search.LoaiTuDienId = "";
         this.check = false;
       }
+
     });
 
 

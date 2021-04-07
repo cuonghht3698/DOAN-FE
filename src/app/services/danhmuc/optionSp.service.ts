@@ -11,8 +11,14 @@ export class optionservice {
   Create(data) {
     return this.http.post(this.baseUri, data);
   }
-  GetOptionByHang(ma) {
-    return this.http.get(this.baseUri + 'GetOptionByHang/' + ma);
+  GetOptionByHang(data) {
+    return this.http.get(this.baseUri + 'GetOptionByHang', {
+      params: {
+        MaHang: data.MaHang,
+        PageIndex: data.PageIndex,
+        PageSize: data.PageSize,
+      },
+    });
   }
   GetOptionByIdSp(Id) {
     return this.http.get(this.baseUri + 'GetOptionByIdSp/' + Id);
@@ -32,10 +38,10 @@ export class optionservice {
     return this.http.get(this.baseUri + 'FindByLoai?id=' + id);
   }
 
-  TruSoLuong(data){
+  TruSoLuong(data) {
     return this.http.post(this.baseUri + 'TruSoLuong', data);
   }
-  CongSoLuong(data){
+  CongSoLuong(data) {
     return this.http.post(this.baseUri + 'CongSoLuong', data);
   }
 }

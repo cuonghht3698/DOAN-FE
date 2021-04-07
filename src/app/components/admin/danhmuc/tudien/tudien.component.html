@@ -3,7 +3,7 @@
     <h1>Danh mục từ điển </h1>
     <button mat-raised-button color="primary" style="height: 40px; margin-left: 40px;" (click)="openDialog(null)">Thêm
       mới</button>
-      <a mat-raised-button color="warn" style="height: 40px; margin-left: 10px;" [routerLink]="'../loaitudien'">Trở về</a>
+      <a mat-raised-button color="warn" *ngIf="check" style="height: 40px; margin-left: 10px;" [routerLink]="'../loaitudien'">Trở về</a>
     <!-- zone search -->
     <div>
       <mat-form-field style="width: 200px;margin-left: 100px;">
@@ -14,10 +14,10 @@
         <input autocomplete="off" matInput [(ngModel)]="search.sSearch" (change)="getPage()">
       </mat-form-field>
 
-      <mat-form-field style="margin-left: 30px;" *ngIf="check">
+      <mat-form-field style="margin-left: 30px;" *ngIf="!check">
         <mat-label>Loại từ điển</mat-label>
         <mat-select [(value)]="search.LoaiTuDienId" (selectionChange)="getPage()">
-          <mat-option style="text-align: center;" value="00000000-0000-0000-0000-000000000000">-- All --</mat-option>
+          <mat-option style="text-align: center;" value="">-- All --</mat-option>
           <ng-container *ngFor="let item of dsLoaiTuDien">
             <mat-option value="{{item.id}}">{{ item.ten }}</mat-option>
           </ng-container>

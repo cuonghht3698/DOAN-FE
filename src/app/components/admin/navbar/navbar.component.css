@@ -2,7 +2,7 @@
   height: 63px;
   position: sticky;
   top: 0;
-  z-index: 10000000;
+  z-index: 10;
 }
 .userProfile {
 padding: 3px 20px;

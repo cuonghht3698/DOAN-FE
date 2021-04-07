@@ -137,12 +137,12 @@ export class DetailComponent implements OnInit {
       console.log(res);
       if (res) {
         this.DataBlog = res;
-        
+
       }else{
-        this.DataBlog.noiDung = "<h1>Hiện tại chưa có bài viết nào về sản phẩm này!</h1>";  
+        this.DataBlog.noiDung = "<h1>Hiện tại chưa có bài viết nào về sản phẩm này!</h1>";
 
       }
-      
+
     });
   }
 

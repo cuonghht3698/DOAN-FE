@@ -1,3 +1,58 @@
+.ten-sp{
+  font-size: 17px;
+  font-weight: 700;
+  line-height: normal;
+  color: #474c51;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 10;
+  display: block;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  word-break: break-word;
+  text-decoration: none;
+
+}
+.cauhinh{
+  width: 95%;
+  text-align: center;
+  margin: auto;
+  background: #f8f9fa;
+  padding: 9px 10px 0;
+  border-radius: 6px;
+  position: relative;
+}
+.gia-sp{
+  margin-left: 16px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #cb1c22;
+    line-height: normal;
+}
+.product-cart {
+  display: none;
+
+}
+.product:hover .product-cart{
+  display: block;
+  transition: all 1s;
+}
+.ten-sp:hover{
+  color: rgb(65, 65, 238);
+}
+.product:hover{
+  border: 2pt solid rgb(197, 193, 193);
+  border-radius: 6px              ;
+}
+.product img:hover{
+  transform: scale(1.1);
+  transition: all 1s !important;
+}
+
 .product-name {
   margin-left: 15px;
 }
@@ -15,16 +70,12 @@
   display: flex;
 }
 .product {
-  border: white 2px solid;
-  cursor: pointer;
+  border: white 2pt solid;
 }
 .hover-b:hover {
     box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
 }
 
-.hover-b:hover .product-img img {
-  transform: scale(1.1);
-}
 
 .container1 {
   padding: 100px;
@@ -63,6 +114,7 @@
     width: 180px;
     height: 200px;
     margin-left: 35px;
+
 }
 
 .top-view .product-cart {
@@ -361,24 +413,24 @@ button{
 
 .top-selling .mid {
   position: relative;
-  height: 450px;
+  height: 530px;
   background-color: #f5f5f5;
-  overflow: hidden;
-  width: auto;
+
+  /* overflow: hidden;
+  width: auto; */
 }
 
 .top-selling .mid .product {
-  width: 25%;
-  max-width: 270px;
+  /* width: 25%;
+  max-width: 270px; */
 }
 
 
 /* show product */
 
 .product {
-  width: 24%;
-  min-width: 250px;
-  height: 450px;
+  width: 25%;
+  height: 500px;
   margin: auto;
   border-radius: 10px;
   background-color: white;
@@ -390,9 +442,10 @@ button{
 }
 
 .product .product-img img {
-  width: 200px;
+  vertical-align: middle;
+  width: 80%;
   height: 220px;
-  margin-left: 35px;
+  margin-top: 10px;
 }
 
 .product .product-cart {

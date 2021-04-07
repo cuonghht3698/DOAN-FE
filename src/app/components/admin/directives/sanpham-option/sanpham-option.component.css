@@ -66,3 +66,12 @@ button {
 mat-form-field{
   margin-left: 10px;
 }
+
+.content{
+  width: 800px !important;
+  margin: auto;
+}
+.content img{
+  max-width: 600px;
+  margin: auto;
+}

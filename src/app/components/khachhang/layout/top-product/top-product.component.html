@@ -9,42 +9,40 @@
         </strong>
       </div>
       <div class="menu-product" style="text-align: center;font-size: 12px;">
-        <span *ngFor="let item of dsMenu" (click)="getSanPham(item.maTuDien)">{{item.ten}}</span>
+        <span *ngFor="let item of dsMenu" (click)="ChonHang(item.maTuDien)">{{item.ten}}</span>
 
       </div>
-      <div class="angle-repon" style="text-align: right;">
-        <button class="btn btn-outline-primary prev" (click)="move = move + 100"><i
-            class="fa fa-angle-left"></i></button>
-        <button class="btn btn-outline-primary next" (click)="move = move - 100"><i
-            class="fa fa-angle-right"></i></button>
-      </div>
-
     </div>
     <div class="mid">
-      <div class="product-mid" [ngStyle]="{'left.px': move}">
-        <div class="product mr-2 hover-b" *ngFor="let item of dsTopDienThoai">
-          <div class="product-img" (click)="GoToDetail(item)" style="cursor: pointer;">
+      <div class="product-mid" >
+        <div class="product" *ngFor="let item of dsTopDienThoai" style="position: relative">
+          <div class="product-img" (click)="GoToDetail(item)" style="cursor: pointer;text-align: center;">
             <img [src]="url + item.imageUrl" alt="">
           </div>
-          <div class="hang" style="position: absolute;top:0;"><button type="button"
-              class="btn btn-secondary">{{item.hang}}</button></div>
-
           <hr>
-          <div class="product-name" (click)="GoToDetail(item)" style="cursor: pointer;">
-            <h3 style="color: green;font-size: 17px;">{{item.ten}} {{item.dungLuong}}</h3>
+          <div class="product-name" (click)="GoToDetail(item)">
+            <h3><a class="ten-sp" [routerLink]="'../chitiet'" [queryParams]="{id:item.id}">{{item.ten}}</a></h3>
           </div>
-          <div class="product-rate">This is rate</div>
-          <button mat-stroked-button color="accent" style="font-size: 25px;outline: none;">{{item.gia
-            |tiente}} đ</button>
-            <div class="mt-1 product-cart" style="margin-left: 100px;">
-              <span class="ml-5"> <button mat-mini-fab color="primary" (click)="AddToCart(item)"><span
-                    class="material-icons">
-                    add_shopping_cart
-                  </span></button></span>
-              <span> <button mat-mini-fab color="warn">
-                  <mat-icon>favorite</mat-icon>
-                </button></span>
-            </div>
+          <span class="gia-sp">{{item.gia
+            |tiente}}  ₫</span>
+          <div class="cauhinh" style="padding: 15px;">
+
+
+            <span title="CPU"><i style="font-size: medium;cursor: help;" class="fa fa-microchip" aria-hidden="true"></i>{{item.cpu}} </span><br><br>
+            <span class="ml-2" title="Màn hình"><i style="font-size: medium;cursor: help;" class="fa fa-tablet" aria-hidden="true"></i> {{item.manHinh}}" &nbsp;</span>
+            <span title="RAM"><i class="fa fa-cogs" style="font-size: medium;cursor: help;" aria-hidden="true"></i>{{item.ram | getIndex}} &nbsp;</span>
+            <span title="Bộ nhớ"><i class="fa fa-hourglass" style="font-size: medium;margin-left: 4px;cursor: help;" aria-hidden="true"></i> {{item.dungLuong | getIndex}}
+            </span>
+
+          </div>
+
+          <div class="mt-1 product-cart" style="position: absolute;bottom: 20px;left: 40px;">
+            <span class="ml-5"> <button mat-raised-button color="warn" (click)="AddToCart(item)">Mua ngay</button></span>
+            <span>
+               <button mat-icon-button style="margin-left: 70px;" color="accent">
+                <mat-icon>favorite</mat-icon>
+              </button></span>
+          </div>
         </div>
 
       </div>

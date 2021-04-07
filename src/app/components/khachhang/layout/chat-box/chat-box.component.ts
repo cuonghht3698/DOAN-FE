@@ -32,7 +32,16 @@ export class ChatBoxComponent implements OnInit {
       }, 3000);
     }
   }
+
+  Enter(event){
+    if (event == 13) {
+      this.Sent();
+    }
+  }
   Sent() {
+    if (this.NoiDung == '') {
+      return;
+    }
     var data:TraLoiModel = {
       Id : GuidId.EmptyId,
       Active:true,

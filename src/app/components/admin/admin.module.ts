@@ -57,7 +57,9 @@ import { NgMaterialMultilevelMenuModule, MultilevelMenuService } from 'ng-materi
     RouterModule.forChild(routes),
     FormsModule,
     ReactiveFormsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      positionClass:'toast-bottom-right'
+    }),
     NgxPaginationModule,
     Ng2SearchPipeModule,
     MaterialModule,
@@ -66,7 +68,7 @@ import { NgMaterialMultilevelMenuModule, MultilevelMenuService } from 'ng-materi
     SharedModule,
     CKEditorModule,
     NgMaterialMultilevelMenuModule,
-    
+
   ],
   exports: [],
   declarations: [

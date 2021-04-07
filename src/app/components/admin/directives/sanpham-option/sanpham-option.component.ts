@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { BlogService } from 'src/app/services/danhmuc/blog.service';
 import { optionservice } from 'src/app/services/danhmuc/optionSp.service';
 import { SanPhamService } from 'src/app/services/danhmuc/sanpham.service';
 import { GuidId } from 'src/app/services/ERole';
@@ -54,7 +55,8 @@ export class SanphamOptionComponent implements OnInit {
     private sp: SanPhamService,
     private op: optionservice,
     private toastr: ToastrService,
-    private av:ActivatedRoute
+    private av:ActivatedRoute,
+    private blog:BlogService
   ) {}
 
   @Input() demo: any;
@@ -62,8 +64,9 @@ export class SanphamOptionComponent implements OnInit {
   ngOnInit(): void {
     if (!this.viewNhap) {
      this.av.queryParams.subscribe((res)=>{
-      this.getById(res.id)
-      })
+      this.getById(res.id);
+      this.GetBlog(res.id);
+      });
 
     }
 
@@ -82,8 +85,23 @@ export class SanphamOptionComponent implements OnInit {
         )
       );
     });
+  };
+  DataBlog:any = {
+    noiDung:''
   }
+  GetBlog(Id){
+    this.blog.getByIdSanPham(Id).subscribe((res:any)=>{
+      console.log(res);
+      if (res) {
+        this.DataBlog = res;
 
+      }else{
+        this.DataBlog.noiDung = "<h1>Hiện tại chưa có bài viết nào về sản phẩm này!</h1>";
+
+      }
+
+    });
+  }
   // get option by Id
   getOptionSp(id: any) {
     this.sp.GetOptionById(id).subscribe((res) => {
@@ -107,6 +125,7 @@ export class SanphamOptionComponent implements OnInit {
   }
   ChoseSp(item) {
     this.getOptionSp(item.id);
+    this.GetBlog(item.id);
     this.dataThemSp = {
       Id: item.id,
       ImageUrl: item.imageUrl,

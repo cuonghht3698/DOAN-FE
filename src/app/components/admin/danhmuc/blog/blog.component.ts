@@ -10,6 +10,7 @@ import { BlogService } from 'src/app/services/danhmuc/blog.service';
 import { SanPhamService } from 'src/app/services/danhmuc/sanpham.service';
 import { environment } from 'src/environments/environment';
 import * as _ from "lodash";
+import { CKEditor5 } from '@ckeditor/ckeditor5-angular';
 @Component({
   selector: 'app-blog',
   templateUrl: './blog.component.html',
@@ -29,8 +30,8 @@ export class BlogComponent implements OnInit {
 
     })
   }
-  
-  config = {
+
+  config:CKEditor5.Config = {
     toolbar: [
       'undo',
       'redo',
@@ -67,7 +68,7 @@ export class BlogComponent implements OnInit {
       toolbar: [
         'imageTextAlternative',
         'imageStyle:full',
-        'imageStyle:side'
+        'imageStyle:side',
       ]
     },
   }
@@ -117,7 +118,7 @@ export class BlogComponent implements OnInit {
         IdSanPham: res.idSanPham,
       }
     });
-    
+
   }
   CreateOrUpdate() {
     if (this.dataBlog.Id) {

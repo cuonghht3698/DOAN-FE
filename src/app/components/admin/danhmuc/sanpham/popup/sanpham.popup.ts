@@ -12,7 +12,8 @@ import { SanPhamService } from 'src/app/services/danhmuc/sanpham.service';
 import { TudienService } from 'src/app/services/danhmuc/tudien.service';
 import { GuidId } from 'src/app/services/ERole';
 import { environment } from 'src/environments/environment';
-
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { CKEditor5 } from '@ckeditor/ckeditor5-angular';
 @Component({
   selector: 'sanpham-pop',
   templateUrl: './sanpham.popup.html',
@@ -21,6 +22,7 @@ export class PopupSanPham implements OnInit {
   stateCtrl = new FormControl();
   filteredStates: Observable<any>;
   baseUrl = environment.ApiUrl + 'anh/get/';
+  public Editor = ClassicEditor;
   constructor(
     private dialog: MatDialogRef<PopupSanPham>,
     @Inject(MAT_DIALOG_DATA) public data,
@@ -46,6 +48,38 @@ export class PopupSanPham implements OnInit {
     //   flag: 'https://upload.wikimedia.org/wikipedia/commons/9/9d/Flag_of_Arkansas.svg'
     // }
   ];
+  config: CKEditor5.Config = {
+    toolbar: [
+      'undo',
+      'redo',
+      '|',
+      'heading',
+      'fontFamily',
+      'fontSize',
+      '|',
+      'bold',
+      'italic',
+      'underline',
+      'fontColor',
+      'fontBackgroundColor',
+      'highlight',
+      '|',
+      'alignment',
+      'bulletedList',
+      'numberedList',
+      '|',
+      'indent',
+      'outdent',
+      '|',
+      'insertTable',
+      'blockQuote',
+      'specialCharacters',
+    ],
+    language: 'vi',
+    image: {
+      toolbar: ['imageTextAlternative', 'imageStyle:full', 'imageStyle:side'],
+    },
+  };
   IdNull = GuidId.EmptyId;
   dsLoaiSp;
   dataSP: SanPhamModel = {
@@ -90,7 +124,7 @@ export class PopupSanPham implements OnInit {
         NguoiNhapId: item.nguoiNhapId,
         NhaCungCapId: item.nhaCungCapId,
         Ten: item.ten,
-        HangSXId:item.hangSxid,
+        HangSXId: item.hangSxid,
         TenNgan: item.tenNgan,
         ThoiGianDong: item.thoiGianDong,
         ThoiGianTao: item.thoiGianTao,
@@ -167,9 +201,7 @@ export class PopupSanPham implements OnInit {
   }
   UploadAnh() {
     if (this.SelectAnh != null) {
-      this.anh.PostAnh(this.SelectAnh).subscribe((res) => {
-
-      });
+      this.anh.PostAnh(this.SelectAnh).subscribe((res) => {});
     }
   }
   InfoImage = {
@@ -182,8 +214,6 @@ export class PopupSanPham implements OnInit {
   };
   getAnh(id) {
     this.anh.GetImageForId(id).subscribe((res: any) => {
-
-
       this.imageUrl = environment.ApiUrl + 'anh/get/' + res[0].ten;
     });
   }
@@ -196,14 +226,11 @@ export class PopupSanPham implements OnInit {
   getNhaCungCap() {
     this.ncc.GetAll().subscribe((res: any) => {
       this.dsNhaCungCap = res;
-
     });
   }
 
   getLoaiSP(id) {
     this.cauhinh.FindByLoai(id).subscribe((res: any) => {
-
-
       this.dsCauHinh = res;
       this.states = [];
       res.forEach((element) => {
@@ -215,21 +242,17 @@ export class PopupSanPham implements OnInit {
           state ? this._filterStates(state) : this.states.slice()
         )
       );
-
     });
   }
   CauHinhChosse() {
     if (this.stateCtrl.value) {
       var code = this.stateCtrl.value;
       this.cauhinh.getByCode(code).subscribe((res: any) => {
-
-
         this.dataSP.CauHinhId = res[0].id;
       });
     }
   }
   CreateOrUpdate() {
-
     //get id cau hinh
 
     if (!this.data) {
@@ -241,7 +264,6 @@ export class PopupSanPham implements OnInit {
           this.toastr.success('Thêm thành công !', 'Thông báo');
         },
         (err) => {
-
           this.toastr.error('Thao tác thất bại!', 'Thông báo');
         }
       );
@@ -254,7 +276,6 @@ export class PopupSanPham implements OnInit {
           this.UploadAnh();
         },
         (err) => {
-
           this.toastr.error('Thao tác thất bại!', 'Thông báo');
         }
       );

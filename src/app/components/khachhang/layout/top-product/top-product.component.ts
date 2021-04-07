@@ -18,7 +18,7 @@ export class TopProductComponent implements OnInit {
     private sp: SanPhamService,
     private tudien: TudienService,
     private option: optionservice,
-    private router:Router
+    private router: Router
   ) {}
   dsMenu: any;
   dsTopDienThoai = [];
@@ -36,18 +36,29 @@ export class TopProductComponent implements OnInit {
     pageSize: 8,
     OrderByAsc: false,
   };
-  getSanPham(Hang) {
-    this.option.GetOptionByHang(Hang).subscribe((res: any) => {
-      if (res.length < 4) {
-        res.forEach((element) => {
-          this.dsTopDienThoai.unshift(element);
-        });
-      } else {
-        this.dsTopDienThoai = res;
-      }
+  searchOp = {
+    MaHang: '',
+    PageIndex: 1,
+    PageSize: 4,
+  };
+  getSanPham() {
+    this.option.GetOptionByHang(this.searchOp).subscribe((res: any) => {
+      this.dsTopDienThoai = res;
+      console.log(res);
+
     });
   }
+  Next(){
+    this.searchOp.PageIndex +=1;
+  }
+  Prev(){
+    this.searchOp.PageIndex -=1;
 
+  }
+  ChonHang(hang){
+    this.searchOp.MaHang = hang;
+    this.getSanPham();
+  }
   ViewMore() {
     if (this.search.pageSize < 32) {
       this.search.pageSize += 4;
@@ -62,15 +73,13 @@ export class TopProductComponent implements OnInit {
   getHangSX() {
     this.tudien.getByLoai(MaTuDien.HangSanXuat).subscribe((res: any) => {
       this.dsMenu = res;
-
-      this.getSanPham(res[0].maTuDien);
+      this.searchOp.MaHang = res[0].maTuDien;
+      this.getSanPham();
     });
   }
 
-  GoToDetail(item){
-    this.router.navigate(['shop/chitiet/'],{queryParams: {id: item.id}} );
+  GoToDetail(item) {
+    this.router.navigate(['shop/chitiet/'], { queryParams: { id: item.id } });
   }
-  AddToCart(item){
-
-  }
+  AddToCart(item) {}
 }

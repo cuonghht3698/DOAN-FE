@@ -40,7 +40,7 @@
       <h1>Kho</h1>
       <div *ngFor="let item of dsOption" class="choseoption">
         <span>
-          <span style="color: indigo;font-size: 16px;">Ram: {{item.ram}} - Dung lượng : {{item.rom}}</span> 
+          <span style="color: indigo;font-size: 16px;">Ram: {{item.ram}} - Dung lượng : {{item.rom}}</span>
           <p style="color: rgb(190, 10, 10);"> Số lượng : {{item.soLuong}}  -  Đơn giá : {{item.gia}} đồng</p>
           <button mat-mini-fab (click)="ChoseOption(item)" style="position: absolute;right: 20px;top: 20%;"><span
               class="material-icons">dns</span></button>
@@ -99,7 +99,6 @@
         option</button>
     </div>
 
-    <pre>{{dataOptionThem|json}}</pre>
     <!-- Màu -->
     <!-- <div class="col-6 mother-box left" style="padding: 30px;">
       <h1>Nhánh màu</h1>
@@ -129,4 +128,7 @@
     </div> -->
 
   </div>
+</div>
+<div class="content" [innerHTML]="DataBlog.noiDung">
+
 </div>
