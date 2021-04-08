@@ -1,75 +1,63 @@
-<div class="mt-3">
-  <h1>Tồn kho</h1>
+<h1>Quản lý kho</h1>
+<div class="mother-box">
   <div class="row">
+    <div class="col-1"><button mat-raised-button color="primary" (click)="OpenDiaLog(null)">Thêm mới</button></div>
+    <div class="col-1">
+      <button mat-raised-button (click)="GetTonKho()">Tìm kiếm</button>
+    </div>
     <div class="col-3">
-      <!-- zone search -->
-      <div>
-        <mat-form-field style="width: 100%;">
-          <mat-label>Tìm kiếm</mat-label>
-          <span matSuffix><span class="material-icons">
-              search
-            </span></span>
-          <input matInput  name="sea">
-        </mat-form-field>
-      </div>
-      <!--  -->
-    </div>
-    <!-- <div class="col-2">
-      <mat-form-field appearance="outline" style="width: 100%;">
-        <mat-label>Trạng thái</mat-label>
-        <mat-select [(value)]="Search.TrangThaiId" (valueChange)="getCart()">
-          <ng-container *ngFor="let item of dsTrangThai">
-            <mat-option [value]="item.id">{{item.ten}}</mat-option>
-          </ng-container>
-        </mat-select>
-      </mat-form-field>
-    </div> -->
-    <!-- <div class="col-2">
-      <mat-form-field color="accent" appearance="outline" style="width: 100%;">
-        <mat-label>Ngày từ</mat-label>
-        <input matInput [matDatepicker]="picker1" [(ngModel)]="Search.TuNgay" name="ngaytu" (dateChange)="getCart()">
-        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-        <mat-datepicker #picker1></mat-datepicker>
+      <mat-form-field style="width: 200px;margin-left: 100px;">
+        <mat-label>Tìm kiếm tên, địa chỉ...</mat-label>
+        <span matSuffix><span class="material-icons">
+            search
+          </span></span>
+        <input matInput [(ngModel)]="search.Search" (change)="GetTonKho()">
       </mat-form-field>
     </div>
-    <div class="col-2">
-      <mat-form-field color="accent" appearance="outline" style="width: 100%;">
-        <mat-label>Đến ngày</mat-label>
-        <input matInput [matDatepicker]="picker2" [(ngModel)]="Search.DenNgay" name="ngayden" (dateChange)="getCart()">
-        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-        <mat-datepicker #picker2></mat-datepicker>
-      </mat-form-field>
-    </div>
-  </div> -->
-  <!-- <div class="alert alert-success">
-    Các đơn hàng trong {{demNgay == 1?'trong ngày hôm nay!': demNgay + ' ngày trước!'}}
-  </div> -->
-  <table class="table">
+  </div>
+  <br>
+  <table class="table table-hover">
     <thead>
       <tr>
         <th scope="col">STT</th>
-        <th scope="col">Tên sản phẩm</th>
-        <th scope="col">Số lượng trong kho</th>
-        <th scope="col">Kho</th>
-        <th>Xem</th>
+        <th scope="col">Tên</th>
+        <th scope="col">Số lượng tồn</th>
+        <th>Kho</th>
+        <th>Hành động</th>
+
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of dataSource; index as index">
-        <th scope="row">{{index + 1}}</th>
-        <td>{{item.thoiGianTao | date:'dd/MM/yyyy'}}</td>
-        <td>{{item.tinNhan| substr: 30}}</td>
-        <td>{{item.diaChi}}</td>
-        <td>{{item.sdt}}</td>
-        <td><a mat-raised-button [routerLink]="['../chitietdonhang/']" [queryParams]="{ id: item.id}">Xem</a></td>
+      <tr *ngFor="let item of dsKho">
+        <th scope="row">{{ item.stt}}</th>
+        <td>{{ item.ten}}</td>
+        <td>{{ item.slTon }}</td>
+        <td>{{ item.kho }}</td>
+
+        <td>
+          <button mat-mini-fab color="primary" (click)="OpenDiaLog(item)"><span class="material-icons">
+              create
+            </span></button>
+          <button mat-mini-fab color="warn" title="Xóa" [matMenuTriggerFor]="menu"><span
+              class="material-icons">delete</span></button>
+          <mat-menu #menu="matMenu">
+            <!-- <button mat-button (click)="DeleteById(item.id)">
+                            Xác nhận
+                          </button> -->
+          </mat-menu>
+        </td>
       </tr>
     </tbody>
   </table>
-  <div>
-    <mat-paginator [length]="total" [pageSize]="Search.PageSize" [pageIndex]="Search.PageIndex"
-      [pageSizeOptions]="[5, 10, 25, 100]" (page)="getPaginate($event)">
-    </mat-paginator>
+  <div class="row mt-4">
+    <div class="col-lg-2">
+      <h3>Page: {{ search.PageIndex + 1}}</h3>
+    </div>
+    <div class="col-lg-10">
+      <mat-paginator [length]="total" [pageIndex]="search.PageIndex" [pageSize]="search.PageSize"
+        [pageSizeOptions]="[5, 10, 20, 50,100]" (page)="getPaginate($event)" showFirstLastButtons>
+      </mat-paginator>
+    </div>
+
   </div>
 </div>
-
-

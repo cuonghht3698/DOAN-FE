@@ -1,24 +1,37 @@
 import { Component, OnInit } from '@angular/core';
+import { KhoService } from 'src/app/services/danhmuc/kho.service';
 
 @Component({
   selector: 'app-tonkho',
   templateUrl: './tonkho.component.html',
-  styleUrls: ['./tonkho.component.css']
+  styleUrls: ['./tonkho.component.css'],
 })
 export class TonkhoComponent implements OnInit {
+  constructor(private kho: KhoService) {}
 
-  constructor() { }
-  dataSource:any;
-  total = 0;
-  Search = {
-    sSearch: '',
+  ngOnInit(): void {
+    this.GetTonKho();
+  }
+  search = {
+    Search: '',
     PageIndex: 0,
     PageSize: 10,
+    IdKho: '',
   };
-  ngOnInit(): void {
+  total = 0;
+  dsKho: any;
+  GetTonKho() {
+    this.kho.GetTonKho(this.search).subscribe((res: any) => {
+      this.dsKho = res.list;
+      this.total = res.total;
+      console.log(res);
+    });
   }
+  OpenDiaLog(item) {}
+
   getPaginate(event) {
-    this.Search.PageIndex = event.pageIndex;
-    this.Search.PageSize = event.pageSize;
+    this.search.PageIndex = event.pageIndex;
+    this.search.PageSize = event.pageSize;
+    this.GetTonKho();
   }
 }

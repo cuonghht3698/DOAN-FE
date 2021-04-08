@@ -24,3 +24,8 @@ export enum DateInView {
   DDMMYYYY = 'DD-MM-YYYY',
   FULLDate = 'DD-MM-YYYY hh:mm',
 }
+
+
+export enum TenThuTuc {
+  Bao_Cao_Ton_Kho = 'bao_bao_ton_kho'  // @PageIndex int	,@PageSize int,	@Search nvarchar(50),	@IdKho guid
+}

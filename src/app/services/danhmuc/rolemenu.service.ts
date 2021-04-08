@@ -27,9 +27,9 @@ export class RoleMenuService {
       params: { Id: Id, UuTien: UuTien },
     });
   }
-  Delete(id, IdRole) {
+  Delete(id, menuId, IdRole) {
     return this.http.delete(environment.ApiUrl + 'rolemenu', {
-      params: { Id: id, IdRole: IdRole },
+      params: { Id: id,MenuId:menuId, IdRole: IdRole },
     });
   }
 }

@@ -53,6 +53,7 @@ export class RolemenuComponent implements OnInit {
     this.data.RoleId = this.IdRole;
     this.getRoleMenu();
     this.getAllMenu();
+    console.log(this.IdRole);
   }
   config = {
     paddingAtStart: true,
@@ -73,14 +74,11 @@ export class RolemenuComponent implements OnInit {
     // chưa có trong menu
     this.UserRoleMenu.getRoleMenu(this.IdRole).subscribe((res: any) => {
       this.dataRoleMenu = res;
-      console.log(res);
 
       //this.Count = res.length;
     });
   }
   UpdateUuTien(Id, UuTien) {
-    console.log(Id,UuTien);
-
     // chưa có trong menu
     this.UserRoleMenu.UpdateUuTien(Id, UuTien).subscribe((res: any) => {
       //this.getRoleMenu();
@@ -89,7 +87,6 @@ export class RolemenuComponent implements OnInit {
   getAllMenu() {
     this.menu.getThemRole(this.Search).subscribe((res: any) => {
       this.dataMenu = res;
-      console.log(res);
     });
   }
 
@@ -104,16 +101,14 @@ export class RolemenuComponent implements OnInit {
       }
     );
   }
-  XoaRoleMenu(id, IsParent) {
+  XoaRoleMenu(id, menuId, IsParent) {
     if (IsParent) {
       var r = confirm('Xóa mục chính sẽ xóa các mục con? Tiếp tục!');
       if (r == false) {
         return;
       }
     }
-    console.log(id);
-
-    this.UserRoleMenu.Delete(id, this.IdRole).subscribe((res) => {
+    this.UserRoleMenu.Delete(id, menuId, this.IdRole).subscribe((res) => {
       this.toastr.success('Xóa menu thành công', 'Thông báo!');
       this.getRoleMenu();
     });
