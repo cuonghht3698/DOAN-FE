@@ -11,15 +11,15 @@
         <input matInput [(ngModel)]="dataSP.Ten" name="Ten">
       </mat-form-field>
       <mat-form-field>
-        <mat-label>Giá mặc định</mat-label>
+        <mat-label>Giá thị trường</mat-label>
         <input matInput type="number" [(ngModel)]="dataSP.GiaMacDinh" name="gia">
       </mat-form-field>
       <!-- <mat-form-field>
         <mat-label>Mô tả</mat-label>
         <textarea matInput [(ngModel)]="dataSP.MoTa" name="MoTa" rows="4"></textarea>
       </mat-form-field> -->
-      <div style="width: 700px;margin: auto;">
-        <ckeditor [(ngModel)]="dataSP.MoTa" [editor]="Editor" [config]="config" style="width: 90%;margin: auto;">
+      <div>
+        <ckeditor [(ngModel)]="dataSP.MoTa" [editor]="Editor" [config]="config" style="width: 700px;">
         </ckeditor>
       </div>
 

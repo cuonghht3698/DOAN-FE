@@ -22,6 +22,7 @@ import { QuanlyChatComponent } from './danhmuc/quanly-chat/quanly-chat.component
 import { ThongsokythuatComponent } from './danhmuc/thongsokythuat/thongsokythuat.component';
 import { BlogComponent } from './danhmuc/blog/blog.component';
 import { QuanlyblogComponent } from './danhmuc/quanlyblog/quanlyblog.component';
+import { KhoComponent } from './danhmuc/kho/kho.component';
 
 export const routes: Routes = [
   {
@@ -50,6 +51,10 @@ export const routes: Routes = [
       {
         path: 'danhmuc',
         children: [
+          {
+            path:'kho',
+            component:KhoComponent
+          },
           {
             path: 'loaitudien',
             component: LoaitudienComponent,

@@ -51,6 +51,7 @@ import { BlogComponent } from './danhmuc/blog/blog.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { QuanlyblogComponent } from './danhmuc/quanlyblog/quanlyblog.component';
 import { NgMaterialMultilevelMenuModule, MultilevelMenuService } from 'ng-material-multilevel-menu';
+import { KhoComponent } from './danhmuc/kho/kho.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -107,6 +108,7 @@ import { NgMaterialMultilevelMenuModule, MultilevelMenuService } from 'ng-materi
     ThongsokythuatComponent,
     BlogComponent,
     QuanlyblogComponent,
+    KhoComponent,
   ],
   providers: [
     {
