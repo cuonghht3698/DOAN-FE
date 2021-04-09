@@ -104,7 +104,9 @@ export class PoppupCauHinh implements OnInit {
                     this.toastr.success('Thêm thành công !', 'Thông báo');
                 },
                 (err) => {
-                    this.toastr.error('Thao tác thất bại!', 'Thông báo');
+                    this.toastr.error(err.error, 'Thông báo');
+                    console.log(err);
+                    
                 }
             );
         } else {
@@ -113,7 +115,7 @@ export class PoppupCauHinh implements OnInit {
                     this.toastr.success('Cập nhật thành công !', 'Thông báo');
                 },
                 (err) => {
-                    this.toastr.error('Thao tác thất bại!', 'Thông báo');
+                    this.toastr.error(err.error, 'Thông báo');
                 }
             );
         }
