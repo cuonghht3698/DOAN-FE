@@ -24,6 +24,10 @@ export class DanhmucComponent implements OnInit {
     pageSize: 20,
     LoaiSP: '',
     HangSX: '',
+    GiaTu: 0,
+    GiaDen: 0,
+    Ram:'',
+    DungLuong:''
   };
   slides = [
     { image: '/assets/img/h4-slide.png' },
@@ -40,15 +44,38 @@ export class DanhmucComponent implements OnInit {
   url = environment.ApiUrl + 'anh/get/';
   ngOnInit(): void {
     this.router.queryParams.subscribe((res: any) => {
-      this.sSearch.LoaiSP = res.loai;
-      this.sSearch.HangSX = res.hang;
+      this.sSearch.LoaiSP = res.loai || res.LoaiSP;
+      this.sSearch.search = res.search;
+      this.sSearch.GiaTu = res.GiaTu;
+      this.sSearch.GiaDen = res.GiaDen;
+      this.sSearch.DungLuong = res.DungLuong;
+      this.sSearch.Ram = res.Ram;
+      this.sSearch.HangSX = res.HangSX;
+
+      // this.sSearch = res;
     });
     this.getLoaiSP();
     this.getHangSanXuat();
     this.getPage();
   }
-
+  SearchTheoGia(tu, den) {
+    this.sSearch.GiaTu = tu;
+    this.sSearch.GiaDen = den;
+    this.getPage();
+  };
+  SeachTheoRam(ram){
+    this.sSearch.Ram = ram;
+    this.getPage();
+  }
+  SearchTheoDungLuong(dungluong){
+    this.sSearch.DungLuong = dungluong;
+    this.getPage();
+  }
   getPage() {
+    this.route.navigate([], {
+      queryParams: this.sSearch,
+      queryParamsHandling: 'merge',
+    });
     this.sp.showPageDanhMuc(this.sSearch).subscribe((res: any) => {
       this.dsSanPham = res.list;
       console.log(res);
@@ -56,15 +83,41 @@ export class DanhmucComponent implements OnInit {
       this.total = res.total;
     });
   }
+  BoLoc(loai){
+    if (loai == 'ram') {
+      this.sSearch.Ram = '';
+    }
+    if (loai == 'dungluong') {
+      this.sSearch.DungLuong = '';
+    }
+    if (loai == 'gia') {
+      this.sSearch.GiaTu = 0;
+      this.sSearch.GiaDen = 0;
+
+    }
+    if (loai == 'tatca') {
+      this.sSearch = {
+        search: '',
+        pageIndex: 0,
+        pageSize: 20,
+        LoaiSP: '',
+        HangSX: '',
+        GiaTu: 0,
+        GiaDen: 0,
+        Ram:'',
+        DungLuong:''
+      };
+    }
+
+    this.getPage();
+  }
+
   LocTheoHang(ma) {
-    this.route.navigate([], {
-      queryParams: { hang: ma },
-      queryParamsHandling: 'merge',
-    });
+
     this.sSearch.HangSX = ma;
     this.getPage();
   }
-  LocLoaiSP(loai){
+  LocLoaiSP(loai) {
     this.route.navigate([], {
       queryParams: { loai: loai },
       queryParamsHandling: 'merge',
@@ -75,13 +128,11 @@ export class DanhmucComponent implements OnInit {
   getHangSanXuat() {
     this.td.getByLoai(MaTuDien.HangSanXuat).subscribe((res: any) => {
       this.dsHangSX = res;
-
     });
   }
   getLoaiSP() {
     this.td.getByLoai(MaTuDien.LoaiSanPham).subscribe((res: any) => {
       this.dsLoaiSP = res;
-
     });
   }
   GoToDetail(item) {

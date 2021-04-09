@@ -14,7 +14,9 @@ export class KhoService {
   GetPage(data) {
     return this.http.get(this.baseApi + 'GetPage', { params: data  });
   }
-
+  GetAllKho() {
+    return this.http.get(this.baseApi + 'GetAllKho');
+  }
   Create(data) {
     data.Id = GuidId.EmptyId;
     return this.http.post(this.baseApi, data);

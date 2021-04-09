@@ -1,3 +1,5 @@
+
+<pre>{{sSearch|json}}</pre>
 <div class="container" style="padding: 0;margin-top: 30px;">
   <mat-carousel timings="250ms ease-in" [autoplay]="true" interval="4000" color="accent" maxWidth="auto" proportion="25"
     slides="15" [loop]="true" [hideArrows]="false" [hideIndicators]="false" [useKeyboard]="true" [useMouseWheel]="false"
@@ -27,11 +29,17 @@
           <a type="button" class="list-group-item list-group-item-action active">
             KHOẢNG GIÁ
           </a>
-          <a type="button" class="list-group-item list-group-item-action">Dưới 10 triệu</a>
-          <a type="button" class="list-group-item list-group-item-action">10 triệu - 15 triệu</a>
-          <a type="button" class="list-group-item list-group-item-action">15 triệu - 20 triệu</a>
-          <a type="button" class="list-group-item list-group-item-action">25 triệu 30 triệu</a>
-          <a type="button" class="list-group-item list-group-item-action">Trên 30 triệu</a>
+          <a type="button" class="list-group-item list-group-item-action" (click)="SearchTheoGia(0,0)">Tất cả</a>
+          <a type="button" class="list-group-item list-group-item-action" (click)="SearchTheoGia(0,10000000)">Dưới 10
+            triệu</a>
+          <a type="button" class="list-group-item list-group-item-action" (click)="SearchTheoGia(10000000,15000000)">10
+            triệu - 15 triệu</a>
+          <a type="button" class="list-group-item list-group-item-action" (click)="SearchTheoGia(15000000,20000000)">15
+            triệu - 20 triệu</a>
+          <a type="button" class="list-group-item list-group-item-action" (click)="SearchTheoGia(25000000,30000000)">25
+            triệu 30 triệu</a>
+          <a type="button" class="list-group-item list-group-item-action"
+            (click)="SearchTheoGia(30000000,200000000)">Trên 30 triệu</a>
 
         </div>
       </div>
@@ -39,27 +47,37 @@
       <!-- Menu timf kieems -->
       <div class="col menu-search">
         <div class="list-group" style="font-size: 14px;width: 90%;">
-          <a type="button" class="list-group-item list-group-item-action active">
+          <a type="button" class="list-group-item list-group-item-action active" (click)="SeachTheoRam('')">
             Ram
           </a>
-          <a type="button" class="list-group-item list-group-item-action">Dưới 3GB</a>
-          <a type="button" class="list-group-item list-group-item-action">4GB - 6GB</a>
-          <a type="button" class="list-group-item list-group-item-action">6GB - 8GB</a>
-          <a type="button" class="list-group-item list-group-item-action">Trên 8GB</a>
+          <a type="button" class="list-group-item list-group-item-action" (click)="SeachTheoRam('3GB')">Ram 3GB</a>
+          <a type="button" class="list-group-item list-group-item-action" (click)="SeachTheoRam('4GB')">Ram 4GB</a>
+          <a type="button" class="list-group-item list-group-item-action" (click)="SeachTheoRam('6GB')">Ram 6GB</a>
+          <a type="button" class="list-group-item list-group-item-action" (click)="SeachTheoRam('8GB')">Ram 8GB</a>
+          <a type="button" class="list-group-item list-group-item-action" (click)="SeachTheoRam('12GB')">Ram 12GB</a>
+          <a type="button" class="list-group-item list-group-item-action" (click)="SeachTheoRam('16GB')">Ram 16GB</a>
         </div>
       </div>
       <!-- end menu tim kiem -->
       <!-- Menu timf kieems -->
       <div class="col menu-search">
         <div class="list-group" style="font-size: 14px;width: 90%;">
-          <a type="button" class="list-group-item list-group-item-action active">
+          <a type="button" class="list-group-item list-group-item-action active" (click)="SearchTheoDungLuong('')">
             Ổ cứng
           </a>
-          <a type="button" class="list-group-item list-group-item-action">16GB - 32GB</a>
-          <a type="button" class="list-group-item list-group-item-action">32GB - 66GB</a>
-          <a type="button" class="list-group-item list-group-item-action">64GB - 128GB</a>
-          <a type="button" class="list-group-item list-group-item-action">128GB - 265GB</a>
-          <a type="button" class="list-group-item list-group-item-action">Trên 265GB</a>
+          <a type="button" class="list-group-item list-group-item-action" (click)="SearchTheoDungLuong('3GB')">32GB</a>
+          <a type="button" class="list-group-item list-group-item-action" (click)="SearchTheoDungLuong('64GB')">64GB</a>
+          <a type="button" class="list-group-item list-group-item-action"
+            (click)="SearchTheoDungLuong('128GB')">128GB</a>
+          <a type="button" class="list-group-item list-group-item-action"
+            (click)="SearchTheoDungLuong('265GB')">265GB</a>
+          <a type="button" class="list-group-item list-group-item-action"
+            (click)="SearchTheoDungLuong('265GB')">265GB</a>
+          <a type="button" class="list-group-item list-group-item-action"
+            (click)="SearchTheoDungLuong('512GB')">512GB</a>
+          <a type="button" class="list-group-item list-group-item-action" (click)="SearchTheoDungLuong('1TB')">1TB</a>
+
+
 
         </div>
       </div>
@@ -80,10 +98,22 @@
 
     </div>
     <!-- righjt -->
-    <div class="col-10 box-c">
+    <div class="col-10">
       <!-- dòm tìm kiếm -->
       <div class="row">
         <h2><b> Sản phẩm ( {{total}} sản phẩm)</b></h2>
+          <div class="col-2" *ngIf="sSearch.Ram != ''">
+            <button mat-icon-button style="color: red;" (click)="BoLoc('ram')" ><span class="material-icons" > cancel</span>Bỏ lọc ram</button>
+          </div>
+          <div class="col-2" *ngIf="sSearch.GiaTu != 0 && sSearch.GiaDen != 0">
+            <button mat-icon-button style="color: red;" (click)="BoLoc('gia')"><span class="material-icons" > cancel</span>Bỏ lọc giá</button>
+          </div>
+          <div class="col-2" *ngIf="sSearch.DungLuong != ''">
+            <button mat-icon-button style="color: red;" (click)="BoLoc('dungluong')"><span class="material-icons" > cancel</span>Bỏ lọc dung lượng</button>
+          </div>
+          <div class="col-2" *ngIf="sSearch.Ram != '' || sSearch.GiaTu != 0 && sSearch.GiaDen != 0 || sSearch.DungLuong != ''">
+            <button mat-icon-button style="color: red;" (click)="BoLoc('tatca')"><span class="material-icons" > cancel</span>Bỏ lọc tất cả</button>
+          </div>
       </div>
       <div class="row box-c"
         style="height: auto;box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);">
@@ -118,18 +148,25 @@
             </div>
             <span class="gia-sp">{{item.giaMacDinh
               |tiente}} ₫</span>
-            <div class="cauhinh" style="padding: 10px;">
-              <span title="CPU"><i style="font-size: medium;cursor: help;" class="fa fa-microchip"
+
+
+            <div class="cauhinh" style="padding: 5px;">
+              <span title="CPU"><i style="font-size: small;cursor: help;" class="fa fa-microchip"
                   aria-hidden="true"></i>{{item.cpu}} </span><br>
-              <span class="ml-2" title="Màn hình"><i style="font-size: medium;cursor: help;" class="fa fa-tablet"
+              <span class="ml-2" title="Màn hình"><i style="font-size: small;cursor: help;" class="fa fa-tablet"
                   aria-hidden="true"></i> {{item.manHinh}}" &nbsp;</span>
-              <span title="RAM"><i class="fa fa-cogs" style="font-size: medium;cursor: help;"
+              <span title="RAM"><i class="fa fa-cogs" style="font-size: small;cursor: help;"
                   aria-hidden="true"></i>{{item.ram | getIndex}} &nbsp;</span>
-              <span title="Bộ nhớ"><i class="fa fa-hourglass" style="font-size: medium;margin-left: 4px;cursor: help;"
+              <span title="Bộ nhớ"><i class="fa fa-hourglass" style="font-size: small;margin-left: 4px;cursor: help;"
                   aria-hidden="true"></i> {{item.dungLuong | getIndex}}
               </span>
 
             </div>
+
+            <button type="button" class="btn btn-light" style="position: absolute;bottom: 10px;right: 10px;">
+              Lượt xem <span class="badge badge-light">9</span>
+              <span class="sr-only">unread messages</span>
+            </button>
           </div>
           <div class="text-center mt-2">
             <button mat-raised-button color="primary" style="outline: none;">Xem

@@ -68,6 +68,8 @@ export class TopProductComponent implements OnInit {
   getSPNhieuView() {
     this.option.GetPage(this.search).subscribe((res: any) => {
       this.dsTopDienThoaiNhieuView = res;
+      console.log(res);
+
     });
   }
   getHangSX() {

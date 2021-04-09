@@ -14,6 +14,18 @@
         <input matInput [(ngModel)]="search.Search" (change)="GetTonKho()">
       </mat-form-field>
     </div>
+
+    <div class="col-3">
+      <mat-form-field appearance="fill">
+        <mat-label>Tìm kho</mat-label>
+        <mat-select [(ngModel)]="search.IdKho" (ngModelChange)="GetTonKho()">
+          <mat-option value="">Tìm theo kho</mat-option>
+          <mat-option *ngFor="let item of dsSearchKho" [value]="item.id">
+            {{item.ten}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
   </div>
   <br>
   <table class="table table-hover">
@@ -23,29 +35,14 @@
         <th scope="col">Tên</th>
         <th scope="col">Số lượng tồn</th>
         <th>Kho</th>
-        <th>Hành động</th>
-
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let item of dsKho">
         <th scope="row">{{ item.stt}}</th>
         <td>{{ item.ten}}</td>
-        <td>{{ item.slTon }}</td>
+        <td>{{ item.tonKho }}</td>
         <td>{{ item.kho }}</td>
-
-        <td>
-          <button mat-mini-fab color="primary" (click)="OpenDiaLog(item)"><span class="material-icons">
-              create
-            </span></button>
-          <button mat-mini-fab color="warn" title="Xóa" [matMenuTriggerFor]="menu"><span
-              class="material-icons">delete</span></button>
-          <mat-menu #menu="matMenu">
-            <!-- <button mat-button (click)="DeleteById(item.id)">
-                            Xác nhận
-                          </button> -->
-          </mat-menu>
-        </td>
       </tr>
     </tbody>
   </table>

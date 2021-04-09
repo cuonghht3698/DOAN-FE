@@ -52,6 +52,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { QuanlyblogComponent } from './danhmuc/quanlyblog/quanlyblog.component';
 import { NgMaterialMultilevelMenuModule, MultilevelMenuService } from 'ng-material-multilevel-menu';
 import { KhoComponent } from './danhmuc/kho/kho.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -116,7 +117,7 @@ import { KhoComponent } from './danhmuc/kho/kho.component';
       useValue: { appearance: 'outline' },
 
     },
-    MultilevelMenuService
+    MultilevelMenuService,
   ],
   bootstrap: [DashboardComponent],
 })

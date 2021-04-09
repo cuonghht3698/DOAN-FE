@@ -14,6 +14,7 @@ import { GuidId } from 'src/app/services/ERole';
 import { environment } from 'src/environments/environment';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CKEditor5 } from '@ckeditor/ckeditor5-angular';
+import { KhoService } from 'src/app/services/danhmuc/kho.service';
 @Component({
   selector: 'sanpham-pop',
   templateUrl: './sanpham.popup.html',
@@ -31,7 +32,8 @@ export class PopupSanPham implements OnInit {
     private tudien: TudienService,
     private cauhinh: CauHinhService,
     private ncc: NhaCungCapService,
-    private anh: AnhService
+    private anh: AnhService,
+    private kho:KhoService
   ) {}
   private _filterStates(value: string) {
     const filterValue = value.toLowerCase();
@@ -109,6 +111,7 @@ export class PopupSanPham implements OnInit {
   dsNhaCungCap;
   dsHangSX;
   ngOnInit() {
+    this.getAllDMKho();
     this.getNhaCungCap();
     this.getLoaiSanPham();
     this.getDSHangSX();
@@ -145,6 +148,12 @@ export class PopupSanPham implements OnInit {
       }
       this.imageUrl = this.baseUrl + item.imageUrl;
     }
+  }
+  dsKho:any;
+  getAllDMKho() {
+    this.kho.GetAllKho().subscribe((res) => {
+      this.dsKho = res;
+    });
   }
 
   SelectItem(item) {
