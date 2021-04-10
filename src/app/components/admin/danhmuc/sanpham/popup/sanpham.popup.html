@@ -10,16 +10,25 @@
         <mat-label>Tên</mat-label>
         <input matInput [(ngModel)]="dataSP.Ten" name="Ten">
       </mat-form-field>
-      <mat-form-field>
-        <mat-label>Giá thị trường</mat-label>
-        <input matInput type="number" [(ngModel)]="dataSP.GiaMacDinh" name="gia">
-      </mat-form-field>
+      <div class="row">
+        <div class="col-4">
+          <mat-form-field>
+            <mat-label>Giá thị trường</mat-label>
+            <input matInput type="number" [(ngModel)]="dataSP.GiaMacDinh" name="gia">
+          </mat-form-field>
+        </div>
+        <div class="col-8">
+          <div class="alert alert-success" role="alert">
+            {{dataSP.GiaMacDinh|doctien}}
+          </div>
+        </div>
+      </div>
       <!-- <mat-form-field>
         <mat-label>Mô tả</mat-label>
         <textarea matInput [(ngModel)]="dataSP.MoTa" name="MoTa" rows="4"></textarea>
       </mat-form-field> -->
       <div>
-        <ckeditor [(ngModel)]="dataSP.MoTa" [editor]="Editor" [config]="config" style="width: 700px;">
+        <ckeditor [(ngModel)]="dataSP.MoTa" [editor]="Editor" name="mota" [config]="config" style="width: 700px;">
         </ckeditor>
       </div>
       <br>
@@ -98,8 +107,6 @@
     <button mat-raised-button class="float-right" color="warn" (click)="ClosePopup()">Huy</button>
   </div>
 </form>
-
-
 
 <style>
   mat-form-field {

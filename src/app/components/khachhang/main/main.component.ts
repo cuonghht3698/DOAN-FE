@@ -22,8 +22,8 @@ export class MainComponent implements OnInit {
     this.showChat = false;
   }
   data = {
-    Username: 'noname',
-    Password: 'noname',
+    Username: 'khachhang',
+    Password: 'khachhang',
   };
   DangNhap() {
     if (this.data.Username == '' || this.data.Password == '') {
@@ -37,7 +37,7 @@ export class MainComponent implements OnInit {
         });
       },
       (err) => {
-       
+
       }
     );
   }

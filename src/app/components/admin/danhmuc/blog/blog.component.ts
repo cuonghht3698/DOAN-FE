@@ -9,7 +9,7 @@ import { map, startWith } from 'rxjs/operators';
 import { BlogService } from 'src/app/services/danhmuc/blog.service';
 import { SanPhamService } from 'src/app/services/danhmuc/sanpham.service';
 import { environment } from 'src/environments/environment';
-import * as _ from "lodash";
+import * as _ from 'lodash';
 import { CKEditor5 } from '@ckeditor/ckeditor5-angular';
 @Component({
   selector: 'app-blog',
@@ -17,9 +17,14 @@ import { CKEditor5 } from '@ckeditor/ckeditor5-angular';
   styleUrls: ['./blog.component.css'],
 })
 export class BlogComponent implements OnInit {
-  constructor(private sp: SanPhamService, private blog: BlogService, private toarst: ToastrService, private route: ActivatedRoute) { }
+  constructor(
+    private sp: SanPhamService,
+    private blog: BlogService,
+    private toarst: ToastrService,
+    private route: ActivatedRoute
+  ) {}
   public Editor = ClassicEditor;
-  check= false;
+  check = false;
   ngOnInit(): void {
     this.getProduct();
     this.route.queryParams.subscribe((res) => {
@@ -27,11 +32,10 @@ export class BlogComponent implements OnInit {
         this.check = true;
         this.GetById(res.id);
       }
-
-    })
+    });
   }
 
-  config:CKEditor5.Config = {
+  config: CKEditor5.Config = {
     toolbar: [
       'undo',
       'redo',
@@ -61,17 +65,13 @@ export class BlogComponent implements OnInit {
       '|',
       'insertTable',
       'blockQuote',
-      'specialCharacters'
+      'specialCharacters',
     ],
     language: 'vi',
     image: {
-      toolbar: [
-        'imageTextAlternative',
-        'imageStyle:full',
-        'imageStyle:side',
-      ]
+      toolbar: ['imageTextAlternative', 'imageStyle:full', 'imageStyle:side'],
     },
-  }
+  };
   dsSanPham: any;
   dataBlog = {
     Id: null,
@@ -80,7 +80,7 @@ export class BlogComponent implements OnInit {
     Link: '',
     Active: true,
     IdSanPham: null,
-  }
+  };
   baseUrl = environment.ApiUrl + 'anh/get/';
   states = [];
   search = '';
@@ -102,13 +102,12 @@ export class BlogComponent implements OnInit {
     return this.states.filter(
       (state) => state.ten.toLowerCase().indexOf(filterValue) === 0
     );
-  };
+  }
   ChoseSp(item) {
     this.dataBlog.IdSanPham = item.id;
-
   }
   GetById(Id) {
-    this.blog.getById(Id).subscribe((res:any) => {
+    this.blog.getById(Id).subscribe((res: any) => {
       this.dataBlog = {
         Id: res.id,
         TieuDe: res.tieuDe,
@@ -116,22 +115,30 @@ export class BlogComponent implements OnInit {
         Link: res.link,
         Active: res.active,
         IdSanPham: res.idSanPham,
-      }
-    });
+      };
 
+    });
+  }
+
+  replaceAll(string, search, replace) {
+    return string.split(search).join(replace);
   }
   CreateOrUpdate() {
+    this.dataBlog.NoiDung = this.replaceAll(
+      this.dataBlog.NoiDung,
+      '<img ',
+      '<img style="width:100%" '
+    );
     if (this.dataBlog.Id) {
       // update
       this.blog.Update(this.dataBlog).subscribe((res) => {
-        this.toarst.success("Thao tác thành công","Thông báo");
-      })
-    }
-    else {
+        this.toarst.success('Thao tác thành công', 'Thông báo');
+      });
+    } else {
       // create
       this.blog.Create(this.dataBlog).subscribe((res) => {
-        this.toarst.success("Thao tác thành công","Thông báo");
-      })
+        this.toarst.success('Thao tác thành công', 'Thông báo');
+      });
     }
   }
 }

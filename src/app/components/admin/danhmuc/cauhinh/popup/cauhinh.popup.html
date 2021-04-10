@@ -1,100 +1,104 @@
 <span style="font-size: 30px;"> CRUD Cấu hình</span>
 <form class="example-form">
-    <mat-form-field style="width: 300px;position: absolute;" *ngIf="dataCH.LoaiCauHinhId && checkDsCh">
-      <input type="text"
-             placeholder="Cấu hỉnh mẫu"
-             aria-label="Number"
-             matInput
-             [matAutocomplete]="auto">
-      <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let d of dsCauHinh" [value]="d.mota" (click)="SelectItem(d)"
-         title="{{ 'Màn hình: ' + d.manHinh + ' CPU: ' + d.cpu  + ' Pin: ' + d.pin + ' Ram: ' +d.ram + ' Dung lượng: ' + d.dungluong + ' Ngày SX: ' +(d.ngaysx | date) + ' TGBH: ' + d.thoiGianBaoHanh}}">
-          {{d.mota}}
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
-  </form>
+  <mat-form-field style="width: 300px;position: absolute;" *ngIf="dataCH.LoaiCauHinhId && checkDsCh">
+    <input type="text" placeholder="Cấu hỉnh mẫu" aria-label="Number" matInput [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let d of dsCauHinh" [value]="d.mota" (click)="SelectItem(d)"
+        title="{{ 'Màn hình: ' + d.manHinh + ' CPU: ' + d.cpu  + ' Pin: ' + d.pin + ' Ram: ' +d.ram + ' Dung lượng: ' + d.dungluong + ' Ngày SX: ' +(d.ngaysx | date) + ' TGBH: ' + d.thoiGianBaoHanh}}">
+        {{d.mota}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
 <br>
 
 <mat-form-field style="width: 44%;">
-    <mat-label>Loại cấu hình</mat-label>
-    <mat-select [(value)]="dataCH.LoaiCauHinhId" required (selectionChange)="getDsCauHinhMau($event)">  
-        <ng-container *ngFor="let item of dsLoaiCauHinh">
-            <mat-option value="{{item.id}}">{{ item.ten }}</mat-option>
-        </ng-container>
-    </mat-select>
+  <mat-label>Loại cấu hình</mat-label>
+  <mat-select [(value)]="dataCH.LoaiCauHinhId" required (selectionChange)="getDsCauHinhMau($event)">
+    <ng-container *ngFor="let item of dsLoaiCauHinh">
+      <mat-option value="{{item.id}}">{{ item.ten }}</mat-option>
+    </ng-container>
+  </mat-select>
 </mat-form-field>
 
 
 <form autocomplete="off">
-    <div class="row">
-        <div class="col-6">
-            <mat-form-field>
-                <mat-label>Tên</mat-label>
-                <input matInput [(ngModel)]="dataCH.Ten" name="ten">
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Code</mat-label>
-                <input matInput [(ngModel)]="dataCH.Code" name="code">
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Màn Hình</mat-label>
-                <input matInput [(ngModel)]="dataCH.ManHinh" name="manhinh">
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>CPU</mat-label>
-                <input matInput [(ngModel)]="dataCH.CPU" name="mat">
-            </mat-form-field>
+  <div class="row">
+    <div class="col-6">
+      <mat-form-field>
+        <mat-label>Tên</mat-label>
+        <input matInput [(ngModel)]="dataCH.Ten" name="ten">
+      </mat-form-field>
 
-            <mat-form-field>
-                <mat-label>PIN</mat-label>
-                <input matInput [(ngModel)]="dataCH.PIN" name="pin">
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Ram</mat-label>
-                <input matInput [(ngModel)]="dataCH.RAM" name="ram">
-            </mat-form-field>
+      <div class="row">
+
+        <div class="col-6">
+          <mat-form-field style="width: 100%;">
+            <mat-label>Code</mat-label>
+            <input matInput [(ngModel)]="dataCH.Code" name="code">
+          </mat-form-field>
         </div>
         <div class="col-6">
-
-            <mat-form-field appearance="fill">
-                <mat-label>Choose a date</mat-label>
-                <input matInput [matDatepicker]="picker" [(ngModel)]="dataCH.NGAYSX" name="date">
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-              </mat-form-field>
-            
-            <mat-form-field>
-                <mat-label>TGBH</mat-label>
-                <input matInput [(ngModel)]="dataCH.ThoiGianBaoHanh" name="tgbh">
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Dung lượng</mat-label>
-                <input matInput [(ngModel)]="dataCH.DungLuong" name="dungluong">
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Mô tả</mat-label>
-                <input matInput [(ngModel)]="dataCH.MoTa" name="mota">
-            </mat-form-field>
-            <br>
-            <button mat-raised-button color="primary" (click)="CreateOrUpdate()"
-                *ngIf="dataCH.Id == IdNull">Thêm</button>
-            <button mat-raised-button color="primary" (click)="CreateOrUpdate()"
-                *ngIf="dataCH.Id != IdNull">Sửa</button>
-            <button mat-raised-button color="warn" (click)="Clear()" class="ml-3">Xóa</button>
-            <button mat-raised-button class="float-right mr-4" color="warn" (click)="ClosePopup()">Huy</button>
+          <button mat-raised-button (click)="dataCH.Code =  generate_string()">Mã mới</button>
         </div>
+
+      </div>
+      <mat-form-field>
+        <mat-label>Màn Hình</mat-label>
+        <input matInput [(ngModel)]="dataCH.ManHinh" name="manhinh">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>CPU</mat-label>
+        <input matInput [(ngModel)]="dataCH.CPU" name="mat">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>PIN</mat-label>
+        <input matInput [(ngModel)]="dataCH.PIN" name="pin">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Ram</mat-label>
+        <input matInput [(ngModel)]="dataCH.RAM" name="ram">
+      </mat-form-field>
     </div>
+    <div class="col-6">
+
+      <mat-form-field appearance="fill">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="dataCH.NGAYSX" name="date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>TGBH</mat-label>
+        <input matInput [(ngModel)]="dataCH.ThoiGianBaoHanh" name="tgbh">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Dung lượng</mat-label>
+        <input matInput [(ngModel)]="dataCH.DungLuong" name="dungluong">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Mô tả</mat-label>
+        <input matInput [(ngModel)]="dataCH.MoTa" name="mota">
+      </mat-form-field>
+      <br>
+      <button mat-raised-button color="primary" (click)="CreateOrUpdate()" *ngIf="dataCH.Id == IdNull">Thêm</button>
+      <button mat-raised-button color="primary" (click)="CreateOrUpdate()" *ngIf="dataCH.Id != IdNull">Sửa</button>
+      <button mat-raised-button color="warn" (click)="Clear()" class="ml-3">Xóa</button>
+      <button mat-raised-button class="float-right mr-4" color="warn" (click)="ClosePopup()">Huy</button>
+    </div>
+  </div>
 
 </form>
 {{dataCH | json}}
 <style>
-    form {
-        text-align: center;
-    }
+  form {
+    text-align: center;
+  }
 
-    mat-form-field {
-        margin: auto 20px;
-        width: 90%;
-    }
+  mat-form-field {
+    margin: auto 20px;
+    width: 90%;
+  }
 </style>

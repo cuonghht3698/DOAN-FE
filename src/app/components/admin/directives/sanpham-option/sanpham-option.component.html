@@ -27,14 +27,14 @@
     <div class="col-6 showSP">
 
       <h1>
-        <p>{{dataThemSp.Ten}}</p>
+        <p>{{dataThemSp.Ten}} - </p>
       </h1>
 
 
       <p>Cpu : {{dataThemSp.Cpu}} - Pin : {{dataThemSp.Pin}}</p>
       <p>Kích thước màn hình: {{dataThemSp.ManHinh}} - Dung lượng RAM : <span style="color: red;">{{dataThemSp.Ram}} </span> - Bộ nhớ trong
         <span style="color: red;"> {{dataThemSp.Rom}}</span></p>
-        <h5 style="text-align: justify;">{{dataThemSp.MoTa}}</h5>
+        <div [innerHTML]="dataThemSp.MoTa"></div>
     </div>
     <div class="col-4" style="overflow-y: auto;height: 100%;">
       <h1>Kho</h1>
@@ -85,12 +85,15 @@
         <mat-label>Giá</mat-label>
         <input matInput type="number" [(ngModel)]="dataOptionThem.Gia" name="id">
       </mat-form-field>
+
       <button mat-mini-fab (click)="HuyThemOption()">
         <mat-icon><span class="material-icons">
             highlight_off
           </span></mat-icon>
       </button>
-
+      <div class="alert alert-success" style="margin: auto;width: 60%;" role="alert" *ngIf="dataOptionThem.Gia != 0 && dataOptionThem.Gia">
+        {{dataOptionThem.Gia | doctien}}
+      </div>
 
       <br>
       <button mat-raised-button color="primary" *ngIf="dataOptionThem.Id != empty" (click)="SuaOption()">Sửa option</button>

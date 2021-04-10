@@ -124,6 +124,8 @@ export class SanphamOptionComponent implements OnInit {
     );
   }
   ChoseSp(item) {
+    console.log(item);
+
     this.getOptionSp(item.id);
     this.GetBlog(item.id);
     this.dataThemSp = {

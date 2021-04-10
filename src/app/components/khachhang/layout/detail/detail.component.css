@@ -3,7 +3,9 @@ body{
     background:#eee;
 }
 
-
+img{
+  width: 100% !important;
+}
 
 
 .product-content {

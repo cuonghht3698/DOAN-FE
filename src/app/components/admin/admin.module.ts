@@ -52,6 +52,8 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { QuanlyblogComponent } from './danhmuc/quanlyblog/quanlyblog.component';
 import { NgMaterialMultilevelMenuModule, MultilevelMenuService } from 'ng-material-multilevel-menu';
 import { KhoComponent } from './danhmuc/kho/kho.component';
+import { BaocaoTonghopComponent } from './baocao/baocao-tonghop/baocao-tonghop.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   imports: [
@@ -70,7 +72,7 @@ import { KhoComponent } from './danhmuc/kho/kho.component';
     SharedModule,
     CKEditorModule,
     NgMaterialMultilevelMenuModule,
-
+    ChartsModule
   ],
   exports: [],
   declarations: [
@@ -110,6 +112,7 @@ import { KhoComponent } from './danhmuc/kho/kho.component';
     BlogComponent,
     QuanlyblogComponent,
     KhoComponent,
+    BaocaoTonghopComponent,
   ],
   providers: [
     {

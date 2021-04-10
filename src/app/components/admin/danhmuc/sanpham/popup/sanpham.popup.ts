@@ -104,6 +104,7 @@ export class PopupSanPham implements OnInit {
     Active: true,
     ImageUrl: '',
     GiaMacDinh: 0,
+    ThongSoKyThuat: "",
   };
   dsLoaiCauHinh;
   dsCauHinh;
@@ -137,8 +138,9 @@ export class PopupSanPham implements OnInit {
         Active: item.active,
         ImageUrl: item.imageUrl,
         GiaMacDinh: item.giaMacDinh,
+        ThongSoKyThuat: item.thongSoKyThuat,
       };
-
+      this.InfoImage.Ten = item.imageUrl;
       //this.getAnh(item.id);
       if (item.hangSxid != null) {
         this.getLoaiSP(item.hangSxid);
@@ -177,6 +179,7 @@ export class PopupSanPham implements OnInit {
       ImageUrl: item.imageUrl,
       GiaMacDinh: item.giaMacDinh,
       HangSXId: item.hangSxid,
+      ThongSoKyThuat:item.thongSoKyThuat
     };
   }
 
@@ -224,6 +227,7 @@ export class PopupSanPham implements OnInit {
   getAnh(id) {
     this.anh.GetImageForId(id).subscribe((res: any) => {
       this.imageUrl = environment.ApiUrl + 'anh/get/' + res[0].ten;
+
     });
   }
   // SaveURLToDB() {
@@ -316,4 +320,5 @@ export interface SanPhamModel {
   ImageUrl: string;
   GiaMacDinh: number;
   HangSXId: string;
+  ThongSoKyThuat: string;
 }

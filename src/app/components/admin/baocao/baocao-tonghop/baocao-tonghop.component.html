@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-6">
+    <h1>Báo cáo doanh thu năm {{ParamsBaoCaoTheoThang.Nam}}</h1>
+    <div style="display: block;">
+      <canvas baseChart
+        [datasets]="barChartData"
+        [labels]="barChartLabels"
+        [options]="barChartOptions"
+        [plugins]="barChartPlugins"
+        [legend]="barChartLegend"
+        [chartType]="barChartType">
+      </canvas>
+    </div>
+
+  </div>
+</div>

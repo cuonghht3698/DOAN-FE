@@ -21,7 +21,7 @@
       <tr>
         <th>STT</th>
         <th scope="col">Tên</th>
-        <th scope="col">Giá()</th>
+        <th scope="col">Giá(NSX)</th>
         <th scope="col">Mô tả</th>
         <th scope="col">Thời gian tạo</th>
         <th scope="col">Trạng Thái</th>
@@ -37,8 +37,8 @@
         <td>{{ item.ten}}</td>
         <td>{{ item.giaMacDinh}}</td>
 
-        <td>{{ item.moTa | substr}}</td>
-        <td>{{ item.thoiGianTao |date }}</td>
+        <td>{{ item.moTa | substr:30}}</td>
+        <td>{{ item.thoiGianTao |date:'dd/MM/yyyy' }}</td>
         <td>
           <section class="float-left ml-3">
             <mat-checkbox [(ngModel)]="item.active" name="active" name>Hoạt động</mat-checkbox>

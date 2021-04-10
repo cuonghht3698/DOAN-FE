@@ -34,7 +34,7 @@ export class HeaderComponent implements OnInit {
       }
       this.GetCount();
     }
-   
+
   }
   logout() {
     localStorage.clear();
@@ -56,8 +56,8 @@ export class HeaderComponent implements OnInit {
   }
 
   data = {
-    Username: 'noname',
-    Password: 'noname',
+    Username: 'khachhang',
+    Password: 'khachhang',
   };
   DangNhap() {
     if (this.data.Username == '' || this.data.Password == '') {
@@ -71,7 +71,7 @@ export class HeaderComponent implements OnInit {
         });
       },
       (err) => {
-       
+
       }
     );
   }

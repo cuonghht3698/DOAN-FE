@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { LoaiGiaoDich, TrangThaiGiaoDich } from 'src/app/services/constrans';
@@ -24,7 +25,8 @@ export class DetailComponent implements OnInit {
     private cartDetail: CartDetailService,
     private toar: ToastrService,
     public upCart:DataService,
-    private blog:BlogService
+    private blog:BlogService,
+    private sanitized: DomSanitizer
   ) {}
   IdSp = GuidId.EmptyId;
   SanPham: any;
@@ -103,6 +105,7 @@ export class DetailComponent implements OnInit {
   getSanPham() {
     this.op.GetOptionByIdSp(this.IdSp).subscribe((res: any) => {
       this.SanPham = res;
+      console.log(res);
 
       if (res[0].thongSoKyThuat) {
         this.dsThongSo = Object.entries(JSON.parse(res[0].thongSoKyThuat))
@@ -128,7 +131,7 @@ export class DetailComponent implements OnInit {
   DatHang(){
 
   }
-
+  noiDung:SafeHtml;
   DataBlog:any = {
     noiDung:''
   }
@@ -136,6 +139,7 @@ export class DetailComponent implements OnInit {
     this.blog.getByIdSanPham(Id).subscribe((res:any)=>{
       console.log(res);
       if (res) {
+        this.noiDung = this.sanitized.bypassSecurityTrustHtml(res.noiDung);
         this.DataBlog = res;
 
       }else{

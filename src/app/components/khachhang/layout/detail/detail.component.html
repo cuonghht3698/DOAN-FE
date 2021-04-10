@@ -74,14 +74,11 @@
       </div>
 
       <div class="mota mt-2">
-        <span style="text-align: justify;">mota</span>
+        <span style="width: 400px;text-align: justify;" [innerHTML]="SanPham[0].moTa"></span>
       </div>
     </div>
     <br>
-    <div>
-      <span>Hàng chính hãng - bảo hành 12 Tháng</span>
-      <span>Giao hàng toàn quốc.</span>
-    </div>
+
   </div>
   <hr>
   <!-- end product -->
@@ -90,7 +87,7 @@
   <div class="zone-blog">
     <div class="row">
       <div class="col-lg-8 col-sm-6 inner">
-        <div [innerHTML]="DataBlog.noiDung" >
+        <div [innerHTML]="noiDung" >
         </div>
 
       </div>
@@ -107,7 +104,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let item of dsThongSo">
-              <td>{{item[0]}}</td>
+              <td><b>{{item[0]}}</b></td>
               <td>{{item[1]}}</td>
             </tr>
           </tbody>
