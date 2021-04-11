@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
+import { CookieService } from 'ngx-cookie-service';
 import { ToastrService } from 'ngx-toastr';
 import { LoaiGiaoDich, TrangThaiGiaoDich } from 'src/app/services/constrans';
 import { CartService } from 'src/app/services/danhmuc/cart.service';
@@ -22,7 +23,8 @@ export class ShoppingCartComponent implements OnInit {
     private toarst: ToastrService,
     private routerA: ActivatedRoute,
     private email: EmailService,
-    public upCart:DataService
+    public upCart:DataService,
+    private cookieService:CookieService
   ) { }
   checkView = false;
   IdParam = '';
@@ -65,7 +67,8 @@ export class ShoppingCartComponent implements OnInit {
     Sdt: JSON.parse(localStorage.getItem('user'))[0].sdt,
     NgayHoanThanh: null,
     Email: '',
-    HoTen: ''
+    HoTen: '',
+    ClientID:''
   };
 
   dataCart: CartModel = {
@@ -81,7 +84,8 @@ export class ShoppingCartComponent implements OnInit {
     Sdt: JSON.parse(localStorage.getItem('user'))[0].sdt,
     NgayHoanThanh: null,
     Email: '',
-    HoTen: ''
+    HoTen: '',
+    ClientID: ''
   };
   TenTrangThai = '';
   getCartId(Id) {
@@ -112,7 +116,8 @@ export class ShoppingCartComponent implements OnInit {
     })
   }
   getCart() {
-    this.ct.CheckCart(this.UserId).subscribe((res: any) => {
+    var ClientId = this.cookieService.get('ClientId');
+    this.ct.CheckCart(this.UserId,ClientId).subscribe((res: any) => {
       // CHECK CO CART NAO K
       if (res[0]?.id) {
         this.dataCart.Id = res[0].id;
@@ -176,7 +181,8 @@ export class ShoppingCartComponent implements OnInit {
     });
   }
   getShoppingCart() {
-    this.ct.ShowShoppingCart(this.UserId).subscribe((res: any) => {
+    var ClientId = this.cookieService.get('ClientId');
+    this.ct.ShowShoppingCart(this.UserId,ClientId).subscribe((res: any) => {
       this.dataCartDetail = res;
       if (res.length > 0) {
         this.check = true;

@@ -1,18 +1,45 @@
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { AuthenticationService } from 'src/app/services/authService/authentication.service';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css']
+  styleUrls: ['./main.component.css'],
 })
 export class MainComponent implements OnInit {
   showChat = true;
-  constructor(private authent: AuthenticationService) { }
-
+  constructor(
+    private authent: AuthenticationService,
+    private cookieService: CookieService
+  ) {}
+  generate_string() {
+    var text = '';
+    var possible =
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    for (var i = 0; i < 12; i++) {
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return text;
+  }
   ngOnInit(): void {
     if (!localStorage.getItem('user')) {
       this.DangNhap();
+      // check da có cokie chưa
+      if (this.cookieService.check('ClientId')) {
+        var ClientId = this.cookieService.get('ClientId');
+        localStorage.setItem('ClientId', ClientId);
+      }
+      else
+      {
+        var l = this.generate_string();
+        this.cookieService.set('ClientId', l);
+        localStorage.setItem('ClientId', l);
+      }
+
+      //this.cookieValue = this.cookieService.get('Test');
+    } else {
+
     }
   }
   HideChat() {
@@ -36,9 +63,7 @@ export class MainComponent implements OnInit {
           localStorage.setItem('user', JSON.stringify(res));
         });
       },
-      (err) => {
-
-      }
+      (err) => {}
     );
   }
 }

@@ -11,8 +11,10 @@ export class CartService {
     return this.http.get(environment.ApiUrl + 'carts/GetCartId/' + Id);
   }
 
-  CheckCart(UserId) {
-    return this.http.get(environment.ApiUrl + 'carts/CheckCart/' + UserId);
+  CheckCart(UserId, ClientId) {
+    return this.http.get(environment.ApiUrl + 'carts/CheckCart', {
+      params: { UserId: UserId, ClientId: ClientId },
+    });
   }
   GetCartByUserId(id) {
     return this.http.get(environment.ApiUrl + 'carts/GetCartByUserId/' + id);
@@ -20,8 +22,10 @@ export class CartService {
   CreateNewCart(data: CartModel) {
     return this.http.post(environment.ApiUrl + 'carts/CreateNewCart', data);
   }
-  ShowShoppingCart(id) {
-    return this.http.get(environment.ApiUrl + 'carts/ShowShoppingCart/' + id);
+  ShowShoppingCart(id, ClientId) {
+    return this.http.get(environment.ApiUrl + 'carts/ShowShoppingCart', {
+      params: { UserId: id, ClientId: ClientId },
+    });
   }
   ShowShoppingCartById(id) {
     return this.http.get(
@@ -40,13 +44,13 @@ export class CartService {
     return this.http.post(environment.ApiUrl + 'carts/getpage', data);
   }
 
-  DatHang(data){
+  DatHang(data) {
     return this.http.post(environment.ApiUrl + 'carts/GiaoHang', data);
   }
-  HuyDon(data){
+  HuyDon(data) {
     return this.http.post(environment.ApiUrl + 'carts/HuyDon', data);
   }
-  HoanThanh(data){
+  HoanThanh(data) {
     return this.http.post(environment.ApiUrl + 'carts/HoanThanh', data);
   }
 }

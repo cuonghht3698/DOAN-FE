@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { ToastrService } from 'ngx-toastr';
 import { LoaiGiaoDich, TrangThaiGiaoDich } from 'src/app/services/constrans';
 import { BlogService } from 'src/app/services/danhmuc/blog.service';
@@ -25,10 +26,11 @@ export class DetailComponent implements OnInit {
     private cart: CartService,
     private cartDetail: CartDetailService,
     private toar: ToastrService,
-    public upCart:DataService,
-    private blog:BlogService,
+    public upCart: DataService,
+    private blog: BlogService,
     private sanitized: DomSanitizer,
-    private sp:SanPhamService
+    private sp: SanPhamService,
+    private cookieService: CookieService
   ) {}
   IdSp = GuidId.EmptyId;
   SanPham: any;
@@ -45,10 +47,11 @@ export class DetailComponent implements OnInit {
     NhanVienId: null,
     DiaChi: '',
     TongTien: 0,
-    NgayHoanThanh:null,
+    NgayHoanThanh: null,
     Sdt: '',
-    Email:'',
-    HoTen:''
+    Email: '',
+    HoTen: '',
+    ClientID: localStorage.getItem('ClientId'),
   };
   DataCartDetail: CartDetailModel = {
     Id: GuidId.EmptyId,
@@ -66,28 +69,31 @@ export class DetailComponent implements OnInit {
   ngOnInit(): void {
     this.router.queryParams.subscribe((res) => {
       this.IdSp = res.id;
-      this.sp.UpdateView(res.id).subscribe((res)=>{});
+      this.sp.UpdateView(res.id).subscribe((res) => {});
       this.GetBlog(res.id);
     });
     this.getSanPham();
     if (JSON.parse(localStorage.getItem('user'))) {
       this.DataCart.UserId = JSON.parse(localStorage.getItem('user'))[0].id;
-      this.DataCart.Sdt = JSON.parse(localStorage.getItem('user'))[0].sdt,
-      this.CheckCart();
+      (this.DataCart.Sdt = JSON.parse(localStorage.getItem('user'))[0].sdt),
+        this.CheckCart();
     }
   }
   // cHECK CART
   // Kieemr tra cart co san sang k trang thai giao dich = dang giao dich
   CheckCart() {
-    this.cart.CheckCart(this.DataCart.UserId).subscribe((res: any) => {
+    var ClientId = this.cookieService.get('ClientId');
+    this.cart.CheckCart(this.DataCart.UserId, ClientId).subscribe((res: any) => {
       // CHECK CO CART NAO K
       if (res[0]?.id) {
+        console.log(res[0]);
+
         this.DataCart.Id = res[0].id;
         this.DataCartDetail.CartId = res[0].id;
       }
       // Tao cart mới
       else {
-        this.cart.CreateNewCart(this.DataCart).subscribe((res:any) => {
+        this.cart.CreateNewCart(this.DataCart).subscribe((res: any) => {
           this.DataCart.Id = res.id;
           this.DataCartDetail.CartId = res.id;
         });
@@ -108,10 +114,9 @@ export class DetailComponent implements OnInit {
   getSanPham() {
     this.op.GetOptionByIdSp(this.IdSp).subscribe((res: any) => {
       this.SanPham = res;
-      console.log(res);
 
       if (res[0].thongSoKyThuat) {
-        this.dsThongSo = Object.entries(JSON.parse(res[0].thongSoKyThuat))
+        this.dsThongSo = Object.entries(JSON.parse(res[0].thongSoKyThuat));
       }
 
       if (res.length > 0) {
@@ -131,30 +136,24 @@ export class DetailComponent implements OnInit {
     });
   }
 
-  DatHang(){
-
-  }
-  noiDung:SafeHtml;
-  DataBlog:any = {
-    noiDung:''
-  }
-  GetBlog(Id){
-    this.blog.getByIdSanPham(Id).subscribe((res:any)=>{
-      console.log(res);
+  DatHang() {}
+  noiDung: SafeHtml;
+  DataBlog: any = {
+    noiDung: '',
+  };
+  GetBlog(Id) {
+    this.blog.getByIdSanPham(Id).subscribe((res: any) => {
       if (res) {
         this.noiDung = this.sanitized.bypassSecurityTrustHtml(res.noiDung);
         this.DataBlog = res;
-
-      }else{
-        this.DataBlog.noiDung = "<h1>Hiện tại chưa có bài viết nào về sản phẩm này!</h1>";
-
+      } else {
+        this.DataBlog.noiDung =
+          '<h1>Hiện tại chưa có bài viết nào về sản phẩm này!</h1>';
       }
-
     });
   }
 
   GoToDetail(item) {
-
     this.r.navigateByUrl('shop/chitiet/' + item.id);
   }
   ChonOption(a) {
@@ -190,8 +189,9 @@ export interface CartModel {
   NhanVienId: string;
   DiaChi: string;
   TongTien: number;
-  Sdt:string;
-  NgayHoanThanh:Date;
-  HoTen:string;
-  Email:string;
+  Sdt: string;
+  NgayHoanThanh: Date;
+  HoTen: string;
+  Email: string;
+  ClientID: string;
 }

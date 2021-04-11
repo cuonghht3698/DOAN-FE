@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { AuthenticationService } from 'src/app/services/authService/authentication.service';
 import { CartService } from 'src/app/services/danhmuc/cart.service';
 import { GuidId } from 'src/app/services/ERole';
@@ -17,7 +18,8 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     private c: CartService,
     public up:DataService,
-    private authent: AuthenticationService
+    private authent: AuthenticationService,
+    private cookieService:CookieService
   ) {}
   name = '';
   Id = '';
@@ -53,7 +55,8 @@ export class HeaderComponent implements OnInit {
   };
   TongTien = 0;
   getTongTien(){
-    this.c.ShowShoppingCart(this.Id).subscribe((res:any)=>{
+    var ClientId = this.cookieService.get('ClientId');
+    this.c.ShowShoppingCart(this.Id,ClientId).subscribe((res:any)=>{
       this.TongTien = 0;
       if(res.length > 0)
       res.forEach(item => {
@@ -67,7 +70,8 @@ export class HeaderComponent implements OnInit {
   GetCount(){
     var t = this.user.getUserLocal();
     if (t) {
-      this.c.ShowShoppingCart(t.id).subscribe((res:any)=>{
+      var ClientId = this.cookieService.get('ClientId');
+      this.c.ShowShoppingCart(t.id,ClientId).subscribe((res:any)=>{
         this.up.Value(Number(res.length));
       });
     }
