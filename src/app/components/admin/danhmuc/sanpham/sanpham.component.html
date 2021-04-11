@@ -25,7 +25,7 @@
         <th scope="col">Mô tả</th>
         <th scope="col">Thời gian tạo</th>
         <th scope="col">Trạng Thái</th>
-        <th scope="col">Khuyến mãi</th>
+        <th scope="col">Cấu hình</th>
         <th scope="col">Option</th>
         <th>Hành động</th>
 
@@ -44,7 +44,7 @@
             <mat-checkbox [(ngModel)]="item.active" name="active" name>Hoạt động</mat-checkbox>
           </section>
         </td>
-        <td>{{ item.khuyenMai}}</td>
+        <td>{{ item.cauHinh != null ? item.cauHinh.code:''}}</td>
         <td> <a mat-raised-button color="primary" [routerLink]="['../sanpham/option']" [queryParams]="{ id: item.id}">Option</a></td>
         <td>
           <button mat-mini-fab color="primary" (click)="OpenDiaLog(item)"><span class="material-icons">

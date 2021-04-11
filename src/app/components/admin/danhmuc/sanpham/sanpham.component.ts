@@ -53,10 +53,12 @@ export class SanphamComponent implements OnInit {
     this.searchSP.pageSize = event.pageSize;
     this.getPage();
   }
-  
+
   getPage() {
     this.sp.GetPage(this.searchSP).subscribe(
       (res: any) => {
+        console.log(res);
+
         this.dsSanPham = res.list;
         this.TotalItem = res.total;
       },
