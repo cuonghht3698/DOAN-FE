@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Banner } from 'src/app/services/constrans';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-footer',
@@ -8,7 +10,8 @@ import { Component, OnInit } from '@angular/core';
 export class FooterComponent implements OnInit {
 
   constructor() { }
-
+  url = environment.ApiUrl + "anh/get/";
+  dsAnh = Banner;
   ngOnInit(): void {
   }
 

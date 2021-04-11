@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MaTuDien } from 'src/app/services/constrans';
+import { Banner, MaTuDien } from 'src/app/services/constrans';
 import { TudienService } from 'src/app/services/danhmuc/tudien.service';
 import { GuidId } from 'src/app/services/ERole';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-nar-bar',
@@ -14,7 +15,8 @@ export class NarBarComponent implements OnInit {
   ngOnInit(): void {
     this.getMenu();
   }
-
+  url = environment.ApiUrl + "anh/get/";
+  dsAnh = Banner;
   getMenu() {
     this.tudien.getByLoai(MaTuDien.LoaiSanPham).subscribe((res:any) => {
       this.dsMenu = res;

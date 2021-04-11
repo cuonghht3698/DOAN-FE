@@ -1,8 +1,10 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authService/authentication.service';
+import { Avatar } from 'src/app/services/constrans';
 import { TinNhanService } from 'src/app/services/danhmuc/tinnhan.service';
 import { TraLoiTinNhanService } from 'src/app/services/danhmuc/traloitinnhan.service';
 import { GuidId } from 'src/app/services/ERole';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-chat-box',
@@ -23,6 +25,8 @@ export class ChatBoxComponent implements OnInit {
     const el: HTMLDivElement = this._el.nativeElement;
     el.scrollTop = Math.max(0, el.scrollHeight - el.offsetHeight);
   }
+  url = environment.ApiUrl + "anh/get/";
+  dsAnh = Avatar;
   ngOnInit(): void {
     if (this.auth.getUserLocal()) {
       var user = this.auth.getUserLocal();

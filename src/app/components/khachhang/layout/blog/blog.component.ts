@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Avatar } from 'src/app/services/constrans';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-blog',
@@ -8,7 +10,8 @@ import { Component, OnInit } from '@angular/core';
 export class BlogComponent implements OnInit {
 
   constructor() { }
-
+  url = environment.ApiUrl + "anh/get/";
+  dsAnh = Avatar;
   ngOnInit(): void {
   }
 
