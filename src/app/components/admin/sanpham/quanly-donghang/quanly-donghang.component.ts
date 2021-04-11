@@ -66,9 +66,9 @@ export class QuanlyDonghangComponent implements OnInit {
   }
   getTrangThai() {
     this.tudien.getByLoai('TrangThaiGiaoDich').subscribe((res: any) => {
-      this.dsTrangThai = _.filter(res, x => x.maTuDien == TrangThaiGiaoDich.DaDatHang || x.maTuDien == TrangThaiGiaoDich.DaHoanThanh);
+      this.dsTrangThai = _.filter(res, x => x.maTuDien == TrangThaiGiaoDich.DaDatHang || x.maTuDien == TrangThaiGiaoDich.DaHoanThanh || x.maTuDien == TrangThaiGiaoDich.DangGiaoHang);
       this.dsTrangThai.splice(0, 0, { id: '', ten: 'Trạng thái' });
-      this.Search.TrangThaiId = res[0].id;
+      this.Search.TrangThaiId = '';
       this.getCart();
     });
   }

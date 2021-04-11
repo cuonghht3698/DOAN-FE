@@ -10,4 +10,8 @@ export class BaoCaoService {
   BaoCaoTheoThang(data) {
     return this.http.post(this.baseUri + 'BaoCaoTheoThang', data);
   }
+
+  TongHopTrangThaiDonHang(data) {
+    return this.http.post(this.baseUri + 'TongHopTrangThaiDonHang', data);
+  }
 }

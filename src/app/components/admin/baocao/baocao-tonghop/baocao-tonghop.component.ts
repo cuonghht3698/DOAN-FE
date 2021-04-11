@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
-import { Label } from 'ng2-charts';
+import { Label, SingleDataSet } from 'ng2-charts';
 import { BaoCaoService } from 'src/app/services/danhmuc/baocao.service';
 import { KhoService } from 'src/app/services/danhmuc/kho.service';
 
@@ -15,6 +15,7 @@ export class BaocaoTonghopComponent implements OnInit {
 
   ngOnInit(): void {
     this.getBaoCaoTheoThang();
+    this.TongHopTrangThaiDonHang();
   }
   public barChartOptions: ChartOptions = {
     responsive: true,
@@ -31,10 +32,10 @@ export class BaocaoTonghopComponent implements OnInit {
     Nam :2021
   }
   //dataBaoCaoTheoThang:any;
+  // Báo cáo theo tháng
   getBaoCaoTheoThang(){
     this.baocao.BaoCaoTheoThang(this.ParamsBaoCaoTheoThang).subscribe((res:any)=>{
       //this.dataBaoCaoTheoThang = res;
-      console.log(res);
       this.barChartLabels = [];
       this.barChartData[0].data = [];
 
@@ -42,9 +43,31 @@ export class BaocaoTonghopComponent implements OnInit {
         this.barChartLabels.push(item.thang);
         this.barChartData[0].data.push(item.tong);
       });
-
-
-
     });
   }
+
+
+  //báo cáo trang thái
+  public pieChartOptions: ChartOptions = {
+    responsive: true,
+  };
+  public pieChartLabels: Label[] = [];
+  public pieChartData: SingleDataSet = [300, 500, 100];
+  public pieChartType: ChartType = 'pie';
+  public pieChartLegend = true;
+  public pieChartPlugins = [];
+  TongHopTrangThaiDonHang(){
+    this.baocao.TongHopTrangThaiDonHang(this.ParamsBaoCaoTheoThang).subscribe((res:any)=>{
+      //this.dataBaoCaoTheoThang = res;
+      this.pieChartData = [];
+      this.pieChartLabels = [];
+      res.forEach(item => {
+        this.pieChartData.push(item.soLuong);
+        this.pieChartLabels.push(item.trangThai);
+
+      });
+    });
+  }
+
+
 }

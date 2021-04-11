@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
-import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, ElementRef, HostListener, Inject, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router, RouterLinkActive } from '@angular/router';
 import { Configuration } from 'ng-material-multilevel-menu';
 import { RoleMenuService } from 'src/app/services/danhmuc/rolemenu.service';
 import { Role } from 'src/app/services/ERole';

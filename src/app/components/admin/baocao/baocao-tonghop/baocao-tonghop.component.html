@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-6">
+  <div class="col-8">
     <h1>Báo cáo doanh thu năm {{ParamsBaoCaoTheoThang.Nam}}</h1>
     <div style="display: block;">
       <canvas baseChart
@@ -10,7 +10,26 @@
         [legend]="barChartLegend"
         [chartType]="barChartType">
       </canvas>
+      <div class="alert alert-primary text-center m-auto" style="width: 500px;" role="alert">
+        Biểu đồ doanh thu theo năm
+      </div>
     </div>
 
+  </div>
+  <div class="col-4">
+    <h1>Tổng hợp trạng thái đơn hàng</h1>
+    <div style="display: block;">
+      <canvas baseChart
+        [data]="pieChartData"
+        [labels]="pieChartLabels"
+        [chartType]="pieChartType"
+        [options]="pieChartOptions"
+        [plugins]="pieChartPlugins"
+        [legend]="pieChartLegend">
+      </canvas>
+    </div>
+    <div class="alert alert-primary text-center m-auto" style="width: 500px;" role="alert">
+      Biểu đồ trạng thái đơn hàng
+    </div>
   </div>
 </div>

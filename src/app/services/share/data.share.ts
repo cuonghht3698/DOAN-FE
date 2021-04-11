@@ -6,11 +6,10 @@ import { Injectable } from '@angular/core';
 export class DataService {
 
   private CountCart : number = 0;
-
+  private TongTien : number = 0;
   update(i) {
     this.CountCart += i;
   }
-
   resest(){
     this.CountCart = 0;
   }

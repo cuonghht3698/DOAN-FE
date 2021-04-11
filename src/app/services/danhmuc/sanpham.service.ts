@@ -53,6 +53,9 @@ export class SanPhamService {
     updatethongso(data){
         // return this.http.get(this.baseUri + 'updatethongso?id=' + id + "&ThongSoKyThuat=" + thongso);
         return this.http.get(this.baseUri + 'updatethongso',{params:data});
+    }
 
+    UpdateView(Id){
+      return this.http.get(this.baseUri + 'updateView',{params:{Id:Id}});
     }
 }

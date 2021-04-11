@@ -25,8 +25,8 @@ export class LoginComponent implements OnInit {
   };
   checkUserEmpty = GuidId.EmptyId;
   ngOnInit(): void {
-    var Id = JSON.parse(localStorage.getItem('user'))[0].id;
-    if (this.checkUserEmpty == Id) {
+    var user = JSON.parse(localStorage.getItem('user'))[0];
+    if (user.checkChuaDangNhap) {
       //localStorage.clear();
     }
     else {

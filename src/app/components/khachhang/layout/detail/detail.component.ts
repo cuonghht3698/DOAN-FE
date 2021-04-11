@@ -7,6 +7,7 @@ import { BlogService } from 'src/app/services/danhmuc/blog.service';
 import { CartService } from 'src/app/services/danhmuc/cart.service';
 import { CartDetailService } from 'src/app/services/danhmuc/cartdetail.service';
 import { optionservice } from 'src/app/services/danhmuc/optionSp.service';
+import { SanPhamService } from 'src/app/services/danhmuc/sanpham.service';
 import { GuidId } from 'src/app/services/ERole';
 import { DataService } from 'src/app/services/share/data.share';
 import { environment } from 'src/environments/environment';
@@ -26,7 +27,8 @@ export class DetailComponent implements OnInit {
     private toar: ToastrService,
     public upCart:DataService,
     private blog:BlogService,
-    private sanitized: DomSanitizer
+    private sanitized: DomSanitizer,
+    private sp:SanPhamService
   ) {}
   IdSp = GuidId.EmptyId;
   SanPham: any;
@@ -64,6 +66,7 @@ export class DetailComponent implements OnInit {
   ngOnInit(): void {
     this.router.queryParams.subscribe((res) => {
       this.IdSp = res.id;
+      this.sp.UpdateView(res.id).subscribe((res)=>{});
       this.GetBlog(res.id);
     });
     this.getSanPham();
@@ -151,6 +154,7 @@ export class DetailComponent implements OnInit {
   }
 
   GoToDetail(item) {
+
     this.r.navigateByUrl('shop/chitiet/' + item.id);
   }
   ChonOption(a) {

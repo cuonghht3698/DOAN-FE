@@ -1,5 +1,4 @@
 
-<pre>{{sSearch|json}}</pre>
 <div class="container" style="padding: 0;margin-top: 30px;">
   <mat-carousel timings="250ms ease-in" [autoplay]="true" interval="4000" color="accent" maxWidth="auto" proportion="25"
     slides="15" [loop]="true" [hideArrows]="false" [hideIndicators]="false" [useKeyboard]="true" [useMouseWheel]="false"
@@ -12,6 +11,23 @@
 <div class="container">
   <div class="row">
     <div class="col-2" style="padding: 0;">
+       <!-- Menu timf kieems -->
+       <div class="col menu-search">
+        <div class="list-group" style="font-size: 14px;">
+          <a type="button" class="list-group-item list-group-item-action active">
+            Tìm kiếm
+          </a>
+          <mat-form-field appearance="outline" style="width: 100%;" class="mt-2">
+            <mat-label>Nhập tên, hãng</mat-label>
+            <input matInput placeholder="Tìm kiếm" [(ngModel)]="sSearch.sSearch" (ngModelChange)="getPage()">
+            <mat-icon matSuffix>search</mat-icon>
+            <mat-hint color="primary">Enter để tìm</mat-hint>
+          </mat-form-field>
+
+        </div>
+
+      </div>
+      <!-- end menu tim kiem -->
       <!-- Menu timf kieems -->
       <div class="col menu-search">
         <div class="list-group" style="font-size: 14px;">
@@ -83,7 +99,7 @@
       </div>
       <!-- end menu tim kiem -->
       <!-- Menu timf kieems -->
-      <div class="col menu-search">
+      <!-- <div class="col menu-search">
         <div class="list-group" style="font-size: 14px;width: 90%;">
           <a type="button" class="list-group-item list-group-item-action active">
             Phân khúc
@@ -93,7 +109,7 @@
           <a type="button" class="list-group-item list-group-item-action">Cao cấp</a>
           <a type="button" class="list-group-item list-group-item-action">Gaming</a>
         </div>
-      </div>
+      </div> -->
       <!-- end menu tim kiem -->
 
     </div>
@@ -125,54 +141,55 @@
             cả</a>
 
         </div>
-
+        <div *ngIf="sSearch.sSearch != ''" class="alert alert-light ml-3" style="margin-bottom: 0;padding: 0;" role="alert">
+          Kết quả tìm kiếm : <a type="button" class="alert-link" style="color: rgb(95, 95, 187);"> {{sSearch.sSearch}} </a>.  {{total}} sản phẩm
+        </div>
       </div>
       <div class="row">
-        <div class="box-view" style="padding: 7px;">
+        <div class="box-view p-3">
           <div class="top-view mr-2 hover-b" *ngFor="let item of dsSanPham">
-            <div class="product-img mt-3" style="cursor: pointer;" (click)="GoToDetail(item)">
-              <img [src]="url + item.imageUrl" alt="">
+            <div class="row" style="width: 80%; margin: auto; margin-top: 20px; cursor: pointer;">
+              <img [src]="url + item.imageUrl" alt="" style="width: 100%;" (click)="GoToDetail(item)">
 
-            </div>
-            <div class="product-cart">
-              <span class="ml-5"> <button mat-raised-button color="primary"><span class="material-icons">
-                    add_circle_outline
-                  </span>Giỏ hàng</button></span>
-              <span> <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
-                  <mat-icon>favorite</mat-icon>
-                </button></span>
-            </div>
-            <hr>
-            <div class="product-name">
-              <h3><a class="ten-sp" [routerLink]="'../chitiet'" [queryParams]="{id:item.id}">{{item.ten}}</a></h3>
-            </div>
-            <span class="gia-sp">{{item.giaMacDinh
-              |tiente}} ₫</span>
+              <hr>
+              <div class="col-12">
+                <p><a class="ten-sp mt-3" [routerLink]="'../chitiet'" [queryParams]="{id:item.id}">{{item.ten}}</a></p>
+              </div>
 
+              <br>
+              <p class="gia-sp">{{item.giaMacDinh
+                |tiente}} ₫</p>
 
-            <div class="cauhinh" style="padding: 5px;">
-              <span title="CPU"><i style="font-size: small;cursor: help;" class="fa fa-microchip"
-                  aria-hidden="true"></i>{{item.cpu}} </span><br>
-              <span class="ml-2" title="Màn hình"><i style="font-size: small;cursor: help;" class="fa fa-tablet"
-                  aria-hidden="true"></i> {{item.manHinh}}" &nbsp;</span>
-              <span title="RAM"><i class="fa fa-cogs" style="font-size: small;cursor: help;"
-                  aria-hidden="true"></i>{{item.ram | getIndex}} &nbsp;</span>
-              <span title="Bộ nhớ"><i class="fa fa-hourglass" style="font-size: small;margin-left: 4px;cursor: help;"
-                  aria-hidden="true"></i> {{item.dungLuong | getIndex}}
-              </span>
+              <div class="cauhinh" style="padding: 10px;">
+                <span title="CPU"><i style="font-size: medium;cursor: help;" class="fa fa-microchip"
+                    aria-hidden="true"></i>{{item.cpu}} </span><br>
+                <span class="ml-2" title="Màn hình"><i style="font-size: medium;cursor: help;" class="fa fa-tablet"
+                    aria-hidden="true"></i> {{item.manHinh}}" &nbsp;</span>
+                <span title="RAM"><i class="fa fa-cogs" style="font-size: medium;cursor: help;"
+                    aria-hidden="true"></i>{{item.ram | getIndex}} &nbsp;</span>
+                <span title="Bộ nhớ"><i class="fa fa-hourglass" style="font-size: medium;margin-left: 4px;cursor: help;"
+                    aria-hidden="true"></i> {{item.dungLuong | getIndex}}
+                </span>
 
+              </div>
+              <button type="button" class="btn btn-light mt-2">
+                Lượt xem <span class="badge badge-light">9</span>
+                <span class="sr-only">unread messages</span>
+              </button>
             </div>
 
-            <button type="button" class="btn btn-light" style="position: absolute;bottom: 10px;right: 10px;">
-              Lượt xem <span class="badge badge-light">9</span>
-              <span class="sr-only">unread messages</span>
-            </button>
-          </div>
-          <div class="text-center mt-2">
-            <button mat-raised-button color="primary" style="outline: none;">Xem
-              thêm</button>
 
           </div>
+
+        </div>
+
+        <div>
+          <mat-paginator [length]="total"
+              [pageIndex]="sSearch.pageIndex"
+              [pageSize]="sSearch.pageSize"
+              [pageSizeOptions]="[1,5, 10, 20, 100]"
+              (page)="getPaginate($event)">
+          </mat-paginator>
         </div>
       </div>
     </div>

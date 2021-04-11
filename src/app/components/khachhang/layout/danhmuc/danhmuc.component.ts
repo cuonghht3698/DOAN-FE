@@ -19,7 +19,7 @@ export class DanhmucComponent implements OnInit {
     private r: Router
   ) {}
   sSearch = {
-    search: '',
+    sSearch: '',
     pageIndex: 0,
     pageSize: 20,
     LoaiSP: '',
@@ -43,14 +43,17 @@ export class DanhmucComponent implements OnInit {
   total: number = 0;
   url = environment.ApiUrl + 'anh/get/';
   ngOnInit(): void {
+
     this.router.queryParams.subscribe((res: any) => {
-      this.sSearch.LoaiSP = res.loai || res.LoaiSP;
-      this.sSearch.search = res.search;
+      this.sSearch.LoaiSP = res.LoaiSP;
+      this.sSearch.sSearch = res.sSearch;
       this.sSearch.GiaTu = res.GiaTu;
       this.sSearch.GiaDen = res.GiaDen;
       this.sSearch.DungLuong = res.DungLuong;
       this.sSearch.Ram = res.Ram;
       this.sSearch.HangSX = res.HangSX;
+      this.sSearch.pageIndex = res.pageIndex;
+      this.sSearch.pageSize = res.pageSize;
 
       // this.sSearch = res;
     });
@@ -83,6 +86,12 @@ export class DanhmucComponent implements OnInit {
       this.total = res.total;
     });
   }
+
+  getPaginate(event){
+    this.sSearch.pageIndex = event.pageIndex;
+    this.sSearch.pageSize = event.pageSize;
+    this.getPage();
+  }
   BoLoc(loai){
     if (loai == 'ram') {
       this.sSearch.Ram = '';
@@ -97,7 +106,7 @@ export class DanhmucComponent implements OnInit {
     }
     if (loai == 'tatca') {
       this.sSearch = {
-        search: '',
+        sSearch: '',
         pageIndex: 0,
         pageSize: 20,
         LoaiSP: '',
@@ -119,7 +128,7 @@ export class DanhmucComponent implements OnInit {
   }
   LocLoaiSP(loai) {
     this.route.navigate([], {
-      queryParams: { loai: loai },
+      queryParams: { LoaiSp: loai },
       queryParamsHandling: 'merge',
     });
     this.sSearch.LoaiSP = loai;
@@ -136,6 +145,7 @@ export class DanhmucComponent implements OnInit {
     });
   }
   GoToDetail(item) {
+
     this.r.navigate(['shop/chitiet/'], { queryParams: { id: item.id } });
   }
 }

@@ -28,21 +28,39 @@ export class HeaderComponent implements OnInit {
     if (localStorage.getItem('user')) {
       this.name = JSON.parse(localStorage.getItem('user'))[0].hoTen;
       this.Id = JSON.parse(localStorage.getItem('user'))[0].id;
+      var user = JSON.parse(localStorage.getItem('user'))[0];
       this.DaDangNhap = true;
-      if (this.checkUserEmpty ==  this.Id) {
+      if (user.checkChuaDangNhap) {
         this.DaDangNhap = false;
       }
       this.GetCount();
     }
-
+    this.getTongTien();
+  };
+  totalCheck = this.up.selectedValue;
+  ngDoCheck(): void {
+    if(this.totalCheck != this.up.selectedValue)
+    {
+      this.totalCheck = this.up.selectedValue;
+      this.getTongTien();
+    }
   }
   logout() {
     localStorage.clear();
     this.DangNhap();
     this.router.navigateByUrl("../shop")
     location.reload();
+  };
+  TongTien = 0;
+  getTongTien(){
+    this.c.ShowShoppingCart(this.Id).subscribe((res:any)=>{
+      this.TongTien = 0;
+      if(res.length > 0)
+      res.forEach(item => {
+        this.TongTien += item.soLuong * item.gia;
+      });
+    })
   }
-
   goto(go) {
     this.router.navigateByUrl('/shop/' + go);
   }
@@ -51,7 +69,7 @@ export class HeaderComponent implements OnInit {
     if (t) {
       this.c.ShowShoppingCart(t.id).subscribe((res:any)=>{
         this.up.Value(Number(res.length));
-      })
+      });
     }
   }
 

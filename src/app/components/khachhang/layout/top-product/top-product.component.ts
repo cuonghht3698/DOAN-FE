@@ -44,7 +44,7 @@ export class TopProductComponent implements OnInit {
   getSanPham() {
     this.option.GetOptionByHang(this.searchOp).subscribe((res: any) => {
       this.dsTopDienThoai = res;
-      console.log(res);
+
 
     });
   }
@@ -81,6 +81,7 @@ export class TopProductComponent implements OnInit {
   }
 
   GoToDetail(item) {
+    //
     this.router.navigate(['shop/chitiet/'], { queryParams: { id: item.id } });
   }
   AddToCart(item) {}

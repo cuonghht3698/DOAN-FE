@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
   demo;
   ngOnInit(): void {
     const checkLogin = JSON.parse(localStorage.getItem('user'));
-    if (checkLogin && checkLogin[0].id != GuidId.EmptyId) {
+    if (checkLogin && !checkLogin[0].checkChuaDangNhap) {
       if (checkLogin[0].role == Role.KhachHang) {
         this.router.navigateByUrl('shop');
       } else {
