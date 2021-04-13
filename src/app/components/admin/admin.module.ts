@@ -54,6 +54,7 @@ import { NgMaterialMultilevelMenuModule, MultilevelMenuService } from 'ng-materi
 import { KhoComponent } from './danhmuc/kho/kho.component';
 import { BaocaoTonghopComponent } from './baocao/baocao-tonghop/baocao-tonghop.component';
 import { ChartsModule } from 'ng2-charts';
+import { TaohoadonComponent } from './sanpham/taohoadon/taohoadon.component';
 
 @NgModule({
   imports: [
@@ -113,6 +114,7 @@ import { ChartsModule } from 'ng2-charts';
     QuanlyblogComponent,
     KhoComponent,
     BaocaoTonghopComponent,
+    TaohoadonComponent,
   ],
   providers: [
     {

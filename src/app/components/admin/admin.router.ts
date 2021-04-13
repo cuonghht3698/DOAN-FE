@@ -24,6 +24,7 @@ import { BlogComponent } from './danhmuc/blog/blog.component';
 import { QuanlyblogComponent } from './danhmuc/quanlyblog/quanlyblog.component';
 import { KhoComponent } from './danhmuc/kho/kho.component';
 import { BaocaoTonghopComponent } from './baocao/baocao-tonghop/baocao-tonghop.component';
+import { TaohoadonComponent } from './sanpham/taohoadon/taohoadon.component';
 
 export const routes: Routes = [
   {
@@ -135,6 +136,10 @@ export const routes: Routes = [
           {
             path: 'baocaotonghop',
             component: BaocaoTonghopComponent,
+          },
+          {
+            path: 'taohoadon',
+            component: TaohoadonComponent,
           },
         ],
       },

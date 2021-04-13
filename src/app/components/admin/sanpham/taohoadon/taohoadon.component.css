@@ -1,0 +1,16 @@
+.mother{
+  background-color: #fdffff;
+  border: 1px solid #C1C1CA;
+  margin-bottom: 0px;
+  padding: 10px !important;
+  width: 100%;
+}
+.item-option{
+  padding: 5px;
+  cursor: pointer;
+  background-color: rgb(221, 224, 224);
+  border-bottom: 1px solid rgb(126, 124, 124);
+}
+.item-option:hover{
+  background-color: rgb(193, 196, 195);
+}

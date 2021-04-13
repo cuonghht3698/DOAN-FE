@@ -1,0 +1,156 @@
+<div>
+  <div class="row mother" style="min-height: 330px;">
+    <div class="col-8 mother">
+      <h1>Nhập thông tin mặt hàng</h1>
+      <mat-form-field style="width: 100%;">
+        <mat-label>Tên sản phẩm</mat-label>
+        <input matInput aria-label="State" [matAutocomplete]="auto" [formControl]="stateCtrl">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let state of filteredStates | async" [value]="state.ten" (click)="ChoseSp(state)">
+            <img class="example-option-img" aria-hidden [src]="url +  state.imageUrl" height="55">
+            <small style="font-size: 18px;">{{state.ten}}</small>
+            <span style="color: red;"> - Ram : {{state.ram}}</span>
+            <span style="color: rgb(61, 66, 58);"> - Dung Lượng : {{state.rom}}</span>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <br>
+      <!-- Thông tin sản phẩm -->
+      <div class="mother" *ngIf="dataThemSp.ImageUrl">
+        <div class="media" style="background-color: rgb(236, 235, 235);">
+          <img [src]="dataThemSp.ImageUrl != '' ? url + dataThemSp.ImageUrl:''" class="mr-3" alt="..."
+            style="height: 120px;">
+          <div class="media-body">
+            <h2>{{dataThemSp.Ten}}</h2>
+            <div class="row">
+              <div class="col-4">
+                <p><b>Màn hình :</b> {{dataThemSp.ManHinh}} </p>
+                <p><b>Ram :</b> {{dataThemSp.Ram}} </p>
+                <p><b>Dung lượng :</b> {{dataThemSp.Rom}} </p>
+              </div>
+              <div class="col-4">
+                <p><b>Cpu :</b> {{dataThemSp.Cpu}} </p>
+                <p><b>Pin : </b>{{dataThemSp.Pin}} </p>
+                <p><b>Màn hình :</b> {{dataThemSp.ManHinh}} </p>
+              </div>
+              <div class="col-4">
+                <p></p>
+                <p style="font-weight: 800;font-size: 16pt;">Giá: {{dataThemSp.Gia|tiente}} đồng </p>
+                <p>{{dataThemSp.Gia | doctien}} </p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+    <div class="col-4 mother" style="overflow: auto;max-height: 320px;">
+      <h3><b>Option</b></h3>
+      <div *ngFor="let item of dsOption" class="item-option" (click)="ChoseOption(item)">
+        <div class="media">
+          <img [src]="url + dataThemSp.ImageUrl" class="mr-3" alt="..." style="height: 60px;">
+          <div class="media-body">
+            <p style="font-weight: 800;font-size: 12pt;">Giá: {{dataThemSp.Gia | tiente}} đồng <span
+                style="color: rgb(145, 86, 86);">(Tồn : {{item.soLuong}})</span> </p>
+            <p>Ram: {{item.ram}} - Dung lượng : {{item.rom}}</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row p-1 mother">
+    <h2><b>Danh sách sản phẩm</b></h2>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col" style="width: 20px;text-align: center;">STT</th>
+          <th scope="col">Tên sản phẩm</th>
+          <th scope="col" style="width: 12%;text-align: center;">RAM</th>
+          <th scope="col" style="width: 12%;text-align: center;">Dung lượng</th>
+          <th scope="col" style="width: 10%;text-align: center;">Số lượng</th>
+          <th scope="col" style="width: 10%;text-align: center;">Đơn giá</th>
+          <th style="width: 5%;">Thao tác</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of dataCart.DSSanPham;index as index">
+          <th style="text-align: center;" scope="row">{{index + 1}}</th>
+          <td>{{item.tenSanPham}}</td>
+          <td style="text-align: center;">{{item.ram}}</td>
+          <td style="text-align: center;">{{item.rom}}</td>
+          <td><input type="number" [value]="item.soLuong" style="width: 100%;text-align: center;" class="form-control"
+              (keyup)="ChangeSoLuong(index, $event.target.value)">
+          </td>
+          <td style="text-align: center;">{{item.gia | tiente}}</td>
+          <td><button mat-stroked-button color="warn" (click)="Xoa(index)">Xóa</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="row p-1 mother">
+
+    <div class="col-6">
+      <h2><b>Thông tin khách hàng</b></h2>
+      <div class="mb-3">
+        <label class="form-label">Họ tên (<a style="color: red;">*</a>)</label>
+        <input type="text" class="form-control" placeholder="Họ và tên" [(ngModel)]="dataCart.HoTen" name="hoten">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Số điện thoại (<a style="color: red;">*</a>)</label>
+        <input type="number" class="form-control" placeholder="Số điện thoại" [(ngModel)]="dataCart.Sdt" name="sdt">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" placeholder="email" [(ngModel)]="dataCart.Email" name="email">
+        <div class="mb-3">
+          <label class="form-label">Địa chỉ: (<a style="color: red;">*</a>)</label>
+          <textarea class="form-control" rows="2" [(ngModel)]="dataCart.DiaChi" name="diachi"></textarea>
+        </div>
+
+      </div>
+    </div>
+    <div class="col-6">
+      <table class="table table-striped">
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>Sub-Total</td>
+          <td class="text-right">{{dataCart.TongTien | tiente}} đồng</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>Shipping</td>
+          <td class="text-right">0</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><strong>Total</strong></td>
+          <td class="text-right"><strong>{{dataCart.TongTien | tiente}} đồng</strong></td>
+        </tr>
+      </table>
+
+
+      <button mat-raised-button (click)="SaveHoaDon(false)">Xác nhận</button>
+      <button mat-raised-button color="primary" (click)="SaveHoaDon(true)">Xác nhận & In</button>
+
+    </div>
+
+
+    <!-- Thông tin khách hàng -->
+  </div>
+
+
+  <pre>{{dataCart|json}}</pre>

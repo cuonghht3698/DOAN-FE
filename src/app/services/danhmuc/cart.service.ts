@@ -53,4 +53,8 @@ export class CartService {
   HoanThanh(data) {
     return this.http.post(environment.ApiUrl + 'carts/HoanThanh', data);
   }
+
+  TaoHoaDon(data){
+    return this.http.post(environment.ApiUrl + 'carts/taohoadon', data);
+  }
 }

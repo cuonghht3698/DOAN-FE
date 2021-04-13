@@ -106,7 +106,6 @@ export class SanphamOptionComponent implements OnInit {
   getOptionSp(id: any) {
     this.sp.GetOptionById(id).subscribe((res) => {
       this.dsOption = res;
-
     });
   }
   // GET NHÁNH MÀU OPTIOM
