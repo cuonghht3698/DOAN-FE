@@ -1,4 +1,4 @@
-<div>
+<div id="TaoHoaDon">
   <div class="row mother" style="min-height: 330px;">
     <div class="col-8 mother">
       <h1>Nhập thông tin mặt hàng</h1>
@@ -143,14 +143,18 @@
       </table>
 
 
-      <button mat-raised-button (click)="SaveHoaDon(false)">Xác nhận</button>
-      <button mat-raised-button color="primary" (click)="SaveHoaDon(true)">Xác nhận & In</button>
+      <div class="float-right">
+        <button mat-raised-button (click)="SaveHoaDon(false)">Tạo hóa đơn</button>
+        <button mat-raised-button color="primary" (click)="SaveHoaDon(true)">Tạo hóa đơn & In</button>
 
+        <button printSectionId="print-section" mat-raised-button color="primary"  ngxPrint>print</button>
+      </div>
     </div>
-
-
     <!-- Thông tin khách hàng -->
   </div>
 
 
-  <pre>{{dataCart|json}}</pre>
+<!--
+<div id="print-section">
+  <app-hoadon></app-hoadon>
+</div> -->

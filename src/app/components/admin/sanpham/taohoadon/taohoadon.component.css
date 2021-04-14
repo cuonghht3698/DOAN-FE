@@ -14,3 +14,28 @@
 .item-option:hover{
   background-color: rgb(193, 196, 195);
 }
+
+
+html {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Suffix this section at the end of your styles.css for toogling between @media screen and @media print mode */
+/*############################################################################################################*/
+.print {
+  /* hide the printing component from @media screen */
+  display: none;
+}
+
+@media print {
+  /* invert the display (show/hide) properties of the main */
+  /* aplication component and the printing component       */
+
+  .print {
+    display: block;
+  }
+
+  .TaoHoaDon {
+    display: none;
+  }
+}

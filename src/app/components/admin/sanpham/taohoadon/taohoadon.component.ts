@@ -83,7 +83,6 @@ export class TaohoadonComponent implements OnInit {
     };
   }
   ChoseOption(item) {
-
     this.dataOption = {
       tenSanPham: this.dataThemSp.Ten,
       gia: item.gia,
@@ -95,10 +94,9 @@ export class TaohoadonComponent implements OnInit {
     };
     this.dataCart.DSSanPham.push(this.dataOption);
     this.dataCart.TongTien = 0;
-    this.dataCart.DSSanPham.forEach(e => {
+    this.dataCart.DSSanPham.forEach((e) => {
       this.dataCart.TongTien += e.gia * e.soLuong;
     });
-
   }
   dsOption: any;
   // get option by Id
@@ -112,22 +110,29 @@ export class TaohoadonComponent implements OnInit {
   ChangeSoLuong(index, value) {
     this.dataCart.DSSanPham[index].soLuong = value;
     this.dataCart.TongTien = 0;
-    this.dataCart.DSSanPham.forEach(e => {
+    this.dataCart.DSSanPham.forEach((e) => {
       this.dataCart.TongTien += e.gia * e.soLuong;
     });
   }
 
-  Xoa(index){
+  Xoa(index) {
     this.dataCart.DSSanPham.splice(index, 1);
   }
 
-  SaveHoaDon(IsPrint){
-    this.ct.TaoHoaDon(this.dataCart).subscribe((res)=>{
-      this.toarst.success("Thông báo","Tạo thành công");
-    })
+  SaveHoaDon(IsPrint) {
+    this.ct.TaoHoaDon(this.dataCart).subscribe(
+      (res) => {
+        this.toarst.success('Tạo hóa đơn thành công ','Thông báo');
+      },
+      (err) => {
+        this.toarst.error('Kiểm tra lại thông tin', 'Thông báo');
+      }
+    );
   }
 
-
+  In(){
+    window.print();
+  }
 
   states = [];
   search = '';

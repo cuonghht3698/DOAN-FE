@@ -55,6 +55,8 @@ import { KhoComponent } from './danhmuc/kho/kho.component';
 import { BaocaoTonghopComponent } from './baocao/baocao-tonghop/baocao-tonghop.component';
 import { ChartsModule } from 'ng2-charts';
 import { TaohoadonComponent } from './sanpham/taohoadon/taohoadon.component';
+import { HoadonComponent } from './phieuin/hoadon/hoadon.component';
+import { NgxPrintModule } from 'ngx-print';
 
 @NgModule({
   imports: [
@@ -73,7 +75,8 @@ import { TaohoadonComponent } from './sanpham/taohoadon/taohoadon.component';
     SharedModule,
     CKEditorModule,
     NgMaterialMultilevelMenuModule,
-    ChartsModule
+    ChartsModule,
+    NgxPrintModule
   ],
   exports: [],
   declarations: [
@@ -115,6 +118,7 @@ import { TaohoadonComponent } from './sanpham/taohoadon/taohoadon.component';
     KhoComponent,
     BaocaoTonghopComponent,
     TaohoadonComponent,
+    HoadonComponent,
   ],
   providers: [
     {
