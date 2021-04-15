@@ -25,6 +25,8 @@ import { QuanlyblogComponent } from './danhmuc/quanlyblog/quanlyblog.component';
 import { KhoComponent } from './danhmuc/kho/kho.component';
 import { BaocaoTonghopComponent } from './baocao/baocao-tonghop/baocao-tonghop.component';
 import { TaohoadonComponent } from './sanpham/taohoadon/taohoadon.component';
+import { QuanlynhapkhoComponent } from './sanpham/quanlynhapkho/quanlynhapkho.component';
+import { ChitietnhapkhoComponent } from './sanpham/chitietnhapkho/chitietnhapkho.component';
 
 export const routes: Routes = [
   {
@@ -140,6 +142,14 @@ export const routes: Routes = [
           {
             path: 'taohoadon',
             component: TaohoadonComponent,
+          },
+          {
+            path: 'quanlynhapkho',
+            component: QuanlynhapkhoComponent,
+          },
+          {
+            path: 'chitietnhapkho',
+            component: ChitietnhapkhoComponent,
           },
         ],
       },

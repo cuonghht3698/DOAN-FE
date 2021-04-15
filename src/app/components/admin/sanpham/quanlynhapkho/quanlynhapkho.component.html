@@ -1,0 +1,85 @@
+<div class="mt-3">
+  <h1>Quản lý đơn hàng</h1>
+  <div>
+    <a mat-raised-button [routerLink]="['../chitietnhapkho']">Tạo hóa đơn</a>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      <!-- zone search -->
+      <div>
+        <mat-form-field style="width: 100%;">
+          <mat-label>Tìm kiếm</mat-label>
+          <span matSuffix><span class="material-icons">
+              search
+            </span></span>
+          <input matInput name="sea" [(ngModel)]="search.Search" (ngModelChange)="getPage()">
+        </mat-form-field>
+      </div>
+      <!--  -->
+    </div>
+    <div class="col-2">
+      <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>Trạng thái</mat-label>
+        <mat-select [(value)]="search.IdTrangThai" (valueChange)="getPage()">
+          <ng-container *ngFor="let item of dsLoaiHoaDon">
+            <mat-option [value]="item.id">{{item.ten}}</mat-option>
+          </ng-container>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-2">
+      <mat-form-field color="accent" appearance="outline" style="width: 100%;">
+        <mat-label>Ngày từ</mat-label>
+        <input matInput [matDatepicker]="picker1" [(ngModel)]="search.TuNgay" name="ngaytu" (dateChange)="getPage()">
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="col-2">
+      <mat-form-field color="accent" appearance="outline" style="width: 100%;">
+        <mat-label>Đến ngày</mat-label>
+        <input matInput [matDatepicker]="picker2" [(ngModel)]="search.DenNgay" name="ngayden" (dateChange)="getPage()">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="alert alert-success">
+    <!-- Các đơn hàng trong {{demNgay == 1?'trong ngày hôm nay!': demNgay + ' ngày trước!'}} -->
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">STT</th>
+        <th scope="col">Tên</th>
+        <th scope="col">Số hóa đơn</th>
+        <th scope="col">Ngày tạo</th>
+        <th scope="col">Ngày hoàn thành</th>
+        <th scope="col">Trạng thái</th>
+        <th scope="col">Tổng tiền</th>
+        <th scope="col">Người tạo</th>
+
+        <th>Xem</th>
+        <th>Thao tác</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of dsHoaDon; index as index">
+        <th scope="row">{{index + 1}}</th>
+        <td>{{item.ten | date:'dd/MM/yyyy'}}</td>
+        <td>{{item.soHd| substr: 30}}</td>
+        <td>{{item.ngayTao}}</td>
+        <td>{{item.ngayHoanThanh}}</td>
+        <td>{{item.trangThai}}</td>
+        <td>{{item.tongTien | tiente}}</td>
+        <td>{{item.nguoiTao}}</td>
+        <td><a mat-raised-button [routerLink]="['../chitietnhapkho']" [queryParams]="{ id: item.id}">Xem</a></td>
+      </tr>
+    </tbody>
+  </table>
+  <div>
+    <mat-paginator [length]="total" [pageSize]="search.PageSize" [pageIndex]="search.PageIndex"
+      [pageSizeOptions]="[5, 10, 25, 100]" (page)="getPaginate($event)">
+    </mat-paginator>
+  </div>
+</div>

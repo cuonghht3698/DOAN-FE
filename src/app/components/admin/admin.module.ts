@@ -57,6 +57,8 @@ import { ChartsModule } from 'ng2-charts';
 import { TaohoadonComponent } from './sanpham/taohoadon/taohoadon.component';
 import { HoadonComponent } from './phieuin/hoadon/hoadon.component';
 import { NgxPrintModule } from 'ngx-print';
+import { QuanlynhapkhoComponent } from './sanpham/quanlynhapkho/quanlynhapkho.component';
+import { ChitietnhapkhoComponent } from './sanpham/chitietnhapkho/chitietnhapkho.component';
 
 @NgModule({
   imports: [
@@ -119,6 +121,8 @@ import { NgxPrintModule } from 'ngx-print';
     BaocaoTonghopComponent,
     TaohoadonComponent,
     HoadonComponent,
+    QuanlynhapkhoComponent,
+    ChitietnhapkhoComponent,
   ],
   providers: [
     {
