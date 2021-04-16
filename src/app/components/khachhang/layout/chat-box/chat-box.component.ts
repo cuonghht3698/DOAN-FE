@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authService/authentication.service';
 import { Avatar } from 'src/app/services/constrans';
 import { TinNhanService } from 'src/app/services/danhmuc/tinnhan.service';
@@ -15,6 +15,7 @@ export class ChatBoxComponent implements OnInit {
   NoiDung = '';
   Id ='';
   DSTinNhan:any;
+  @Input() check = false;
   constructor(
     private auth: AuthenticationService,
     private tinnhan: TinNhanService,
@@ -32,7 +33,9 @@ export class ChatBoxComponent implements OnInit {
       var user = this.auth.getUserLocal();
       this.CreateOrGet(user.id);
       setInterval(() => {
-        this.GetTinNhan(this.Id);
+        if (this.check) {
+          this.GetTinNhan(this.Id);
+        }
       }, 3000);
     }
   }
