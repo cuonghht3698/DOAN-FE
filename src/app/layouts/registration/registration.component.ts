@@ -33,13 +33,13 @@ export class RegistrationComponent implements OnInit {
   };
   PasswordCheck = '';
   ngOnInit(): void {
-    if (localStorage.getItem('user')) {
-      if (JSON.parse(localStorage.getItem('user'))[0].role == 'khachhang') {
-        this.router.navigateByUrl('shop');
-      } else {
-        // addmin
-      }
-    }
+    // if (localStorage.getItem('user')) {
+    //   if (JSON.parse(localStorage.getItem('user'))[0].role == 'khachhang') {
+    //     this.router.navigateByUrl('shop');
+    //   } else {
+    //     // addmin
+    //   }
+    // }
   }
 
   Dangky() {

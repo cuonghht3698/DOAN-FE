@@ -7,7 +7,7 @@
     <div class="col-md-3 register-left">
       <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
       <h3>Welcome</h3>
-      <p>You are 30 seconds away from earning your own money!</p>
+      <p>Cảm ơn bạn đã tin tưởng và quan tâm</p>
       <a routerLink="../shop/dangnhap"><button class="btn btn-info">Đăng nhập</button></a>
     </div>
     <div class="col-md-9 register-right">
@@ -41,21 +41,21 @@
               </div>
               <div class="form-group">
                 <input type="text" minlength="10" maxlength="10" name="txtEmpPhone" class="form-control"
-                  [(ngModel)]="dataUser.SoDienThoai" name="SoDienThoai" placeholder="Your Phone *" value="" />
+                  [(ngModel)]="dataUser.SoDienThoai" name="SoDienThoai" placeholder="Điện thoại" />
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Confirm Password *" value=""
+                <input type="text" class="form-control" placeholder="Lời giới thiệu" value=""
                   [(ngModel)]="dataUser.GioiThieu" name="GioiThieu" />
               </div>
               <div class="form-group">
-                <input type="password" class="form-control" placeholder="Confirm Password *" value=""
+                <input type="password" class="form-control" placeholder="Địa chỉ" value=""
                   [(ngModel)]="dataUser.DiaChi" name="DiaChi" />
               </div>
               <div class="form-group">
-                <input type="date" class="form-control" placeholder="Confirm Password *" value=""
+                <input type="date" class="form-control" placeholder="Ngày sinh" value=""
                   [(ngModel)]="dataUser.NgaySinh" name="date" />
               </div>
-              <input type="submit" class="btnRegister" value="Register" (click)="Dangky()"/>
+              <input type="submit" class="btnRegister" value="Đăng ký" (click)="Dangky()"/>
             </div>
           </div>
         </div>
