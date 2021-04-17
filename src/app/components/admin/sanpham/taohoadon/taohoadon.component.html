@@ -102,7 +102,7 @@
       </div>
       <div class="mb-3">
         <label class="form-label">Số điện thoại (<a style="color: red;">*</a>)</label>
-        <input type="number" class="form-control" placeholder="Số điện thoại" [(ngModel)]="dataCart.Sdt" name="sdt">
+        <input type="text" class="form-control" placeholder="Số điện thoại" [(ngModel)]="dataCart.Sdt" name="sdt">
       </div>
       <div class="mb-3">
         <label class="form-label">Email</label>
@@ -144,14 +144,16 @@
 
 
       <div class="float-right">
-        <button mat-raised-button (click)="SaveHoaDon(false)">Tạo hóa đơn</button>
-        <button mat-raised-button color="primary" (click)="SaveHoaDon(true)">Tạo hóa đơn & In</button>
+        <button mat-raised-button color="primary" class="mr-2" (click)="SaveHoaDon(false)" [disabled]="IsDaHoanThanh">Xác nhận hoàn thành</button>
+        <button mat-raised-button color="warn" (click)="TaoMoi()">Tạo mới</button>
+        <!-- <button mat-raised-button color="primary" (click)="SaveHoaDon(true)">Tạo hóa đơn & In</button>
 
-        <button printSectionId="print-section" mat-raised-button color="primary"  ngxPrint>print</button>
+        <button printSectionId="print-section" mat-raised-button color="primary"  ngxPrint>print</button> -->
       </div>
     </div>
     <!-- Thông tin khách hàng -->
   </div>
+
 
 
 <!--

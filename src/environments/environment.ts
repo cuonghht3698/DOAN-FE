@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  gio:0,
   ApiUrl:'https://localhost:44394/api/'
  //ApiUrl:'https://nbc.somee.com/api/'
 

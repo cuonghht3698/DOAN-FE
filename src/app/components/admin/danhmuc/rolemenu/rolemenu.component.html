@@ -3,17 +3,17 @@
   <mat-form-field style="width: 50%;margin-left: 100px;">
     <mat-label>Tìm kiếm tên menu</mat-label>
     <span matSuffix><span class="material-icons">
-            search
-        </span></span>
+        search
+      </span></span>
     <input matInput [(ngModel)]="Search" (keyup)="getAllMenu()">
-</mat-form-field>
+  </mat-form-field>
   <div class="col-6">
 
     <mat-list>
       <mat-list-item *ngFor="let item of dataMenu" style="position: relative;">
         <span class="role cha" *ngIf="!item.cha"><b>{{ item.ten }}</b></span>
         <span class="role" *ngIf="item.cha">{{ item.ten }}</span>
-        <button style="position: absolute;right: 0;"  mat-raised-button (click)="ThemRoleMenu(item.id)" color="primary">
+        <button style="position: absolute;right: 0;" mat-raised-button (click)="ThemRoleMenu(item.id)" color="primary">
           <span class="material-icons">label</span></button>
       </mat-list-item>
     </mat-list>
@@ -29,19 +29,21 @@
       <p class="role cha" style="position: relative;"><b>{{item.label}}</b>
         <button mat-raised-button style="position: absolute;right: 10px;top: 6px;background-color: crimson;">
           <span class="material-icons" style="color: black;cursor: pointer;"
-          (click)="XoaRoleMenu(item.id,item.menuId,true)">
-          close
-        </span></button>
-      <input type="text" class="form-control" style="width: 60px;position: absolute;right: 80px;top:4px" [value]="item.uuTien"  (change)="UpdateUuTien(item.id,$event.target.value)">
+            (click)="XoaRoleMenu(item.id,item.menuId,true)">
+            close
+          </span></button>
+        <input type="text" class="form-control" style="width: 60px;position: absolute;right: 80px;top:4px"
+          [value]="item.uuTien" (change)="UpdateUuTien(item.id,$event.target.value)">
       </p>
       <div style="margin-left: 30px;" *ngFor="let item2 of item.items">
         <p class="role" style="position: relative;">{{item2.label}}
-          <button mat-raised-button style="position: absolute;right: 50px;top: 6px;"><span class="material-icons" style="color: red;cursor: pointer;"
-            (click)="XoaRoleMenu(item.id, item2.menuId,false)">
-            close
-          </span></button>
+          <button mat-raised-button style="position: absolute;right: 50px;top: 6px;"><span class="material-icons"
+              style="color: red;cursor: pointer;" (click)="XoaRoleMenu(item.id, item2.menuId,false)">
+              close
+            </span></button>
           <input type="text" class="form-control" style="width: 60px;position: absolute;right: 120px;top:4px"
-          [value]="item2.uuTien" (change)="UpdateUuTien(item2.id,$event.target.value)"></p>
+            [value]="item2.uuTien" (change)="UpdateUuTien(item2.id,$event.target.value)">
+        </p>
       </div>
     </div>
 

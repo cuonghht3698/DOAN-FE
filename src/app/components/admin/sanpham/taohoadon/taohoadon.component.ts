@@ -99,6 +99,11 @@ export class TaohoadonComponent implements OnInit {
     });
   }
   dsOption: any;
+  IsDaHoanThanh = false;
+  TaoMoi(){
+    location.reload();
+    this.IsDaHoanThanh = false;
+  }
   // get option by Id
   getOptionSp(id: any) {
     this.sp.GetOptionById(id).subscribe((res) => {
@@ -123,6 +128,7 @@ export class TaohoadonComponent implements OnInit {
     this.ct.TaoHoaDon(this.dataCart).subscribe(
       (res) => {
         this.toarst.success('Tạo hóa đơn thành công ','Thông báo');
+        this.IsDaHoanThanh = true;
       },
       (err) => {
         this.toarst.error('Kiểm tra lại thông tin', 'Thông báo');

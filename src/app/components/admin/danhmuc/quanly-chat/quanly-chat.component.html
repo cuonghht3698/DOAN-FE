@@ -47,10 +47,13 @@
           </div>
           <!-- KHACHHANG -->
           <!-- ADMIN -->
-          <div class="outgoing_msg" *ngIf="!item.active">
+          <div class="outgoing_msg" *ngIf="!item.active" style="position: relative;">
             <div class="sent_msg">
               <p>{{item.noiDung}}</p>
               <span class="time_date"> {{item.thoiGianTao | demgio}}</span>
+              <span class="material-icons" style="position: absolute;right: 5px;top: 5px;color: red;cursor: pointer;" title="Thu hồi" (click)="Delete(item.id)">
+                close
+              </span>
             </div>
           </div>
           <!-- ADMIN -->

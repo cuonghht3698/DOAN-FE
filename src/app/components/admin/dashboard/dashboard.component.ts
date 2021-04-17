@@ -49,7 +49,7 @@ export class DashboardComponent implements OnInit {
     },
   ];
   @HostListener('window:scroll', ['$event']) onScrollEvent(){
-    if (window.scrollY > 130) {
+    if (window.scrollY > 530) {
       this.showScrollTop = true;
     }
     else{

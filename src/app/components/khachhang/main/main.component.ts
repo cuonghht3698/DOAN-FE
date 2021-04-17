@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthenticationService } from 'src/app/services/authService/authentication.service';
 
@@ -11,7 +12,8 @@ export class MainComponent implements OnInit {
   showChat = true;
   constructor(
     private authent: AuthenticationService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private router:Router
   ) {}
   generate_string() {
     var text = '';
@@ -36,7 +38,6 @@ export class MainComponent implements OnInit {
         this.cookieService.set('ClientId', l);
         localStorage.setItem('ClientId', l);
       }
-
       //this.cookieValue = this.cookieService.get('Test');
     } else {
 

@@ -26,9 +26,17 @@
     <mat-label>Username</mat-label>
     <input matInput [(ngModel)]="dataChange.Username" name="user" readonly>
   </mat-form-field>
-  <mat-form-field>
+  <!-- <mat-form-field>
     <mat-label>Quyền hạn</mat-label>
     <input matInput [(ngModel)]="dataChange.Role" name="role" readonly>
+  </mat-form-field> -->
+  <mat-form-field appearance="fill">
+    <mat-label>Quyền hạn</mat-label>
+    <mat-select [(ngModel)]="dataChange.Role" name="role" [disabled]="dataChange.Username == 'admin'">
+      <mat-option *ngFor="let food of dsRole" [value]="food.code">
+        {{food.ten}}
+      </mat-option>
+    </mat-select>
   </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-label>Choose a date</mat-label>
@@ -47,7 +55,6 @@
 <button mat-raised-button color="warn" (click)="Clear()">Xóa</button>
 <button mat-raised-button color="warn" class="float-right" (click)="ClosePopup()">Huy</button>
 </div>
-
 
 <style>
   form {

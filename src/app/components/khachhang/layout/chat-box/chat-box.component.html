@@ -10,19 +10,20 @@
     <div class="btn-group pull-right">
     </div>
   </div>
-  <div class="panel-body" #scrollMe [scrollTop]="scrollMe.scrollHeight" *ngIf="!chuaDangNhap">
+  <div class="panel-body" #scrollMe [scrollTop]="scrollMe.scrollHeight" *ngIf="!chuaDangNhap"
+    (scroll)="onElementScroll($event)">
     <ul class="chat" *ngFor="let item of DSTinNhan">
       <!-- ADMIN -->
-      <li class="left clearfix" *ngIf="!item.active">
+      <li class="left clearfix" *ngIf="!item.active" style="background-color: rgb(241, 245, 226);border-radius: 10px;padding: 5px;">
         <span class="chat-img pull-left">
-          <img [src]="url + dsAnh.nu" alt="User Avatar" class="img-circle" style="width: 40px;"/>
+          <img [src]="url + dsAnh.nu" alt="User Avatar" class="img-circle" style="width: 30px;" />
         </span>
         <div class="chat-body clearfix">
           <div class="header">
             <strong class="primary-font mr-3">Admin</strong> <small class="pull-right text-muted">
               <span class="glyphicon glyphicon-time"></span>{{item.thoiGianTao| demgio}}</small>
           </div>
-          <p>
+          <p style="font-size: 13pt;padding: 3px;color: rgb(11, 104, 2); margin-left: 5px;">
             {{item.noiDung}}
           </p>
         </div>
@@ -30,25 +31,28 @@
       <!-- ADMIN -->
 
       <!-- ME -->
-      <li class="right clearfix" *ngIf="item.active">
+      <li class="right clearfix" *ngIf="item.active" style="position: relative;">
         <span class="chat-img pull-right">
-          <img [src]="url + dsAnh.nam" alt="User Avatar" class="img-circle" style="width: 40px;"/>
+          <!-- <img [src]="url + dsAnh.nam" alt="User Avatar" class="img-circle" style="width: 40px;" /> -->
         </span>
         <div class="chat-body clearfix">
           <div class="header">
             <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>{{item.thoiGianTao|
               demgio}}</small>
-            <strong class="pull-right primary-font ml-3">Bạn &nbsp;</strong>
-            <i *ngIf="item.noiDung !='Đã thu hồi'" class="fa fa-chevron-right" style="color: red;cursor: pointer;margin-top: 3px;" aria-hidden="true" (click)="Delete(item.id)"> thu hồi</i>
+            <!-- <strong class="pull-right primary-font ml-3">Bạn &nbsp;</strong> -->
+
+
           </div>
-          <p>
+          <p style="font-size: 13pt;padding: 3px;color: black; margin-left: 5px;">
             {{item.noiDung}}
           </p>
         </div>
         <!-- dropdown -->
 
         <!-- dropdown -->
-
+        <span class="material-icons" style="position: absolute;right: 5px;top: 5px;color: red;cursor: pointer;" title="Thu hồi" (click)="Delete(item.id)">
+          close
+        </span>
       </li>
       <!-- ME -->
     </ul>
@@ -61,8 +65,8 @@
   </div>
   <div class="panel-footer">
     <div class="input-group">
-      <input id="btn-input" type="text" class="form-control input-sm" [(ngModel)]="NoiDung" name="NoiDung" (keyup)="Enter($event.keyCode)"
-        placeholder="Type your message here..." />
+      <input id="btn-input" type="text" class="form-control input-sm" [(ngModel)]="NoiDung" name="NoiDung"
+        (keyup)="Enter($event.keyCode)" placeholder="Type your message here..." />
       <span class="input-group-btn">
         <button class="btn btn-warning btn-sm" id="btn-chat" (click)="Sent()" [disabled]="chuaDangNhap">
           Send</button>

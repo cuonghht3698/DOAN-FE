@@ -13,8 +13,8 @@ import { environment } from 'src/environments/environment';
 })
 export class ChatBoxComponent implements OnInit {
   NoiDung = '';
-  Id ='';
-  DSTinNhan:any;
+  Id = '';
+  DSTinNhan: any;
   @Input() check = false;
   constructor(
     private auth: AuthenticationService,
@@ -22,13 +22,16 @@ export class ChatBoxComponent implements OnInit {
     private traloi: TraLoiTinNhanService,
     private _el: ElementRef
   ) {}
-   scrollToBottom() {
+  scrollToBottom() {
+    console.log(2);
+
     const el: HTMLDivElement = this._el.nativeElement;
     el.scrollTop = Math.max(0, el.scrollHeight - el.offsetHeight);
   }
-  url = environment.ApiUrl + "anh/get/";
+  url = environment.ApiUrl + 'anh/get/';
   dsAnh = Avatar;
   chuaDangNhap = false;
+  size = 30;
   ngOnInit(): void {
     if (this.auth.getUserLocal()) {
       var user = this.auth.getUserLocal();
@@ -36,18 +39,25 @@ export class ChatBoxComponent implements OnInit {
       this.chuaDangNhap = false;
       setInterval(() => {
         if (this.check) {
-          this.GetTinNhan(this.Id);
+          this.GetTinNhan(this.Id, this.size);
         }
       }, 3000);
       if (user.checkChuaDangNhap) {
         this.chuaDangNhap = true;
       }
-    }else{
-
+    } else {
     }
   }
-
-  Enter(event){
+  scrollTop = 0;
+  onElementScroll(event) {
+    if (event.target.scrollTop < 100) {
+      this.size += 30;
+      this.GetTinNhan(this.Id, this.size);
+      const el: HTMLDivElement = this._el.nativeElement;
+      el.scrollTop = 200
+    }
+  }
+  Enter(event) {
     if (event == 13) {
       this.Sent();
     }
@@ -56,45 +66,43 @@ export class ChatBoxComponent implements OnInit {
     if (this.NoiDung == '') {
       return;
     }
-    var data:TraLoiModel = {
-      Id : GuidId.EmptyId,
-      Active:true,
+    var data: TraLoiModel = {
+      Id: GuidId.EmptyId,
+      Active: true,
       IdTinNhan: this.Id,
-      NoiDung:this.NoiDung,
-      ThoiGianTao:new Date(),
-      Watched:false
-    }
-    this.traloi.Sent(data).subscribe((res)=>{
-      this.GetTinNhan(this.Id);
+      NoiDung: this.NoiDung,
+      ThoiGianTao: new Date(),
+      Watched: false,
+    };
+
+    this.traloi.Sent(data).subscribe((res) => {
+      this.GetTinNhan(this.Id, this.size);
       this.NoiDung = '';
-
-    })
+    });
   }
-  GetTinNhan(Id) {
-    this.traloi.GetById(Id).subscribe((res:any) => {
+  GetTinNhan(Id, size) {
+    this.traloi.GetById(Id, size).subscribe((res: any) => {
       this.DSTinNhan = res;
-
     });
   }
   CreateOrGet(UserId) {
     this.tinnhan.CreateOrGet(UserId).subscribe((res: any) => {
       this.Id = res.id;
-      this.GetTinNhan(res.id);
+      this.GetTinNhan(res.id, this.size);
     });
   }
-  Delete(Id){
-    this.traloi.ThuHoi(Id).subscribe((res)=>{
-      this.GetTinNhan(this.Id);
-    })
+  Delete(Id) {
+    this.traloi.ThuHoi(Id).subscribe((res) => {
+      this.GetTinNhan(this.Id, this.size);
+    });
   }
 }
 
-
-export class TraLoiModel{
-  Id:string;
+export class TraLoiModel {
+  Id: string;
   IdTinNhan: string;
-  NoiDung:string;
-  Active:boolean;
-  ThoiGianTao:Date;
+  NoiDung: string;
+  Active: boolean;
+  ThoiGianTao: Date;
   Watched: boolean;
 }

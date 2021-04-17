@@ -10,16 +10,16 @@ export class TraLoiTinNhanService {
   Sent(data) {
     return this.http.post(this.baseUri, data);
   }
-  GetById(Id) {
-    return this.http.get(this.baseUri + Id);
+  GetById(Id, size) {
+    return this.http.get(this.baseUri, { params: { Id: Id, Size: size } });
   }
   Watched(Id) {
     return this.http.get(this.baseUri + 'Watched/' + Id);
   }
-  Delete(id){
+  Delete(id) {
     return this.http.delete(this.baseUri + id);
   }
-  ThuHoi(id){
-    return this.http.get(this.baseUri + 'thuhoi/'+ id);
+  ThuHoi(id) {
+    return this.http.get(this.baseUri + 'thuhoi/' + id);
   }
 }

@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit } from '@angular/core';
 import { TinNhanService } from 'src/app/services/danhmuc/tinnhan.service';
 import { TraLoiTinNhanService } from 'src/app/services/danhmuc/traloitinnhan.service';
 import { GuidId } from 'src/app/services/ERole';
-import * as _ from "lodash";
+import * as _ from 'lodash';
 import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-quanly-chat',
@@ -14,19 +14,20 @@ export class QuanlyChatComponent implements OnInit {
     private tinnhan: TinNhanService,
     private traloi: TraLoiTinNhanService,
     private _el: ElementRef,
-    private router:Router,
-    private activatedRoute:ActivatedRoute
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   IdTinNhan = '';
   NoiDung = '';
   loadF = true;
+  size = 30;
   ngOnInit(): void {
-  this.activatedRoute.queryParams.subscribe((res)=>{
-    this.tinnhan.GetIdTinNhanByIdUser(res.Id).subscribe((res1:any)=>{
-      this.IdTinNhan = res1.id;
+    this.activatedRoute.queryParams.subscribe((res) => {
+      this.tinnhan.GetIdTinNhanByIdUser(res.Id).subscribe((res1: any) => {
+        this.IdTinNhan = res1.id;
+      });
     });
-  });
     this.getDsTinNhan();
     setInterval(() => {
       this.getDsTinNhan();
@@ -55,28 +56,28 @@ export class QuanlyChatComponent implements OnInit {
   RefeshGetDsTinNhan() {
     this.tinnhan.GetDSTinNhanByTen(this.ten).subscribe((res: any) => {
       this.DsListChat = res;
-
     });
   }
   getTinNhanById(Id) {
-    this.router.navigate(
-      [],
-      {
-        relativeTo: this.activatedRoute,
-        queryParams: {Id:Id},
-        queryParamsHandling: 'merge', // remove to replace all query params by provided
-      });
+    this.router.navigate([], {
+      relativeTo: this.activatedRoute,
+      queryParams: { Id: Id },
+      queryParamsHandling: 'merge', // remove to replace all query params by provided
+    });
     this.IdTinNhan = Id;
-    this.traloi.GetById(Id).subscribe((res: any) => {
+    this.traloi.GetById(Id, this.size).subscribe((res: any) => {
       this.dataChat = res;
       console.log(res);
-
     });
     this.traloi.Watched(Id).subscribe((res) => {
       this.RefeshGetDsTinNhan();
     });
   }
-
+  Delete(Id) {
+    this.traloi.ThuHoi(Id).subscribe((res) => {
+      this.getTinNhanById(this.IdTinNhan);
+    });
+  }
   Sent() {
     var data = {
       Id: GuidId.EmptyId,

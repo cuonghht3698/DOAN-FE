@@ -9,7 +9,9 @@ export class RoleService {
   getPage(search:any) {
     return this.http.post(environment.ApiUrl + 'role/getPage',search);
   }
-
+  getAll() {
+    return this.http.get(environment.ApiUrl  + 'role');
+  }
   Create(data) {
     return this.http.post(environment.ApiUrl + 'role', data);
   }
