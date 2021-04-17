@@ -28,15 +28,22 @@ export class ChatBoxComponent implements OnInit {
   }
   url = environment.ApiUrl + "anh/get/";
   dsAnh = Avatar;
+  chuaDangNhap = false;
   ngOnInit(): void {
     if (this.auth.getUserLocal()) {
       var user = this.auth.getUserLocal();
       this.CreateOrGet(user.id);
+      this.chuaDangNhap = false;
       setInterval(() => {
         if (this.check) {
           this.GetTinNhan(this.Id);
         }
       }, 3000);
+      if (user.checkChuaDangNhap) {
+        this.chuaDangNhap = true;
+      }
+    }else{
+
     }
   }
 

@@ -45,15 +45,15 @@ export class DanhmucComponent implements OnInit {
   ngOnInit(): void {
 
     this.router.queryParams.subscribe((res: any) => {
-      this.sSearch.LoaiSP = res.LoaiSP;
-      this.sSearch.sSearch = res.sSearch;
-      this.sSearch.GiaTu = res.GiaTu;
-      this.sSearch.GiaDen = res.GiaDen;
-      this.sSearch.DungLuong = res.DungLuong;
-      this.sSearch.Ram = res.Ram;
-      this.sSearch.HangSX = res.HangSX;
-      this.sSearch.pageIndex = res.pageIndex;
-      this.sSearch.pageSize = res.pageSize;
+      this.sSearch.LoaiSP = res.LoaiSP || res.loai;
+      this.sSearch.sSearch = res.sSearch || '';
+      this.sSearch.GiaTu = res.GiaTu || 0;
+      this.sSearch.GiaDen = res.GiaDen || 0;
+      this.sSearch.DungLuong = res.DungLuong || '';
+      this.sSearch.Ram = res.Ram || '';
+      this.sSearch.HangSX = res.HangSX || '';
+      this.sSearch.pageIndex = res.pageIndex || 0;
+      this.sSearch.pageSize = res.pageSize || 20;
 
       // this.sSearch = res;
     });

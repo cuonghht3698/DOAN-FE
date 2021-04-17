@@ -10,7 +10,7 @@
     <div class="btn-group pull-right">
     </div>
   </div>
-  <div class="panel-body" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+  <div class="panel-body" #scrollMe [scrollTop]="scrollMe.scrollHeight" *ngIf="!chuaDangNhap">
     <ul class="chat" *ngFor="let item of DSTinNhan">
       <!-- ADMIN -->
       <li class="left clearfix" *ngIf="!item.active">
@@ -52,13 +52,19 @@
       </li>
       <!-- ME -->
     </ul>
+
+  </div>
+
+  <div *ngIf="chuaDangNhap" style="height: 200px;" class="alert-danger">
+    Bạn cần đăng nhập để sử dụng tính năng này!
+    <a routerLink="../shop/dangnhap">Đăng nhập</a>
   </div>
   <div class="panel-footer">
     <div class="input-group">
       <input id="btn-input" type="text" class="form-control input-sm" [(ngModel)]="NoiDung" name="NoiDung" (keyup)="Enter($event.keyCode)"
         placeholder="Type your message here..." />
       <span class="input-group-btn">
-        <button class="btn btn-warning btn-sm" id="btn-chat" (click)="Sent()">
+        <button class="btn btn-warning btn-sm" id="btn-chat" (click)="Sent()" [disabled]="chuaDangNhap">
           Send</button>
       </span>
     </div>

@@ -17,9 +17,9 @@ export class HeaderComponent implements OnInit {
     private user: AuthenticationService,
     private router: Router,
     private c: CartService,
-    public up:DataService,
+    public up: DataService,
     private authent: AuthenticationService,
-    private cookieService:CookieService
+    private cookieService: CookieService
   ) {}
   name = '';
   Id = '';
@@ -38,11 +38,10 @@ export class HeaderComponent implements OnInit {
       this.GetCount();
     }
     this.getTongTien();
-  };
+  }
   totalCheck = this.up.selectedValue;
   ngDoCheck(): void {
-    if(this.totalCheck != this.up.selectedValue)
-    {
+    if (this.totalCheck != this.up.selectedValue) {
       this.totalCheck = this.up.selectedValue;
       this.getTongTien();
     }
@@ -50,28 +49,28 @@ export class HeaderComponent implements OnInit {
   logout() {
     localStorage.clear();
     this.DangNhap();
-    this.router.navigateByUrl("../shop")
-    location.reload();
-  };
+    this.router.navigateByUrl('../shop');
+    window.location.reload();
+  }
   TongTien = 0;
-  getTongTien(){
+  getTongTien() {
     var ClientId = this.cookieService.get('ClientId');
-    this.c.ShowShoppingCart(this.Id,ClientId).subscribe((res:any)=>{
+    this.c.ShowShoppingCart(this.Id, ClientId).subscribe((res: any) => {
       this.TongTien = 0;
-      if(res.length > 0)
-      res.forEach(item => {
-        this.TongTien += item.soLuong * item.gia;
-      });
-    })
+      if (res.length > 0)
+        res.forEach((item) => {
+          this.TongTien += item.soLuong * item.gia;
+        });
+    });
   }
   goto(go) {
     this.router.navigateByUrl('/shop/' + go);
   }
-  GetCount(){
+  GetCount() {
     var t = this.user.getUserLocal();
     if (t) {
       var ClientId = this.cookieService.get('ClientId');
-      this.c.ShowShoppingCart(t.id,ClientId).subscribe((res:any)=>{
+      this.c.ShowShoppingCart(t.id, ClientId).subscribe((res: any) => {
         this.up.Value(Number(res.length));
       });
     }
@@ -92,9 +91,7 @@ export class HeaderComponent implements OnInit {
           localStorage.setItem('user', JSON.stringify(res));
         });
       },
-      (err) => {
-
-      }
+      (err) => {}
     );
   }
 }

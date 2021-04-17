@@ -36,6 +36,8 @@
           </a>
           <button mat-button class="text-left" *ngFor="let item of dsLoaiSP"
             (click)="LocLoaiSP(item.maTuDien)">{{item.ten}}</button>
+            <button mat-button class="text-left"
+            (click)="LocLoaiSP('')">Tất cả</button>
         </div>
       </div>
       <!-- end menu tim kiem -->
