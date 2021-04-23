@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-hoadon',
@@ -6,8 +7,18 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./hoadon.component.css'],
 })
 export class HoadonComponent implements OnInit {
-  @Input() dsSanPham: string;
-  constructor() {}
+  @Input() data: any;
+  @Input() tenNV: string;
 
-  ngOnInit(): void {}
+  constructor() {}
+  ngay: any;
+  thang: any;
+  nam: any;
+
+  ngOnInit(): void {
+    this.ngay = moment().format('DD');
+    this.thang = moment().format('MM');
+    this.nam = moment().format('yyyy');
+
+  }
 }

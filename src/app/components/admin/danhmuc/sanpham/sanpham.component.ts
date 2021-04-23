@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { SanPhamService } from './../../../../services/danhmuc/sanpham.service';
 import { Component, OnInit } from '@angular/core';
 import { PopupSanPham, SanPhamModel } from './popup/sanpham.popup';
+import { TudienService } from 'src/app/services/danhmuc/tudien.service';
 
 @Component({
   selector: 'app-sanpham',
@@ -13,18 +14,38 @@ export class SanphamComponent implements OnInit {
   constructor(
     private sp: SanPhamService,
     private toarst: ToastrService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private cm: TudienService
   ) {}
   searchSP = {
     sSearch: '',
     pageIndex: 0,
     pageSize: 10,
+    IdLoaiSanPham: '',
+    IdHangSanXuat: '',
+    GiaTu: 0,
+    GiaDen: 0,
+    Active: "2",
   };
   dsSanPham;
   TotalItem;
   ngOnInit(): void {
+    this.getLoai();
     this.getPage();
   }
+  dsLoai: any;
+  dsHang: any;
+  IdHang = '';
+  IdLoai = '';
+  getLoai() {
+    this.cm.getByLoai('HangSanXuat').subscribe((res) => {
+      this.dsHang = res;
+    });
+    this.cm.getByLoai('LoaiSanPham').subscribe((res) => {
+      this.dsLoai = res;
+    });
+  }
+
   OpenDiaLog(item) {
     const dialog = this.dialog.open(PopupSanPham, {
       width: '80%',
@@ -55,15 +76,18 @@ export class SanphamComponent implements OnInit {
   }
 
   getPage() {
+    if (this.searchSP.GiaDen.toString() == '') {
+      this.searchSP.GiaDen = 0;
+    }
+    if (this.searchSP.GiaTu.toString() == '') {
+      this.searchSP.GiaTu = 0;
+    }
     this.sp.GetPage(this.searchSP).subscribe(
       (res: any) => {
-        console.log(res);
-
         this.dsSanPham = res.list;
         this.TotalItem = res.total;
       },
-      (err) => {
-      }
+      (err) => {}
     );
   }
 }

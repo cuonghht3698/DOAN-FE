@@ -11,6 +11,7 @@ import { SanPhamService } from 'src/app/services/danhmuc/sanpham.service';
 import { environment } from 'src/environments/environment';
 import * as _ from 'lodash';
 import { CKEditor5 } from '@ckeditor/ckeditor5-angular';
+import { TudienService } from 'src/app/services/danhmuc/tudien.service';
 @Component({
   selector: 'app-blog',
   templateUrl: './blog.component.html',
@@ -21,7 +22,8 @@ export class BlogComponent implements OnInit {
     private sp: SanPhamService,
     private blog: BlogService,
     private toarst: ToastrService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cm:TudienService
   ) {}
   public Editor = ClassicEditor;
   check = false;
@@ -84,8 +86,11 @@ export class BlogComponent implements OnInit {
   baseUrl = environment.ApiUrl + 'anh/get/';
   states = [];
   search = '';
+
+
+
   getProduct() {
-    this.sp.GetByName({ search: this.search }).subscribe((res: any) => {
+    this.sp.GetByName(this.search,"","").subscribe((res: any) => {
       this.states = res;
       this.filteredStates = this.stateCtrl.valueChanges.pipe(
         startWith(''),

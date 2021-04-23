@@ -31,10 +31,9 @@ export class TopProductComponent implements OnInit {
     this.getSPNhieuView();
   }
   search = {
-    sSearch: '',
-    pageIndex: 1,
-    pageSize: 8,
-    OrderByAsc: false,
+    MaHang: '',
+    PageIndex: 1,
+    PageSize: 8,
   };
   searchOp = {
     MaHang: '',
@@ -44,8 +43,6 @@ export class TopProductComponent implements OnInit {
   getSanPham() {
     this.option.GetOptionByHang(this.searchOp).subscribe((res: any) => {
       this.dsTopDienThoai = res;
-
-
     });
   }
   Next(){
@@ -60,13 +57,14 @@ export class TopProductComponent implements OnInit {
     this.getSanPham();
   }
   ViewMore() {
-    if (this.search.pageSize < 32) {
-      this.search.pageSize += 4;
+    if (this.search.PageSize < 32) {
+      this.search.PageSize += 4;
       this.getSPNhieuView();
     }
   }
   getSPNhieuView() {
-    this.option.GetPage(this.search).subscribe((res: any) => {
+    this.option.GetOptionByHang(this.search).subscribe((res: any) => {
+
       this.dsTopDienThoaiNhieuView = res;
       console.log(res);
 

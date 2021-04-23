@@ -1,61 +1,80 @@
-<div style="width: 27cm;height: 21cm;">
-  <div class="row">
-    <div class="col-4">
-      <h1>TÊN CỬA HÀNG</h1>
-      <p>Địa chỉ THÔN ĐỒNG - SƠN ĐỒNG - HOÀI ĐỨC - HÀ NỘI</p>
-    </div>
-    <div class="col-8">
-      <span>HÓA ĐƠN BÁN HÀNG</span>
-    </div>
+<br>
+<br>
 
+
+<div style="padding: 20px;font-family: sans-serif;">
+  <div style="text-align: center;">
+    <p style="font-size: 20pt;text-align: center;"><b>Cửa hàng điện thoại - Máy tính - NBC</b></p>
+    <div style="font-size: 13pt;">
+      <p><b>Địa chỉ: ABC - 20 - Hoài Đức - Hà Nội</b></p>
+      <p>Số tài khoản: 1224811247 Ngân hàng ABC HÀ NỘI</p>
+      <p>Hà nội : ngày {{ngay}} tháng {{thang}} năm {{nam}}</p>
+    </div>
+  </div>
+
+
+  <h3><b>Thông tin khách hàng</b></h3>
+  <div class="row">
+    <table>
+      <tr>
+        <td colspan="3"><b>Họ và tên </b></td>
+        <td colspan="4">{{data.HoTen}}</td>
+      </tr>
+      <tr>
+        <td colspan="3"><b>Địa chỉ </b></td>
+        <td colspan="4">{{data.DiaChi}}</td>
+      </tr>
+      <tr>
+        <td colspan="3"><b>Số điện thoại </b></td>
+        <td colspan="4">{{data.Sdt}}</td>
+      </tr>
+      <tr>
+        <td colspan="3"><b>Email </b></td>
+        <td colspan="4">{{data.Email}}</td>
+      </tr>
+    </table>
   </div>
 
   <div class="row">
-    <p>Tên khách hàng: </p>
-    <p>Địa chỉ: </p>
-    <p>Số điện thoại: </p>
-  </div>
-
-  <div class="row">
-    <table class="table table-bordered border-primary">
+    <h3><b>Thông tin sản phẩm</b></h3>
+    <table border="1" style="width: 100%;border-collapse: collapse;">
       <thead>
-        <tr>
-          <th>STT</th>
+        <tr style="text-align: center">
+          <th style="padding: 6px;">STT</th>
           <th>Tên hàng</th>
+          <th>Ram</th>
+          <th>Rom</th>
           <th>Số lượng</th>
           <th>Đơn giá</th>
-          <th>Thành tiền</th>
         </tr>
       </thead>
 
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>1</td>
-          <td>1</td>
-          <td>1</td>
-          <td>1</td>
+        <tr *ngFor="let item of data.DSSanPham;index as index">
+          <td style="padding: 6px;">{{index + 1}}</td>
+          <td>{{item.tenSanPham}}</td>
+          <td style="text-align: center;padding: 6px;">{{item.ram}}</td>
+          <td style="text-align: center;">{{item.rom}}</td>
+          <td style="text-align: center;">{{item.soLuong}}</td>
+          <td style="text-align: center;">{{item.gia}}</td>
+
         </tr>
         <tr>
-          <td colspan="4"></td>
-          <td>11111</td>
+          <td style="text-align: center;font-size: 15pt;padding: 10px;" colspan="3"><b>Tổng tiền</b></td>
+          <td style="text-align: center;font-size: 15pt;padding: 10px;" colspan="3">{{data.TongTien}}</td>
         </tr>
+
       </tbody>
     </table>
   </div>
 
   <div class="row">
-    <p>Thành tiền (viết bằng chữ)</p>
+    <p style="color: green;">{{data.TongTien | doctien}} đồng</p>
   </div>
 
-  <div class="row">
-    <div class="col-6">
-      <span>Khách hàng</span>
-    </div>
-    <div class="col-6">
-      <p><span>Ngày </span><span>Tháng</span><span>Năm</span></p>
-      <p>Người bán hàng</p>
-    </div>
-  </div>
+  <span style="margin-left: 100px;">Người mua hàng</span>
+  <span style="margin-left: 250px;">Người bán</span>
 
+  <style>
+  </style>
 </div>

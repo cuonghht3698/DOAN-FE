@@ -11,8 +11,10 @@ export class SanPhamService {
   GetPage(search) {
     return this.http.post(this.baseUri + 'getPage', search);
   }
-  GetByName(search) {
-    return this.http.get(this.baseUri + 'getByName', search);
+  GetByName(search, idLoai, hang) {
+    return this.http.get(this.baseUri + 'getByName', {
+      params: { search: search, idLoai: idLoai, idHang: hang },
+    });
   }
   getById(id) {
     return this.http.get(this.baseUri + 'getById/' + id);

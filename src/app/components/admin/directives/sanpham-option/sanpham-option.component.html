@@ -1,6 +1,23 @@
 
 <div class="mother-box">
+
   <div class="search-box" *ngIf="viewNhap">
+    <h1 style="color: green;">Nhập thông tin mặt hàng</h1>
+    <mat-form-field>
+      <mat-label>Loại sản phẩm</mat-label>
+      <mat-select [(ngModel)]="IdLoai" name="loai" (selectionChange)="getProduct()">
+        <mat-option value="">Chọn loại</mat-option>
+        <mat-option [value]="item.id" *ngFor="let item of dsLoai">{{item.ten}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    -
+    <mat-form-field>
+      <mat-label>Hãng sản xuất</mat-label>
+      <mat-select [(ngModel)]="IdHang" name="loai1" (selectionChange)="getProduct()">
+        <mat-option value="">Chọn hãng</mat-option>
+        <mat-option [value]="item.id" *ngFor="let item of dsHang">{{item.ten}}</mat-option>
+      </mat-select>
+    </mat-form-field>
     <form class="example-form">
       <mat-form-field class="example-full-width">
         <mat-label>Tên sản phẩm</mat-label>

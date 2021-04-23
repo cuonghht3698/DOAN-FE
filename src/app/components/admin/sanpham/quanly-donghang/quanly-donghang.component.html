@@ -71,7 +71,7 @@
         <td>{{item.tongTien | tiente}}</td>
         <td>{{item.nhanVien}}</td>
         <td><a mat-raised-button [routerLink]="['../chitietdonhang/']" [queryParams]="{ id: item.id}">Xem</a></td>
-        <td><button *ngIf="item.maTrangThai == 'DangGiaoHang'" mat-raised-button color="primary" (click)="HoanThanh(item.id)">Đã nhận được hàng</button></td>
+        <td><button *ngIf="item.maTrangThai == 'DangGiaoHang'" mat-raised-button color="primary" (click)="HoanThanh(item.id)">Hoàn thành</button></td>
 
       </tr>
     </tbody>

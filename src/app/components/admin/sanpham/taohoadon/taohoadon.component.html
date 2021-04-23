@@ -1,8 +1,26 @@
-<div id="TaoHoaDon">
+<div>
+  <h1 style="color: green;">Nhập thông tin mặt hàng</h1>
+  <mat-form-field>
+    <mat-label>Loại sản phẩm</mat-label>
+    <mat-select [(ngModel)]="IdLoai" name="loai" (selectionChange)="getProduct()">
+      <mat-option value="">Chọn loại</mat-option>
+      <mat-option [value]="item.id" *ngFor="let item of dsLoai">{{item.ten}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  -
+  <mat-form-field>
+    <mat-label>Hãng sản xuất</mat-label>
+    <mat-select [(ngModel)]="IdHang" name="loai1" (selectionChange)="getProduct()">
+      <mat-option value="">Chọn hãng</mat-option>
+      <mat-option [value]="item.id" *ngFor="let item of dsHang">{{item.ten}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
   <div class="row mother" style="min-height: 330px;">
     <div class="col-8 mother">
-      <h1>Nhập thông tin mặt hàng</h1>
-      <mat-form-field style="width: 100%;">
+
+      <mat-form-field style="width: 90%;margin: auto;">
         <mat-label>Tên sản phẩm</mat-label>
         <input matInput aria-label="State" [matAutocomplete]="auto" [formControl]="stateCtrl">
         <mat-autocomplete #auto="matAutocomplete">
@@ -144,19 +162,30 @@
 
 
       <div class="float-right">
-        <button mat-raised-button color="primary" class="mr-2" (click)="SaveHoaDon(false)" [disabled]="IsDaHoanThanh">Xác nhận hoàn thành</button>
-        <button mat-raised-button color="warn" (click)="TaoMoi()">Tạo mới</button>
-        <!-- <button mat-raised-button color="primary" (click)="SaveHoaDon(true)">Tạo hóa đơn & In</button>
+        <button mat-raised-button color="primary" class="mr-2"
+          [disabled]="dataCart.HoTen == '' || dataCart.DiaChi == '' || dataCart.Sdt == '' || dataCart.DSSanPham.length == 0" (click)="SaveHoaDon(false)"
+          [disabled]="IsDaHoanThanh"
+          [disabled]="dataCart.HoTen == '' || dataCart.DiaChi == '' || dataCart.Sdt == '' || dataCart.DSSanPham.length == 0">Xác nhận hoàn thành</button>
 
-        <button printSectionId="print-section" mat-raised-button color="primary"  ngxPrint>print</button> -->
+        <button mat-raised-button color="primary" (click)="SaveHoaDon(true)"
+        [disabled]="IsDaHoanThanh"
+          [disabled]="dataCart.HoTen == '' || dataCart.DiaChi == '' || dataCart.Sdt == '' || dataCart.DSSanPham.length == 0">Tạo hóa đơn & In</button>
+
+        <button printSectionId="print-section" mat-raised-button color="primary"
+          [disabled]="dataCart.HoTen == '' || dataCart.DiaChi == '' || dataCart.Sdt == ''  || dataCart.DSSanPham.length == 0"
+          (click)="Print()">In hóa đơn</button>
+        <button mat-raised-button color="warn" (click)="TaoMoi()">Tạo mới</button>
       </div>
     </div>
     <!-- Thông tin khách hàng -->
   </div>
 
+<style>
+  button{
+    margin: 5px;
+  }
+</style>
 
-
-<!--
-<div id="print-section">
-  <app-hoadon></app-hoadon>
-</div> -->
+  <div id="print" style="display: none;">
+    <app-hoadon [data]="dataCart" [tenNV]="tenNV"></app-hoadon>
+  </div>

@@ -48,6 +48,16 @@ export class ChitietDonhangComponent implements OnInit {
       this.getCart(res.id);
     });
   }
+  Print() {
+    const printContent = document.getElementById('print');
+    const WindowPrt = window.open('', '');
+    WindowPrt.document.write(printContent.innerHTML);
+    WindowPrt.document.close();
+    WindowPrt.focus();
+    WindowPrt.print();
+    WindowPrt.close();
+  }
+
   url = environment.ApiUrl + 'anh/get/';
   getDonHangDetail(id) {
     this.cart.ShowShoppingCartById(id).subscribe((res: any) => {
@@ -62,12 +72,22 @@ export class ChitietDonhangComponent implements OnInit {
 
     });
   }
+  tenNV = JSON.parse(localStorage.getItem('user'))[0].hoTen;
+  dataIn = {
+    DiaChi: '',
+    TongTien: 0,
+    Sdt: '',
+    Email: '',
+    HoTen: '',
+    DSSanPham: [],
+  };
+
 
   getCart(id) {
     this.cart.GetCartId(id).subscribe((res: any) => {
       this.dataCart = res;
       console.log(res);
-      
+
       this.getUser(res.userId);
     });
   }

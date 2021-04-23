@@ -5,16 +5,57 @@
     <div class="col-1">
       <button mat-raised-button (click)="getPage()">Tìm kiếm</button>
     </div>
-    <div class="col-3">
-      <mat-form-field style="width: 200px;margin-left: 100px;">
-        <mat-label>Tìm kiếm tên, địa chỉ...</mat-label>
-        <span matSuffix><span class="material-icons">
-            search
-          </span></span>
-        <input matInput [(ngModel)]="searchSP.sSearch" (change)="getPage()">
-      </mat-form-field>
-    </div>
+    <mat-form-field style="width: 200px;">
+      <mat-label>Tìm kiếm tên, địa chỉ...</mat-label>
+      <span matSuffix><span class="material-icons">
+          search
+        </span></span>
+      <input matInput [(ngModel)]="searchSP.sSearch" name="se" (ngModelChange)="getPage()">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Loại sản phẩm</mat-label>
+      <mat-select [(ngModel)]="searchSP.IdLoaiSanPham" name="loai" (selectionChange)="getPage()">
+        <mat-option value="">Chọn loại</mat-option>
+        <mat-option [value]="item.id" *ngFor="let item of dsLoai">{{item.ten}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    -
+    <mat-form-field>
+      <mat-label>Hãng sản xuất</mat-label>
+      <mat-select [(ngModel)]="searchSP.IdHangSanXuat" name="loai1" (selectionChange)="getPage()">
+        <mat-option value="">Chọn hãng</mat-option>
+        <mat-option [value]="item.id" *ngFor="let item of dsHang">{{item.ten}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field style="width: 150px;">
+      <mat-label>Giá từ . </mat-label>
+      <span matSuffix><span class="material-icons">
+          search
+        </span></span>
+      <input matInput [(ngModel)]="searchSP.GiaTu" name="g111" (ngModelChange)="getPage()">
+    </mat-form-field>
+    --
+    <mat-form-field style="width: 150px;">
+      <mat-label>Giá đến </mat-label>
+      <span matSuffix><span class="material-icons">
+          search
+        </span></span>
+      <input matInput [(ngModel)]="searchSP.GiaDen" name="g2" (ngModelChange)="getPage()">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Lọc hoạt động</mat-label>
+      <mat-select [(ngModel)]="searchSP.Active" name="act" (selectionChange)="getPage()">
+        <mat-option value="2">Tất cả</mat-option>
+        <mat-option value="1">Hoạt động</mat-option>
+        <mat-option value="0">Ngừng hoạt động</mat-option>
+
+      </mat-select>
+    </mat-form-field>
   </div>
+
   <br>
   <table class="table table-hover">
     <thead>
@@ -41,11 +82,13 @@
         <td>{{ item.thoiGianTao |date:'dd/MM/yyyy' }}</td>
         <td>
           <section class="float-left ml-3">
-            <mat-checkbox [(ngModel)]="item.active" name="active" name>Hoạt động</mat-checkbox>
+            <mat-checkbox [(ngModel)]="item.active" name="active" name>{{item.active?'Hoạt động':"Ngừng"}}
+            </mat-checkbox>
           </section>
         </td>
         <td>{{ item.cauHinh != null ? item.cauHinh.code:''}}</td>
-        <td> <a mat-raised-button color="primary" [routerLink]="['../sanpham/option']" [queryParams]="{ id: item.id}">Option</a></td>
+        <td> <a mat-raised-button color="primary" [routerLink]="['../sanpham/option']"
+            [queryParams]="{ id: item.id}">Option</a></td>
         <td>
           <button mat-mini-fab color="primary" (click)="OpenDiaLog(item)"><span class="material-icons">
               create
@@ -73,3 +116,9 @@
 
   </div>
 </div>
+
+<style>
+  mat-form-field {
+    margin: 5px;
+  }
+</style>

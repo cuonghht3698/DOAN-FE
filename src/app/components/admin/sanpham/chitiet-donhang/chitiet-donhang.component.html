@@ -122,9 +122,18 @@
         (click)="GiaoHang()" *ngIf="dataCart.trangThai.maTuDien == 'DaDatHang'">Đóng gói và giao hàng</button>
         <button style="padding: 10px;margin: 10px;" mat-raised-button color="warn" (click)="HuyDon(true)" *ngIf="dataCart.trangThai.maTuDien == 'DangGiaoHang'">Từ chối đơn hàng</button>
         <button style="padding: 10px;margin: 10px;" mat-raised-button color="warn" (click)="HuyDon(false)" *ngIf="dataCart.trangThai.maTuDien == 'DaDatHang'">Hủy đơn hàng</button>
-        <a style="padding: 10px;margin: 10px;" mat-raised-button color="accent" routerLink="../donhang">Trở về</a>
+        <!-- <button printSectionId="print-section" mat-raised-button color="primary"
+
+        (click)="Print()">In hóa đơn</button> -->
+        <a mat-raised-button color="accent" routerLink="../donhang">Trở về</a>
       </div>
 
     </div>
   </div>
+</div>
+
+
+
+<div id="print" style="display: none;">
+  <app-hoadon [data]="dataCart" [tenNV]="tenNV"></app-hoadon>
 </div>

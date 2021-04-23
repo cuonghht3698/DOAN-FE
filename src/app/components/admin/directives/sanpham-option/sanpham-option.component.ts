@@ -7,6 +7,7 @@ import { map, startWith } from 'rxjs/operators';
 import { BlogService } from 'src/app/services/danhmuc/blog.service';
 import { optionservice } from 'src/app/services/danhmuc/optionSp.service';
 import { SanPhamService } from 'src/app/services/danhmuc/sanpham.service';
+import { TudienService } from 'src/app/services/danhmuc/tudien.service';
 import { GuidId } from 'src/app/services/ERole';
 import { environment } from 'src/environments/environment';
 
@@ -56,12 +57,14 @@ export class SanphamOptionComponent implements OnInit {
     private op: optionservice,
     private toastr: ToastrService,
     private av:ActivatedRoute,
-    private blog:BlogService
+    private blog:BlogService,
+    private cm: TudienService
   ) {}
 
   @Input() demo: any;
   @Input() viewNhap: boolean;
   ngOnInit(): void {
+    this.getLoai();
     if (!this.viewNhap) {
      this.av.queryParams.subscribe((res)=>{
       this.getById(res.id);
@@ -75,8 +78,20 @@ export class SanphamOptionComponent implements OnInit {
   }
   states = [];
   search = '';
+  dsLoai: any;
+  dsHang: any;
+  IdHang = '';
+  IdLoai = '';
+  getLoai() {
+    this.cm.getByLoai('HangSanXuat').subscribe((res) => {
+      this.dsHang = res;
+    });
+    this.cm.getByLoai('LoaiSanPham').subscribe((res) => {
+      this.dsLoai = res;
+    });
+  }
   getProduct() {
-    this.sp.GetByName({ search: this.search }).subscribe((res: any) => {
+    this.sp.GetByName(this.search ,this.IdLoai,this.IdHang).subscribe((res: any) => {
       this.states = res;
       this.filteredStates = this.stateCtrl.valueChanges.pipe(
         startWith(''),

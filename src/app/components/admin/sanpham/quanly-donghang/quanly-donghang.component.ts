@@ -81,7 +81,7 @@ export class QuanlyDonghangComponent implements OnInit {
     };
 
     this.cart.HoanThanh(data).subscribe((res)=>{
-      this.toart.success('Hủy đơn thành công', 'Thông báo!');
+      this.toart.success('Hoàn thành đơn thành công', 'Thông báo!');
       this.getCart();
     })
   }

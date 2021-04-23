@@ -11,6 +11,7 @@ import { CartService } from 'src/app/services/danhmuc/cart.service';
 import { CartDetailService } from 'src/app/services/danhmuc/cartdetail.service';
 import { EmailService } from 'src/app/services/danhmuc/email.service';
 import { SanPhamService } from 'src/app/services/danhmuc/sanpham.service';
+import { TudienService } from 'src/app/services/danhmuc/tudien.service';
 import { GuidId } from 'src/app/services/ERole';
 import { DataService } from 'src/app/services/share/data.share';
 import { environment } from 'src/environments/environment';
@@ -29,14 +30,17 @@ export class TaohoadonComponent implements OnInit {
     private email: EmailService,
     public upCart: DataService,
     private cookieService: CookieService,
-    private sp: SanPhamService
+    private sp: SanPhamService,
+    private cm: TudienService
   ) {}
   stateCtrl = new FormControl();
   filteredStates: Observable<any>;
   ngOnInit(): void {
+    this.getLoai();
     this.getProduct();
   }
   url = environment.ApiUrl + 'anh/get/';
+  tenNV = JSON.parse(localStorage.getItem('user'))[0].hoTen;
   dataThemSp = {
     Id: GuidId.EmptyId,
     Ten: '',
@@ -100,7 +104,9 @@ export class TaohoadonComponent implements OnInit {
   }
   dsOption: any;
   IsDaHoanThanh = false;
-  TaoMoi(){
+
+
+  TaoMoi() {
     location.reload();
     this.IsDaHoanThanh = false;
   }
@@ -111,7 +117,18 @@ export class TaohoadonComponent implements OnInit {
       console.log(res);
     });
   }
-
+  dsLoai: any;
+  dsHang: any;
+  IdHang = '';
+  IdLoai = '';
+  getLoai() {
+    this.cm.getByLoai('HangSanXuat').subscribe((res) => {
+      this.dsHang = res;
+    });
+    this.cm.getByLoai('LoaiSanPham').subscribe((res) => {
+      this.dsLoai = res;
+    });
+  }
   ChangeSoLuong(index, value) {
     this.dataCart.DSSanPham[index].soLuong = value;
     this.dataCart.TongTien = 0;
@@ -127,8 +144,11 @@ export class TaohoadonComponent implements OnInit {
   SaveHoaDon(IsPrint) {
     this.ct.TaoHoaDon(this.dataCart).subscribe(
       (res) => {
-        this.toarst.success('Tạo hóa đơn thành công ','Thông báo');
+        this.toarst.success('Tạo hóa đơn thành công ', 'Thông báo');
         this.IsDaHoanThanh = true;
+        if (IsPrint) {
+          this.Print();
+        }
       },
       (err) => {
         this.toarst.error('Kiểm tra lại thông tin', 'Thông báo');
@@ -136,27 +156,39 @@ export class TaohoadonComponent implements OnInit {
     );
   }
 
-  In(){
+  In() {
     window.print();
   }
 
   states = [];
   search = '';
   getProduct() {
-    this.sp.GetByName({ search: this.search }).subscribe((res: any) => {
-      this.states = res;
-      this.filteredStates = this.stateCtrl.valueChanges.pipe(
-        startWith(''),
-        map((state) =>
-          state ? this._filterStates(state) : this.states.slice()
-        )
-      );
-    });
+    this.sp
+      .GetByName(this.search, this.IdLoai, this.IdHang)
+      .subscribe((res: any) => {
+        this.states = res;
+        this.filteredStates = this.stateCtrl.valueChanges.pipe(
+          startWith(''),
+          map((state) =>
+            state ? this._filterStates(state) : this.states.slice()
+          )
+        );
+      });
   }
   private _filterStates(value: string) {
     const filterValue = value.toLowerCase();
     return this.states.filter(
       (state) => state.ten.toLowerCase().indexOf(filterValue) === 0
     );
+  }
+
+  Print() {
+    const printContent = document.getElementById('print');
+    const WindowPrt = window.open('', '');
+    WindowPrt.document.write(printContent.innerHTML);
+    WindowPrt.document.close();
+    WindowPrt.focus();
+    WindowPrt.print();
+    WindowPrt.close();
   }
 }
