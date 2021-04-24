@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
+import * as moment from 'moment';
 import { Label, SingleDataSet } from 'ng2-charts';
 import { BaoCaoService } from 'src/app/services/danhmuc/baocao.service';
 import { KhoService } from 'src/app/services/danhmuc/kho.service';
@@ -16,6 +17,7 @@ export class BaocaoTonghopComponent implements OnInit {
   ngOnInit(): void {
     this.getBaoCaoTheoThang();
     this.TongHopTrangThaiDonHang();
+    this.bao_cao_theo_nhan_vien();
   }
   public barChartOptions: ChartOptions = {
     responsive: true,
@@ -68,6 +70,19 @@ export class BaocaoTonghopComponent implements OnInit {
       });
     });
   }
+  dsDataTheoNV :any;
+  dsParam = {
+    IdNhanVien:"",
+    dateFrom:moment().add(-70,'day').format(),
+    dateTo:moment().format()
 
+  }
+  bao_cao_theo_nhan_vien(){
+    this.baocao.bao_cao_theo_nhan_vien(this.dsParam).subscribe((res:any)=>{
+      this.dsDataTheoNV = res;
+      console.log(res);
+
+    });
+  }
 
 }

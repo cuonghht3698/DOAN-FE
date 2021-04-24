@@ -18,7 +18,7 @@
         <mat-icon>dialpad</mat-icon>
         <span>Tài khoản</span>
       </a>
-      <a routerLink="../quanly/danhmuc/sanpham" mat-menu-item>
+      <a routerLink="../quanly/danhmuc/sanpham" mat-menu-item *ngIf="isAdmin">
         <mat-icon>dashboard</mat-icon>
         <span>Quản lý shop</span>
       </a>

@@ -14,4 +14,7 @@ export class BaoCaoService {
   TongHopTrangThaiDonHang(data) {
     return this.http.post(this.baseUri + 'TongHopTrangThaiDonHang', data);
   }
+  bao_cao_theo_nhan_vien(data) {
+    return this.http.post(this.baseUri + 'Baocaotheonhanvien', data);
+  }
 }

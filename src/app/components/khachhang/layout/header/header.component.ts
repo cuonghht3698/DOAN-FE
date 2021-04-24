@@ -38,7 +38,11 @@ export class HeaderComponent implements OnInit {
       this.GetCount();
     }
     this.getTongTien();
+    if(JSON.parse(localStorage.getItem('user'))[0].role != 'khachhang'){
+      this.isAdmin = true;
+    }
   }
+  isAdmin = false;
   totalCheck = this.up.selectedValue;
   ngDoCheck(): void {
     if (this.totalCheck != this.up.selectedValue) {

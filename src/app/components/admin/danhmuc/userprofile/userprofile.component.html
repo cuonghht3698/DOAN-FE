@@ -14,6 +14,18 @@
                 <input matInput [(ngModel)]="searchUser.sSearch" (change)="getPage()">
             </mat-form-field>
         </div>
+        <div class="col-3">
+          <mat-form-field>
+            <mat-label>Favorite food</mat-label>
+            <mat-select [(ngModel)]="searchUser.RoleId" name="roleId" (ngModelChange)="getPage()">
+              <mat-option value="">Tất cả</mat-option>
+              <mat-option *ngFor="let food of dsRole" [value]="food.id">
+                {{food.ten}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        </div>
     </div>
     <br>
     <table class="table table-hover">
@@ -36,8 +48,8 @@
                 <td>{{ item.hoTen}}</td>
                 <td>{{ item.diaChi }}</td>
                 <td>{{ item.email }}</td>
-                <td>{{ item.sdt }}</td>
-                <td>{{ item.ngaySinh|date }}</td>
+                <td>{{ item.soDienThoai }}</td>
+                <td>{{ item.ngaySinh|date:'dd/MM/yyyy' }}</td>
                 <td>{{ item.username }}</td>
                 <td>{{ item.role }}</td>
                 <td>
