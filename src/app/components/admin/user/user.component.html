@@ -4,17 +4,12 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="header">
-                        <h4 class="title">Edit Profile</h4>
+                        <h4 class="title">Thông tin tài khoản</h4>
                     </div>
                     <div class="content">
                         <form [formGroup]="ProfileUser">
                             <div class="row">
-                                <div class="col-md-5">
-                                    <div class="form-group">
-                                        <label>Company (disabled)</label>
-                                        <input type="text" class="form-control" formControlName="Id">
-                                    </div>
-                                </div>
+
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>Username</label>
@@ -37,10 +32,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                  <div class="form-group" style="width: 200px">
-                                      <label>Age</label>
-                                      <input type="number" class="form-control" formControlName="Tuoi">
-                                  </div>
+
                               </div>
                             </div>
 
@@ -62,8 +54,8 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Postal Code</label>
-                                        <input type="text" class="form-control" formControlName="Sdt">
+                                        <label>Điện thoại</label>
+                                        <input type="text" class="form-control" formControlName="SoDienThoai">
                                     </div>
                                 </div>
                             </div>
@@ -72,7 +64,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>About Me</label>
-                                        <textarea rows="5" class="form-control" formControlName="GioiThieu"></textarea>
+                                        <textarea  class="form-control" rows="5" style=" height: 150px;" formControlName="GioiThieu"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -116,5 +108,3 @@
     </div>
 </div>
 
-
-{{ ProfileUser.value | json }}

@@ -10,7 +10,10 @@ export class NavbarComponent implements OnInit {
 
   constructor(private user:AuthenticationService) { }
   dropdown = false;
+  hoTen = "";
   ngOnInit(): void {
+    this.hoTen = JSON.parse(localStorage.getItem("user"))[0].hoTen;
+
   }
   Dropdown(){
     this.dropdown = !this.dropdown;
@@ -18,4 +21,5 @@ export class NavbarComponent implements OnInit {
   Logout(){
     this.user.logout();
   }
+
 }

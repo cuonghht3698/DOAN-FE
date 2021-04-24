@@ -20,5 +20,6 @@ export interface UserModel {
     TenKhongDau: string
     NgaySinh: Date
     Username: string
+    Password: string
 }
 

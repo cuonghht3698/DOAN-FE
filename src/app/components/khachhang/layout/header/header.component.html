@@ -7,6 +7,7 @@
       <a routerLink="/shop/dangnhap">Login</a>
     </span>
   </div>
+
   <div class="dropdown" *ngIf="DaDangNhap">
     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
       <mat-label>{{name}}</mat-label>
@@ -16,6 +17,10 @@
       <a routerLink="taikhoan" mat-menu-item>
         <mat-icon>dialpad</mat-icon>
         <span>Tài khoản</span>
+      </a>
+      <a routerLink="../quanly/danhmuc/sanpham" mat-menu-item>
+        <mat-icon>dashboard</mat-icon>
+        <span>Quản lý shop</span>
       </a>
       <a routerLink="lichsu" mat-menu-item>
         <mat-icon>voicemail</mat-icon>

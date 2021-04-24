@@ -3,10 +3,12 @@
 
 <div class="row" style="height: 50px;background-color: #45464c;">
   <div class="col-10  text-center">
-    <h1 style="color: white; padding: 10px;">Phần mềm quản lý bán hàng</h1>
+    <h3 style="color: white; padding: 10px;">Phần mềm quản lý bán hàng</h3>
+
   </div>
+
   <div class="col-2 text-center">
-    <div class="userProfile" (click)="Dropdown()">
+    <!-- <div class="userProfile" (click)="Dropdown()">
       <div class="user"  >
       <span class="name">Nguyễn Bá Cường</span>
       <img src="assets/img/avatar/logo_user_male.jpg" alt="">
@@ -14,11 +16,37 @@
       <div class="acction-user" id="acction-dropdown" *ngIf="dropdown">
           <ul>
             <li><a routerLink="user/my-user">Thông tin tài khoản</a></li>
+            <li><a routerLink="../shop">View mua hàng</a></li>
             <li><a>Đổi mật khẩu</a></li>
             <li><a>Cài đặt</a></li>
-            <li><a (click)="Logout()">Đăng xuất</a></li>
+            <li (click)="Logout()"><a>Đăng xuất</a></li>
           </ul>
       </div>
+    </div> -->
+
+    <div class="dropdown">
+      <button mat-icon-button style="color: white;" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-label style="color: white;">{{hoTen}}</mat-label>
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <a routerLink="user/my-user" mat-menu-item>
+          <mat-icon>dialpad</mat-icon>
+          <span>Tài khoản</span>
+        </a>
+        <a routerLink="../shop" mat-menu-item>
+          <mat-icon>dashboard</mat-icon>
+          <span>View mua hàng</span>
+        </a>
+        <a routerLink="lichsu" mat-menu-item>
+          <mat-icon>voicemail</mat-icon>
+          <span>Đổi mật khẩu</span>
+        </a>
+        <button mat-menu-item (click)="Logout()">
+          <mat-icon>logout</mat-icon>
+          <span style="color: red;">Đăng xuất</span>
+        </button>
+      </mat-menu>
     </div>
   </div>
 </div>

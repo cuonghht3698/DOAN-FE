@@ -4,10 +4,7 @@
     <mat-label>Họ tên</mat-label>
     <input matInput [(ngModel)]="dataChange.HoTen" name="ten">
   </mat-form-field>
-  <mat-form-field>
-    <mat-label>Tên không dấu</mat-label>
-    <input matInput [(ngModel)]="dataChange.TenKhongDau" name="tenk">
-  </mat-form-field>
+
   <mat-form-field>
     <mat-label>Địa chỉ email</mat-label>
     <input matInput [(ngModel)]="dataChange.Email" name="email">
@@ -25,6 +22,10 @@
   <mat-form-field>
     <mat-label>Username</mat-label>
     <input matInput [(ngModel)]="dataChange.Username" name="user" readonly>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Password</mat-label>
+    <input matInput [(ngModel)]="dataChange.Password" name="pass">
   </mat-form-field>
   <!-- <mat-form-field>
     <mat-label>Quyền hạn</mat-label>

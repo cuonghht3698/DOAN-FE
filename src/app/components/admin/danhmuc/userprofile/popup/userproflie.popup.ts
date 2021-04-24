@@ -29,6 +29,7 @@ export class PopupUserProfile implements OnInit {
     TenKhongDau: '',
     NgaySinh: new Date(),
     Username: '',
+    Password:''
   };
   dsRole: any;
   getRole() {
