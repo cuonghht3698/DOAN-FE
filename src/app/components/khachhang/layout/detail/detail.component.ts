@@ -83,25 +83,31 @@ export class DetailComponent implements OnInit {
   // Kieemr tra cart co san sang k trang thai giao dich = dang giao dich
   CheckCart() {
     var ClientId = this.cookieService.get('ClientId');
-    this.cart.CheckCart(this.DataCart.UserId, ClientId).subscribe((res: any) => {
-      // CHECK CO CART NAO K
-      if (res[0]?.id) {
-        console.log(res[0]);
+    this.cart
+      .CheckCart(this.DataCart.UserId, ClientId)
+      .subscribe((res: any) => {
+        // CHECK CO CART NAO K
+        if (res[0]?.id) {
+          console.log(res[0]);
 
-        this.DataCart.Id = res[0].id;
-        this.DataCartDetail.CartId = res[0].id;
-      }
-      // Tao cart mới
-      else {
-        this.cart.CreateNewCart(this.DataCart).subscribe((res: any) => {
-          this.DataCart.Id = res.id;
-          this.DataCartDetail.CartId = res.id;
-        });
-      }
-    });
+          this.DataCart.Id = res[0].id;
+          this.DataCartDetail.CartId = res[0].id;
+        }
+        // Tao cart mới
+        else {
+          this.cart.CreateNewCart(this.DataCart).subscribe((res: any) => {
+            this.DataCart.Id = res.id;
+            this.DataCartDetail.CartId = res.id;
+          });
+        }
+      });
   }
 
   AddToCart() {
+    if (this.DataCartDetail.SoLuong > this.SoLuongKho) {
+      this.toar.info('Số lượng tồn kho không đủ!', 'Thông báo');
+      return;
+    }
     this.cartDetail
       .CreateNewCartDetail(this.DataCartDetail)
       .subscribe((res) => {

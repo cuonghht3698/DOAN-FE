@@ -1,0 +1,25 @@
+<div class="container padding-bottom-3x mb-2 mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10">
+      <div class="forgot">
+        <h2>Quên mật khẩu</h2>
+        <p>Thay đổi mật khẩu của bạn trong ba bước đơn giản. Điều này sẽ giúp bạn bảo mật mật khẩu của mình!</p>
+        <ol class="list-unstyled">
+          <li><span class="text-primary text-medium">1. </span>Nhập địa chỉ email của bạn dưới đây.</li>
+          <li><span class="text-primary text-medium">2. </span>Hệ thống của chúng tôi sẽ gửi cho bạn tin nhắn có chứa
+            mật khẩu</li>
+          <li><span class="text-primary text-medium">3. </span>Đăng nhập hệ thống và đổi mật khẩu</li>
+        </ol>
+      </div>
+      <form class="card mt-4">
+        <div class="card-body">
+          <div class="form-group"> <label for="email-for-pass">Nhập địa chỉ email</label> <input class="form-control"
+              type="text" id="email-for-pass" [(ngModel)]="email" name="email" required=""><small class="form-text text-muted">Mọi thác mắc vui lòng liên hệ 0124124123 để được hỗ trợ</small>
+          </div>
+        </div>
+        <div class="card-footer"> <button class="btn btn-success" type="submit" (click)="XacNhan()">Xác nhận</button> <br><br> <a
+            routerLink="../login" class="btn btn-info" type="submit">Back to Login</a> </div>
+      </form>
+    </div>
+  </div>
+</div>

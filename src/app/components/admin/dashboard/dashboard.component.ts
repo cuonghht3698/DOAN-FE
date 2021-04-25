@@ -60,7 +60,7 @@ export class DashboardComponent implements OnInit {
     window.scrollTo(0,0);
   }
   ngOnInit(): void {
-    if (!localStorage.getItem("menu") || localStorage.getItem("menu") == null ) {
+    if (!localStorage.getItem("menu") || localStorage.getItem("menu") == null || JSON.parse(localStorage.getItem("menu")) == []) {
       this.getMenu();
     }
     else{

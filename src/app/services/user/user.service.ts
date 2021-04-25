@@ -1,14 +1,13 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core"
-import { environment } from "src/environments/environment";
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class UserService {
   baseUrl = environment.ApiUrl + 'user/';
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getProfileById(id) {
     return this.http.get(this.baseUrl + id);
@@ -26,12 +25,16 @@ export class UserService {
     return this.http.post(this.baseUrl + 'getPage', data);
   }
 
-  updateUser(data){
-    return this.http.put(this.baseUrl + 'updateUser', data)
+  updateUser(data) {
+    return this.http.put(this.baseUrl + 'updateUser', data);
   }
 
-
-  delete(id){
+  delete(id) {
     return this.http.delete(this.baseUrl + id);
+  }
+  quenmatkhau(email) {
+    return this.http.get(this.baseUrl + 'quenmatkhau', {
+      params: { email: email },
+    });
   }
 }

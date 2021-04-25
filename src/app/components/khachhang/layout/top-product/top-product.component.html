@@ -15,7 +15,7 @@
     </div>
     <div class="mid">
       <div class="product-mid">
-        <div class="product" *ngFor="let item of dsTopDienThoai" style="position: relative">
+        <div class="product mr-2" *ngFor="let item of dsTopDienThoai" style="position: relative">
           <div class="product-img" (click)="GoToDetail(item)" style="cursor: pointer;text-align: center;">
             <img [src]="url + item.imageUrl" alt="">
           </div>

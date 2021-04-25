@@ -34,6 +34,7 @@ import { LichsumuahangComponent } from './layout/lichsumuahang/lichsumuahang.com
 import { UserinfoComponent } from './layout/userinfo/userinfo.component';
 import { SharedModule } from 'src/app/share.module';
 import { ChatBoxComponent } from './layout/chat-box/chat-box.component';
+import { QuenmatkhauComponent } from './layout/quenmatkhau/quenmatkhau.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -70,7 +71,8 @@ import { ChatBoxComponent } from './layout/chat-box/chat-box.component';
     LichsumuahangComponent,
     UserinfoComponent,
     ShoppingCartComponent,
-    ChatBoxComponent
+    ChatBoxComponent,
+    QuenmatkhauComponent
   ],
   providers: [
     {

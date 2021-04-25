@@ -33,6 +33,18 @@
 
       </tbody>
     </table>
+    <div class="row mt-4">
+      <div class="col-lg-2">
+        <h3>Page: {{ search.pageIndex + 1}}</h3>
+      </div>
+      <div class="col-lg-10">
+        <mat-paginator [length]="dsSanPham.total" [pageIndex]="search.pageIndex" [pageSize]="search.pageSize"
+          [pageSizeOptions]="[5 ,10, 20, 50,100]" (page)="getPaginate($event)" showFirstLastButtons>
+        </mat-paginator>
+      </div>
+
+    </div>
+
   </div>
   <div class="col-6">
     <p style="font-size: 13pt;color: #006e86;
@@ -70,15 +82,4 @@
     </div>
 
   </div>
-</div>
-<div class="row mt-4">
-  <div class="col-lg-2">
-    <h3>Page: {{ search.pageIndex + 1}}</h3>
-  </div>
-  <div class="col-lg-10">
-    <mat-paginator [length]="dsSanPham.total" [pageIndex]="search.pageIndex" [pageSize]="search.pageSize"
-      [pageSizeOptions]="[5 ,10, 20, 50,100]" (page)="getPaginate($event)" showFirstLastButtons>
-    </mat-paginator>
-  </div>
-
 </div>

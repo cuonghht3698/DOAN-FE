@@ -30,6 +30,7 @@ export class UserinfoComponent implements OnInit {
     Username: '',
     Id: '',
     Password: '',
+    Role : this.auth.getUserLocal().role
   };
   ngOnInit(): void {
     this.UserId = this.auth.getUserLocal().id;
@@ -48,6 +49,7 @@ export class UserinfoComponent implements OnInit {
           Username: res.username,
           Id: this.UserId,
           Password: '',
+          Role:this.auth.getUserLocal().role
         };
       });
     }

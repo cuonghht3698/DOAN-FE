@@ -3,6 +3,7 @@ import { DanhmucComponent } from './layout/danhmuc/danhmuc.component';
 import { DetailComponent } from './layout/detail/detail.component';
 import { LichsumuahangComponent } from './layout/lichsumuahang/lichsumuahang.component';
 import { LoginComponent } from './layout/login/login.component';
+import { QuenmatkhauComponent } from './layout/quenmatkhau/quenmatkhau.component';
 import { ShoppingCartComponent } from './layout/shopping-cart/shopping-cart.component';
 import { UserinfoComponent } from './layout/userinfo/userinfo.component';
 import { MainComponent } from './main/main.component';
@@ -45,6 +46,10 @@ export const routes: Routes = [
       {
         path: 'taikhoan',
         component: UserinfoComponent,
+      },
+      {
+        path: 'quenmatkhau',
+        component: QuenmatkhauComponent,
       },
     ],
   },
